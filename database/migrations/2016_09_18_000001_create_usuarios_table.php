@@ -20,10 +20,10 @@ class CreateUsuariosTable extends Migration
             $table->string('direccion');
             $table->string('correo')->unique();
             $table->integer('telefono');
-            $table->string('image'); 
-            $table->timestamp('birthday');
+            $table->string('imagen'); 
+            $table->timestamp('cumpleanos');
             $table->integer('tipoUsuario_id')->unsigned();
-            $table->string('usuario');
+            $table->string('usuario')->unique();
             $table->string('contrasena', 60);
             $table->rememberToken();
             $table->softDeletes();

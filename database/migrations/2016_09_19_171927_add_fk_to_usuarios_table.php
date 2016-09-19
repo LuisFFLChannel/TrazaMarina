@@ -13,7 +13,7 @@ class AddFkToUsuariosTable extends Migration
     public function up()
     {
         Schema::table('usuarios', function (Blueprint $table) {
-            $table->foreign('tipoUsuario_id')->references('idUsuarios')->on('perfilUsuarios');
+            $table->foreign('tipoUsuario_id')->references('idPerfil')->on('perfilUsuario');
         });
     }
 
