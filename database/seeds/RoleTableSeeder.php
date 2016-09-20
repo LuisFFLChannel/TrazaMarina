@@ -9,6 +9,7 @@ class RoleTableSeeder extends Seeder
      *
      * @return void
      */
+    
     public function run()
     {
         Role::insert(['description'=>'CLIENT']);
