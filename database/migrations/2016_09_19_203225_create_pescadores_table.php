@@ -17,7 +17,7 @@ class CreatePescadoresTable extends Migration
             $table->increments('idPescadores');
             $table->string('nombres');
             $table->string('apellidos');
-            $table->integer('dni');
+            $table->integer('dni')->unique();
             $table->integer('telefono');
             $table->string('correo');
             $table->timestamp('cumpleanos');

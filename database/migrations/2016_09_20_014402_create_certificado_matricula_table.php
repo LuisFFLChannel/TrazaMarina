@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFrigorificoTable extends Migration
+class CreateCertificadoMatriculaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateFrigorificoTable extends Migration
     public function up()
     {
         //
-        Schema::create('frigorifico', function (Blueprint $table) {
-            $table->increments('idFrigorifico');
-            $table->string('nombre');
-            $table->string('placa')->unique();
-            $table->float('capacidad');
+        Schema::create('certificadoMatricula', function (Blueprint $table) {
+            $table->increments('idCertificadoMatricula');
+            $table->string('nombreDueno');
+            $table->string('apellidosDueno');
+            $table->integer('dniDueno')->unique();
+            $table->string('nMatricula')->unique();
             $table->boolean('activo');
             $table->softDeletes();
             $table->timestamps();
@@ -32,6 +33,6 @@ class CreateFrigorificoTable extends Migration
     public function down()
     {
         //
-        Schema::drop('frigorifico');
+        Schema::drop('certificadoMatricula');
     }
 }

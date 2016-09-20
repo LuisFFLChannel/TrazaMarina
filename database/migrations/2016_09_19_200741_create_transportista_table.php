@@ -17,7 +17,7 @@ class CreateTransportistaTable extends Migration
             $table->increments('idTransportista');
             $table->string('nombres');
             $table->string('apellidos');
-            $table->integer('dni');
+            $table->integer('dni')->unique();
             $table->integer('telefono');
             $table->string('correo');
             $table->string('brevete');

@@ -16,7 +16,7 @@ class CreateUsuariosTable extends Migration
             $table->increments('idUsuario');
             $table->string('nombres');
             $table->string('apellidos');
-            $table->integer('dni');
+            $table->integer('dni')->unique();
             $table->string('direccion');
             $table->string('correo')->unique();
             $table->integer('telefono');
