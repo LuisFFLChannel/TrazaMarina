@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePuertoTable extends Migration
+class CreateTransporteTerminalTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreatePuertoTable extends Migration
     public function up()
     {
         //
-         Schema::create('puerto', function (Blueprint $table) {
-            $table->increments('idPuerto');
-            $table->string('nombre');
-            $table->string('direccion');
-            $table->float('coordenadaX');
-            $table->float('coordenadaY');
-            $table->string('imagen'); 
+        Schema::create('transporteTerminal', function (Blueprint $table) {
+            $table->increments('idTransporte');
+            $table->timestamp('fechaSalida');
+            $table->integer('terminal_id')->unsigned();
+            $table->integer('frigorifico_id')->unsigned();
             $table->boolean('activo');
             $table->softDeletes();
             $table->timestamps();
@@ -34,6 +32,6 @@ class CreatePuertoTable extends Migration
     public function down()
     {
         //
-         Schema::drop('puerto');
+        Schema::drop('transporteTerminal');
     }
 }

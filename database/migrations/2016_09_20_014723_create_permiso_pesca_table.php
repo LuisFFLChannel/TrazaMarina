@@ -16,6 +16,7 @@ class CreatePermisoPescaTable extends Migration
         Schema::create('permisoPesca', function (Blueprint $table) {
             $table->increments('idPermisoPesca');
             $table->timestamp('fechaVigencia');
+            $table->string('imagen'); 
             $table->boolean('activo');
             $table->softDeletes();
             $table->timestamps();

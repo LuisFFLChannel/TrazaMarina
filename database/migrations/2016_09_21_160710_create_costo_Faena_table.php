@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePuertoTable extends Migration
+class CreateCostoFaenaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreatePuertoTable extends Migration
     public function up()
     {
         //
-         Schema::create('puerto', function (Blueprint $table) {
-            $table->increments('idPuerto');
+        Schema::create('costoFaena', function (Blueprint $table) {
+            $table->increments('idCostoFaena');
             $table->string('nombre');
-            $table->string('direccion');
-            $table->float('coordenadaX');
-            $table->float('coordenadaY');
-            $table->string('imagen'); 
+            $table->text('descripcion');
+            $table->float('costo');
             $table->boolean('activo');
             $table->softDeletes();
             $table->timestamps();
@@ -33,7 +31,6 @@ class CreatePuertoTable extends Migration
      */
     public function down()
     {
-        //
-         Schema::drop('puerto');
+        Schema::drop('costoFaena');
     }
 }

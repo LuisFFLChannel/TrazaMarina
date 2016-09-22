@@ -15,7 +15,7 @@ class CreatePerfilUsuarioTable extends Migration
         Schema::create('perfilUsuario', function (Blueprint $table) {
             $table->increments('idPerfil');
             $table->string('nombre')->unique();
-            $table->string('descripcion');
+            $table->text('descripcion');
             $table->boolean('activo');
             $table->softDeletes();
             $table->timestamps();

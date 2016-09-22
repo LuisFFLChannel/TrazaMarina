@@ -288,6 +288,14 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('admin/promoter/{id}/edit', 'AdminController@editPromoter');
     Route::post('admin/promoter/{id}/edit', 'AdminController@updatePromoter');
     Route::get('admin/promoter/{id}/delete', 'AdminController@destroyPromoter');
+
+    Route::get('admin/especiesMarinas', ['uses'=>'EspeciesMarinasController@index','as'=>'admin.especiesMarinas']);
+    Route::get('admin/especiesMarinas/new', 'EspeciesMarinasController@create');
+    Route::post('admin/especiesMarinas/new', 'EspeciesMarinasController@store');
+    Route::get('admin/especiesMarinas/{id}/edit', 'EspeciesMarinasController@edit');
+    Route::post('admin/especiesMarinas/{id}/edit', 'EspeciesMarinasController@update');
+    Route::get('admin/especiesMarinas/{id}/delete', 'EspeciesMarinasController@destroy');
+
 })  ;
 
 Route::get('token',function(){

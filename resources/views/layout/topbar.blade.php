@@ -234,6 +234,13 @@
                         </li>
                     </ul>
                 </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Especie Marinas <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('admin/especiesMarinas')}}">Listar</a></li>
+                        <li><a href="{{url('admin/especiesMarinas/new')}}">Nuevo</a></li>
+                    </ul>
+                </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Configuración  <b class="caret"></b></a>
                     <ul class="dropdown-menu">
