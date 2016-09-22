@@ -11,7 +11,7 @@
 @section('content')
   <div class="row">
     <div class="col-sm-8">
-      {!!Form::open(array('url' => 'admin/especiesMarinas/'.$especie->id.'/edit','files'=>true,'id'=>'form','class'=>'form-horizontal'))!!}
+      {!!Form::open(array('url' => 'admin/especieMarinas/'.$especie->idEspecie.'/edit','files'=>true,'id'=>'form','class'=>'form-horizontal'))!!}
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-2 control-label">Nombre</label>
           <div class="col-sm-10">
@@ -21,7 +21,7 @@
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-2 control-label">Nombre Cientifico</label>
           <div class="col-sm-10">
-            {!!Form::input('text','nombreCientifico', $especie->nombrecientifico ,['class'=>'form-control','id'=>'inputEmai3', 'maxlength'=>'100','required'])!!}
+            {!!Form::input('text','nombreCientifico', $especie->nombreCientifico ,['class'=>'form-control','id'=>'inputEmai3', 'maxlength'=>'100','required'])!!}
           </div>
         </div>
         <div class="form-group">
@@ -45,7 +45,7 @@
         <div class="form-group">
             <label for="inputBirth" class="col-sm-2 control-label">Inicio Veda</label>
               <div class="col-sm-10">
-                  {!!Form::input('date','inicioVeda', null ,['class'=>'form-control','id'=>'inputBirth','required'])!!}
+                  {!!Form::input('date','inicioVeda', explode(" ",$especie->inicioVeda)[0] ,['class'=>'form-control','id'=>'inputBirth','required'])!!}
               <div class="col-sm-6" id="firefox" style="visibility: hidden">
                     Formato fecha: aaaaa-mm-dd
               </div>                     
@@ -54,7 +54,7 @@
         <div class="form-group">
             <label for="inputBirth" class="col-sm-2 control-label">Fin Veda</label>
               <div class="col-sm-10">
-                  {!!Form::input('date','finVeda', null ,['class'=>'form-control','id'=>'inputBirth','required'])!!}
+                  {!!Form::input('date','finVeda', explode(" ",$especie->finVeda)[0] ,['class'=>'form-control','id'=>'inputBirth','required'])!!}
               <div class="col-sm-6" id="firefox" style="visibility: hidden">
                     Formato fecha: aaaaa-mm-dd
               </div>                     
@@ -77,7 +77,7 @@
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10">
             <a class="btn btn-info" href="" title="submit" data-toggle="modal" data-target="#submitModal" >Guardar</a>
-            <a href="{{action('GiftController@index')}}"><button type="button" class="btn btn-info">Cancelar</button></a>
+            <a href="{{action('EspeciesMarinasController@index')}}"><button type="button" class="btn btn-info">Cancelar</button></a>
           </div>
         </div>
 

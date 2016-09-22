@@ -14,7 +14,7 @@ class CreatePermisoZarpeTable extends Migration
     {
         //
         Schema::create('permisoZarpe', function (Blueprint $table) {
-            $table->increments('idPermisoZarpe');
+            $table->increments('id');
             $table->string('nombre');
             $table->string('nMatricula');
             $table->float('coordenadaX');

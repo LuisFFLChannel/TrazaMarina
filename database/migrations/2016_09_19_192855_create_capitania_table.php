@@ -14,7 +14,7 @@ class CreateCapitaniaTable extends Migration
     {
         //
          Schema::create('capitania', function (Blueprint $table) {
-            $table->increments('idCapitania');
+            $table->increments('id');
             $table->string('nombre');
             $table->string('direccion');
             $table->float('coordenadaX');

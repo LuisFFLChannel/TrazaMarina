@@ -14,8 +14,8 @@ class AddFkToNotaIngresoTable extends Migration
     {
         //
             Schema::table('notaIngreso', function (Blueprint $table) {
-                $table->foreign('desembarque_id')->references('idDesembarque')->on('desembarque');
-                $table->foreign('especie_id')->references('idEspecie')->on('especieMarina');
+                $table->foreign('desembarque_id')->references('id')->on('desembarque');
+                $table->foreign('especie_id')->references('id')->on('especieMarina');
             });
     }
 

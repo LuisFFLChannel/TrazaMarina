@@ -14,7 +14,7 @@ class CreateEmpresarioComercializadorTable extends Migration
     {
         //
         Schema::create('empresarioComercializador', function (Blueprint $table) {
-            $table->increments('idEmpresarioComercializador');
+            $table->increments('id');
             $table->string('nombres');
             $table->string('apellidos');
             $table->integer('dni')->unique();

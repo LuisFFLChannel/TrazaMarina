@@ -14,7 +14,7 @@ class CreatePescaTable extends Migration
     {
         //
         Schema::create('pesca', function (Blueprint $table) {
-            $table->increments('idPesca');
+            $table->increments('id');
             $table->timestamp('fechaZarpe');
             $table->float('coordenadaX');
             $table->float('coordenadaY');

@@ -15,7 +15,6 @@
         <th>Nombre Cientifico</th>   
         <th>Inicio Veda</th>
         <th>Fin de Veda</th>
-        <th>Fin de Veda</th>
         <!--<th>Imagen</th>-->
         <th>Detalle</th>
         <th>Editar</th>
@@ -39,24 +38,21 @@
                     <h4 class="modal-title" id="myModalLabel">Detalle punto de venta</h4>
                   </div>
                   <div class="modal-body">
-                    <h4>Nombre: </h4>
-                    {{$especie->nombre}}
-                    <h4>Nombre Cientifico: </h4>
-                    {{$especie->nombreCientifico}}
-                    <h4>Promedio de Vida: </h4>
-                    {{$especie->promedioVida}} años
-                    <h4>Tamano Minimo: </h4>
-                    {{$especie->tamanoMin}}
-                    <h4>Tamano Maximo: </h4>
-                    {{$especie->tamanoMax}}
-                    <h4>Inicio de Veda: </h4>
-                    {{date_format(date_create($especie->inicioVeda),"d/M")}}
-                    <h4>Fin de Veda: </h4>
-                    {{date_format(date_create($especie->finVeda),"d/M")}}
-                    <h4>Promedio de Pesca</h4>
-                    {{$especie->pescaPromedio}}
-                    <hr>
-                    <p>{!! Html::image($especie->imagen, null, array('class'=>'gift_img')) !!}</p>
+                    <div class="row">
+                      <div class="col-sm-1"></div>
+                      <div class="col-sm-8">
+                          <h5>Nombre: {{$especie->nombre}} </h5>
+                          <h5>Nombre Cientifico: {{$especie->nombreCientifico}} </h5>                        
+                          <h5>Promedio de Vida: {{$especie->promedioVida}} años </h5>        
+                          <h5>Tamano Minimo: {{$especie->tamanoMin}}</h5> 
+                          <h5>Tamano Maximo:  {{$especie->tamanoMax}}</h5>     
+                          <h5>Inicio de Veda: {{date_format(date_create($especie->inicioVeda),"d/M")}} </h5>
+                          <h5>Fin de Veda: {{date_format(date_create($especie->finVeda),"d/M")}}</h5>    
+                          <h5>Promedio de Pesca: {{$especie->pescaPromedio}}</h5>                       
+                          <hr>
+                          <p>{!! Html::image($especie->imagen, null, array('class'=>'gift_img')) !!}</p>
+                       </div>
+                    </div>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-info" data-dismiss="modal">Cerrar</button>
@@ -66,7 +62,7 @@
             </div>
           </td>
       <td>
-        <a class="btn btn-info" href="{{url('admin/especiesMarinas/'.$especie->idEspecie.'/edit')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
+        <a class="btn btn-info" href="{{url('admin/especieMarinas/'.$especie->idEspecie.'/edit')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
       </td> 
       <td>
         <a class="btn btn-info" title="Eliminar" data-toggle="modal" data-target="#deleteModal{{$especie->idEspecie}}" ><i class="glyphicon glyphicon-remove"></i></a>

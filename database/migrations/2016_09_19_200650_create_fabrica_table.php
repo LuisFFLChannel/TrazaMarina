@@ -14,7 +14,7 @@ class CreateFabricaTable extends Migration
     {
         //
          Schema::create('fabrica', function (Blueprint $table) {
-            $table->increments('idFabrica');
+            $table->increments('id');
             $table->string('nombre');
             $table->string('direccion');
             $table->float('coordenadaX');

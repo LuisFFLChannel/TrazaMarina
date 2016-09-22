@@ -15,8 +15,8 @@ class AddFkToPermisoZarpePescadoresTable extends Migration
         //
         Schema::table('permisoZarpe_pescadores', function (Blueprint $table) {
             $table->primary(['permisoZarpe_id','pescadores_id']);
-            $table->foreign('permisoZarpe_id')->references('idPermisoZarpe')->on('permisoZarpe');
-            $table->foreign('pescadores_id')->references('idPescadores')->on('pescadores');
+            $table->foreign('permisoZarpe_id')->references('id')->on('permisoZarpe');
+            $table->foreign('pescadores_id')->references('id')->on('pescadores');
 
         });
     }

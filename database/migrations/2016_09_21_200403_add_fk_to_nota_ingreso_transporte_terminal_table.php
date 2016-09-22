@@ -15,8 +15,8 @@ class AddFkToNotaIngresoTransporteTerminalTable extends Migration
         //
          Schema::table('notaIngreso_transporteTerminal', function (Blueprint $table) {
             $table->primary(['transporte_id','notaIngreso_id'], 'my_long_table_primary');
-            $table->foreign('transporte_id')->references('idTransporte')->on('transporteTerminal');
-            $table->foreign('notaIngreso_id')->references('idNotaIngreso')->on('notaIngreso');
+            $table->foreign('transporte_id')->references('id')->on('transporteTerminal');
+            $table->foreign('notaIngreso_id')->references('id')->on('notaIngreso');
 
         });
     }

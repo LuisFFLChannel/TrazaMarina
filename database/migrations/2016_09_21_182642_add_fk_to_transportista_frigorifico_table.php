@@ -15,8 +15,8 @@ class AddFkToTransportistaFrigorificoTable extends Migration
         //
         Schema::table('transportista_frigorifico', function (Blueprint $table) {
             $table->primary(['transportista_id','frigorifico_id'], 'my_long_table_primary'); /*Largo*/
-            $table->foreign('transportista_id')->references('idTransportista')->on('transportista');
-            $table->foreign('frigorifico_id')->references('idFrigorifico')->on('frigorifico');
+            $table->foreign('transportista_id')->references('id')->on('transportista');
+            $table->foreign('frigorifico_id')->references('id')->on('frigorifico');
 
         });
     }

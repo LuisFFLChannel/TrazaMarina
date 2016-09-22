@@ -14,8 +14,8 @@ class AddFkToPermisoZarpeTable extends Migration
     {
         //
         Schema::table('permisoZarpe', function (Blueprint $table) {
-            $table->foreign('puerto_id')->references('idPuerto')->on('puerto');
-            $table->foreign('capitania_id')->references('idCapitania')->on('capitania');
+            $table->foreign('puerto_id')->references('id')->on('puerto');
+            $table->foreign('capitania_id')->references('id')->on('capitania');
         });
     }
 

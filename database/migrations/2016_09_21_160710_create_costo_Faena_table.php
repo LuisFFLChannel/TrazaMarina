@@ -14,7 +14,7 @@ class CreateCostoFaenaTable extends Migration
     {
         //
         Schema::create('costoFaena', function (Blueprint $table) {
-            $table->increments('idCostoFaena');
+            $table->increments('id');
             $table->string('nombre');
             $table->text('descripcion');
             $table->float('costo');

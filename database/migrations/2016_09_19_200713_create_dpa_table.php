@@ -14,7 +14,7 @@ class CreateDpaTable extends Migration
     {
         //
          Schema::create('dpa', function (Blueprint $table) {
-            $table->increments('idDPA');
+            $table->increments('id');
             $table->string('nombre');
             $table->string('direccion');
             $table->float('coordenadaX');

@@ -14,7 +14,7 @@ class CreatePuertoTable extends Migration
     {
         //
          Schema::create('puerto', function (Blueprint $table) {
-            $table->increments('idPuerto');
+            $table->increments('id');
             $table->string('nombre');
             $table->string('direccion');
             $table->float('coordenadaX');

@@ -15,8 +15,8 @@ class AddFkToNotaIngresoCertificadoProcedenciaTable extends Migration
         //
         Schema::table('notaIngreso_certificadoProcedencia', function (Blueprint $table) {
             $table->primary(['certificado_id','notaIngreso_id'], 'my_long_table_primary');
-            $table->foreign('certificado_id')->references('idCertificadoProcedencia')->on('certificadoProcedencia');
-            $table->foreign('notaIngreso_id')->references('idNotaIngreso')->on('notaIngreso');
+            $table->foreign('certificado_id')->references('id')->on('certificadoProcedencia');
+            $table->foreign('notaIngreso_id')->references('id')->on('notaIngreso');
 
         });
     }

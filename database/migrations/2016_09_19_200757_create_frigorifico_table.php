@@ -14,7 +14,7 @@ class CreateFrigorificoTable extends Migration
     {
         //
         Schema::create('frigorifico', function (Blueprint $table) {
-            $table->increments('idFrigorifico');
+            $table->increments('id');
             $table->string('nombre');
             $table->string('placa')->unique();
             $table->float('capacidad');

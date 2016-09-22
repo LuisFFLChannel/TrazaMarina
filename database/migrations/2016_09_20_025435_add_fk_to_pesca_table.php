@@ -14,9 +14,9 @@ class AddFkToPescaTable extends Migration
     {
         //
         Schema::table('pesca', function (Blueprint $table) {
-            $table->foreign('embarcacion_id')->references('idEmbarcacion')->on('embarcacion');
-            $table->foreign('puerto_id')->references('idPuerto')->on('puerto');
-            $table->foreign('permisoZarpe_id')->references('idPermisoZarpe')->on('permisoZarpe');
+            $table->foreign('embarcacion_id')->references('id')->on('embarcacion');
+            $table->foreign('puerto_id')->references('id')->on('puerto');
+            $table->foreign('permisoZarpe_id')->references('id')->on('permisoZarpe');
         });
     }
 

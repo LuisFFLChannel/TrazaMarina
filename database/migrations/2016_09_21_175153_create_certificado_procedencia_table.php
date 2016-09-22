@@ -14,7 +14,7 @@ class CreateCertificadoProcedenciaTable extends Migration
     {
         //
         Schema::create('certificadoProcedencia', function (Blueprint $table) {
-            $table->increments('idCertificadoProcedencia');
+            $table->increments('id');
             $table->timestamp('fechaDictada');
             $table->integer('fabrica_id')->unsigned();
             $table->integer('frigorifico_id')->unsigned();

@@ -14,7 +14,7 @@ class CreatePescadoresTable extends Migration
     {
         //
         Schema::create('pescadores', function (Blueprint $table) {
-            $table->increments('idPescadores');
+            $table->increments('id');
             $table->string('nombres');
             $table->string('apellidos');
             $table->integer('dni')->unique();

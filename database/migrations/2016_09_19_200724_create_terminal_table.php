@@ -14,7 +14,7 @@ class CreateTerminalTable extends Migration
     {
         //
         Schema::create('terminal', function (Blueprint $table) {
-            $table->increments('idTerminal');
+            $table->increments('id');
             $table->string('nombre');
             $table->string('direccion');
             $table->float('coordenadaX');

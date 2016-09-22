@@ -13,7 +13,7 @@ class CreateEspecieMarinaTable extends Migration
     public function up()
     {
         Schema::create('especieMarina', function (Blueprint $table) {
-            $table->increments('idEspecie');
+            $table->increments('id');
             $table->string('nombre');
             $table->string('nombreCientifico');
             $table->float('promedioVida');

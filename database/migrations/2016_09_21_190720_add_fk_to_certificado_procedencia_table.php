@@ -14,9 +14,9 @@ class AddFkToCertificadoProcedenciaTable extends Migration
     {
         //
         Schema::table('certificadoProcedencia', function (Blueprint $table) {
-            $table->foreign('fabrica_id')->references('idFabrica')->on('fabrica');
-            $table->foreign('frigorifico_id')->references('idFrigorifico')->on('frigorifico');
-            $table->foreign('empresarioComercializador_id')->references('idEmpresarioComercializador')->on('empresarioComercializador');
+            $table->foreign('fabrica_id')->references('id')->on('fabrica');
+            $table->foreign('frigorifico_id')->references('id')->on('frigorifico');
+            $table->foreign('empresarioComercializador_id')->references('id')->on('empresarioComercializador');
         });
     }
 

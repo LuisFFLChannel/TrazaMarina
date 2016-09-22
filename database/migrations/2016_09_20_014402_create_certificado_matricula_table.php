@@ -14,7 +14,7 @@ class CreateCertificadoMatriculaTable extends Migration
     {
         //
         Schema::create('certificadoMatricula', function (Blueprint $table) {
-            $table->increments('idCertificadoMatricula');
+            $table->increments('id');
             $table->string('nombreDueno');
             $table->string('apellidosDueno');
             $table->integer('dniDueno')->unique();

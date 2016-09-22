@@ -13,7 +13,7 @@ class CreatePerfilUsuarioTable extends Migration
     public function up()
     {
         Schema::create('perfilUsuario', function (Blueprint $table) {
-            $table->increments('idPerfil');
+            $table->increments('id');
             $table->string('nombre')->unique();
             $table->text('descripcion');
             $table->boolean('activo');

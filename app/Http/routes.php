@@ -289,12 +289,12 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::post('admin/promoter/{id}/edit', 'AdminController@updatePromoter');
     Route::get('admin/promoter/{id}/delete', 'AdminController@destroyPromoter');
 
-    Route::get('admin/especiesMarinas', ['uses'=>'EspeciesMarinasController@index','as'=>'admin.especiesMarinas']);
-    Route::get('admin/especiesMarinas/new', 'EspeciesMarinasController@create');
-    Route::post('admin/especiesMarinas/new', 'EspeciesMarinasController@store');
-    Route::get('admin/especiesMarinas/{id}/edit', 'EspeciesMarinasController@edit');
-    Route::post('admin/especiesMarinas/{id}/edit', 'EspeciesMarinasController@update');
-    Route::get('admin/especiesMarinas/{id}/delete', 'EspeciesMarinasController@destroy');
+    Route::get('admin/especieMarinas', ['uses'=>'EspeciesMarinasController@index','as'=>'admin.especieMarinas']);
+    Route::get('admin/especieMarinas/new', 'EspeciesMarinasController@create');
+    Route::post('admin/especieMarinas/new', 'EspeciesMarinasController@store');
+    Route::get('admin/especieMarinas/{id}/edit', 'EspeciesMarinasController@edit');
+    Route::post('admin/especieMarinas/{id}/edit', 'EspeciesMarinasController@update');
+    Route::get('admin/especieMarinas/{id}/delete', 'EspeciesMarinasController@destroy');
 
 })  ;
 

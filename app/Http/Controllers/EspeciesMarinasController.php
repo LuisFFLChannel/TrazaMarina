@@ -29,9 +29,9 @@ class EspeciesMarinasController extends Controller
     public function index()
     {
         //
-        $especies = EspecieMarina::paginate(5);
+        $especies = EspecieMarina::paginate(10);
         $especies->setPath('especies');
-        return view('internal.admin.especiesMarinas', compact('especies'));
+        return view('internal.admin.especieMarinas', compact('especies'));
     }
 
     /**
@@ -61,18 +61,18 @@ class EspeciesMarinasController extends Controller
         $especie->nombreCientifico  =   $input['nombreCientifico'];
         $especie->promedioVida      =   $input['promedioVida'];
         $especie->tamanoMin         =   $input['tamanoMin'];
-        $especie->tamanoMax         =   $input['tamanoMax '];
+        $especie->tamanoMax         =   $input['tamanoMax'];
         $especie->inicioVeda        =   new Carbon($input['inicioVeda']);
         $especie->finVeda           =   new Carbon($input['finVeda']);
         $especie->pescaPromedio     =   $input['pescaPromedio'];
         $especie->activo            =   true;
 
         //Control de subida de imagen por hacer
-        $especie->imagen        =   $this->file_service->upload($request->file('image'),'especie');
+        $especie->imagen        =   $this->file_service->upload($request->file('imagen'),'especie');
 
         $especie->save();
         
-        return redirect()->route('admin.especiesMarinas');
+        return redirect()->route('admin.especieMarinas');
     }
 
     /**
@@ -95,8 +95,8 @@ class EspeciesMarinasController extends Controller
     public function edit($idEspecie)
     {
         //
-        $especie = EspecieMarina::find($idEspecie);
 
+        $especie = EspecieMarina::find($idEspecie);
         return view('internal.admin.editarEspecieMarina', compact('especie'));
     }
 
@@ -118,7 +118,7 @@ class EspeciesMarinasController extends Controller
         $especie->nombreCientifico  =   $input['nombreCientifico'];
         $especie->promedioVida      =   $input['promedioVida'];
         $especie->tamanoMin         =   $input['tamanoMin'];
-        $especie->tamanoMax         =   $input['tamanoMax '];
+        $especie->tamanoMax         =   $input['tamanoMax'];
         $especie->inicioVeda        =   new Carbon($input['inicioVeda']);
         $especie->finVeda           =   new Carbon($input['finVeda']);
         $especie->pescaPromedio     =   $input['pescaPromedio'];
@@ -127,7 +127,7 @@ class EspeciesMarinasController extends Controller
 
         $especie->save();
         
-        return redirect()->route('admin.especiesMarinas');
+        return redirect()->route('admin.especieMarinas');
     }
 
     /**

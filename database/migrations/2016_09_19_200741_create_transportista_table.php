@@ -14,7 +14,7 @@ class CreateTransportistaTable extends Migration
     {
         //
         Schema::create('transportista', function (Blueprint $table) {
-            $table->increments('idTransportista');
+            $table->increments('id');
             $table->string('nombres');
             $table->string('apellidos');
             $table->integer('dni')->unique();

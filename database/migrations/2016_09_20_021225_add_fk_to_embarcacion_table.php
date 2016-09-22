@@ -14,8 +14,8 @@ class AddFkToEmbarcacionTable extends Migration
     {
         //
         Schema::table('embarcacion', function (Blueprint $table) {
-            $table->foreign('certificadoMatricula_id')->references('idCertificadoMatricula')->on('certificadoMatricula');
-            $table->foreign('permisoPesca_id')->references('idPermisoPesca')->on('permisoPesca');
+            $table->foreign('certificadoMatricula_id')->references('id')->on('certificadoMatricula');
+            $table->foreign('permisoPesca_id')->references('id')->on('permisoPesca');
         });
     }
 

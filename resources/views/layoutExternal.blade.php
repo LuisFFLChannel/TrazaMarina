@@ -56,7 +56,7 @@
 		@yield('content')
 	</div>
 </body>
-
+<!--
 <footer id="footer">
     <p>
         <a href="#" class="icon circle fa-twitter"><span class="label">Twitter</span></a>
@@ -65,7 +65,7 @@
         <a href="#" class="icon circle fa-github"><span class="label">Github</span></a>
         <a href="#" class="icon circle fa-dribbble"><span class="label">Dribbble</span></a>
     </p>
-</footer>
+</footer>-->
 	{!!Html::script('js/bootstrap.min.js')!!}
     {!!Html::script('js/jquery.validate.min.js')!!}
     {!!Html::script('js/messages_es_PE.js')!!}

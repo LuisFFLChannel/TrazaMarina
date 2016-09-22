@@ -14,11 +14,11 @@ class AddFkToDesembarqueTable extends Migration
     {
         //
         Schema::table('desembarque', function (Blueprint $table) {
-            $table->foreign('embarcacion_id')->references('idEmbarcacion')->on('embarcacion');
-            $table->foreign('pesca_id')->references('idPesca')->on('pesca');
-            $table->foreign('puerto_id')->references('idPuerto')->on('puerto');
-            $table->foreign('costoFaena_id')->references('idCostoFaena')->on('costoFaena');
-            $table->foreign('dpa_id')->references('idDPA')->on('dpa');
+            $table->foreign('embarcacion_id')->references('id')->on('embarcacion');
+            $table->foreign('pesca_id')->references('id')->on('pesca');
+            $table->foreign('puerto_id')->references('id')->on('puerto');
+            $table->foreign('costoFaena_id')->references('id')->on('costoFaena');
+            $table->foreign('dpa_id')->references('id')->on('dpa');
         });
     }
 

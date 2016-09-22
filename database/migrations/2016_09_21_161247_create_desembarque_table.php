@@ -14,7 +14,7 @@ class CreateDesembarqueTable extends Migration
     {
         //
         Schema::create('desembarque', function (Blueprint $table) {
-            $table->increments('idDesembarque');
+            $table->increments('id');
             $table->timestamp('fechaLlegada');
             $table->integer('embarcacion_id')->unsigned();
             $table->integer('pesca_id')->unsigned();

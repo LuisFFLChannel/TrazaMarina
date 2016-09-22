@@ -13,7 +13,7 @@ class CreateNotaIngresoTable extends Migration
     public function up()
     {
         Schema::create('notaIngreso', function (Blueprint $table) {
-            $table->increments('idNotaIngreso');
+            $table->increments('id');
             $table->integer('desembarque_id')->unsigned();
             $table->integer('especie_id')->unsigned();
             $table->float('toneladas');
