@@ -235,7 +235,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Especie Marinas <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Especies Marinas <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{url('admin/especieMarinas')}}">Listar</a></li>
                         <li><a href="{{url('admin/especieMarinas/new')}}">Nuevo</a></li>

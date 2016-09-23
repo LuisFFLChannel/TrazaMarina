@@ -30,7 +30,6 @@ class StoreEspecieRequest extends Request
             'promedioVida'          =>  'required|numeric|max:10',
             'tamanoMin'             =>  'required|numeric|max:10',
             'tamanoMax'             =>  'required|numeric|max:10',
-            'promedioVida'          =>  'required|numeric|max:10',
             'inicioVeda'            =>  'required|date',
             'finVeda'               =>  'required|date',
             'pescaPromedio'         =>  'required|numeric|max:20',

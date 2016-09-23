@@ -51,7 +51,7 @@ class EspeciesMarinasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreEspecieRequest $request)
     {
         //
         $input = $request->all();
@@ -107,7 +107,7 @@ class EspeciesMarinasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $idEspecie)
+    public function update(UpdateEspecieRequest $request, $idEspecie)
     {
         //
         $input = $request->all();
