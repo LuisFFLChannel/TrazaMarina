@@ -30,6 +30,9 @@ class CapitaniaController extends Controller
     public function index()
     {
         //
+        $capitanias = Capitania::paginate(10);
+        $capitanias->setPath('capitania');
+        return view('internal.admin.capitanias', compact('capitanias'));
     }
 
     /**
@@ -40,6 +43,7 @@ class CapitaniaController extends Controller
     public function create()
     {
         //
+        return view('internal.admin.nuevoCapitania');
     }
 
     /**
@@ -48,9 +52,24 @@ class CapitaniaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCapitaniaRequest $request)
     {
         //
+        $input = $request->all();
+
+        $capitania                    =   new Capitania;
+        $capitania->nombre            =   $input['nombre'];
+        $capitania->direccion         =   $input['direccion'];
+        $capitania->coordenadaX       =   $input['latitud'];
+        $capitania->coordenadaY       =   $input['longitud'];
+        $capitania->activo            =   true;
+
+        //Control de subida de imagen por hacer
+        $capitania->imagen        =   $this->file_service->upload($request->file('imagen'),'capitania');
+
+        $capitania->save();
+        
+        return redirect()->route('admin.capitanias');
     }
 
     /**
@@ -73,6 +92,8 @@ class CapitaniaController extends Controller
     public function edit($id)
     {
         //
+        $capitania = Capitania::find($id);
+        return view('internal.admin.editarCapitania', compact('capitania'));
     }
 
     /**
@@ -82,9 +103,23 @@ class CapitaniaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateCapitaniaRequest $request, $id)
     {
         //
+        $input = $request->all();
+
+        $capitania = Capitania::find($id);
+
+        $capitania->nombre            =   $input['nombre'];
+        $capitania->direccion         =   $input['direccion'];
+        $capitania->coordenadaX       =   $input['latitud'];
+        $capitania->coordenadaY       =   $input['longitud'];
+        if($request->file('imagen')!=null)
+            $especie->imagen        =   $this->file_service->upload($request->file('imagen'),'capitania');
+
+        $capitania->save();
+        
+        return redirect()->route('admin.capitanias');
     }
 
     /**
@@ -96,5 +131,8 @@ class CapitaniaController extends Controller
     public function destroy($id)
     {
         //
+        $capitania = Capitania::find($id);
+        $capitania->delete();
+        return redirect()->route('admin.capitanias');
     }
 }
