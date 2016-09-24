@@ -167,6 +167,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-left">
+                <!--
                 <li>
                     <a href="" class="dropdown-toggle" data-toggle="dropdown">Categorias <b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -204,7 +205,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="{{url('admin/client')}}">Listar</a></li>
                     </ul>
-                </li>
+                </li>-->
                 <li>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Puntos de Venta <b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -239,6 +240,27 @@
                     <ul class="dropdown-menu">
                         <li><a href="{{url('admin/especieMarinas')}}">Listar</a></li>
                         <li><a href="{{url('admin/especieMarinas/new')}}">Nuevo</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Puertos <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('admin/puertos')}}">Listar</a></li>
+                        <li><a href="{{url('admin/puertos/new')}}">Nuevo</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dpa <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('admin/dpas')}}">Listar</a></li>
+                        <li><a href="{{url('admin/dpas/new')}}">Nuevo</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Capitanias <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('admin/capitanias')}}">Listar</a></li>
+                        <li><a href="{{url('admin/capitanias/new')}}">Nuevo</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
