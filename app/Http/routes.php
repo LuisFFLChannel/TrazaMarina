@@ -303,19 +303,19 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::post('admin/puertos/{id}/edit', 'PuertosController@update');
     Route::get('admin/puertos/{id}/delete', 'PuertosController@destroy');
 
-    Route::get('admin/capitanias', ['uses'=>'CapitaniasController@index','as'=>'admin.capitanias']);
-    Route::get('admin/capitanias/new', 'CapitaniasController@create');
-    Route::post('admin/capitanias/new', 'CapitaniasController@store');
-    Route::get('admin/capitanias/{id}/edit', 'CapitaniasController@edit');
-    Route::post('admin/capitanias/{id}/edit', 'CapitaniasController@update');
-    Route::get('admin/capitanias/{id}/delete', 'CapitaniasController@destroy');
+    Route::get('admin/capitanias', ['uses'=>'CapitaniaController@index','as'=>'admin.capitanias']);
+    Route::get('admin/capitanias/new', 'CapitaniaController@create');
+    Route::post('admin/capitanias/new', 'CapitaniaController@store');
+    Route::get('admin/capitanias/{id}/edit', 'CapitaniaController@edit');
+    Route::post('admin/capitanias/{id}/edit', 'CapitaniaController@update');
+    Route::get('admin/capitanias/{id}/delete', 'CapitaniaController@destroy');
 
-    Route::get('admin/dpas', ['uses'=>'DpasController@index','as'=>'admin.dpas']);
-    Route::get('admin/dpas/new', 'DpasController@create');
-    Route::post('admin/dpas/new', 'DpasController@store');
-    Route::get('admin/dpas/{id}/edit', 'DpasController@edit');
-    Route::post('admin/dpas/{id}/edit', 'DpasController@update');
-    Route::get('admin/dpas/{id}/delete', 'DpasController@destroy');
+    Route::get('admin/dpas', ['uses'=>'DpaController@index','as'=>'admin.dpas']);
+    Route::get('admin/dpas/new', 'DpaController@create');
+    Route::post('admin/dpas/new', 'DpaController@store');
+    Route::get('admin/dpas/{id}/edit', 'DpaController@edit');
+    Route::post('admin/dpas/{id}/edit', 'DpaController@update');
+    Route::get('admin/dpas/{id}/delete', 'DpaController@destroy');
 
 })  ;
 
