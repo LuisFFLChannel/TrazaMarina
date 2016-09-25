@@ -317,6 +317,13 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::post('admin/dpas/{id}/edit', 'DpaController@update');
     Route::get('admin/dpas/{id}/delete', 'DpaController@destroy');
 
+    Route::get('admin/terminales', ['uses'=>'TerminalController@index','as'=>'admin.terminales']);
+    Route::get('admin/terminales/new', 'TerminalController@create');
+    Route::post('admin/terminales/new', 'TerminalController@store');
+    Route::get('admin/terminales/{id}/edit', 'TerminalController@edit');
+    Route::post('admin/terminales/{id}/edit', 'TerminalController@update');
+    Route::get('admin/terminales/{id}/delete', 'TerminalController@destroy');
+
 })  ;
 
 Route::get('token',function(){
