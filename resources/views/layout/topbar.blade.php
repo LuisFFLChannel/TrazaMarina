@@ -205,7 +205,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="{{url('admin/client')}}">Listar</a></li>
                     </ul>
-                </li>-->
+                </li>
                 <li>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Puntos de Venta <b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -234,7 +234,7 @@
                             <a href="{{url('admin/report/assignment')}}">Reporte de Asignación</a>
                         </li>
                     </ul>
-                </li>
+                </li>-->
                 <li>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Especies Marinas <b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -270,14 +270,35 @@
                         <li><a href="{{url('admin/terminales/new')}}">Nuevo</a></li>
                     </ul>
                 </li>
-                <li class="dropdown">
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Fabricas <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('admin/fabricas')}}">Listar</a></li>
+                        <li><a href="{{url('admin/fabricas/new')}}">Nuevo</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pescadores <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('admin/pescadores')}}">Listar</a></li>
+                        <li><a href="{{url('admin/pescadores/new')}}">Nuevo</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Embarcaciones <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('admin/embarcaciones')}}">Listar</a></li>
+                        <li><a href="{{url('admin/embarcaciones/new')}}">Nuevo</a></li>
+                    </ul>
+                </li>
+                <!--<li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Configuración  <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{url('admin/config/exchange_rate')}}">Tipo de cambio</a></li>
                         <li><a href="{{url('admin/config/about')}}">Acerca de</a></li>
                         <li><a href="{{url('admin/config/system')}}">Sistema</a></li>
                     </ul>
-                </li>
+                </li>-->
 
             </ul>
 

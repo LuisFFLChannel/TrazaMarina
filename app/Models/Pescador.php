@@ -3,11 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Dpa extends Model
+class Pescador extends Model
 {
     //
-    protected $table = 'dpa';
+     protected $table = 'pescadores';
 	protected $dates = ['deleted_at'];
+
 }

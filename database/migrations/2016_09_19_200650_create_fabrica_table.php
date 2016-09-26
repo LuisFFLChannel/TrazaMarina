@@ -19,6 +19,7 @@ class CreateFabricaTable extends Migration
             $table->string('direccion');
             $table->float('coordenadaX');
             $table->float('coordenadaY');
+            $table->string('imagen'); 
             $table->boolean('activo');
             $table->softDeletes();
             $table->timestamps();

@@ -5,7 +5,7 @@
 @stop
 
 @section('title')
-    Capitanias
+    Terminales
 @stop
 
 @section('content')
@@ -22,34 +22,34 @@
         <th></th>
     </tr>
     
-    @foreach($capitanias as $capitania)
+    @foreach($terminales as $terminal)
     <tr>
-      <td>{{$capitania->nombre}}</td>
-      <td>{{$capitania->direccion}}</td>
-      <td>( {{$capitania->coordenadaX}} , {{$capitania->coordenadaY}} )</td>
-      <!--<td>{!! Html::image($capitania->imagen, null, array('class'=>'gift_img')) !!}</td>-->
+      <td>{{$terminal->nombre}}</td>
+      <td>{{$terminal->direccion}}</td>
+      <td>( {{$terminal->coordenadaX}} , {{$terminal->coordenadaY}} )</td>
+      <!--<td>{!! Html::image($terminal->imagen, null, array('class'=>'gift_img')) !!}</td>-->
       <td>
-            <a class="btn btn-info" href="detalles" title="Detalles" data-toggle="modal" data-target="#edit{{$capitania->id}}"><i class="glyphicon glyphicon-plus"></i></a>
-            <div class="modal fade" id="edit{{$capitania->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <a class="btn btn-info" href="detalles" title="Detalles" data-toggle="modal" data-target="#edit{{$terminal->id}}"><i class="glyphicon glyphicon-plus"></i></a>
+            <div class="modal fade" id="edit{{$terminal->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Detalle de la capitania</h4>
+                    <h4 class="modal-title" id="myModalLabel">Detalle del Terminal</h4>
                   </div>
                   <div class="modal-body">
                     <div class="row">
                       <div class="col-sm-1"></div>
                       <div class="col-sm-8">
-                          <h5>Nombre: {{$capitania->nombre}} </h5>
-                          <h5>Direccion: {{$capitania->direccion}} </h5>                              
-                          <h5>Latitud: {{$capitania->coordenadaX}}</h5> 
-                          <h5>Longitud: {{$capitania->coordenadaY}}</h5> 
+                          <h5>Nombre: {{$terminal->nombre}} </h5>
+                          <h5>Direccion: {{$terminal->direccion}} </h5>                              
+                          <h5>Latitud: {{$terminal->coordenadaX}}</h5> 
+                          <h5>Longitud: {{$terminal->coordenadaY}}</h5> 
                           <h5>Mapa: </h5>
                           
                           <hr>
                           <h5>Imagen:</h5> 
-                          <p>{!! Html::image($capitania->imagen, null, array('class'=>'gift_img')) !!}</p>
+                          <p>{!! Html::image($terminal->imagen, null, array('class'=>'gift_img')) !!}</p>
                        </div>
                     </div>
                   </div>
@@ -61,28 +61,28 @@
             </div>
           </td>
       <td>
-        <a class="btn btn-info" href="{{url('admin/capitanias/'.$capitania->id.'/edit')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
+        <a class="btn btn-info" href="{{url('admin/terminales/'.$terminal->id.'/edit')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
       </td> 
       <td>
-        <a class="btn btn-info" title="Eliminar" data-toggle="modal" data-target="#deleteModal{{$capitania->id}}" ><i class="glyphicon glyphicon-remove"></i></a>
+        <a class="btn btn-info" title="Eliminar" data-toggle="modal" data-target="#deleteModal{{$terminal->id}}" ><i class="glyphicon glyphicon-remove"></i></a>
       </td>
       <td> <div id="map"></div></td>
     </tr>
 
     <!-- MODAL -->
-    <div class="modal fade"  id="deleteModal{{$capitania->id}}">
+    <div class="modal fade"  id="deleteModal{{$terminal->id}}">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">¿Estas seguro que desea eliminar la capitania?</h4>
+            <h4 class="modal-title">¿Estas seguro que desea eliminar el terminal?</h4>
           </div>
           <div class="modal-body">
             <h5 class="modal-title">Los cambios serán permanentes</h5>
           </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-info" data-dismiss="modal">No</button>
-              <a class="btn btn-info" href="{{url('admin/capitanias/'.$capitania->id.'/delete')}}" title="Delete" >Sí</a>
+              <a class="btn btn-info" href="{{url('admin/terminales/'.$terminal->id.'/delete')}}" title="Delete" >Sí</a>
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
@@ -92,7 +92,7 @@
     
 </table>
 
-{!!$capitanias->render()!!}
+{!!$terminales->render()!!}
 @stop
 
 @section('javascript')

@@ -23,8 +23,9 @@ class CreateEmbarcacionTable extends Migration
             $table->float('estara');
             $table->float('manga');
             $table->float('puntual');
-            $table->integer('certificadoMatricula_id')->unsigned()->unique();
-            $table->integer('permisoPesca_id')->unsigned()->unique();
+            $table->integer('certificadoMatricula_id')->unsigned()->unique()->nullable();
+            $table->integer('permisoPesca_id')->unsigned()->unique()->nullable();
+            $table->string('imagen'); 
             $table->boolean('activo');
             $table->softDeletes();
             $table->timestamps();

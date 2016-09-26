@@ -5,13 +5,13 @@
 @stop
 
 @section('title')
-	Nueva DPA
+	Nueva Terminal
 @stop
 
 @section('content')
 <div class="row">
   <div class="col-sm-8">
-    {!!Form::open(array('url' => 'admin/dpas/new','files'=>true,'id'=>'form','class'=>'form-horizontal'))!!}
+    {!!Form::open(array('url' => 'admin/terminales/new','files'=>true,'id'=>'form','class'=>'form-horizontal'))!!}
       <div class="form-group">
           <label for="inputEmail3" class="col-sm-2 control-label">Nombre</label>
           <div class="col-sm-10">
@@ -94,7 +94,7 @@
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
           <a class="btn btn-info" href="" title="submit" data-toggle="modal" data-target="#submitModal" >Guardar</a>
-          <a href="{{action('DpaController@index')}}"><button type="button" class="btn btn-info">Cancelar</button></a>
+          <a href="{{action('TerminalController@index')}}"><button type="button" class="btn btn-info">Cancelar</button></a>
         </div>
       </div>
 
@@ -104,7 +104,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title">¿Estas seguro que desea crear el dpa?</h4>
+              <h4 class="modal-title">¿Estas seguro que desea crear el terminal?</h4>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-info" data-dismiss="modal">No</button>

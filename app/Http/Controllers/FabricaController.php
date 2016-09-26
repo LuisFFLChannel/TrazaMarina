@@ -6,32 +6,32 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Dpa\StoreDpaRequest;
-use App\Http\Requests\Dpa\UpdateDpaoRequest;
-use App\Models\Dpa;
+use App\Http\Requests\Fabrica\StoreFabricaRequest;
+use App\Http\Requests\Fabrica\UpdateFabricaRequest;
+use App\Models\Fabrica;
 use App\Services\FileService;
 use App\User;
 use Carbon\Carbon;
 //use App\Usuario;
 use Session;
 
-class DpaController extends Controller
+class FabricaController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct(){
+     public function __construct(){
         $this->file_service = new FileService();
     }
 
     public function index()
     {
         //
-        $dpas = Dpa::paginate(10);
-        $dpas->setPath('dpa');
-        return view('internal.admin.dpas', compact('dpas'));
+        $fabricas = Fabrica::paginate(10);
+        $fabricas->setPath('fabrica');
+        return view('internal.admin.fabricas', compact('fabricas'));
     }
 
     /**
@@ -42,7 +42,7 @@ class DpaController extends Controller
     public function create()
     {
         //
-        return view('internal.admin.nuevoDpa');
+         return view('internal.admin.nuevoFabrica');
     }
 
     /**
@@ -51,24 +51,24 @@ class DpaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreDpaRequest $request)
+    public function store(StoreFabricaRequest $request)
     {
         //
         $input = $request->all();
 
-        $dpa                    =   new Dpa;
-        $dpa->nombre            =   $input['nombre'];
-        $dpa->direccion         =   $input['direccion'];
-        $dpa->coordenadaX       =   $input['latitud'];
-        $dpa->coordenadaY       =   $input['longitud'];
-        $dpa->activo            =   true;
+        $fabrica                    =   new Fabrica;
+        $fabrica->nombre            =   $input['nombre'];
+        $fabrica->direccion         =   $input['direccion'];
+        $fabrica->coordenadaX       =   $input['latitud'];
+        $fabrica->coordenadaY       =   $input['longitud'];
+        $fabrica->activo            =   true;
 
         //Control de subida de imagen por hacer
-        $dpa->imagen        =   $this->file_service->upload($request->file('imagen'),'dpa');
+        $fabrica->imagen        =   $this->file_service->upload($request->file('imagen'),'fabrica');
 
-        $dpa->save();
+        $fabrica->save();
         
-        return redirect()->route('admin.dpas');
+        return redirect()->route('admin.fabricas');
     }
 
     /**
@@ -91,8 +91,8 @@ class DpaController extends Controller
     public function edit($id)
     {
         //
-        $dpa = Dpa::find($id);
-        return view('internal.admin.editarDpa', compact('dpa'));
+        $fabrica = Fabrica::find($id);
+        return view('internal.admin.editarFabrica', compact('fabrica'));
     }
 
     /**
@@ -102,23 +102,23 @@ class DpaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateDpaRequest $request, $id)
+    public function update(UpdateFabricaRequest $request, $id)
     {
         //
         $input = $request->all();
 
-        $dpa = Dpa::find($id);
+        $fabrica = Fabrica::find($id);
 
-        $dpa->nombre            =   $input['nombre'];
-        $dpa->direccion         =   $input['direccion'];
-        $dpa->coordenadaX       =   $input['latitud'];
-        $dpa->coordenadaY       =   $input['longitud'];
+        $fabrica->nombre            =   $input['nombre'];
+        $fabrica->direccion         =   $input['direccion'];
+        $fabrica->coordenadaX       =   $input['latitud'];
+        $fabrica->coordenadaY       =   $input['longitud'];
         if($request->file('imagen')!=null)
-            $especie->imagen        =   $this->file_service->upload($request->file('imagen'),'dpa');
+            $especie->imagen        =   $this->file_service->upload($request->file('imagen'),'fabrica');
 
-        $dpa->save();
+        $fabrica->save();
         
-        return redirect()->route('admin.dpas');
+        return redirect()->route('admin.fabricas');
     }
 
     /**
@@ -130,8 +130,8 @@ class DpaController extends Controller
     public function destroy($id)
     {
         //
-         $dpa = Dpa::find($id);
-        $dpa->delete();
-        return redirect()->route('admin.dpas');
+        $fabrica = Fabrica::find($id);
+        $fabrica->delete();
+        return redirect()->route('admin.fabricas');
     }
 }

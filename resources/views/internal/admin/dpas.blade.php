@@ -5,7 +5,7 @@
 @stop
 
 @section('title')
-    Puertos
+    Dpas
 @stop
 
 @section('content')
@@ -22,34 +22,34 @@
         <th></th>
     </tr>
     
-    @foreach($puertos as $puerto)
+    @foreach($dpas as $dpa)
     <tr>
-      <td>{{$puerto->nombre}}</td>
-      <td>{{$puerto->direccion}}</td>
-      <td>( {{$puerto->coordenadaX}} , {{$puerto->coordenadaY}} )</td>
-      <!--<td>{!! Html::image($puerto->imagen, null, array('class'=>'gift_img')) !!}</td>-->
+      <td>{{$dpa->nombre}}</td>
+      <td>{{$dpa->direccion}}</td>
+      <td>( {{$dpa->coordenadaX}} , {{$dpa->coordenadaY}} )</td>
+      <!--<td>{!! Html::image($dpa->imagen, null, array('class'=>'gift_img')) !!}</td>-->
       <td>
-            <a class="btn btn-info" href="detalles" title="Detalles" data-toggle="modal" data-target="#edit{{$puerto->id}}"><i class="glyphicon glyphicon-plus"></i></a>
-            <div class="modal fade" id="edit{{$puerto->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <a class="btn btn-info" href="detalles" title="Detalles" data-toggle="modal" data-target="#edit{{$dpa->id}}"><i class="glyphicon glyphicon-plus"></i></a>
+            <div class="modal fade" id="edit{{$dpa->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Detalle del Puerto</h4>
+                    <h4 class="modal-title" id="myModalLabel">Detalle del DPA</h4>
                   </div>
                   <div class="modal-body">
                     <div class="row">
                       <div class="col-sm-1"></div>
                       <div class="col-sm-8">
-                          <h5>Nombre: {{$puerto->nombre}} </h5>
-                          <h5>Direccion: {{$puerto->direccion}} </h5>                              
-                          <h5>Latitud: {{$puerto->coordenadaX}}</h5> 
-                          <h5>Longitud: {{$puerto->coordenadaY}}</h5> 
+                          <h5>Nombre: {{$dpa->nombre}} </h5>
+                          <h5>Direccion: {{$dpa->direccion}} </h5>                              
+                          <h5>Latitud: {{$dpa->coordenadaX}}</h5> 
+                          <h5>Longitud: {{$dpa->coordenadaY}}</h5> 
                           <h5>Mapa: </h5>
                           
                           <hr>
                           <h5>Imagen:</h5> 
-                          <p>{!! Html::image($puerto->imagen, null, array('class'=>'gift_img')) !!}</p>
+                          <p>{!! Html::image($dpa->imagen, null, array('class'=>'gift_img')) !!}</p>
                        </div>
                     </div>
                   </div>
@@ -61,28 +61,28 @@
             </div>
           </td>
       <td>
-        <a class="btn btn-info" href="{{url('admin/puertos/'.$puerto->id.'/edit')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
+        <a class="btn btn-info" href="{{url('admin/dpas/'.$dpa->id.'/edit')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
       </td> 
       <td>
-        <a class="btn btn-info" title="Eliminar" data-toggle="modal" data-target="#deleteModal{{$puerto->id}}" ><i class="glyphicon glyphicon-remove"></i></a>
+        <a class="btn btn-info" title="Eliminar" data-toggle="modal" data-target="#deleteModal{{$dpa->id}}" ><i class="glyphicon glyphicon-remove"></i></a>
       </td>
       <td> <div id="map"></div></td>
     </tr>
 
     <!-- MODAL -->
-    <div class="modal fade"  id="deleteModal{{$puerto->id}}">
+    <div class="modal fade"  id="deleteModal{{$dpa->id}}">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">¿Estas seguro que desea eliminar el puerto ?</h4>
+            <h4 class="modal-title">¿Estas seguro que desea eliminar el Dpa ?</h4>
           </div>
           <div class="modal-body">
             <h5 class="modal-title">Los cambios serán permanentes</h5>
           </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-info" data-dismiss="modal">No</button>
-              <a class="btn btn-info" href="{{url('admin/puertos/'.$puerto->id.'/delete')}}" title="Delete" >Sí</a>
+              <a class="btn btn-info" href="{{url('admin/dpas/'.$dpa->id.'/delete')}}" title="Delete" >Sí</a>
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
@@ -92,7 +92,7 @@
     
 </table>
 
-{!!$puertos->render()!!}
+{!!$dpas->render()!!}
 @stop
 
 @section('javascript')

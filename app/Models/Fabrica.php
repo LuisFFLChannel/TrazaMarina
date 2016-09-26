@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Dpa extends Model
+class Fabrica extends Model
 {
     //
-    protected $table = 'dpa';
+    protected $table = 'fabrica';
 	protected $dates = ['deleted_at'];
 }

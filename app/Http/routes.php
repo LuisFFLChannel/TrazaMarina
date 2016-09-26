@@ -324,6 +324,23 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::post('admin/terminales/{id}/edit', 'TerminalController@update');
     Route::get('admin/terminales/{id}/delete', 'TerminalController@destroy');
 
+    Route::get('admin/fabricas', ['uses'=>'FabricaController@index','as'=>'admin.fabricas']);
+    Route::get('admin/fabricas/new', 'FabricaController@create');
+    Route::post('admin/fabricas/new', 'FabricaController@store');
+    Route::get('admin/fabricas/{id}/edit', 'FabricaController@edit');
+    Route::post('admin/fabricas/{id}/edit', 'FabricaController@update');
+    Route::get('admin/fabrucas/{id}/delete', 'FabricaController@destroy');
+
+    Route::get('admin/embarcaciones', ['uses'=>'EmbarcacionController@index','as'=>'admin.embarcaciones']);
+    Route::get('admin/embarcaciones/new', 'EmbarcacionController@create');
+    Route::post('admin/embarcaciones/new', 'EmbarcacionController@store');
+    Route::get('admin/embarcaciones/{id}/edit', 'EmbarcacionController@edit');
+    Route::post('admin/embarcaciones/{id}/edit', 'EmbarcacionController@update');
+    Route::get('admin/embarcaciones/{id}/delete', 'EmbarcacionController@destroy');
+    Route::get('admin/embarcaciones/{id}/editCertificado', 'EmbarcacionController@editCertificado');
+    Route::get('admin/embarcaciones/{id}/showCertificado', 'EmbarcacionController@showCertificado');
+    Route::get('admin/embarcaciones/{id}/editPermiso', 'EmbarcacionController@editPermiso');
+    Route::get('admin/embarcaciones/{id}/showPermiso', 'EmbarcacionController@showPermiso');
 })  ;
 
 Route::get('token',function(){
