@@ -107,7 +107,7 @@ class EmbarcacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateEmbarcacionRequest $request, $id)
     {
         //
         $input = $request->all();
@@ -160,8 +160,8 @@ class EmbarcacionController extends Controller
     {
         //
         $embarcacion = Embarcacion::find($id);
-        $certtificado = CertificadoMatricula::find($embarcacion->certtificadoMatricula_id);
-        if ($certificado != null){
+       // $certificado = CertificadoMatricula::find($embarcacion->certtificadoMatricula_id);
+        if ($embarcacion->certificado == null){
             return back()->withErrors(['Aun no se a asociado un certificado de matricula a la embarcacion']);
         }
         return view('internal.admin.mostrarCertificadoMatricula', compact('embarcacion','certificado'));
@@ -171,8 +171,8 @@ class EmbarcacionController extends Controller
         //
         $embarcacion = Embarcacion::find($id);
         $permiso = PermisoPesca::find($embarcacion->permisoPesca_id);
-        if ($certificado != null){
-            return back()->withErrors(['Aun no se a asociado un certificado de matricula a la embarcacion']);
+        if ($permiso == null){
+            return back()->withErrors(['Aun no se a asociado un permiso de pesca a la embarcacion']);
         }
         return view('internal.admin.mostrarPermisoPesca', compact('embarcacion','permiso'));
     }

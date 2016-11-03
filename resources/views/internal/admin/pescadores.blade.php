@@ -5,54 +5,50 @@
 @stop
 
 @section('title')
-    Embarcaciones
+    Pescadores
 @stop
 
 @section('content')
 
 <table class="table table-bordered table-striped">
     <tr>
-        <th>Nombre</th>
-        <th>N° Matricula</th>   
-        <!--<th>Imagen</th>-->
+        <th>Nombres</th>
+        <th>Apellidos</th>   
+        <th>DNI</th>
         <th>Detalle</th>
         <th>Editar</th>
-        <th>Cambiar C.Matricula</th>
-        <th>Ver C.Matricula</th>
-        <th>Cambiar P.Pesca</th>
-        <th>Ver P.Pesca</th>
+        <th>Cambiar P.Marinero</th>
+        <th>Ver P.Marinero</th>
+        <th>Cambiar P.Patron</th>
+        <th>Ver P.Patron</th>
         <th>Eliminar</th>
         
     </tr>
     
-    @foreach($embarcaciones as $embarcacion)
+    @foreach($pescadores as $pescador)
     <tr>
-      <td>{{$embarcacion->nombre}}</td>
-      <td>{{$embarcacion->nMatricula}}</td>
-      <!--<td>{!! Html::image($embarcacion->imagen, null, array('class'=>'gift_img')) !!}</td>-->
+      <td>{{$pescador->nombres}}</td>
+      <td>{{$pescador->apellidos}}</td>
+      <td>{{$pescador->dni}}</td>
       <td>
-            <a class="btn btn-info" href="detalles" title="Detalles" data-toggle="modal" data-target="#edit{{$embarcacion->id}}"><i class="glyphicon glyphicon-plus"></i></a>
-            <div class="modal fade" id="edit{{$embarcacion->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <a class="btn btn-info" href="detalles" title="Detalles" data-toggle="modal" data-target="#edit{{$pescador->id}}"><i class="glyphicon glyphicon-plus"></i></a>
+            <div class="modal fade" id="edit{{$pescador->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Detalle de la Embarcacion</h4>
+                    <h4 class="modal-title" id="myModalLabel">Detalle del pescador</h4>
                   </div>
                   <div class="modal-body">
                     <div class="row">
                       <div class="col-sm-1"></div>
                       <div class="col-sm-8">
-                          <h5>Nombre: {{$embarcacion->nombre}} </h5>
-                          <h5>N° Matricula: {{$embarcacion->direccion}} </h5>                              
-                          <h5>Dueño: {{$embarcacion->nombreDueno}} {{$embarcacion->apellidoDueno}}</h5> 
-                          <h5>Capacidad: {{$embarcacion->capacidad}}</h5> 
-                          <h5>Estara: {{$embarcacion->estara}}</h5> 
-                          <h5>Manga: {{$embarcacion->manga}}</h5> 
-                          <h5>Puntual: {{$embarcacion->puntual}}</h5> 
-
-                          <h5>Imagen:</h5> 
-                          <p>{!! Html::image($embarcacion->imagen, null, array('class'=>'gift_img')) !!}</p>
+                          <h5>Nombres: {{$pescador->nombres}} </h5>
+                          <h5>Apellidos: {{$pescador->apellidos}} </h5>                              
+                          <h5>Dni: {{$pescador->dni}}<h5> 
+                          <h5>Telefono: {{$pescador->telefono}}</h5> 
+                          <h5>Correo: {{$pescador->correo}}</h5> 
+                          <h5>Cumpleaños: {{date_format(date_create($pescador->cumpleanos),"d/m/Y")}}</h5> 
                        </div>
                     </div>
                   </div>
@@ -64,40 +60,40 @@
             </div>
           </td>
       <td>
-        <a class="btn btn-info" href="{{url('admin/embarcaciones/'.$embarcacion->id.'/edit')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
+        <a class="btn btn-info" href="{{url('admin/pescadores/'.$pescador->id.'/edit')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
       </td> 
       <td>
-        <a class="btn btn-info" href="{{url('admin/embarcaciones/'.$embarcacion->id.'/editCertificado')}}" title="Modificar Certificado de Matricula" ><i class="glyphicon glyphicon-pencil"></i></a>
+        <a class="btn btn-info" href="{{url('admin/pescadores/'.$pescador->id.'/editPermisoMarinero')}}" title="Modificar Permiso de Marinero" ><i class="glyphicon glyphicon-pencil"></i></a>
       </td> 
       <td>
-        <a class="btn btn-info" href="{{url('admin/embarcaciones/'.$embarcacion->id.'/showCertificado')}}" title="Visualizar Certificado de Matricula" ><i class="glyphicon glyphicon-plus"></i></a>
+        <a class="btn btn-info" href="{{url('admin/pescadores/'.$pescador->id.'/showPermisoMarinero')}}" title="Visualizar Permiso de Marinero" ><i class="glyphicon glyphicon-plus"></i></a>
       </td> 
       <td>
-        <a class="btn btn-info" href="{{url('admin/embarcaciones/'.$embarcacion->id.'/editPermiso')}}" title="Modificar Permiso de Pesca" ><i class="glyphicon glyphicon-pencil"></i></a>
+        <a class="btn btn-info" href="{{url('admin/pescadores/'.$pescador->id.'/editPermisoPatron')}}" title="Modificar Permiso de Patron" ><i class="glyphicon glyphicon-pencil"></i></a>
       </td> 
       <td>
-        <a class="btn btn-info" href="{{url('admin/embarcaciones/'.$embarcacion->id.'/showPermiso')}}" title="Visualizar Permiso de Pesca" ><i class="glyphicon glyphicon-plus"></i></a>
+        <a class="btn btn-info" href="{{url('admin/pescadores/'.$pescador->id.'/showPermisoPatron')}}" title="Visualizar Permiso de Patron" ><i class="glyphicon glyphicon-plus"></i></a>
       </td> 
       <td>
-        <a class="btn btn-info" title="Eliminar" data-toggle="modal" data-target="#deleteModal{{$embarcacion->id}}" ><i class="glyphicon glyphicon-remove"></i></a>
+        <a class="btn btn-info" title="Eliminar" data-toggle="modal" data-target="#deleteModal{{$pescador->id}}" ><i class="glyphicon glyphicon-remove"></i></a>
       </td>
       
     </tr>
 
     <!-- MODAL -->
-    <div class="modal fade"  id="deleteModal{{$embarcacion->id}}">
+    <div class="modal fade"  id="deleteModal{{$pescador->id}}">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">¿Estas seguro que desea eliminar la embarcacion?</h4>
+            <h4 class="modal-title">¿Estas seguro que desea eliminar al pescador?</h4>
           </div>
           <div class="modal-body">
             <h5 class="modal-title">Los cambios serán permanentes</h5>
           </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-info" data-dismiss="modal">No</button>
-              <a class="btn btn-info" href="{{url('admin/embarcaciones/'.$embarcacion->id.'/delete')}}" title="Delete" >Sí</a>
+              <a class="btn btn-info" href="{{url('admin/pescadores/'.$pescador->id.'/delete')}}" title="Delete" >Sí</a>
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
@@ -107,7 +103,7 @@
     
 </table>
 
-{!!$embarcaciones->render()!!}
+{!!$pescadores->render()!!}
 @stop
 
 @section('javascript')

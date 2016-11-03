@@ -19,7 +19,6 @@
         <th>Detalle</th>
         <th>Editar</th>
         <th>Eliminar</th>
-        <th></th>
     </tr>
     
     @foreach($puertos as $puerto)

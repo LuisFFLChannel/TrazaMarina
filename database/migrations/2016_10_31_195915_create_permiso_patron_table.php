@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePescadoresTable extends Migration
+class CreatePermisoPatronTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,13 @@ class CreatePescadoresTable extends Migration
     public function up()
     {
         //
-        Schema::create('pescadores', function (Blueprint $table) {
+        Schema::create('permisoPatron', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombres');
             $table->string('apellidos');
             $table->integer('dni')->unique();
-            $table->integer('telefono');
-            $table->string('correo');
-            $table->timestamp('cumpleanos');
-            $table->integer('permisoMarinero_id')->unsigned()->unique()->nullable();
-            $table->integer('permisoPatron_id')->unsigned()->unique()->nullable();
+            $table->string('numeroPatron')->unique();
+            $table->timestamp('fechaVigencia');
             $table->boolean('activo');
             $table->softDeletes();
             $table->timestamps();
@@ -37,6 +34,6 @@ class CreatePescadoresTable extends Migration
     public function down()
     {
         //
-        Schema::drop('pescadores');
+        Schema::drop('permisoPatron');
     }
 }

@@ -329,7 +329,18 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::post('admin/fabricas/new', 'FabricaController@store');
     Route::get('admin/fabricas/{id}/edit', 'FabricaController@edit');
     Route::post('admin/fabricas/{id}/edit', 'FabricaController@update');
-    Route::get('admin/fabrucas/{id}/delete', 'FabricaController@destroy');
+    Route::get('admin/fabricas/{id}/delete', 'FabricaController@destroy');
+
+    Route::get('admin/pescadores', ['uses'=>'PescadoresController@index','as'=>'admin.pescadores']);
+    Route::get('admin/pescadores/new', 'PescadoresController@create');
+    Route::post('admin/pescadores/new', 'PescadoresController@store');
+    Route::get('admin/pescadores/{id}/edit', 'PescadoresController@edit');
+    Route::post('admin/pescadores/{id}/edit', 'PescadoresController@update');
+    Route::get('admin/pescadores/{id}/delete', 'PescadoresController@destroy');
+    Route::get('admin/pescadores/{id}/editPermisoMarinero', 'PescadoresController@editPermisoMarinero');
+    Route::get('admin/pescadores/{id}/showPermisoMarinero', 'PescadoresController@showPermisoMarinero');
+    Route::get('admin/pescadores/{id}/editPermisoPatron', 'PescadoresController@editPermisoPatron');
+    Route::get('admin/pescadores/{id}/showPermisoPatron', 'PescadoresController@showPermisoPatron');
 
     Route::get('admin/embarcaciones', ['uses'=>'EmbarcacionController@index','as'=>'admin.embarcaciones']);
     Route::get('admin/embarcaciones/new', 'EmbarcacionController@create');
@@ -341,6 +352,14 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('admin/embarcaciones/{id}/showCertificado', 'EmbarcacionController@showCertificado');
     Route::get('admin/embarcaciones/{id}/editPermiso', 'EmbarcacionController@editPermiso');
     Route::get('admin/embarcaciones/{id}/showPermiso', 'EmbarcacionController@showPermiso');
+
+    Route::get('admin/certificadoMatriculas', ['uses'=>'CertificadoMatriculasController@index','as'=>'admin.certificadoMatriculas']);
+    Route::get('admin/certificadoMatriculas/new', 'CertificadoMatriculasController@create');
+    Route::post('admin/certificadoMatriculas/new', 'CertificadoMatriculasController@store');
+    Route::get('admin/certificadoMatriculas/{id}/edit', 'CertificadoMatriculasController@edit');
+    Route::post('admin/certificadoMatriculas/{id}/edit', 'CertificadoMatriculasController@update');
+    Route::get('admin/certificadoMatriculas/{id}/delete', 'CertificadoMatriculasController@destroy');
+
 })  ;
 
 Route::get('token',function(){

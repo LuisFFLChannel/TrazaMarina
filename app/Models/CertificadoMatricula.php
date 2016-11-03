@@ -10,4 +10,8 @@ class CertificadoMatricula extends Model
     //
     protected $table = 'certificadomatricula';
 	protected $dates = ['deleted_at'];
+
+	public function embarcacion() {
+        return $this->hasOne('App\Models\Embarcacion');
+    }
 }

@@ -291,6 +291,13 @@
                         <li><a href="{{url('admin/embarcaciones/new')}}">Nuevo</a></li>
                     </ul>
                 </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Certificaciones de Pesca <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('admin/certificadoMatriculas')}}">Listar</a></li>
+                        <li><a href="{{url('admin/certificadoMatriculas/new')}}">Nuevo</a></li>
+                    </ul>
+                </li>
                 <!--<li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Configuración  <b class="caret"></b></a>
                     <ul class="dropdown-menu">

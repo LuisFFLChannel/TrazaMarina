@@ -10,4 +10,8 @@ class PermisoPesca extends Model
     //
     protected $table = 'permisopesca';
 	protected $dates = ['deleted_at'];
+
+	public function embarcacion() {
+        return $this->hasOne('App\Models\Embarcacion');
+    }
 }

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Embarcacion;
+namespace App\Http\Requests\CertificadoMatricula;
 
 use App\Http\Requests\Request;
 
-class UpdateEmbarcacionRequest extends Request
+class StoreCertificadoMatriculaRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,15 +25,10 @@ class UpdateEmbarcacionRequest extends Request
     {
         return [
             //
-            'nombre'                =>  'required|max:100',
-            'nMatricula'            =>  'required|max:50',
             'nombreDueno'           =>  'required|max:100',
             'apellidoDueno'         =>  'required|max:100',
-            'capacidad'             =>  'required|numeric|min:0',
-            'estara'                =>  'required|numeric|min:0',
-            'manga'                 =>  'required|numeric|min:0',
-            'puntual'               =>  'required|numeric|min:0',
-            'imagen'                =>  'image'
+            'dniDueno'              =>  'required|numeric|max:8',
+            'nMatricula'            =>  'required|max:50'
         ];
     }
 }
