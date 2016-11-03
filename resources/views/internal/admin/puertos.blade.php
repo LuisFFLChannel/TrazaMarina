@@ -12,22 +12,22 @@
 
 <table class="table table-bordered table-striped">
     <tr>
-        <th>Nombre</th>
-        <th>Direccion</th>   
-        <th>Coordenadas (Latitud , Longitud) </th>
+        <th class="text-center">Nombre</th>
+        <th class="text-center">Direccion</th>   
+        <th class="text-center">Coordenadas (Latitud , Longitud) </th>
         <!--<th>Imagen</th>-->
-        <th>Detalle</th>
-        <th>Editar</th>
-        <th>Eliminar</th>
+        <th class="text-center">Detalle</th>
+        <th class="text-center">Editar</th>
+        <th class="text-center">Eliminar</th>
     </tr>
     
     @foreach($puertos as $puerto)
     <tr>
-      <td>{{$puerto->nombre}}</td>
-      <td>{{$puerto->direccion}}</td>
-      <td>( {{$puerto->coordenadaX}} , {{$puerto->coordenadaY}} )</td>
+      <td class="text-center">{{$puerto->nombre}}</td>
+      <td class="text-center">{{$puerto->direccion}}</td>
+      <td class="text-center">( {{$puerto->coordenadaX}} , {{$puerto->coordenadaY}} )</td>
       <!--<td>{!! Html::image($puerto->imagen, null, array('class'=>'gift_img')) !!}</td>-->
-      <td>
+      <td class="text-center">
             <a class="btn btn-info" href="detalles" title="Detalles" data-toggle="modal" data-target="#edit{{$puerto->id}}"><i class="glyphicon glyphicon-plus"></i></a>
             <div class="modal fade" id="edit{{$puerto->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
               <div class="modal-dialog" role="document">
@@ -59,10 +59,10 @@
               </div>
             </div>
           </td>
-      <td>
+      <td class="text-center">
         <a class="btn btn-info" href="{{url('admin/puertos/'.$puerto->id.'/edit')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
       </td> 
-      <td>
+      <td class="text-center">
         <a class="btn btn-info" title="Eliminar" data-toggle="modal" data-target="#deleteModal{{$puerto->id}}" ><i class="glyphicon glyphicon-remove"></i></a>
       </td>
     

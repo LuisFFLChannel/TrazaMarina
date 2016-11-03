@@ -12,25 +12,25 @@
 
 <table class="table table-bordered table-striped">
     <tr>
-        <th>Nombres</th>
-        <th>Apellidos</th>   
-        <th>DNI</th>
-        <th>Detalle</th>
-        <th>Editar</th>
-        <th>Cambiar P.Marinero</th>
-        <th>Ver P.Marinero</th>
-        <th>Cambiar P.Patron</th>
-        <th>Ver P.Patron</th>
-        <th>Eliminar</th>
+        <th class="text-center">Nombres</th>
+        <th class="text-center">Apellidos</th>   
+        <th class="text-center">DNI</th>
+        <th class="text-center">Detalle</th>
+        <th class="text-center">Editar</th>
+        <th class="text-center">Cambiar P.Marinero</th>
+        <th class="text-center">Ver P.Marinero</th>
+        <th class="text-center">Cambiar P.Patron</th>
+        <th class="text-center">Ver P.Patron</th>
+        <th class="text-center">Eliminar</th>
         
     </tr>
     
     @foreach($pescadores as $pescador)
     <tr>
-      <td>{{$pescador->nombres}}</td>
-      <td>{{$pescador->apellidos}}</td>
-      <td>{{$pescador->dni}}</td>
-      <td>
+      <td class="text-center">{{$pescador->nombres}}</td>
+      <td class="text-center">{{$pescador->apellidos}}</td>
+      <td class="text-center">{{$pescador->dni}}</td>
+      <td class="text-center">
             <a class="btn btn-info" href="detalles" title="Detalles" data-toggle="modal" data-target="#edit{{$pescador->id}}"><i class="glyphicon glyphicon-plus"></i></a>
             <div class="modal fade" id="edit{{$pescador->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
               <div class="modal-dialog" role="document">
@@ -59,22 +59,22 @@
               </div>
             </div>
           </td>
-      <td>
+      <td class="text-center">
         <a class="btn btn-info" href="{{url('admin/pescadores/'.$pescador->id.'/edit')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
       </td> 
-      <td>
+      <td class="text-center"> 
         <a class="btn btn-info" href="{{url('admin/pescadores/'.$pescador->id.'/editPermisoMarinero')}}" title="Modificar Permiso de Marinero" ><i class="glyphicon glyphicon-pencil"></i></a>
       </td> 
-      <td>
+      <td class="text-center">
         <a class="btn btn-info" href="{{url('admin/pescadores/'.$pescador->id.'/showPermisoMarinero')}}" title="Visualizar Permiso de Marinero" ><i class="glyphicon glyphicon-plus"></i></a>
       </td> 
-      <td>
+      <td class="text-center">
         <a class="btn btn-info" href="{{url('admin/pescadores/'.$pescador->id.'/editPermisoPatron')}}" title="Modificar Permiso de Patron" ><i class="glyphicon glyphicon-pencil"></i></a>
       </td> 
-      <td>
+      <td class="text-center">
         <a class="btn btn-info" href="{{url('admin/pescadores/'.$pescador->id.'/showPermisoPatron')}}" title="Visualizar Permiso de Patron" ><i class="glyphicon glyphicon-plus"></i></a>
       </td> 
-      <td>
+      <td class="text-center"> 
         <a class="btn btn-info" title="Eliminar" data-toggle="modal" data-target="#deleteModal{{$pescador->id}}" ><i class="glyphicon glyphicon-remove"></i></a>
       </td>
       

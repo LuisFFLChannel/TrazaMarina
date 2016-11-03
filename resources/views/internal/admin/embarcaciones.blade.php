@@ -12,25 +12,25 @@
 
 <table class="table table-bordered table-striped">
     <tr>
-        <th>Nombre</th>
-        <th>N° Matricula</th>   
+        <th class="text-center">Nombre</th>
+        <th class="text-center">N° Matricula</th>   
         <!--<th>Imagen</th>-->
-        <th>Detalle</th>
-        <th>Editar</th>
-        <th>Cambiar C.Matricula</th>
-        <th>Ver C.Matricula</th>
-        <th>Cambiar P.Pesca</th>
-        <th>Ver P.Pesca</th>
-        <th>Eliminar</th>
+        <th class="text-center">Detalle</th>
+        <th class="text-center">Editar</th>
+        <th class="text-center">Cambiar C.Matricula</th>
+        <th class="text-center">Ver C.Matricula</th>
+        <th class="text-center">Cambiar P.Pesca</th>
+        <th class="text-center">Ver P.Pesca</th>
+        <th class="text-center">Eliminar</th>
         
     </tr>
     
     @foreach($embarcaciones as $embarcacion)
     <tr>
-      <td>{{$embarcacion->nombre}}</td>
-      <td>{{$embarcacion->nMatricula}}</td>
+      <td class="text-center">{{$embarcacion->nombre}}</td>
+      <td class="text-center">{{$embarcacion->nMatricula}}</td>
       <!--<td>{!! Html::image($embarcacion->imagen, null, array('class'=>'gift_img')) !!}</td>-->
-      <td>
+      <td class="text-center">
             <a class="btn btn-info" href="detalles" title="Detalles" data-toggle="modal" data-target="#edit{{$embarcacion->id}}"><i class="glyphicon glyphicon-plus"></i></a>
             <div class="modal fade" id="edit{{$embarcacion->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
               <div class="modal-dialog" role="document">
@@ -63,22 +63,22 @@
               </div>
             </div>
           </td>
-      <td>
+      <td class="text-center">
         <a class="btn btn-info" href="{{url('admin/embarcaciones/'.$embarcacion->id.'/edit')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
       </td> 
-      <td>
+      <td class="text-center">
         <a class="btn btn-info" href="{{url('admin/embarcaciones/'.$embarcacion->id.'/editCertificado')}}" title="Modificar Certificado de Matricula" ><i class="glyphicon glyphicon-pencil"></i></a>
       </td> 
-      <td>
+      <td class="text-center">
         <a class="btn btn-info" href="{{url('admin/embarcaciones/'.$embarcacion->id.'/showCertificado')}}" title="Visualizar Certificado de Matricula" ><i class="glyphicon glyphicon-plus"></i></a>
       </td> 
-      <td>
+      <td class="text-center">
         <a class="btn btn-info" href="{{url('admin/embarcaciones/'.$embarcacion->id.'/editPermiso')}}" title="Modificar Permiso de Pesca" ><i class="glyphicon glyphicon-pencil"></i></a>
       </td> 
-      <td>
+      <td class="text-center">
         <a class="btn btn-info" href="{{url('admin/embarcaciones/'.$embarcacion->id.'/showPermiso')}}" title="Visualizar Permiso de Pesca" ><i class="glyphicon glyphicon-plus"></i></a>
       </td> 
-      <td>
+      <td class="text-center">
         <a class="btn btn-info" title="Eliminar" data-toggle="modal" data-target="#deleteModal{{$embarcacion->id}}" ><i class="glyphicon glyphicon-remove"></i></a>
       </td>
       

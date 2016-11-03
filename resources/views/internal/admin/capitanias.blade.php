@@ -12,22 +12,22 @@
 
 <table class="table table-bordered table-striped">
     <tr>
-        <th>Nombre</th>
-        <th>Direccion</th>   
-        <th>Coordenadas (Latitud , Longitud) </th>
+        <th class="text-center">Nombre</th>
+        <th class="text-center">Direccion</th>   
+        <th class="text-center">Coordenadas (Latitud , Longitud) </th>
         <!--<th>Imagen</th>-->
-        <th>Detalle</th>
-        <th>Editar</th>
-        <th>Eliminar</th>
+        <th class="text-center">Detalle</th>
+        <th class="text-center">Editar</th>
+        <th class="text-center">Eliminar</th>
     </tr>
     
     @foreach($capitanias as $capitania)
     <tr>
-      <td>{{$capitania->nombre}}</td>
-      <td>{{$capitania->direccion}}</td>
-      <td>( {{$capitania->coordenadaX}} , {{$capitania->coordenadaY}} )</td>
+      <td class="text-center">{{$capitania->nombre}}</td>
+      <td class="text-center">{{$capitania->direccion}}</td>
+      <td class="text-center">( {{$capitania->coordenadaX}} , {{$capitania->coordenadaY}} )</td>
       <!--<td>{!! Html::image($capitania->imagen, null, array('class'=>'gift_img')) !!}</td>-->
-      <td>
+      <td class="text-center">
             <a class="btn btn-info" href="detalles" title="Detalles" data-toggle="modal" data-target="#edit{{$capitania->id}}"><i class="glyphicon glyphicon-plus"></i></a>
             <div class="modal fade" id="edit{{$capitania->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
               <div class="modal-dialog" role="document">
@@ -59,10 +59,10 @@
               </div>
             </div>
           </td>
-      <td>
+      <td class="text-center">
         <a class="btn btn-info" href="{{url('admin/capitanias/'.$capitania->id.'/edit')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
       </td> 
-      <td>
+      <td class="text-center">
         <a class="btn btn-info" title="Eliminar" data-toggle="modal" data-target="#deleteModal{{$capitania->id}}" ><i class="glyphicon glyphicon-remove"></i></a>
       </td>
     </tr>

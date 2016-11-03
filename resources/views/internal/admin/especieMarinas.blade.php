@@ -11,24 +11,24 @@
 @section('content')
 <table class="table table-bordered table-striped">
     <tr>
-        <th>Nombre</th>
-        <th>Nombre Cientifico</th>   
-        <th>Inicio Veda</th>
-        <th>Fin de Veda</th>
+        <th class="text-center">Nombre</th>
+        <th class="text-center">Nombre Cientifico</th>   
+        <th class="text-center">Inicio Veda</th>
+        <th class="text-center">Fin de Veda</th>
         <!--<th>Imagen</th>-->
-        <th>Detalle</th>
-        <th>Editar</th>
-        <th>Eliminar</th>
+        <th class="text-center">Detalle</th>
+        <th class="text-center">Editar</th>
+        <th class="text-center">Eliminar</th>
     </tr>
     
     @foreach($especies as $especie)
     <tr>
-      <td>{{$especie->nombre}}</td>
-      <td>{{$especie->nombreCientifico}}</td>
-      <td>{{date_format(date_create($especie->inicioVeda),"d/M")}}</td>
-      <td>{{date_format(date_create($especie->finVeda),"d/M")}}</td>
+      <td class="text-center">{{$especie->nombre}}</td>
+      <td class="text-center">{{$especie->nombreCientifico}}</td>
+      <td class="text-center">{{date_format(date_create($especie->inicioVeda),"d/M")}}</td>
+      <td class="text-center">{{date_format(date_create($especie->finVeda),"d/M")}}</td>
       <!--<td>{!! Html::image($especie->imagen, null, array('class'=>'gift_img')) !!}</td>-->
-      <td>
+      <td class="text-center">
             <a class="btn btn-info" href="detalles" title="Detalles" data-toggle="modal" data-target="#edit{{$especie->id}}"><i class="glyphicon glyphicon-plus"></i></a>
             <div class="modal fade" id="edit{{$especie->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
               <div class="modal-dialog" role="document">
@@ -61,10 +61,10 @@
               </div>
             </div>
           </td>
-      <td>
+      <td class="text-center">
         <a class="btn btn-info" href="{{url('admin/especieMarinas/'.$especie->id.'/edit')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
       </td> 
-      <td>
+      <td class="text-center">
         <a class="btn btn-info" title="Eliminar" data-toggle="modal" data-target="#deleteModal{{$especie->id}}" ><i class="glyphicon glyphicon-remove"></i></a>
       </td>
     </tr>
