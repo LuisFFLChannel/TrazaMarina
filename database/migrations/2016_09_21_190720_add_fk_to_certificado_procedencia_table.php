@@ -17,6 +17,7 @@ class AddFkToCertificadoProcedenciaTable extends Migration
             $table->foreign('fabrica_id')->references('id')->on('fabrica');
             $table->foreign('frigorifico_id')->references('id')->on('frigorifico');
             $table->foreign('empresarioComercializador_id')->references('id')->on('empresarioComercializador');
+            $table->foreign('transportista_id')->references('id')->on('transportista');
         });
     }
 
@@ -32,6 +33,7 @@ class AddFkToCertificadoProcedenciaTable extends Migration
             $table->dropForeign('certificadoProcedencia_fabrica_id_foreign');
             $table->dropForeign('certificadoProcedencia_frigorifico_id_foreign');
             $table->dropForeign('certificadoProcedencia_empresarioComercializador_id_foreign');
+            $table->dropForeign('certificadoProcedencia_transportista_id_foreign');
         });
     }
 }

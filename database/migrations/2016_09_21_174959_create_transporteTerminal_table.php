@@ -18,6 +18,7 @@ class CreateTransporteTerminalTable extends Migration
             $table->timestamp('fechaSalida');
             $table->integer('terminal_id')->unsigned();
             $table->integer('frigorifico_id')->unsigned();
+            $table->integer('transportista_id')->unsigned();
             $table->boolean('activo');
             $table->softDeletes();
             $table->timestamps();

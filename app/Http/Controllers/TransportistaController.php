@@ -109,7 +109,7 @@ class TransportistaController extends Controller
         $transportista->dni               =   $input['dni'];
         $transportista->telefono          =   $input['telefono'];
         $transportista->correo            =   $input['correo'];
-        $transportista->brevete           =   $input['brevete']);
+        $transportista->brevete           =   $input['brevete'];
 
 
 

@@ -19,6 +19,7 @@ class CreateCertificadoProcedenciaTable extends Migration
             $table->integer('fabrica_id')->unsigned();
             $table->integer('frigorifico_id')->unsigned();
             $table->integer('empresarioComercializador_id')->unsigned();
+            $table->integer('transportista_id')->unsigned();
             $table->boolean('activo');
             $table->softDeletes();
             $table->timestamps();

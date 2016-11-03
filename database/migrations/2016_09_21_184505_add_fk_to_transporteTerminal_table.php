@@ -16,6 +16,7 @@ class AddFkToTransporteTerminalTable extends Migration
         Schema::table('transporteTerminal', function (Blueprint $table) {
             $table->foreign('terminal_id')->references('id')->on('terminal');
             $table->foreign('frigorifico_id')->references('id')->on('frigorifico');
+            $table->foreign('transportista_id')->references('id')->on('transportista');
         });
     }
 
@@ -30,6 +31,7 @@ class AddFkToTransporteTerminalTable extends Migration
         Schema::table('transporteTerminal', function (Blueprint $table) {
             $table->dropForeign('transporteTerminal_terminal_id_foreign');
             $table->dropForeign('transporteTerminal_frigorifico_id_foreign');
+            $table->dropForeign('transporteTerminal_transportista_id_foreign');
         });
     }
 }

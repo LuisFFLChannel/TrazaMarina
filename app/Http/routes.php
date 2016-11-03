@@ -353,12 +353,12 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('admin/embarcaciones/{id}/editPermiso', 'EmbarcacionController@editPermiso');
     Route::get('admin/embarcaciones/{id}/showPermiso', 'EmbarcacionController@showPermiso');
 
-    Route::get('admin/transporistas', ['uses'=>'TransportistaController@index','as'=>'admin.transporistas']);
-    Route::get('admin/transporistas/new', 'TransportistaController@create');
-    Route::post('admin/transporistas/new', 'TransportistaController@store');
-    Route::get('admin/transporistas/{id}/edit', 'TransportistaController@edit');
-    Route::post('admin/transporistas/{id}/edit', 'TransportistaController@update');
-    Route::get('admin/transporistas/{id}/delete', 'TransportistaController@destroy');
+    Route::get('admin/transportistas', ['uses'=>'TransportistaController@index','as'=>'admin.transporistas']);
+    Route::get('admin/transportistas/new', 'TransportistaController@create');
+    Route::post('admin/transportistas/new', 'TransportistaController@store');
+    Route::get('admin/transportistas/{id}/edit', 'TransportistaController@edit');
+    Route::post('admin/transportistas/{id}/edit', 'TransportistaController@update');
+    Route::get('admin/transportistas/{id}/delete', 'TransportistaController@destroy');
 
     Route::get('admin/frigorificos', ['uses'=>'FrigorificoController@index','as'=>'admin.frigorificos']);
     Route::get('admin/frigorificos/new', 'FrigorificoController@create');
