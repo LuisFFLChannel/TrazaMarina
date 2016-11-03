@@ -29,7 +29,7 @@ class StoreTransportistaRequest extends Request
             'dni'               =>  'required|numeric',
             'telefono'          =>  'required|numeric',
             'correo'            =>  'required|max:100',
-            'brevete'           =>  'required|max:100'
+            'brevete'           =>  'required|max:10'
         ];
     }
 }
