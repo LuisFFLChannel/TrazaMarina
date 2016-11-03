@@ -353,6 +353,20 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('admin/embarcaciones/{id}/editPermiso', 'EmbarcacionController@editPermiso');
     Route::get('admin/embarcaciones/{id}/showPermiso', 'EmbarcacionController@showPermiso');
 
+    Route::get('admin/transporistas', ['uses'=>'TransportistaController@index','as'=>'admin.transporistas']);
+    Route::get('admin/transporistas/new', 'TransportistaController@create');
+    Route::post('admin/transporistas/new', 'TransportistaController@store');
+    Route::get('admin/transporistas/{id}/edit', 'TransportistaController@edit');
+    Route::post('admin/transporistas/{id}/edit', 'TransportistaController@update');
+    Route::get('admin/transporistas/{id}/delete', 'TransportistaController@destroy');
+
+    Route::get('admin/frigorificos', ['uses'=>'FrigorificoController@index','as'=>'admin.frigorificos']);
+    Route::get('admin/frigorificos/new', 'FrigorificoController@create');
+    Route::post('admin/frigorificos/new', 'FrigorificoController@store');
+    Route::get('admin/frigorificos/{id}/edit', 'FrigorificoController@edit');
+    Route::post('admin/frigorificos/{id}/edit', 'FrigorificoController@update');
+    Route::get('admin/frigorificos/{id}/delete', 'FrigorificoController@destroy');
+
     Route::get('admin/certificadoMatriculas', ['uses'=>'CertificadoMatriculasController@index','as'=>'admin.certificadoMatriculas']);
     Route::get('admin/certificadoMatriculas/new', 'CertificadoMatriculasController@create');
     Route::post('admin/certificadoMatriculas/new', 'CertificadoMatriculasController@store');

@@ -114,7 +114,7 @@ class PuertosController extends Controller
         $puerto->coordenadaX       =   $input['latitud'];
         $puerto->coordenadaY       =   $input['longitud'];
         if($request->file('imagen')!=null)
-            $especie->imagen        =   $this->file_service->upload($request->file('imagen'),'puerto');
+            $puerto->imagen        =   $this->file_service->upload($request->file('imagen'),'puerto');
 
         $puerto->save();
         

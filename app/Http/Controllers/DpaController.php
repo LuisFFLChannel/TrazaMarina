@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dpa\StoreDpaRequest;
-use App\Http\Requests\Dpa\UpdateDpaoRequest;
+use App\Http\Requests\Dpa\UpdateDpaRequest;
 use App\Models\Dpa;
 use App\Services\FileService;
 use App\User;
@@ -114,7 +114,7 @@ class DpaController extends Controller
         $dpa->coordenadaX       =   $input['latitud'];
         $dpa->coordenadaY       =   $input['longitud'];
         if($request->file('imagen')!=null)
-            $especie->imagen        =   $this->file_service->upload($request->file('imagen'),'dpa');
+            $dpa->imagen        =   $this->file_service->upload($request->file('imagen'),'dpa');
 
         $dpa->save();
         

@@ -236,7 +236,7 @@
                     </ul>
                 </li>-->
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Especies Marinas <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Esp. Marinas <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{url('admin/especieMarinas')}}">Listar</a></li>
                         <li><a href="{{url('admin/especieMarinas/new')}}">Nuevo</a></li>
@@ -292,12 +292,30 @@
                     </ul>
                 </li>
                 <li>
+                    <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Transportistas <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('admin/transportistas')}}">Listar</a></li>
+                        <li><a href="{{url('admin/transportistas/new')}}">Nuevo</a></li>
+                    </ul>
+                </li>
+                 
+                <li>
+                    <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Frigoríficos <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('admin/frigorificos')}}">Listar</a></li>
+                        <li><a href="{{url('admin/frigorificos/new')}}">Nuevo</a></li>
+                    </ul>
+                </li>
+                <!--    
+                <li>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Certificaciones de Pesca <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{url('admin/certificadoMatriculas')}}">Listar</a></li>
                         <li><a href="{{url('admin/certificadoMatriculas/new')}}">Nuevo</a></li>
                     </ul>
-                </li>
+                </li>-->
                 <!--<li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Configuración  <b class="caret"></b></a>
                     <ul class="dropdown-menu">

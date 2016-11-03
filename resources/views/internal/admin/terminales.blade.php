@@ -19,7 +19,6 @@
         <th>Detalle</th>
         <th>Editar</th>
         <th>Eliminar</th>
-        <th></th>
     </tr>
     
     @foreach($terminales as $terminal)
@@ -66,7 +65,6 @@
       <td>
         <a class="btn btn-info" title="Eliminar" data-toggle="modal" data-target="#deleteModal{{$terminal->id}}" ><i class="glyphicon glyphicon-remove"></i></a>
       </td>
-      <td> <div id="map"></div></td>
     </tr>
 
     <!-- MODAL -->

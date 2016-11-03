@@ -114,7 +114,7 @@ class CapitaniaController extends Controller
         $capitania->coordenadaX       =   $input['latitud'];
         $capitania->coordenadaY       =   $input['longitud'];
         if($request->file('imagen')!=null)
-            $especie->imagen        =   $this->file_service->upload($request->file('imagen'),'capitania');
+            $capitania->imagen        =   $this->file_service->upload($request->file('imagen'),'capitania');
 
         $capitania->save();
         

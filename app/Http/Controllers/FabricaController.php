@@ -114,7 +114,7 @@ class FabricaController extends Controller
         $fabrica->coordenadaX       =   $input['latitud'];
         $fabrica->coordenadaY       =   $input['longitud'];
         if($request->file('imagen')!=null)
-            $especie->imagen        =   $this->file_service->upload($request->file('imagen'),'fabrica');
+            $fabrica->imagen        =   $this->file_service->upload($request->file('imagen'),'fabrica');
 
         $fabrica->save();
         

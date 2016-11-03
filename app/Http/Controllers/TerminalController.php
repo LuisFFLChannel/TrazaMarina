@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Terminal\StoreTemrinalRequest;
+use App\Http\Requests\Terminal\StoreTerminalRequest;
 use App\Http\Requests\Terminal\UpdateTerminalRequest;
 use App\Models\Terminal;
 use App\Services\FileService;
@@ -114,7 +114,7 @@ class TerminalController extends Controller
         $terminal->coordenadaX       =   $input['latitud'];
         $terminal->coordenadaY       =   $input['longitud'];
         if($request->file('imagen')!=null)
-            $especie->imagen        =   $this->file_service->upload($request->file('imagen'),'terminal');
+            $terminal->imagen        =   $this->file_service->upload($request->file('imagen'),'terminal');
 
         $terminal->save();
         
