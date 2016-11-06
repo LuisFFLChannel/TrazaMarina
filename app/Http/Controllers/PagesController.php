@@ -146,5 +146,13 @@ class PagesController extends Controller
     {
         return view('internal.admin.home');
     }
+    public function usuarioPescaHome()
+    {
+        return view('internal.usuarioPesca.home');
+    }
+     public function usuarioIntermediarioHome()
+    {
+        return view('internal.usuarioIntermediario.home');
+    }
 
 }

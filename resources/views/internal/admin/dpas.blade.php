@@ -34,21 +34,21 @@
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Detalle del DPA</h4>
+                    <h4 class="modal-title text-left" id="myModalLabel">Detalle del DPA</h4>
                   </div>
                   <div class="modal-body">
                     <div class="row">
                       <div class="col-sm-1"></div>
                       <div class="col-sm-8">
-                          <h5>Nombre: {{$dpa->nombre}} </h5>
-                          <h5>Direccion: {{$dpa->direccion}} </h5>                              
-                          <h5>Latitud: {{$dpa->coordenadaX}}</h5> 
-                          <h5>Longitud: {{$dpa->coordenadaY}}</h5> 
-                          <h5>Mapa: </h5>
+                          <h5 class="text-left">Nombre: {{$dpa->nombre}} </h5>
+                          <h5 class="text-left">Direccion: {{$dpa->direccion}} </h5>                              
+                          <h5 class="text-left">Latitud: {{$dpa->coordenadaX}}</h5> 
+                          <h5 class="text-left">Longitud: {{$dpa->coordenadaY}}</h5> 
+                          <h5 class="text-left">Mapa: </h5>
                           
                           <hr>
-                          <h5>Imagen:</h5> 
-                          <p>{!! Html::image($dpa->imagen, null, array('class'=>'gift_img')) !!}</p>
+                          <h5 class="text-left">Imagen:</h5> 
+                          <p class="text-left">{!! Html::image($dpa->imagen, null, array('class'=>'gift_img')) !!}</p>
                        </div>
                     </div>
                   </div>

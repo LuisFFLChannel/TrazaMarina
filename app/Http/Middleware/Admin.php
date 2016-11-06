@@ -19,6 +19,12 @@ class Admin
             $request->session()->flash('message', 'No estas autorizado para entrar aqui');
             $request->session()->flash('alert-class', 'alert-danger');
             switch (\Auth::user()->role_id) {
+                case '5':
+                    return redirect('/usuarioPesca');
+                    break;
+                case '6':
+                    return redirect('/usuarioIntermediario');
+                    break;
                 case '3':
                     return redirect('/promoter');
                     break;

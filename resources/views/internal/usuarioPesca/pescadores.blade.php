@@ -1,11 +1,11 @@
-@extends('layout.admin')
+@extends('layout.usuarioPesca')
 
 @section('style')
     {!!Html::style('css/images.css')!!}
 @stop
 
 @section('title')
-    Transportistas
+    Pescadores
 @stop
 
 @section('content')
@@ -17,34 +17,38 @@
         <th class="text-center">DNI</th>
         <th class="text-center">Detalle</th>
         <th class="text-center">Editar</th>
+        <th class="text-center">Cambiar P.Marinero</th>
+        <th class="text-center">Ver P.Marinero</th>
+        <th class="text-center">Cambiar P.Patron</th>
+        <th class="text-center">Ver P.Patron</th>
         <th class="text-center">Eliminar</th>
         
     </tr>
     
-    @foreach($transportistas as $transportista)
+    @foreach($pescadores as $pescador)
     <tr>
-      <td class="text-center">{{$transportista->nombres}}</td>
-      <td class="text-center">{{$transportista->apellidos}}</td>
-      <td class="text-center">{{$transportista->dni}}</td>
+      <td class="text-center">{{$pescador->nombres}}</td>
+      <td class="text-center">{{$pescador->apellidos}}</td>
+      <td class="text-center">{{$pescador->dni}}</td>
       <td class="text-center">
-            <a class="btn btn-info" href="detalles" title="Detalles" data-toggle="modal" data-target="#edit{{$transportista->id}}"><i class="glyphicon glyphicon-plus"></i></a>
-            <div class="modal fade" id="edit{{$transportista->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <a class="btn btn-info" href="detalles" title="Detalles" data-toggle="modal" data-target="#edit{{$pescador->id}}"><i class="glyphicon glyphicon-plus"></i></a>
+            <div class="modal fade" id="edit{{$pescador->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title text-left" id="myModalLabel">Detalle del transportista</h4>
+                    <h4 class="modal-title text-left" id="myModalLabel">Detalle del pescador</h4>
                   </div>
                   <div class="modal-body">
                     <div class="row">
                       <div class="col-sm-1"></div>
                       <div class="col-sm-8">
-                          <h5 class="text-left">Nombres: {{$transportista->nombres}} </h5>
-                          <h5 class="text-left">Apellidos: {{$transportista->apellidos}} </h5>                              
-                          <h5 class="text-left">Dni: {{$transportista->dni}}<h5> 
-                          <h5 class="text-left">Telefono: {{$transportista->telefono}}</h5> 
-                          <h5 class="text-left">Correo: {{$transportista->correo}}</h5> 
-                          <h5 class="text-left">Brevete: {{$transportista->brevete}}</h5> 
+                          <h5 class="text-left">Nombres: {{$pescador->nombres}} </h5>
+                          <h5 class="text-left">Apellidos: {{$pescador->apellidos}} </h5>                              
+                          <h5 class="text-left">Dni: {{$pescador->dni}}<h5> 
+                          <h5 class="text-left">Telefono: {{$pescador->telefono}}</h5> 
+                          <h5 class="text-left">Correo: {{$pescador->correo}}</h5> 
+                          <h5 class="text-left">Cumpleaños: {{date_format(date_create($pescador->cumpleanos),"d/m/Y")}}</h5> 
                        </div>
                     </div>
                   </div>
@@ -56,28 +60,40 @@
             </div>
           </td>
       <td class="text-center">
-        <a class="btn btn-info" href="{{url('admin/transportistas/'.$transportista->id.'/edit')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
+        <a class="btn btn-info" href="{{url('usuarioPesca/pescadores/'.$pescador->id.'/edit')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
       </td> 
       <td class="text-center"> 
-        <a class="btn btn-info" title="Eliminar" data-toggle="modal" data-target="#deleteModal{{$transportista->id}}" ><i class="glyphicon glyphicon-remove"></i></a>
+        <a class="btn btn-info" href="{{url('usuarioPesca/pescadores/'.$pescador->id.'/editPermisoMarinero')}}" title="Modificar Permiso de Marinero" ><i class="glyphicon glyphicon-pencil"></i></a>
+      </td> 
+      <td class="text-center">
+        <a class="btn btn-info" href="{{url('usuarioPesca/pescadores/'.$pescador->id.'/showPermisoMarinero')}}" title="Visualizar Permiso de Marinero" ><i class="glyphicon glyphicon-plus"></i></a>
+      </td> 
+      <td class="text-center">
+        <a class="btn btn-info" href="{{url('usuarioPesca/pescadores/'.$pescador->id.'/editPermisoPatron')}}" title="Modificar Permiso de Patron" ><i class="glyphicon glyphicon-pencil"></i></a>
+      </td> 
+      <td class="text-center">
+        <a class="btn btn-info" href="{{url('usuarioPesca/pescadores/'.$pescador->id.'/showPermisoPatron')}}" title="Visualizar Permiso de Patron" ><i class="glyphicon glyphicon-plus"></i></a>
+      </td> 
+      <td class="text-center"> 
+        <a class="btn btn-info" title="Eliminar" data-toggle="modal" data-target="#deleteModal{{$pescador->id}}" ><i class="glyphicon glyphicon-remove"></i></a>
       </td>
       
     </tr>
 
     <!-- MODAL -->
-    <div class="modal fade"  id="deleteModal{{$transportista->id}}">
+    <div class="modal fade"  id="deleteModal{{$pescador->id}}">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">¿Estas seguro que desea eliminar al transportista?</h4>
+            <h4 class="modal-title">¿Estas seguro que desea eliminar al pescador?</h4>
           </div>
           <div class="modal-body">
             <h5 class="modal-title">Los cambios serán permanentes</h5>
           </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-info" data-dismiss="modal">No</button>
-              <a class="btn btn-info" href="{{url('admin/transportistas/'.$transportista->id.'/delete')}}" title="Delete" >Sí</a>
+              <a class="btn btn-info" href="{{url('usuarioPesca/pescadores/'.$pescador->id.'/delete')}}" title="Delete" >Sí</a>
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
@@ -87,7 +103,7 @@
     
 </table>
 
-{!!$transportistas->render()!!}
+{!!$pescadores->render()!!}
 @stop
 
 @section('javascript')

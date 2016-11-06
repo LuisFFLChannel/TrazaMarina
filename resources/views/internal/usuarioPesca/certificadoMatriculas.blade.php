@@ -1,4 +1,4 @@
-@extends('layout.admin')
+@extends('layout.usuarioPesca')
 
 @section('style')
     {!!Html::style('css/images.css')!!}
@@ -68,7 +68,7 @@
             </div>
           </td>
       <td>
-        <a class="btn btn-info" href="{{url('admin/certificadoMatriculas/'.$certificadoMatricula->id.'/edit')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
+        <a class="btn btn-info" href="{{url('usuarioPesca/certificadoMatriculas/'.$certificadoMatricula->id.'/edit')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
       </td> 
       <td>
         <a class="btn btn-info" title="Eliminar" data-toggle="modal" data-target="#deleteModal{{$certificadoMatricula->id}}" ><i class="glyphicon glyphicon-remove"></i></a>
@@ -89,7 +89,7 @@
           </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-info" data-dismiss="modal">No</button>
-              <a class="btn btn-info" href="{{url('admin/certificadoMatriculas/'.$certificadoMatricula->id.'/delete')}}" title="Delete" >Sí</a>
+              <a class="btn btn-info" href="{{url('usuarioPesca/certificadoMatriculas/'.$certificadoMatricula->id.'/delete')}}" title="Delete" >Sí</a>
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->

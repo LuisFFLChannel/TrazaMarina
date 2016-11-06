@@ -15,5 +15,6 @@ class PerfilUsuarioTableSeeder extends Seeder
         Perfil::insert(['nombre' => 'Extraccion','descripcion'=>'EXTRACCION','activo'=>1]);
         Perfil::insert(['nombre' => 'Intermediario','descripcion'=>'INTERMEDIARIO','activo'=>1]);
         Perfil::insert(['nombre' => 'Admininstrador','descripcion'=>'ADMIN','activo'=>1]);
+
     }
 }

@@ -1,63 +1,55 @@
-@extends('layout.admin')
+@extends('layout.usuarioPesca')
 
 @section('style')
     {!!Html::style('css/images.css')!!}
 @stop
 
 @section('title')
-    Certificados de Matricula
+    Dpas
 @stop
 
 @section('content')
 
 <table class="table table-bordered table-striped">
     <tr>
-        <th>N° Documennto</th>
-        <th>Dueño</th>   
-        <th>N° de Matricula</th>
-        <th>Barco</th>
+        <th class="text-center">Nombre</th>
+        <th class="text-center">Direccion</th>   
+        <th class="text-center">Coordenadas (Latitud , Longitud) </th>
         <!--<th>Imagen</th>-->
-        <th>Detalle</th>
-        <th>Editar</th>
-        <th>Eliminar</th>
+        <th class="text-center">Detalle</th>
+        <th class="text-center">Editar</th>
+        <th class="text-center">Eliminar</th>
     </tr>
     
-    @foreach($certificadoMatriculas as $certificadoMatricula)
+    @foreach($dpas as $dpa)
     <tr>
-      <td>{{$certificadoMatricula->id}}</td>
-      <td>{{$certificadoMatricula->nombreDueno}} {{$certificadoMatricula->apellidosDueno}}</td>
-      <td>{{$certificadoMatricula->nMatricula}}</td>
-      @if($certificadoMatricula->embarcacion->nombre)
-        <td>{{$certificadoMatricula->embarcacion->nombre}}</td>
-      @else
-          <td> No Asociado aun</td>
-      @endif
-     
-      
-      <!--<td>{!! Html::image($certificadoMatricula->imagen, null, array('class'=>'gift_img')) !!}</td>-->
-      <td>
-            <a class="btn btn-info" href="detalles" title="Detalles" data-toggle="modal" data-target="#edit{{$certificadoMatricula->id}}"><i class="glyphicon glyphicon-plus"></i></a>
-            <div class="modal fade" id="edit{{$certificadoMatricula->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <td class="text-center">{{$dpa->nombre}}</td>
+      <td class="text-center">{{$dpa->direccion}}</td>
+      <td class="text-center">( {{$dpa->coordenadaX}} , {{$dpa->coordenadaY}} )</td>
+      <!--<td>{!! Html::image($dpa->imagen, null, array('class'=>'gift_img')) !!}</td>-->
+      <td class="text-center">
+            <a class="btn btn-info" href="detalles" title="Detalles" data-toggle="modal" data-target="#edit{{$dpa->id}}"><i class="glyphicon glyphicon-plus"></i></a>
+            <div class="modal fade" id="edit{{$dpa->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title text-left" id="myModalLabel">Detalle del Certificado de Matricula</h4>
+                    <h4 class="modal-title text-left" id="myModalLabel">Detalle del DPA</h4>
                   </div>
                   <div class="modal-body">
                     <div class="row">
                       <div class="col-sm-1"></div>
                       <div class="col-sm-8">
-                          <h5 class="text-left">N° Documennto: {{$certificadoMatricula->id}}</h5>
-                          <h5 class="text-left">Nombre Dueño: {{$certificadoMatricula->nombreDueno}} {{$certificadoMatricula->apellidosDueno}}</h5>
-                          <h5 class="text-left">DNI Dueño: {{$certificadoMatricula->dniDueno}}</h5>
-                          <h5 class="text-left">Numero de Matricula: {{$certificadoMatricula->nMatricula}} </h5>
-                          @if($certificadoMatricula->embarcacion->nombre)
-                            <h5>Nombre del barco: {{$certificadoMatricula->embarcacion->nombre}}</h5> 
-                          @else
-                            <h5>Nombre del barco: No Esta asociado aun</h5>
-                          @endif                              
+                          <h5 class="text-left">Nombre: {{$dpa->nombre}} </h5>
+                          <h5 class="text-left">Direccion: {{$dpa->direccion}} </h5>                              
+                          <h5 class="text-left">Latitud: {{$dpa->coordenadaX}}</h5> 
+                          <h5 class="text-left">Longitud: {{$dpa->coordenadaY}}</h5> 
+                          <h5 class="text-left">Mapa: </h5>
                           
+                          <hr>
+                          <h5 class="text-left">Imagen:</h5> 
+                          <p class="text-left">{!! Html::image($dpa->imagen, null, array('class'=>'gift_img')) !!}</p>
+                       </div>
                     </div>
                   </div>
                   <div class="modal-footer">
@@ -67,29 +59,28 @@
               </div>
             </div>
           </td>
-      <td>
-        <a class="btn btn-info" href="{{url('admin/certificadoMatriculas/'.$certificadoMatricula->id.'/edit')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
+      <td class="text-center">
+        <a class="btn btn-info" href="{{url('usuarioPesca/dpas/'.$dpa->id.'/edit')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
       </td> 
-      <td>
-        <a class="btn btn-info" title="Eliminar" data-toggle="modal" data-target="#deleteModal{{$certificadoMatricula->id}}" ><i class="glyphicon glyphicon-remove"></i></a>
+      <td class="text-center">
+        <a class="btn btn-info" title="Eliminar" data-toggle="modal" data-target="#deleteModal{{$dpa->id}}" ><i class="glyphicon glyphicon-remove"></i></a>
       </td>
-      <td> <div id="map"></div></td>
     </tr>
 
     <!-- MODAL -->
-    <div class="modal fade"  id="deleteModal{{$certificadoMatricula->id}}">
+    <div class="modal fade"  id="deleteModal{{$dpa->id}}">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">¿Estas seguro que desea eliminar el Certificado de Matricula ?</h4>
+            <h4 class="modal-title">¿Estas seguro que desea eliminar el Dpa ?</h4>
           </div>
           <div class="modal-body">
             <h5 class="modal-title">Los cambios serán permanentes</h5>
           </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-info" data-dismiss="modal">No</button>
-              <a class="btn btn-info" href="{{url('admin/certificadoMatriculas/'.$certificadoMatricula->id.'/delete')}}" title="Delete" >Sí</a>
+              <a class="btn btn-info" href="{{url('usuarioPesca/dpas/'.$dpa->id.'/delete')}}" title="Delete" >Sí</a>
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
@@ -99,7 +90,7 @@
     
 </table>
 
-{!!$certificadoMatriculas->render()!!}
+{!!$dpas->render()!!}
 @stop
 
 @section('javascript')

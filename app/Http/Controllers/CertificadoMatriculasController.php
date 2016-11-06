@@ -11,6 +11,7 @@ use App\Http\Requests\CertificadoMatricula\UpdateCertificadoMatriculaRequest;
 use App\Models\CertificadoMatricula;
 use App\User;
 use Carbon\Carbon;
+use Auth;
 //use App\Usuario;
 use Session;
 
@@ -26,7 +27,13 @@ class CertificadoMatriculasController extends Controller
         //
         $certificadoMatriculas = CertificadoMatricula::paginate(10);
         $certificadoMatriculas->setPath('certificadoMatricula');
-        return view('internal.admin.certificadoMatriculas', compact('certificadoMatriculas'));
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.certificadoMatriculas', compact('certificadoMatriculas'));
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.certificadoMatriculas', compact('certificadoMatriculas'));
+        }
+        
     }
 
     /**
@@ -37,7 +44,13 @@ class CertificadoMatriculasController extends Controller
     public function create()
     {
         //
-        return view('internal.admin.nuevoCertificadoMatricula');
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.nuevoCertificadoMatricula');
+        }
+        elseif (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.nuevoCertificadoMatricula');
+        }
+        
     }
 
     /**
@@ -61,7 +74,12 @@ class CertificadoMatriculasController extends Controller
 
         $embarcacion->save();
         
-        return redirect()->route('admin.certificadoMatriculas');
+        if (Auth::user()->role_id == 4){
+            return redirect()->route('admin.certificadoMatriculas');
+        }
+        elseif (Auth::user()->role_id == 5){
+            return redirect()->route('usuarioPesca.certificadoMatriculas');
+        }
     }
 
     /**
@@ -85,7 +103,13 @@ class CertificadoMatriculasController extends Controller
     {
         //
         $embarcacion = CertificadoMatricula::find($id);
-        return view('internal.admin.editarCertificadoMatricula', compact('embarcacion'));
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.editarCertificadoMatricula', compact('embarcacion'));
+        }
+        elseif (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.editarCertificadoMatricula', compact('embarcacion'));
+        }
+
     }
 
     /**
@@ -109,7 +133,12 @@ class CertificadoMatriculasController extends Controller
         //Control de subida de imagen por hacer
 
         $embarcacion->save();
-        return redirect()->route('admin.certificadoMatriculas');
+        if (Auth::user()->role_id == 4){
+            return redirect()->route('admin.certificadoMatriculas');
+        }
+        else (Auth::user()->role_id == 5){
+            return redirect()->route('usuarioPesca.certificadoMatriculas');     
+        }
     }
 
     /**
@@ -123,6 +152,12 @@ class CertificadoMatriculasController extends Controller
         //
         $embarcacion = CertificadoMatricula::find($id);
         $embarcacion->delete();
-        return redirect()->route('admin.certificadoMatriculas');
+        if (Auth::user()->role_id == 4){
+            return redirect()->route('admin.certificadoMatriculas');
+        }
+        else (Auth::user()->role_id == 5){
+            return redirect()->route('usuarioPesca.certificadoMatriculas');
+        }
+        
     }
 }

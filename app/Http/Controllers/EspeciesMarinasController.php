@@ -14,6 +14,7 @@ use App\User;
 use Carbon\Carbon;
 //use App\Usuario;
 use Session;
+use Auth;
 
 class EspeciesMarinasController extends Controller
 {
@@ -31,7 +32,14 @@ class EspeciesMarinasController extends Controller
         //
         $especies = EspecieMarina::paginate(10);
         $especies->setPath('especies');
-        return view('internal.admin.especieMarinas', compact('especies'));
+
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.especieMarinas', compact('especies'));
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.especieMarinas', compact('especies'));
+        }
+        
     }
 
     /**
@@ -42,7 +50,13 @@ class EspeciesMarinasController extends Controller
     public function create()
     {
         //
-        return view('internal.admin.nuevaEspecieMarina');
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.nuevaEspecieMarina');
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.nuevaEspecieMarina');  
+        }
+        
     }
 
     /**
@@ -72,7 +86,13 @@ class EspeciesMarinasController extends Controller
 
         $especie->save();
         
-        return redirect()->route('admin.especieMarinas');
+        if (Auth::user()->role_id == 4){
+            return redirect()->route('admin.especieMarinas');
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return redirect()->route('usuarioPesca.especieMarinas');
+        }
+     
     }
 
     /**
@@ -97,7 +117,15 @@ class EspeciesMarinasController extends Controller
         //
 
         $especie = EspecieMarina::find($idEspecie);
-        return view('internal.admin.editarEspecieMarina', compact('especie'));
+
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.editarEspecieMarina', compact('especie'));
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.editarEspecieMarina', compact('especie'));
+        }
+
+        
     }
 
     /**
@@ -127,7 +155,13 @@ class EspeciesMarinasController extends Controller
 
         $especie->save();
         
-        return redirect()->route('admin.especieMarinas');
+        if (Auth::user()->role_id == 4){
+            return redirect()->route('admin.especieMarinas');
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return redirect()->route('usuarioPesca.especieMarinas');
+        }
+  
     }
 
     /**
@@ -141,6 +175,13 @@ class EspeciesMarinasController extends Controller
         //
         $especie = EspecieMarina::find($idEspecie);
         $especie->delete();
-        return redirect()->route('admin.especiesMarinas');
+
+        if (Auth::user()->role_id == 4){
+            return redirect()->route('admin.especieMarinas');
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return redirect()->route('usuarioPesca.especieMarinas');
+        }
+
     }
 }

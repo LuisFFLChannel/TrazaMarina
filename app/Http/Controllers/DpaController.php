@@ -12,6 +12,7 @@ use App\Models\Dpa;
 use App\Services\FileService;
 use App\User;
 use Carbon\Carbon;
+use Auth;
 //use App\Usuario;
 use Session;
 
@@ -31,7 +32,13 @@ class DpaController extends Controller
         //
         $dpas = Dpa::paginate(10);
         $dpas->setPath('dpa');
-        return view('internal.admin.dpas', compact('dpas'));
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.dpas', compact('dpas'));
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.dpas', compact('dpas'));
+        }
+        
     }
 
     /**
@@ -42,7 +49,12 @@ class DpaController extends Controller
     public function create()
     {
         //
-        return view('internal.admin.nuevoDpa');
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.nuevoDpa');
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.nuevoDpa');
+        }
     }
 
     /**
@@ -67,8 +79,13 @@ class DpaController extends Controller
         $dpa->imagen        =   $this->file_service->upload($request->file('imagen'),'dpa');
 
         $dpa->save();
-        
-        return redirect()->route('admin.dpas');
+        if (Auth::user()->role_id == 4){
+            return redirect()->route('admin.dpas');
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return redirect()->route('usuarioPesca.dpas');
+        }
+
     }
 
     /**
@@ -92,7 +109,13 @@ class DpaController extends Controller
     {
         //
         $dpa = Dpa::find($id);
-        return view('internal.admin.editarDpa', compact('dpa'));
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.editarDpa', compact('dpa'));
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.editarDpa', compact('dpa'));
+        }
+        
     }
 
     /**
@@ -117,8 +140,13 @@ class DpaController extends Controller
             $dpa->imagen        =   $this->file_service->upload($request->file('imagen'),'dpa');
 
         $dpa->save();
+        if (Auth::user()->role_id == 4){
+            return redirect()->route('admin.dpas');
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return redirect()->route('usuarioPesca.dpas');
+        }
         
-        return redirect()->route('admin.dpas');
     }
 
     /**
@@ -132,6 +160,12 @@ class DpaController extends Controller
         //
          $dpa = Dpa::find($id);
         $dpa->delete();
-        return redirect()->route('admin.dpas');
+        if (Auth::user()->role_id == 4){
+            return redirect()->route('admin.dpas');
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return redirect()->route('admin.usuarioPesca');
+        }
+        
     }
 }

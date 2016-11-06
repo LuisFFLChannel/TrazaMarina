@@ -1,4 +1,4 @@
-@extends('layout.admin')
+h@extends('layout.usuarioPesca')
 
 @section('style')
     {!!Html::style('css/images.css')!!}
@@ -62,7 +62,7 @@
             </div>
           </td>
       <td class="text-center">
-        <a class="btn btn-info" href="{{url('admin/especieMarinas/'.$especie->id.'/edit')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
+        <a class="btn btn-info" href="{{url('usuarioPesca/especieMarinas/'.$especie->id.'/edit')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
       </td> 
       <td class="text-center">
         <a class="btn btn-info" title="Eliminar" data-toggle="modal" data-target="#deleteModal{{$especie->id}}" ><i class="glyphicon glyphicon-remove"></i></a>
@@ -82,7 +82,7 @@
           </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-info" data-dismiss="modal">No</button>
-              <a class="btn btn-info" href="{{url('admin/especiesMarina/'.$especie->id.'/delete')}}" title="Delete" >Sí</a>
+              <a class="btn btn-info" href="{{url('usuarioPesca/especiesMarina/'.$especie->id.'/delete')}}" title="Delete" >Sí</a>
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->

@@ -34,21 +34,21 @@
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Detalle del Puerto</h4>
+                    <h4 class="modal-title text-left" id="myModalLabel">Detalle del Puerto</h4>
                   </div>
                   <div class="modal-body">
                     <div class="row">
                       <div class="col-sm-1"></div>
                       <div class="col-sm-8">
-                          <h5>Nombre: {{$puerto->nombre}} </h5>
-                          <h5>Direccion: {{$puerto->direccion}} </h5>                              
-                          <h5>Latitud: {{$puerto->coordenadaX}}</h5> 
-                          <h5>Longitud: {{$puerto->coordenadaY}}</h5> 
-                          <h5>Mapa: </h5>
+                          <h5 class="text-left">Nombre: {{$puerto->nombre}} </h5>
+                          <h5 class="text-left">Direccion: {{$puerto->direccion}} </h5>                              
+                          <h5 class="text-left">Latitud: {{$puerto->coordenadaX}}</h5> 
+                          <h5 class="text-left">Longitud: {{$puerto->coordenadaY}}</h5> 
+                          <h5 class="text-left">Mapa: </h5>
                           
                           <hr>
-                          <h5>Imagen:</h5> 
-                          <p>{!! Html::image($puerto->imagen, null, array('class'=>'gift_img')) !!}</p>
+                          <h5 class="text-left">Imagen:</h5> 
+                          <p class="text-left">{!! Html::image($puerto->imagen, null, array('class'=>'gift_img')) !!}</p>
                        </div>
                     </div>
                   </div>

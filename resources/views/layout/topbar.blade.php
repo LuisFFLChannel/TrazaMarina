@@ -308,7 +308,7 @@
                         <li><a href="{{url('admin/frigorificos/new')}}">Nuevo</a></li>
                     </ul>
                 </li>
-                <!--    
+                <!-- 
                 <li>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Certificaciones de Pesca <b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -336,4 +336,118 @@
     </div>
     <!-- /.container -->
 </nav>
+@elseif(Auth::user()->role_id == config('constants.usuarioPesca'))
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{url('/')}}">{{$business_name}} </a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-left">
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Esp. Marinas <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('usuarioPesca/especieMarinas')}}">Listar</a></li>
+                        <li><a href="{{url('usuarioPesca/especieMarinas/new')}}">Nuevo</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Puertos <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('usuarioPesca/puertos')}}">Listar</a></li>
+                        <li><a href="{{url('usuarioPesca/puertos/new')}}">Nuevo</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dpa <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('usuarioPesca/dpas')}}">Listar</a></li>
+                        <li><a href="{{url('usuarioPesca/dpas/new')}}">Nuevo</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Capitanias <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('usuarioPesca/capitanias')}}">Listar</a></li>
+                        <li><a href="{{url('usuarioPesca/capitanias/new')}}">Nuevo</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pescadores <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('usuarioPesca/pescadores')}}">Listar</a></li>
+                        <li><a href="{{url('usuarioPesca/pescadores/new')}}">Nuevo</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Embarcaciones <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('usuarioPescaadmin/embarcaciones')}}">Listar</a></li>
+                        <li><a href="{{url('usuarioPesca/embarcaciones/new')}}">Nuevo</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cert. de Matricula<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('usuarioPesca/certificadoMatriculas')}}">Listar</a></li>
+                        <li><a href="{{url('usuarioPesca/certificadoMatriculas/new')}}">Nuevo</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">P. de Pesca<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('usuarioPesca/certificadoMatriculas')}}">Listar</a></li>
+                        <li><a href="{{url('usuarioPesca/certificadoMatriculas/new')}}">Nuevo</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">P. Zarpe<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('usuarioPesca/certificadoMatriculas')}}">Listar</a></li>
+                        <li><a href="{{url('usuarioPesca/certificadoMatriculas/new')}}">Nuevo</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">P. Marinero<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('usuarioPesca/certificadoMatriculas')}}">Listar</a></li>
+                        <li><a href="{{url('usuarioPesca/certificadoMatriculas/new')}}">Nuevo</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">P. Patron<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('usuarioPesca/certificadoMatriculas')}}">Listar</a></li>
+                        <li><a href="{{url('usuarioPesca/certificadoMatriculas/new')}}">Nuevo</a></li>
+                    </ul>
+                </li>
+                <!--<li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Configuración  <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('admin/config/exchange_rate')}}">Tipo de cambio</a></li>
+                        <li><a href="{{url('admin/config/about')}}">Acerca de</a></li>
+                        <li><a href="{{url('admin/config/system')}}">Sistema</a></li>
+                    </ul>
+                </li>-->
+
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{url('usuarioPesca/')}}">{{ Auth::user()->name }}</a></li>
+                <li><a href="{{url('auth/logout')}}">Salir</a></li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
 @endif

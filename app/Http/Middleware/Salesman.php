@@ -19,6 +19,12 @@ class Salesman
             $request->session()->flash('message', 'You are not authorized!.');
             $request->session()->flash('alert-class', 'alert-danger');
             switch (\Auth::user()->role_id) {
+                case '5':
+                    return redirect('/usuarioPesca');
+                    break;
+                case '6':
+                    return redirect('/usuarioIntermediario');
+                    break;
                 case '4':
                     return redirect('/admin');
                     break;

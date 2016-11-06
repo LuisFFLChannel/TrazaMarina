@@ -4,7 +4,7 @@ namespace App\Http\Requests\Frigorifico;
 
 use App\Http\Requests\Request;
 
-class UdpateFigorificoRequest extends Request
+class UpdateFrigorificoRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,7 @@ class UdpateFigorificoRequest extends Request
         return [
             'nombre'            =>  'required|max:100',
             'placa'             =>  'required|max:50',
-            'capcidad'          =>  'required|numeric'
+            'capacidad'          =>  'required|numeric'
         ];
     }
 }

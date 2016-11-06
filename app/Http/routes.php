@@ -353,7 +353,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('admin/embarcaciones/{id}/editPermiso', 'EmbarcacionController@editPermiso');
     Route::get('admin/embarcaciones/{id}/showPermiso', 'EmbarcacionController@showPermiso');
 
-    Route::get('admin/transportistas', ['uses'=>'TransportistaController@index','as'=>'admin.transporistas']);
+    Route::get('admin/transportistas', ['uses'=>'TransportistaController@index','as'=>'admin.transportistas']);
     Route::get('admin/transportistas/new', 'TransportistaController@create');
     Route::post('admin/transportistas/new', 'TransportistaController@store');
     Route::get('admin/transportistas/{id}/edit', 'TransportistaController@edit');
@@ -375,7 +375,96 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('admin/certificadoMatriculas/{id}/delete', 'CertificadoMatriculasController@destroy');
 
 })  ;
+Route::group(['middleware' => ['auth', 'usuarioPesca']], function () {
 
+   
+    Route::get('usuarioPesca/', ['uses'=>'PagesController@usuarioPescaHome','as'=>'usuarioPesca.home']);
+    /*Route::get('admin/password', 'AdminController@passwordAdmin');
+    Route::post('admin/password', 'AdminController@passwordUpdateAdmin');
+
+
+    Route::get('admin/client', 'ClientController@index');
+    Route::post('admin/client/desactive', 'ClientController@desactive');
+
+    Route::get('admin/salesman', ['as'=>'admin.salesman','uses'=>'AdminController@salesman']);
+    Route::get('admin/salesman/{id}/edit', 'AdminController@editSalesman');
+    Route::post('admin/salesman/{id}/edit', 'AdminController@updateSalesman');
+    Route::get('admin/salesman/{id}/delete', 'AdminController@destroySalesman');
+
+    Route::get('admin/user/new', 'AdminController@newUser');
+    Route::post('admin/user/new', 'AdminController@store');
+
+    Route::get('admin/admin', 'AdminController@admin');
+    Route::get('admin/admin/{id}/edit', 'AdminController@editAdmin');
+    Route::post('admin/admin/{id}/edit', 'AdminController@updateAdmin');
+    //
+    Route::get('admin/admin/{id}/delete', 'AdminController@destroy');
+
+    Route::get('admin/promoter', 'AdminController@promoter');
+    Route::get('admin/promoter/{id}/edit', 'AdminController@editPromoter');
+    Route::post('admin/promoter/{id}/edit', 'AdminController@updatePromoter');
+    Route::get('admin/promoter/{id}/delete', 'AdminController@destroyPromoter');*/
+
+    Route::get('usuarioPesca/especieMarinas', ['uses'=>'EspeciesMarinasController@index','as'=>'admin.especieMarinas']);
+    Route::get('usuarioPesca/especieMarinas/new', 'EspeciesMarinasController@create');
+    Route::post('usuarioPesca/especieMarinas/new', 'EspeciesMarinasController@store');
+    Route::get('usuarioPesca/especieMarinas/{id}/edit', 'EspeciesMarinasController@edit');
+    Route::post('usuarioPesca/especieMarinas/{id}/edit', 'EspeciesMarinasController@update');
+    Route::get('usuarioPesca/especieMarinas/{id}/delete', 'EspeciesMarinasController@destroy');
+
+    Route::get('usuarioPesca/puertos', ['uses'=>'PuertosController@index','as'=>'admin.puertos']);
+    Route::get('usuarioPesca/puertos/new', 'PuertosController@create');
+    Route::post('usuarioPesca/puertos/new', 'PuertosController@store');
+    Route::get('usuarioPesca/puertos/{id}/edit', 'PuertosController@edit');
+    Route::post('admin/puertos/{id}/edit', 'PuertosController@update');
+    Route::get('admin/puertos/{id}/delete', 'PuertosController@destroy');
+
+    Route::get('usuarioPesca/capitanias', ['uses'=>'CapitaniaController@index','as'=>'admin.capitanias']);
+    Route::get('usuarioPesca/capitanias/new', 'CapitaniaController@create');
+    Route::post('usuarioPesca/capitanias/new', 'CapitaniaController@store');
+    Route::get('usuarioPesca/capitanias/{id}/edit', 'CapitaniaController@edit');
+    Route::post('usuarioPesca/capitanias/{id}/edit', 'CapitaniaController@update');
+    Route::get('usuarioPesca/capitanias/{id}/delete', 'CapitaniaController@destroy');
+
+    Route::get('usuarioPesca/dpas', ['uses'=>'DpaController@index','as'=>'admin.dpas']);
+    Route::get('usuarioPesca/dpas/new', 'DpaController@create');
+    Route::post('usuarioPesca/dpas/new', 'DpaController@store');
+    Route::get('usuarioPesca/dpas/{id}/edit', 'DpaController@edit');
+    Route::post('usuarioPesca/dpas/{id}/edit', 'DpaController@update');
+    Route::get('usuarioPesca/dpas/{id}/delete', 'DpaController@destroy');
+
+
+    Route::get('usuarioPesca/pescadores', ['uses'=>'PescadoresController@index','as'=>'admin.pescadores']);
+    Route::get('usuarioPesca/pescadores/new', 'PescadoresController@create');
+    Route::post('usuarioPesca/pescadores/new', 'PescadoresController@store');
+    Route::get('usuarioPesca/pescadores/{id}/edit', 'PescadoresController@edit');
+    Route::post('usuarioPesca/pescadores/{id}/edit', 'PescadoresController@update');
+    Route::get('usuarioPesca/pescadores/{id}/delete', 'PescadoresController@destroy');
+    Route::get('usuarioPesca/pescadores/{id}/editPermisoMarinero', 'PescadoresController@editPermisoMarinero');
+    Route::get('usuarioPesca/pescadores/{id}/showPermisoMarinero', 'PescadoresController@showPermisoMarinero');
+    Route::get('usuarioPesca/pescadores/{id}/editPermisoPatron', 'PescadoresController@editPermisoPatron');
+    Route::get('usuarioPesca/pescadores/{id}/showPermisoPatron', 'PescadoresController@showPermisoPatron');
+
+    Route::get('usuarioPesca/embarcaciones', ['uses'=>'EmbarcacionController@index','as'=>'admin.embarcaciones']);
+    Route::get('usuarioPesca/embarcaciones/new', 'EmbarcacionController@create');
+    Route::post('usuarioPesca/embarcaciones/new', 'EmbarcacionController@store');
+    Route::get('usuarioPesca/embarcaciones/{id}/edit', 'EmbarcacionController@edit');
+    Route::post('usuarioPesca/embarcaciones/{id}/edit', 'EmbarcacionController@update');
+    Route::get('usuarioPesca/embarcaciones/{id}/delete', 'EmbarcacionController@destroy');
+    Route::get('usuarioPesca/embarcaciones/{id}/editCertificado', 'EmbarcacionController@editCertificado');
+    Route::get('usuarioPesca/embarcaciones/{id}/showCertificado', 'EmbarcacionController@showCertificado');
+    Route::get('usuarioPesca/embarcaciones/{id}/editPermiso', 'EmbarcacionController@editPermiso');
+    Route::get('usuarioPesca/embarcaciones/{id}/showPermiso', 'EmbarcacionController@showPermiso');
+
+
+    Route::get('usuarioPesca/certificadoMatriculas', ['uses'=>'CertificadoMatriculasController@index','as'=>'usuarioPesca.certificadoMatriculas']);
+    Route::get('usuarioPesca/certificadoMatriculas/new', 'CertificadoMatriculasController@create');
+    Route::post('usuarioPesca/certificadoMatriculas/new', 'CertificadoMatriculasController@store');
+    Route::get('usuarioPesca/certificadoMatriculas/{id}/edit', 'CertificadoMatriculasController@edit');
+    Route::post('usuarioPescan/certificadoMatriculas/{id}/edit', 'CertificadoMatriculasController@update');
+    Route::get('usuarioPesca/certificadoMatriculas/{id}/delete', 'CertificadoMatriculasController@destroy');
+
+})  ;
 Route::get('token',function(){
     return csrf_token();
 });

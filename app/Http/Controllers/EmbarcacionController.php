@@ -16,6 +16,7 @@ use App\Models\PermisoPesca;
 use App\Models\CertificadoMatricula;
 //use App\Usuario;
 use Session;
+use Auth;
 
 class EmbarcacionController extends Controller
 {
@@ -32,8 +33,15 @@ class EmbarcacionController extends Controller
     {
         //
         $embarcaciones = Embarcacion::paginate(10);
-        $embarcaciones->setPath('embaracion');
-        return view('internal.admin.embarcaciones', compact('embarcaciones'));
+        $embarcaciones->setPath('embarcacion');
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.embarcaciones', compact('embarcaciones'));
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.embarcaciones', compact('embarcaciones'));
+        }
+
+        
     }
 
     /**
@@ -44,7 +52,12 @@ class EmbarcacionController extends Controller
     public function create()
     {
         //
-         return view('internal.admin.nuevoEmbarcacion');
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.nuevoEmbarcacion');
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.nuevoEmbarcacion');
+        }
     }
 
     /**
@@ -73,7 +86,13 @@ class EmbarcacionController extends Controller
 
         $embarcacion->save();
         
-        return redirect()->route('admin.embarcaciones');
+        if (Auth::user()->role_id == 4){
+            return redirect()->route('admin.embarcaciones');
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return redirect()->route('usuarioPesca.embarcaciones');
+        }
+        
     }
 
     /**
@@ -97,7 +116,13 @@ class EmbarcacionController extends Controller
     {
         //
         $embarcacion = Embarcacion::find($id);
-        return view('internal.admin.editarEmbarcacion', compact('embarcacion'));
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.editarEmbarcacion', compact('embarcacion'));
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.editarEmbarcacion', compact('embarcacion'));
+        }
+        
     }
 
     /**
@@ -128,7 +153,14 @@ class EmbarcacionController extends Controller
             $embarcacion->imagen        =   $this->file_service->upload($request->file('imagen'),'embarcacion');
 
         $embarcacion->save();
-        return redirect()->route('admin.embarcaciones');
+
+        if (Auth::user()->role_id == 4){
+            return redirect()->route('admin.embarcaciones');
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return redirect()->route('usuarioPesca.embarcaciones');
+        }
+
     }
 
     /**
@@ -142,19 +174,42 @@ class EmbarcacionController extends Controller
         //
         $embarcacion = Embarcacion::find($id);
         $embarcacion->delete();
-        return redirect()->route('admin.embarcaciones');
+
+        if (Auth::user()->role_id == 4){
+            return redirect()->route('admin.embarcaciones');
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return redirect()->route('usuarioPesca.embarcaciones');
+        }
+        
     }
     public function editCertificado($id)
     {
         //
         $embarcacion = Embarcacion::find($id);
-        return view('internal.admin.asociarCertificadoMatricula', compact('embarcacion'));
+
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.asociarCertificadoMatricula', compact('embarcacion'));
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.asociarCertificadoMatricula', compact('embarcacion'));
+        }
+
+        
     }
     public function editPermiso($id)
     {
         //
         $embarcacion = Embarcacion::find($id);
-        return view('internal.admin.asociarPermisoPesca', compact('embarcacion'));
+
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.asociarPermisoPesca', compact('embarcacion'));
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.asociarPermisoPesca', compact('embarcacion'));
+        }
+
+        
     }
     public function showCertificado($id)
     {
@@ -164,16 +219,31 @@ class EmbarcacionController extends Controller
         if ($embarcacion->certificado == null){
             return back()->withErrors(['Aun no se a asociado un certificado de matricula a la embarcacion']);
         }
-        return view('internal.admin.mostrarCertificadoMatricula', compact('embarcacion','certificado'));
+
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.mostrarCertificadoMatricula', compact('embarcacion'));
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.mostrarCertificadoMatricula', compact('embarcacion'));
+        }
+
+        
     }
     public function showPermiso($id)
     {
         //
         $embarcacion = Embarcacion::find($id);
-        $permiso = PermisoPesca::find($embarcacion->permisoPesca_id);
-        if ($permiso == null){
+        //$permiso = PermisoPesca::find($embarcacion->permisoPesca_id);
+        if ($embarcacion->permiso == null){
             return back()->withErrors(['Aun no se a asociado un permiso de pesca a la embarcacion']);
         }
-        return view('internal.admin.mostrarPermisoPesca', compact('embarcacion','permiso'));
+
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.mostrarPermisoPesca', compact('embarcacion');
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.mostrarPermisoPesca', compact('embarcacion');
+        }
+        
     }
 }

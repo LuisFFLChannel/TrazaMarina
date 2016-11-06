@@ -16,5 +16,7 @@ class RoleTableSeeder extends Seeder
         Role::insert(['description'=>'SALESMAN']);
         Role::insert(['description'=>'PROMOTER']);
         Role::insert(['description'=>'ADMIN']);
+        Role::insert(['description'=>'USERPESCA']);
+        Role::insert(['description'=>'USERINTERMEDIARIO']);
     }
 }

@@ -46,14 +46,14 @@ class FrigorificoController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
-     */
+     */         
     public function store(StoreFrigorificoRequest $request)
     {
         //
         $input = $request->all();
 
         $frigorifico                    =   new Frigorifico;
-        $frigorifico->nombres           =   $input['nombre'];
+        $frigorifico->nombre            =   $input['nombre'];
         $frigorifico->placa             =   $input['placa'];
         $frigorifico->capacidad         =   $input['capacidad'];
         $frigorifico->activo            =   true;
@@ -101,7 +101,7 @@ class FrigorificoController extends Controller
 
         $frigorifico = Frigorifico::find($id);
 
-        $frigorifico->nombres           =   $input['nombre'];
+        $frigorifico->nombre           =   $input['nombre'];
         $frigorifico->placa             =   $input['placa'];
         $frigorifico->capacidad         =   $input['capacidad'];
 

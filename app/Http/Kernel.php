@@ -33,5 +33,7 @@ class Kernel extends HttpKernel
         'promoter' => \App\Http\Middleware\Promoter::class,
         'salesman' => \App\Http\Middleware\Salesman::class,
         'client' => \App\Http\Middleware\Client::class,
+        'usuarioPesca' => \App\Http\Middleware\UsuarioPesca::class,
+        'usuarioIntermediario' => \App\Http\Middleware\UsuarioIntermediario::class,
     ];
 }

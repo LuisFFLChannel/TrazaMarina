@@ -100,6 +100,7 @@ class TransportistaController extends Controller
     public function update(UpdateTransportistaRequest $request, $id)
     {
         //
+        
         $input = $request->all();
 
         $transportista = Transportista::find($id);

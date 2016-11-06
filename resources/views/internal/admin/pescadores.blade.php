@@ -37,18 +37,18 @@
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Detalle del pescador</h4>
+                    <h4 class="modal-title text-left" id="myModalLabel">Detalle del pescador</h4>
                   </div>
                   <div class="modal-body">
                     <div class="row">
                       <div class="col-sm-1"></div>
                       <div class="col-sm-8">
-                          <h5>Nombres: {{$pescador->nombres}} </h5>
-                          <h5>Apellidos: {{$pescador->apellidos}} </h5>                              
-                          <h5>Dni: {{$pescador->dni}}<h5> 
-                          <h5>Telefono: {{$pescador->telefono}}</h5> 
-                          <h5>Correo: {{$pescador->correo}}</h5> 
-                          <h5>Cumpleaños: {{date_format(date_create($pescador->cumpleanos),"d/m/Y")}}</h5> 
+                          <h5 class="text-left">Nombres: {{$pescador->nombres}} </h5>
+                          <h5 class="text-left">Apellidos: {{$pescador->apellidos}} </h5>                              
+                          <h5 class="text-left">Dni: {{$pescador->dni}}<h5> 
+                          <h5 class="text-left">Telefono: {{$pescador->telefono}}</h5> 
+                          <h5 class="text-left">Correo: {{$pescador->correo}}</h5> 
+                          <h5 class="text-left">Cumpleaños: {{date_format(date_create($pescador->cumpleanos),"d/m/Y")}}</h5> 
                        </div>
                     </div>
                   </div>

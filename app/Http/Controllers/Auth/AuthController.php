@@ -133,6 +133,12 @@ class AuthController extends Controller
     public function redirectPath()
     {
         switch (\Auth::user()->role_id) {
+            case '6':
+            return '/usuarioIntermediario';
+            break;
+            case '5':
+            return '/usuarioPesca';
+            break;
             case '4':
             return '/admin';
             break;

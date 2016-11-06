@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Frigorifico extends Model
 {
     //
-    protected $table = 'frigorificos';
+    protected $table = 'frigorifico';
 	protected $dates = ['deleted_at'];
 }
