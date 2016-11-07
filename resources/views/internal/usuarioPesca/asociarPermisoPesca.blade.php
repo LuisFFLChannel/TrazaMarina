@@ -5,7 +5,7 @@
 @stop
 
 @section('title')
-	Asociar Certificado de Matricula a Embarcacion
+	Asociar Permiso Pesca a Embarcacion
 @stop
 
 @section('content')
@@ -52,9 +52,9 @@
         </table>
     </div>
 </div>
-<h3> Información del Certificado Actual </h3>
+<h3> Información del Permiso Pesca Actual </h3>
 <br>
-@if($embarcacion->certificadoMatricula!=null)
+@if($embarcacion->permisoPesca!=null)
     <div class="row">
         <div class="col-sm-2">
       
@@ -63,19 +63,19 @@
             <table class="table table-bordered table-striped">
               <tr>
                   <th >Codigo</th>
-                  <th >{{$embarcacion->certificadoMatricula->id}}</th>   
+                  <th >{{$embarcacion->permisoPesca->id}}</th>   
               </tr>  
               <tr>
                   <th>Nombre Dueño</th>
-                  <th >{{$embarcacion->certificadoMatricula->nombreDueno}}</th>   
-              </tr> 
-              <tr>
-                  <th >Apellidos Dueno</th>
-                  <th >{{$embarcacion->certificadoMatricula->apellidosDueno}}</th>   
+                  <th >{{$embarcacion->permisoPesca->nombre}}</th>   
               </tr> 
                <tr>
                   <th>Numero de Matricula</th>
-                  <th >{{$embarcacion->certificadoMatricula->nMatricula}}</th>   
+                  <th >{{$embarcacion->permisoPesca->nMatricula}}</th>   
+              </tr> 
+              <tr>
+                  <th>Fecha de Vigencia</th>
+                  <th > date_format(date_create(embarcacion->permisoPesca->fechaVigencia),"y/m/d") </th>   
               </tr> 
             </table>
         </div>
@@ -87,25 +87,25 @@
 <br>
 <div class="row">
   <div class="col-sm-8">
-    {!!Form::open(array('url' => 'usuarioPesca/embarcaciones/'.$embarcacion->id.'/editCertificado','files'=>true,'id'=>'form','class'=>'form-horizontal'))!!}
+    {!!Form::open(array('url' => 'usuarioPesca/embarcaciones/'.$embarcacion->id.'/editPermiso','files'=>true,'id'=>'form','class'=>'form-horizontal'))!!}
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
           <table id="example" class="table table-bordered display" >
             <thead>
                 <tr>
                   <th>Codigo</th>
-                  <th>Nombre Dueño</th>
-                  <th>Descripción</th>
+                  <th>Nombre</th>
+                  <th>Vigencia</th>
                   <th>Seleccionar</th>
                 </tr>
              </thead>
             <tbody>
-              @foreach($certificadoMatriculas as $certificadoMatricula)
+              @foreach($permisoPescas as $permisoPesca)
                 <tr>
-                  <td>{{$certificadoMatricula->id}}</td>
-                  <td>{{$certificadoMatricula->nombreDueno}}</td>
-                  <td>{{$certificadoMatricula->apellidosDueno}}</td>
-                  <td> {!! Form::radio('certificadoMatricula', $certificadoMatricula->id ,   (Input::old('certificadoMatricula') == $certificadoMatricula->id ), array('id'=>'true', 'class'=>'radio  certificadoMatricula_id'         ,'required'   ))  !!} </td>
+                  <td>{{$permisoPesca->id}}</td>
+                  <td>{{$permisoPesca->nombreDueno}}</td>
+                  <td>{{$permisoPesca->apellidosDueno}}</td>
+                  <td> {!! Form::radio('permisoPesca', $permisoPesca->id ,   (Input::old('permisoPesca') == $permisoPesca->id ), array('id'=>'true', 'class'=>'radio  permisoPesca_id'         ,'required'   ))  !!} </td>
                 </tr>
 
                 @endforeach
@@ -113,7 +113,7 @@
           </table>
         </div>
       </div>
-      @if($certificadoMatriculas)
+      @if($permisoPescas)
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10">
             <a class="btn btn-info" href="" title="submit" data-toggle="modal" data-target="#submitModal" >Guardar</a>
@@ -134,7 +134,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title">¿Estas seguro que desea asociar este Certificado de Matricula?</h4>
+              <h4 class="modal-title">¿Estas seguro que desea asociar este Permiso de Pesca?</h4>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-info" data-dismiss="modal">No</button>

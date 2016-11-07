@@ -1,4 +1,4 @@
-h@extends('layout.usuarioPesca')
+@extends('layout.usuarioPesca')
 
 @section('style')
     {!!Html::style('css/images.css')!!}

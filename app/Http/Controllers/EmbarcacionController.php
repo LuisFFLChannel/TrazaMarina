@@ -17,7 +17,7 @@ use App\Models\CertificadoMatricula;
 //use App\Usuario;
 use Session;
 use Auth;
-
+use DB;
 class EmbarcacionController extends Controller
 {
     /**
@@ -187,12 +187,17 @@ class EmbarcacionController extends Controller
     {
         //
         $embarcacion = Embarcacion::find($id);
+        $certificadoMatriculas = DB::table('embarcacion')
+                    ->select(DB::raw('certificadoMatricula.id as id, certificadoMatricula.nombreDueno as nombreDueno, certificadoMatricula.apellidosDueno as apellidosDueno, certificadoMatricula.nMatricula as nMatricula'))
+                    ->whereNotNull('embarcacion.certificado_matricula_id')
+                    ->leftJoin('certificadoMatricula', 'embarcacion.certificado_matricula_id', '!=', 'certificadoMatricula.id')
+                    ->get();
 
         if (Auth::user()->role_id == 4){
-            return view('internal.admin.asociarCertificadoMatricula', compact('embarcacion'));
+            return view('internal.admin.asociarCertificadoMatricula', compact('embarcacion','certficadoMatriculas'));
         }
         elseif  (Auth::user()->role_id == 5){
-            return view('internal.usuarioPesca.asociarCertificadoMatricula', compact('embarcacion'));
+            return view('internal.usuarioPesca.asociarCertificadoMatricula', compact('embarcacion','certificadoMatriculas'));
         }
 
         
@@ -201,12 +206,17 @@ class EmbarcacionController extends Controller
     {
         //
         $embarcacion = Embarcacion::find($id);
+        $permisoPescas = DB::table('embarcacion')
+                    ->select(DB::raw('permisoPesca.id as id, permisoPesca.nombre as nombre, permisoPesca.fechaVigencia as fechaVigencia, permisoPesca.nMatricula as nMatricula'))
+                    ->whereNotNull('embarcacion.permiso_pesca_id')
+                    ->leftJoin('permisoPesca', 'embarcacion.permiso_pesca_id', '!=', 'permisoPesca.id')
+                    ->get();
 
         if (Auth::user()->role_id == 4){
             return view('internal.admin.asociarPermisoPesca', compact('embarcacion'));
         }
         elseif  (Auth::user()->role_id == 5){
-            return view('internal.usuarioPesca.asociarPermisoPesca', compact('embarcacion'));
+            return view('internal.usuarioPesca.asociarPermisoPesca', compact('embarcacion','permisoPescas'));
         }
 
         
@@ -216,7 +226,7 @@ class EmbarcacionController extends Controller
         //
         $embarcacion = Embarcacion::find($id);
        // $certificado = CertificadoMatricula::find($embarcacion->certtificadoMatricula_id);
-        if ($embarcacion->certificado == null){
+        if ($embarcacion->certificadoMatricula == null){
             return back()->withErrors(['Aun no se a asociado un certificado de matricula a la embarcacion']);
         }
 
@@ -234,7 +244,7 @@ class EmbarcacionController extends Controller
         //
         $embarcacion = Embarcacion::find($id);
         //$permiso = PermisoPesca::find($embarcacion->permisoPesca_id);
-        if ($embarcacion->permiso == null){
+        if ($embarcacion->permisoPesca == null){
             return back()->withErrors(['Aun no se a asociado un permiso de pesca a la embarcacion']);
         }
 
@@ -245,5 +255,45 @@ class EmbarcacionController extends Controller
             return view('internal.usuarioPesca.mostrarPermisoPesca', compact('embarcacion'));
         }
         
+    }
+    public function updateCertificado(Request $request, $id)
+    {
+        //
+        $input = $request->all();
+
+        $embarcacion = Embarcacion::find($id);
+
+        $embarcacion->certificado_matricula_id            =   $input['certificadoMatricula'];
+
+
+        $embarcacion->save();
+
+        if (Auth::user()->role_id == 4){
+            return redirect()->route('admin.embarcaciones');
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return redirect()->route('usuarioPesca.embarcaciones');
+        }
+
+    }
+    public function updatePermiso(Request $request, $id)
+    {
+        //
+        $input = $request->all();
+
+        $embarcacion = Embarcacion::find($id);
+
+        $embarcacion->permiso_pesca_id            =   $input['permisoPesca'];
+
+
+        $embarcacion->save();
+
+        if (Auth::user()->role_id == 4){
+            return redirect()->route('admin.embarcaciones');
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return redirect()->route('usuarioPesca.embarcaciones');
+        }
+
     }
 }

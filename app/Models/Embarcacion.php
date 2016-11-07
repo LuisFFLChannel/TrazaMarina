@@ -11,10 +11,10 @@ class Embarcacion extends Model
     protected $table = 'embarcacion';
 	protected $dates = ['deleted_at'];
 
-	public function certificado(){
+	public function certificadoMatricula(){
         return $this->belongsTo('App\Models\CertificadoMatricula');
     }
-    public function permiso(){
+    public function permisoPesca(){
         return $this->belongsTo('App\Models\PermisoPesca');
     }
 

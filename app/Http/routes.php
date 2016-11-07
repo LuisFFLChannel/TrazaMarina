@@ -452,6 +452,7 @@ Route::group(['middleware' => ['auth', 'usuarioPesca']], function () {
     Route::post('usuarioPesca/embarcaciones/{id}/edit', 'EmbarcacionController@update');
     Route::get('usuarioPesca/embarcaciones/{id}/delete', 'EmbarcacionController@destroy');
     Route::get('usuarioPesca/embarcaciones/{id}/editCertificado', 'EmbarcacionController@editCertificado');
+    Route::post('usuarioPesca/embarcaciones/{id}/editCertificado', 'EmbarcacionController@updateCertificado');
     Route::get('usuarioPesca/embarcaciones/{id}/showCertificado', 'EmbarcacionController@showCertificado');
     Route::get('usuarioPesca/embarcaciones/{id}/editPermiso', 'EmbarcacionController@editPermiso');
     Route::get('usuarioPesca/embarcaciones/{id}/showPermiso', 'EmbarcacionController@showPermiso');
