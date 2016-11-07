@@ -14,6 +14,7 @@ use App\User;
 use Carbon\Carbon;
 //use App\Usuario;
 use Session;
+use Auth;
 
 class FrigorificoController extends Controller
 {
@@ -27,7 +28,14 @@ class FrigorificoController extends Controller
         //
         $frigorificos = Frigorifico::paginate(10);
         $frigorificos->setPath('frigorificos');
-        return view('internal.admin.frigorificos', compact('frigorificos'));
+
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.frigorificos', compact('frigorificos'));
+        }
+        elseif  (Auth::user()->role_id == 6){
+            return view('internal.usuarioIntermediario.frigorificos', compact('frigorificos'));
+        }
+        
     }
 
     /**
@@ -38,7 +46,13 @@ class FrigorificoController extends Controller
     public function create()
     {
         //
-        return view('internal.admin.nuevoFrigorifico');
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.nuevoFrigorifico');
+        }
+        elseif  (Auth::user()->role_id == 6){
+            return view('internal.usuarioIntermediario.nuevoFrigorifico');
+        }
+ 
     }
 
     /**
@@ -60,7 +74,13 @@ class FrigorificoController extends Controller
 
         $frigorifico->save();
         
-        return redirect()->route('admin.frigorificos');
+        if (Auth::user()->role_id == 4){
+            return redirect()->route('admin.frigorificos');
+        }
+        elseif  (Auth::user()->role_id == 6){
+            return redirect()->route('usuarioIntermediario.frigorificos');
+        }
+        
     }
 
     /**
@@ -84,7 +104,14 @@ class FrigorificoController extends Controller
     {
         //
         $frigorifico = Frigorifico::find($id);
-        return view('internal.admin.editarFrigorifico', compact('frigorifico'));
+
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.editarFrigorifico', compact('frigorifico'));
+        }
+        elseif  (Auth::user()->role_id == 6){
+            return view('internal.usuarioIntermediario.editarFrigorifico', compact('frigorifico'));
+        }
+        
     }
 
     /**
@@ -106,7 +133,13 @@ class FrigorificoController extends Controller
         $frigorifico->capacidad         =   $input['capacidad'];
 
         $frigorifico->save();
-        return redirect()->route('admin.frigorificos');
+        if (Auth::user()->role_id == 4){
+            return redirect()->route('admin.frigorificos');
+        }
+        elseif  (Auth::user()->role_id == 6){
+            return redirect()->route('usuarioIntermediario.frigorificos');
+        }
+        
     }
 
     /**
@@ -120,6 +153,11 @@ class FrigorificoController extends Controller
         //
         $frigorifico = Frigorifico::find($id);
         $frigorifico->delete();
-        return redirect()->route('admin.frigorificos');
+        if (Auth::user()->role_id == 4){
+            return redirect()->route('admin.frigorificos');
+        }
+        elseif  (Auth::user()->role_id == 6){
+            return redirect()->route('usuarioIntermediario.frigorificos');
+        }
     }
 }

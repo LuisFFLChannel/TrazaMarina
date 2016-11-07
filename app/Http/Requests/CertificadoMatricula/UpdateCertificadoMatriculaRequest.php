@@ -26,8 +26,8 @@ class UpdateCertificadoMatriculaRequest extends Request
          return [
             //
             'nombreDueno'           =>  'required|max:100',
-            'apellidoDueno'         =>  'required|max:100',
-            'dniDueno'              =>  'required|numeric|max:8',
+            'apellidosDueno'         =>  'required|max:100',
+            'dniDueno'              =>  'required|integer',
             'nMatricula'            =>  'required|max:50'
         ];
     }

@@ -32,7 +32,7 @@ class StoreEspecieRequest extends Request
             'tamanoMax'             =>  'required|numeric|max:10',
             'inicioVeda'            =>  'required|date',
             'finVeda'               =>  'required|date',
-            'pescaPromedio'         =>  'required|numeric|max:20',
+            'pescaPromedio'         =>  'required|numeric',
             'imagen'                =>  'required|image'
         ];
     }

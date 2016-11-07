@@ -27,7 +27,7 @@
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-2 control-label">DNI</label>
           <div class="col-sm-10">
-            {!!Form::input('text','dni', null ,['class'=>'form-control','id'=>'dni','maxlength'=>'10','min' >0,'required'])!!}
+            {!!Form::input('tnumber','dni', null ,['class'=>'form-control','id'=>'dni','max'=>'99999999' 'min'=>'10000000','required'])!!}
           </div>
         </div>
         <div class="form-group">

@@ -239,10 +239,10 @@ class EmbarcacionController extends Controller
         }
 
         if (Auth::user()->role_id == 4){
-            return view('internal.admin.mostrarPermisoPesca', compact('embarcacion');
+            return view('internal.admin.mostrarPermisoPesca', compact('embarcacion'));
         }
         elseif  (Auth::user()->role_id == 5){
-            return view('internal.usuarioPesca.mostrarPermisoPesca', compact('embarcacion');
+            return view('internal.usuarioPesca.mostrarPermisoPesca', compact('embarcacion'));
         }
         
     }

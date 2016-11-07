@@ -14,6 +14,7 @@ use App\User;
 use Carbon\Carbon;
 //use App\Usuario;
 use Session;
+use Auth;
 
 class TerminalController extends Controller
 {
@@ -31,7 +32,14 @@ class TerminalController extends Controller
         //
         $terminales = Terminal::paginate(10);
         $terminales->setPath('terminal');
-        return view('internal.admin.terminales', compact('terminales'));
+
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.terminales', compact('terminales'));
+        }
+        elseif  (Auth::user()->role_id == 6){
+            return view('internal.usuarioIntermediario.terminales', compact('terminales'));
+        }
+        
     }
 
     /**
@@ -42,7 +50,13 @@ class TerminalController extends Controller
     public function create()
     {
         //
-         return view('internal.admin.nuevoTerminal');
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.nuevoTerminal');
+        }
+        elseif  (Auth::user()->role_id == 6){
+            return view('internal.usuarioIntermediario.nuevoTerminal');
+        }
+         
     }
 
     /**
@@ -67,8 +81,14 @@ class TerminalController extends Controller
         $terminal->imagen        =   $this->file_service->upload($request->file('imagen'),'terminal');
 
         $terminal->save();
+
+        if (Auth::user()->role_id == 4){
+            return redirect()->route('admin.terminales');
+        }
+        elseif  (Auth::user()->role_id == 6){
+            return redirect()->route('usuarioIntermediario.terminales');
+        }
         
-        return redirect()->route('admin.terminales');
     }
 
     /**
@@ -92,7 +112,13 @@ class TerminalController extends Controller
     {
         //
         $terminal = Terminal::find($id);
-        return view('internal.admin.editarTerminal', compact('terminal'));
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.editarTerminal', compact('terminal'));
+        }
+        elseif  (Auth::user()->role_id == 6){
+            return view('internal.usuarioIntermediario.editarTerminal', compact('terminal'));
+        }
+        
     }
 
     /**
@@ -118,7 +144,12 @@ class TerminalController extends Controller
 
         $terminal->save();
         
-        return redirect()->route('admin.terminales');
+        if (Auth::user()->role_id == 4){
+            return redirect()->route('admin.terminales');
+        }
+        elseif  (Auth::user()->role_id == 6){
+            return redirect()->route('usuarioIntermediario.terminales');
+        }
     }
 
     /**
@@ -132,6 +163,11 @@ class TerminalController extends Controller
         //
         $terminal = Terminal::find($id);
         $terminal->delete();
-        return redirect()->route('admin.terminales');
+        if (Auth::user()->role_id == 4){
+            return redirect()->route('admin.terminales');
+        }
+        elseif  (Auth::user()->role_id == 6){
+            return redirect()->route('usuarioIntermediario.terminales');
+        }
     }
 }

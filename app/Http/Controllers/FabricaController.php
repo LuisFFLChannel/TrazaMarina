@@ -14,6 +14,7 @@ use App\User;
 use Carbon\Carbon;
 //use App\Usuario;
 use Session;
+use Auth;
 
 class FabricaController extends Controller
 {
@@ -31,7 +32,14 @@ class FabricaController extends Controller
         //
         $fabricas = Fabrica::paginate(10);
         $fabricas->setPath('fabrica');
-        return view('internal.admin.fabricas', compact('fabricas'));
+
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.fabricas', compact('fabricas'));
+        }
+        elseif  (Auth::user()->role_id == 6){
+            return view('internal.usuarioIntermediario.fabricas', compact('fabricas'));
+        }
+    
     }
 
     /**
@@ -42,7 +50,13 @@ class FabricaController extends Controller
     public function create()
     {
         //
-         return view('internal.admin.nuevoFabrica');
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.nuevoFabrica');
+        }
+        elseif  (Auth::user()->role_id == 6){
+            return view('internal.usuarioIntermediario.nuevoFabrica');
+        }
+ 
     }
 
     /**
@@ -68,7 +82,13 @@ class FabricaController extends Controller
 
         $fabrica->save();
         
-        return redirect()->route('admin.fabricas');
+        if (Auth::user()->role_id == 4){
+            return redirect()->route('admin.fabricas');
+        }
+        elseif  (Auth::user()->role_id == 6){
+            return redirect()->route('usuarioIntermediario.fabricas');
+        }
+        
     }
 
     /**
@@ -92,7 +112,13 @@ class FabricaController extends Controller
     {
         //
         $fabrica = Fabrica::find($id);
-        return view('internal.admin.editarFabrica', compact('fabrica'));
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.editarFabrica', compact('fabrica'));
+        }
+        elseif  (Auth::user()->role_id == 6){
+            return view('internal.usuarioIntermediario.editarFabrica', compact('fabrica'));
+        }
+        
     }
 
     /**
@@ -118,7 +144,12 @@ class FabricaController extends Controller
 
         $fabrica->save();
         
-        return redirect()->route('admin.fabricas');
+        if (Auth::user()->role_id == 4){
+            return redirect()->route('admin.fabricas');
+        }
+        elseif  (Auth::user()->role_id == 6){
+            return redirect()->route('usuarioIntermediario.fabricas');
+        }
     }
 
     /**
@@ -132,6 +163,11 @@ class FabricaController extends Controller
         //
         $fabrica = Fabrica::find($id);
         $fabrica->delete();
-        return redirect()->route('admin.fabricas');
+        if (Auth::user()->role_id == 4){
+            return redirect()->route('admin.fabricas');
+        }
+        elseif  (Auth::user()->role_id == 6){
+            return redirect()->route('usuarioIntermediario.fabricas');
+        }
     }
 }

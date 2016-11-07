@@ -64,15 +64,15 @@ class CertificadoMatriculasController extends Controller
         //
         $input = $request->all();
 
-        $embarcacion                        =   new CertificadoMatricula;
-        $embarcacion->nombredueno           =   $input['nombreDueno'];
-        $embarcacion->apellidosDueno        =   $input['apellidosDueno'];
-        $embarcacion->dniDueno              =   $input['dnisDueno'];
-        $embarcacion->nMatricula            =   $input['nMatricula'];
-        $embarcacion->activo                =   true;
+        $certificadoMatricula                        =   new CertificadoMatricula;
+        $certificadoMatricula->nombredueno           =   $input['nombreDueno'];
+        $certificadoMatricula->apellidosDueno        =   $input['apellidosDueno'];
+        $certificadoMatricula->dniDueno              =   $input['dniDueno'];
+        $certificadoMatricula->nMatricula            =   $input['nMatricula'];
+        $certificadoMatricula->activo                =   true;
         //Control de subida de imagen por hacer
 
-        $embarcacion->save();
+        $certificadoMatricula->save();
         
         if (Auth::user()->role_id == 4){
             return redirect()->route('admin.certificadoMatriculas');
@@ -102,12 +102,12 @@ class CertificadoMatriculasController extends Controller
     public function edit($id)
     {
         //
-        $embarcacion = CertificadoMatricula::find($id);
+        $certificadoMatricula = CertificadoMatricula::find($id);
         if (Auth::user()->role_id == 4){
-            return view('internal.admin.editarCertificadoMatricula', compact('embarcacion'));
+            return view('internal.admin.editarCertificadoMatricula', compact('certificadoMatricula'));
         }
         elseif (Auth::user()->role_id == 5){
-            return view('internal.usuarioPesca.editarCertificadoMatricula', compact('embarcacion'));
+            return view('internal.usuarioPesca.editarCertificadoMatricula', compact('certificadoMatricula'));
         }
 
     }
@@ -124,19 +124,19 @@ class CertificadoMatriculasController extends Controller
         //
         $input = $request->all();
 
-        $embarcacion = CertificadoMatricula::find($id);
+        $certificadoMatricula = CertificadoMatricula::find($id);
 
-        $embarcacion->nombredueno           =   $input['nombreDueno'];
-        $embarcacion->apellidosDueno        =   $input['apellidosDueno'];
-        $embarcacion->dniDueno              =   $input['dnisDueno'];
-        $embarcacion->nMatricula            =   $input['nMatricula'];
+        $certificadoMatricula->nombredueno           =   $input['nombreDueno'];
+        $certificadoMatricula->apellidosDueno        =   $input['apellidosDueno'];
+        $certificadoMatricula->dniDueno              =   $input['dniDueno'];
+        $certificadoMatricula->nMatricula            =   $input['nMatricula'];
         //Control de subida de imagen por hacer
 
-        $embarcacion->save();
+        $certificadoMatricula->save();
         if (Auth::user()->role_id == 4){
             return redirect()->route('admin.certificadoMatriculas');
         }
-        else (Auth::user()->role_id == 5){
+        elseif (Auth::user()->role_id == 5){
             return redirect()->route('usuarioPesca.certificadoMatriculas');     
         }
     }
@@ -150,12 +150,12 @@ class CertificadoMatriculasController extends Controller
     public function destroy($id)
     {
         //
-        $embarcacion = CertificadoMatricula::find($id);
-        $embarcacion->delete();
+        $certificadoMatricula = CertificadoMatricula::find($id);
+        $certificadoMatricula->delete();
         if (Auth::user()->role_id == 4){
             return redirect()->route('admin.certificadoMatriculas');
         }
-        else (Auth::user()->role_id == 5){
+        elseif (Auth::user()->role_id == 5){
             return redirect()->route('usuarioPesca.certificadoMatriculas');
         }
         

@@ -1,100 +1,111 @@
-@extends('layout.admin')
+@extends('layout.usuarioPesca')
 
 @section('style')
 
 @stop
 
 @section('title')
-	Nueva Terminal
+	Nuevo Certificado de Matricula
 @stop
 
 @section('content')
+<h3> Información de la Embarcacion </h3>
+<br>
+<div class="row">
+    <div class="col-sm-2">
+  
+    </div>
+    <div class="col-sm-8">
+        <table class="table table-bordered table-striped">
+          <tr>
+              <th >Nombre</th>
+              <th >{{$embarcacion->nombre}}</th>   
+              <!--<th>Imagen</th>-->
+          </tr>  
+          <tr>
+              <th>Numero Matricula</th>
+              <th >{{$embarcacion->nMatricula}}</th>   
+              <!--<th>Imagen</th>-->
+          </tr> 
+          <tr>
+              <th >Nombres Dueno</th>
+              <th >{{$embarcacion->nombreDueno}}</th>   
+              <!--<th>Imagen</th>-->
+          </tr> 
+          <tr>
+              <th>Apellidos Dueno</th>
+              <th >{{$embarcacion->apellidoDueno}}</th>   
+              <!--<th>Imagen</th>-->
+          </tr> 
+          <tr>
+              <th>Capacidad</th>
+              <th >{{$embarcacion->capacidad}}</th>   
+              <!--<th>Imagen</th>-->
+          </tr> 
+           <tr>
+              <th>Estara</th>
+              <th >{{$embarcacion->estara}}</th>   
+              <!--<th>Imagen</th>-->
+          </tr> 
+           <tr>
+              <th>Manga</th>
+              <th >{{$embarcacion->manga}}</th>   
+              <!--<th>Imagen</th>-->
+          </tr> 
+           <tr>
+              <th>Puntual</th>
+              <th >{{$embarcacion->puntual}}</th>   
+              <!--<th>Imagen</th>-->
+          </tr> 
+        </table>
+    </div>
+</div>
+<h3> Información del Certificado Actual </h3>
+<br>
+@if($embarcacion->certificado!=null)
+    <div class="row">
+        <div class="col-sm-2">
+      
+        </div>
+        <div class="col-sm-8">
+            <table class="table table-bordered table-striped">
+              <tr>
+                  <th >Codigo</th>
+                  <th >{{$embarcacion->certificado->id}}</th>   
+                  <!--<th>Imagen</th>-->
+              </tr>  
+              <tr>
+                  <th>Nombre Dueño</th>
+                  <th >{{$embarcacion->certificado->nombreDueno}}</th>   
+                  <!--<th>Imagen</th>-->
+              </tr> 
+              <tr>
+                  <th >Apellidos Dueno</th>
+                  <th >{{$embarcacion->certificado->apellidosDueno}}</th>   
+                  <!--<th>Imagen</th>-->
+              </tr> 
+               <tr>
+                  <th>Numero de Matricula</th>
+                  <th >{{$embarcacion->certificado->nMatricula}}</th>   
+                  <!--<th>Imagen</th>-->
+              </tr> 
+            </table>
+        </div>
+    </div>
+@else
+      <h4 class="text-center"> No Asociado aun</h4>
+@endif
+<h3> Busqueda del Certificado Actual </h3>
+<br>
 <div class="row">
   <div class="col-sm-8">
-    {!!Form::open(array('url' => 'admin/terminales/new','files'=>true,'id'=>'form','class'=>'form-horizontal'))!!}
-      <div class="form-group">
-          <label for="inputEmail3" class="col-sm-2 control-label">Nombre</label>
-          <div class="col-sm-10">
-            {!!Form::input('text','nombre', null ,['class'=>'form-control','id'=>'inputEmai3', 'maxlength'=>'40','required'])!!}
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="inputEmail3" class="col-sm-2 control-label">Dirección</label>
-          <div class="col-sm-10">
-            {!!Form::input('text','direccion', null ,['class'=>'form-control','id'=>'inputEmai3', 'maxlength'=>'150','required'])!!}
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="tamanoMin" class="col-sm-2 control-label">Latitud</label>
-          <div class="col-sm-10">
-            {!!Form::input('number','latitud', null ,['class'=>'form-control','id'=>'latitud','required'])!!}
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="tamanoMax" class="col-sm-2 control-label">Longitud</label>
-          <div class="col-sm-10">
-            {!!Form::input('number','longitud', null ,['class'=>'form-control','id'=>'longitud','required'])!!}
-          </div>
-        </div>
-
-
-        <div class="form-group">
-          <label for="inputEmail3" class="col-sm-2 control-label">Imagen</label>
-          <div class="col-sm-10">
-            {!!Form::input('file','imagen', null ,['class'=>'form-control','id'=>'inputEmail3'])!!}
-          </div>
-        </div>
-<!--
-                <div class="form-group required">
-                  <div class="col-sm-6">
-                    <div class="col-sm-6 text-left">
-                      <label for="" class="control-label">Direccion Laboral</label>
-                    </div>
-                    <div class="col-sm-6">
-                      <input type="text" class="form-control" id="searchmap" name="direccion_vivienda" placeholder="Direccion Laboral" style="max-width: 250px" value="{{old('direccion_laboral')}}">
-                    </div>    
-                  </div>
-                </div>
-                <div class="form-group required">
-                  <div class="col-sm-6">
-                    <div class="col-sm-6 text-left">
-                      <label for="" class="control-label">Mapa: </label>
-                    </div>
-                    <div class="col-sm-6">
-                      <div id="map" width="600" height="450" frameborder="0" style="border:0"  allowfullscreen></div>
-                      <iframe width="600" height="450" frameborder="0" style="border:0"  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAuOs_TsnqNatCMf__4y1fSoQi0-L-soHM&q=Space+Needle,Seattle+WA" allowfullscreen></iframe>
-                    </div>    
-                  </div>
-                </div>
-                <div class="form-group required">
-                  <div class="col-sm-6">
-                    <div class="col-sm-6 text-left">
-                      <label for="" class="control-label">Longitud: </label>
-                    </div>
-                    <div class="col-sm-6">
-                      <input type="text" class="form-control" id="longitud" name="longitud" placeholder="Correo" style="max-width: 250px" value="{{old('longitud')}}">
-                    </div>    
-                  </div>
-                </div>  
-                <div class="form-group required">
-                  <div class="col-sm-6">
-                    <div class="col-sm-6 text-left">
-                      <label for="" class="control-label">Latitud: </label>
-                    </div>
-                    <div class="col-sm-6">
-                      <input type="text" class="form-control" id="latitud" name="latitud" placeholder="Correo" style="max-width: 250px" value="{{old('latitud')}}">
-                    </div>    
-                  </div>
-                </div>   
-
-                <!-- <input id="submit" type="button" value="Reverse Geocode"> -->
-
-    
+    {!!Form::open(array('url' => 'usuarioPesca/embarcaciones/'.$embarcacion->id.'/editCertificado','files'=>true,'id'=>'form','class'=>'form-horizontal'))!!}
+      
+       
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
           <a class="btn btn-info" href="" title="submit" data-toggle="modal" data-target="#submitModal" >Guardar</a>
-          <a href="{{action('TerminalController@index')}}"><button type="button" class="btn btn-info">Cancelar</button></a>
+          <a href="{{action('EmbarcacionController@index')}}"><button type="button" class="btn btn-info">Cancelar</button></a>
         </div>
       </div>
 
@@ -104,7 +115,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title">¿Estas seguro que desea crear el terminal?</h4>
+              <h4 class="modal-title">¿Estas seguro que desea crear la capitania?</h4>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-info" data-dismiss="modal">No</button>

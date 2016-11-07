@@ -39,25 +39,25 @@
         <div class="form-group">
           <label for="capacidad" class="col-sm-2 control-label">Capacidad (Kg)</label>
           <div class="col-sm-10">
-            {!!Form::input('text','capacidad', $embarcacion->capacidad ,['class'=>'form-control','id'=>'capacidad', 'maxlength'=>'10','min' >0,'required'])!!}
+            {!!Form::input('number','capacidad', $embarcacion->capacidad ,['class'=>'form-control','id'=>'capacidad', 'min' =>0,'required'])!!}
           </div>
         </div>
         <div class="form-group">
           <label for="estara" class="col-sm-2 control-label">Estara (metros)</label>
           <div class="col-sm-10">
-            {!!Form::input('text','estara', $embarcacion->estara ,['class'=>'form-control','id'=>'estara', 'maxlength'=>'10','min' >0,'required'])!!}
+            {!!Form::input('number','estara', $embarcacion->estara ,['class'=>'form-control','id'=>'estara', 'min'=>0,'required'])!!}
           </div>
         </div>
         <div class="form-group">
           <label for="manga" class="col-sm-2 control-label">Manga (metros)</label>
           <div class="col-sm-10">
-            {!!Form::input('text','manga', $embarcacion->manga ,['class'=>'form-control','id'=>'manga', 'maxlength'=>'10','min' >0,'required'])!!}
+            {!!Form::input('number','manga', $embarcacion->manga ,['class'=>'form-control','id'=>'manga','min'=>0,'required'])!!}
           </div>
         </div>
         <div class="form-group">
           <label for="puntual" class="col-sm-2 control-label">Puntual (metros)</label>
           <div class="col-sm-10">
-            {!!Form::input('text','puntual', $embarcacion->puntual ,['class'=>'form-control','id'=>'puntual', 'maxlength'=>'10','min' >0,'required'])!!}
+            {!!Form::input('number','puntual', $embarcacion->puntual ,['class'=>'form-control','id'=>'puntual', 'min'=>0,'required'])!!}
           </div>
         </div>
 

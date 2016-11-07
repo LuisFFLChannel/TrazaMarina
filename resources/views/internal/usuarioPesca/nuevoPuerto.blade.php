@@ -28,13 +28,13 @@
         <div class="form-group">
           <label for="tamanoMin" class="col-sm-2 control-label">Latitud</label>
           <div class="col-sm-10">
-            {!!Form::input('text','latitud', null ,['class'=>'form-control','id'=>'latitud', 'maxlength'=>'100','min' >0,'required'])!!}
+            {!!Form::input('number','latitud', null ,['class'=>'form-control','id'=>'latitud', 'required'])!!}
           </div>
         </div>
         <div class="form-group">
           <label for="tamanoMax" class="col-sm-2 control-label">Longitud</label>
           <div class="col-sm-10">
-            {!!Form::input('text','longitud', null ,['class'=>'form-control','id'=>'longitud', 'maxlength'=>'100','min' >0,'required'])!!}
+            {!!Form::input('number','longitud', null ,['class'=>'form-control','id'=>'longitud', 'required'])!!}
           </div>
         </div>
 

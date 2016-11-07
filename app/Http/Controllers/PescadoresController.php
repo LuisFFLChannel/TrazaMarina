@@ -14,6 +14,7 @@ use App\User;
 use Carbon\Carbon;
 //use App\Usuario;
 use Session;
+use Auth;
 
 class PescadoresController extends Controller
 {
@@ -27,7 +28,13 @@ class PescadoresController extends Controller
         //
         $pescadores = Pescador::paginate(10);
         $pescadores->setPath('pescadores');
-        return view('internal.admin.pescadores', compact('pescadores'));
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.pescadores', compact('pescadores'));
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.pescadores', compact('pescadores'));
+        }
+        
     }
 
     /**
@@ -38,7 +45,13 @@ class PescadoresController extends Controller
     public function create()
     {
         //
-        return view('internal.admin.nuevoPescador');
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.nuevoPescador');
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.nuevoPescador');
+        }
+        
     }
 
     /**
@@ -62,8 +75,14 @@ class PescadoresController extends Controller
         $pescador->activo            =   true;
 
         $pescador->save();
+
+        if (Auth::user()->role_id == 4){
+            return redirect()->route('admin.pescadores');
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return redirect()->route('admin.pescadores');
+        }
         
-        return redirect()->route('admin.pescadores');
     }
 
     /**
@@ -87,7 +106,13 @@ class PescadoresController extends Controller
     {
         //
         $pescador = Pescador::find($id);
-        return view('internal.admin.editarPescador', compact('pescador'));
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.editarPescador', compact('pescador'));
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.editarPescador', compact('pescador'));
+        }
+        
     }
 
     /**
@@ -111,10 +136,14 @@ class PescadoresController extends Controller
         $pescador->correo            =   $input['correo'];
         $pescador->cumpleanos        =   new Carbon($input['cumpleanos']);
 
-
-
         $pescador->save();
-        return redirect()->route('admin.pescadores');
+        if (Auth::user()->role_id == 4){
+            return redirect()->route('admin.pescadores');
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return redirect()->route('admin.pescadores');
+        }
+
     }
 
     /**
@@ -127,19 +156,37 @@ class PescadoresController extends Controller
     {
         $pescador = Pescador::find($id);
         $pescador->delete();
-        return redirect()->route('admin.pescadores');
+        if (Auth::user()->role_id == 4){
+            return redirect()->route('admin.pescadores');
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return redirect()->route('admin.pescadores');
+        }
+   
     }
     public function editPermisoMarinero($id)
     {
         //
         $pescador = Pescador::find($id);
-        return view('internal.admin.asociarPermisoMarinero', compact('pescador'));
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.asociarPermisoMarinero', compact('pescador'));
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.asociarPermisoMarinero', compact('pescador'));;
+        }
+        
     }
     public function editPermisoPatron($id)
     {
         //
         $pescador = Pescador::find($id);
-        return view('internal.admin.asociarPermisoPatron', compact('pescador'));
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.asociarPermisoPatron', compact('pescador'));
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.asociarPermisoPatron', compact('pescador'));
+        }
+        
     }
     public function showPermisoMarinero($id)
     {
@@ -149,7 +196,13 @@ class PescadoresController extends Controller
         if ($pescador->permisoMarinero == null){
             return back()->withErrors(['Aun no se a asociado un permiso marinero al pescador']);
         }
-        return view('internal.admin.mostrarPermisoMarinero', compact('pescador'));
+        if (Auth::user()->role_id == 4){
+           return view('internal.admin.mostrarPermisoMarinero', compact('pescador'));
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.mostrarPermisoMarinero', compact('pescador'));
+        }
+        
     }
     public function showPermisoPatron($id)
     {
@@ -159,6 +212,12 @@ class PescadoresController extends Controller
         if ($pescador->permisoPatron == null){
             return back()->withErrors(['Aun no se a asociado un permiso patron al pescador']);
         }
-        return view('internal.admin.mostrarPermisoPatron', compact('pescador'));
+         if (Auth::user()->role_id == 4){
+           return view('internal.admin.mostrarPermisoPatron', compact('pescador'));
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.mostrarPermisoPatron', compact('pescador'));
+        }
+        
     }
 }

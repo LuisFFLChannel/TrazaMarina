@@ -14,6 +14,7 @@ use App\User;
 use Carbon\Carbon;
 //use App\Usuario;
 use Session;
+use Auth;
 
 class PuertosController extends Controller
 {
@@ -31,7 +32,14 @@ class PuertosController extends Controller
         //
         $puertos = Puerto::paginate(10);
         $puertos->setPath('puerto');
-        return view('internal.admin.puertos', compact('puertos'));
+
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.puertos', compact('puertos'));
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.puertos', compact('puertos'));
+        }
+        
     }
 
     /**
@@ -42,7 +50,13 @@ class PuertosController extends Controller
     public function create()
     {
         //
-        return view('internal.admin.nuevoPuerto');
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.nuevoPuerto');
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.nuevoPuerto');
+        }
+        
     }
 
     /**
@@ -68,7 +82,13 @@ class PuertosController extends Controller
 
         $puerto->save();
         
-        return redirect()->route('admin.puertos');
+        if (Auth::user()->role_id == 4){
+            return redirect()->route('admin.puertos');
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return redirect()->route('usuarioPesca.puertos');
+        }
+        
     }
 
     /**
@@ -92,7 +112,14 @@ class PuertosController extends Controller
     {
         //
         $puerto = Puerto::find($id);
-        return view('internal.admin.editarPuerto', compact('puerto'));
+
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.editarPuerto', compact('puerto'));
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.editarPuerto', compact('puerto'));
+        }
+
     }
 
     /**
@@ -118,7 +145,13 @@ class PuertosController extends Controller
 
         $puerto->save();
         
-        return redirect()->route('admin.puertos');
+       if (Auth::user()->role_id == 4){
+            return redirect()->route('admin.puertos');
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return redirect()->route('usuarioPesca.puertos');
+        }
+
     }
 
     /**
@@ -132,6 +165,13 @@ class PuertosController extends Controller
         //
         $puerto = Puerto::find($id);
         $puerto->delete();
-        return redirect()->route('admin.puertos');
+
+        if (Auth::user()->role_id == 4){
+            return redirect()->route('admin.puertos');
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return redirect()->route('usuarioPesca.puertos');
+        }
+
     }
 }

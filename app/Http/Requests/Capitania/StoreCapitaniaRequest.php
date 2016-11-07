@@ -28,8 +28,8 @@ class StoreCapitaniaRequest extends Request
         return [
             'nombre'                =>  'required|max:100',
             'direccion'             =>  'required|max:150',
-            'longitud'           =>  'required|numeric|max:10',
-            'latitud'           =>  'required|numeric|max:10',
+            'longitud'           =>  'required|numeric',
+            'latitud'           =>  'required|numeric',
             'imagen'                =>  'required|image'
         
         ];

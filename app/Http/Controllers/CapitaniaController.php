@@ -14,6 +14,7 @@ use App\User;
 use Carbon\Carbon;
 //use App\Usuario;
 use Session;
+use Auth;
 
 class CapitaniaController extends Controller
 {
@@ -31,7 +32,13 @@ class CapitaniaController extends Controller
         //
         $capitanias = Capitania::paginate(10);
         $capitanias->setPath('capitania');
-        return view('internal.admin.capitanias', compact('capitanias'));
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.capitanias', compact('capitanias'));
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.capitanias', compact('capitanias'));
+        }
+        
     }
 
     /**
@@ -42,7 +49,13 @@ class CapitaniaController extends Controller
     public function create()
     {
         //
-        return view('internal.admin.nuevoCapitania');
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.nuevoCapitania');
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.nuevoCapitania');
+        }
+        
     }
 
     /**
@@ -68,7 +81,13 @@ class CapitaniaController extends Controller
 
         $capitania->save();
         
-        return redirect()->route('admin.capitanias');
+        if (Auth::user()->role_id == 4){
+            return redirect()->route('admin.capitanias');
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return redirect()->route('usuarioPesca.capitanias');
+        }
+        
     }
 
     /**
@@ -92,7 +111,13 @@ class CapitaniaController extends Controller
     {
         //
         $capitania = Capitania::find($id);
-        return view('internal.admin.editarCapitania', compact('capitania'));
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.editarCapitania', compact('capitania'));
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.editarCapitania', compact('capitania'));
+        }
+        
     }
 
     /**
@@ -118,7 +143,12 @@ class CapitaniaController extends Controller
 
         $capitania->save();
         
-        return redirect()->route('admin.capitanias');
+        if (Auth::user()->role_id == 4){
+            return redirect()->route('admin.capitanias');
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return redirect()->route('usuarioPesca.capitanias');
+        }
     }
 
     /**
@@ -132,6 +162,12 @@ class CapitaniaController extends Controller
         //
         $capitania = Capitania::find($id);
         $capitania->delete();
-        return redirect()->route('admin.capitanias');
+        if (Auth::user()->role_id == 4){
+            return redirect()->route('admin.capitanias');
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return redirect()->route('usuarioPesca.capitanias');
+        }
+
     }
 }

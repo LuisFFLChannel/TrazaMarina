@@ -390,12 +390,12 @@
                 <li>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Embarcaciones <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{url('usuarioPescaadmin/embarcaciones')}}">Listar</a></li>
+                        <li><a href="{{url('usuarioPesca/embarcaciones')}}">Listar</a></li>
                         <li><a href="{{url('usuarioPesca/embarcaciones/new')}}">Nuevo</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cert. de Matricula<b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">C. de Matricula<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{url('usuarioPesca/certificadoMatriculas')}}">Listar</a></li>
                         <li><a href="{{url('usuarioPesca/certificadoMatriculas/new')}}">Nuevo</a></li>
@@ -404,29 +404,43 @@
                 <li>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">P. de Pesca<b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{url('usuarioPesca/certificadoMatriculas')}}">Listar</a></li>
-                        <li><a href="{{url('usuarioPesca/certificadoMatriculas/new')}}">Nuevo</a></li>
+                        <li><a href="{{url('usuarioPesca/permisoPescas')}}">Listar</a></li>
+                        <li><a href="{{url('usuarioPesca/permisoPescas/new')}}">Nuevo</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">P. Zarpe<b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{url('usuarioPesca/certificadoMatriculas')}}">Listar</a></li>
-                        <li><a href="{{url('usuarioPesca/certificadoMatriculas/new')}}">Nuevo</a></li>
+                        <li><a href="{{url('usuarioPesca/permisoZarpes')}}">Listar</a></li>
+                        <li><a href="{{url('usuarioPesca/permisoZarpes/new')}}">Nuevo</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">P. Marinero<b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{url('usuarioPesca/certificadoMatriculas')}}">Listar</a></li>
-                        <li><a href="{{url('usuarioPesca/certificadoMatriculas/new')}}">Nuevo</a></li>
+                        <li><a href="{{url('usuarioPesca/permisoMarineros')}}">Listar</a></li>
+                        <li><a href="{{url('usuarioPesca/permisoMarineros/new')}}">Nuevo</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">P. Patron<b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{url('usuarioPesca/certificadoMatriculas')}}">Listar</a></li>
-                        <li><a href="{{url('usuarioPesca/certificadoMatriculas/new')}}">Nuevo</a></li>
+                        <li><a href="{{url('usuarioPesca/permisoPatrones')}}">Listar</a></li>
+                        <li><a href="{{url('usuarioPesca/permisoPatrones/new')}}">Nuevo</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pescas<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('usuarioPesca/pescas')}}">Listar</a></li>
+                        <li><a href="{{url('usuarioPesca/pescas/new')}}">Nuevo</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Desembarques<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('usuarioPesca/desembarques')}}">Listar</a></li>
+                        <li><a href="{{url('usuarioPesca/desembarques/new')}}">Nuevo</a></li>
                     </ul>
                 </li>
                 <!--<li class="dropdown">

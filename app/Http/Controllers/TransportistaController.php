@@ -14,6 +14,7 @@ use App\User;
 use Carbon\Carbon;
 //use App\Usuario;
 use Session;
+use Auth;
 
 class TransportistaController extends Controller
 {
@@ -27,7 +28,14 @@ class TransportistaController extends Controller
         //
         $transportistas = Transportista::paginate(10);
         $transportistas->setPath('transportistas');
-        return view('internal.admin.transportistas', compact('transportistas'));
+
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.transportistas', compact('transportistas'));
+        }
+        elseif  (Auth::user()->role_id == 6){
+            return view('internal.usuarioIntermediario.transportistas', compact('transportistas'));
+        }
+        
     }
 
     /**
@@ -38,7 +46,14 @@ class TransportistaController extends Controller
     public function create()
     {
         //
-         return view('internal.admin.nuevoTransportista');
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.nuevoTransportista');
+        }
+        elseif  (Auth::user()->role_id == 6){
+            return view('internal.usuarioIntermediario.nuevoTransportista');
+        }
+
+         
     }
 
     /**
@@ -63,7 +78,13 @@ class TransportistaController extends Controller
 
         $transportista->save();
         
-        return redirect()->route('admin.transportistas');
+        if (Auth::user()->role_id == 4){
+            return redirect()->route('admin.transportistas');
+        }
+        elseif  (Auth::user()->role_id == 6){
+            return redirect()->route('usuarioIntermediario.transportistas');
+        }
+        
     }
 
     /**
@@ -87,7 +108,14 @@ class TransportistaController extends Controller
     {
         //
         $transportista = Transportista::find($id);
-        return view('internal.admin.editarTransportista', compact('transportista'));
+
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.editarTransportista', compact('transportista'));
+        }
+        elseif  (Auth::user()->role_id == 6){
+            return view('internal.usuarioIntermediario.editarTransportista', compact('transportista'));
+        }
+        
     }
 
     /**
@@ -112,10 +140,14 @@ class TransportistaController extends Controller
         $transportista->correo            =   $input['correo'];
         $transportista->brevete           =   $input['brevete'];
 
-
-
         $transportista->save();
-        return redirect()->route('admin.transportistas');
+        if (Auth::user()->role_id == 4){
+            return redirect()->route('admin.transportistas');
+        }
+        elseif  (Auth::user()->role_id == 6){
+            return redirect()->route('usuarioIntermediario.transportistas');
+        }
+
     }
 
     /**
@@ -129,6 +161,12 @@ class TransportistaController extends Controller
         //
         $transportista = Transportista::find($id);
         $transportista->delete();
-        return redirect()->route('admin.transportistas');
+        if (Auth::user()->role_id == 4){
+            return redirect()->route('admin.transportistas');
+        }
+        elseif  (Auth::user()->role_id == 6){
+            return redirect()->route('usuarioIntermediario.transportistas');
+        }
+
     }
 }

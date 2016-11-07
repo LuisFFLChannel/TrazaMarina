@@ -405,28 +405,28 @@ Route::group(['middleware' => ['auth', 'usuarioPesca']], function () {
     Route::post('admin/promoter/{id}/edit', 'AdminController@updatePromoter');
     Route::get('admin/promoter/{id}/delete', 'AdminController@destroyPromoter');*/
 
-    Route::get('usuarioPesca/especieMarinas', ['uses'=>'EspeciesMarinasController@index','as'=>'admin.especieMarinas']);
+    Route::get('usuarioPesca/especieMarinas', ['uses'=>'EspeciesMarinasController@index','as'=>'usuarioPesca.especieMarinas']);
     Route::get('usuarioPesca/especieMarinas/new', 'EspeciesMarinasController@create');
     Route::post('usuarioPesca/especieMarinas/new', 'EspeciesMarinasController@store');
     Route::get('usuarioPesca/especieMarinas/{id}/edit', 'EspeciesMarinasController@edit');
     Route::post('usuarioPesca/especieMarinas/{id}/edit', 'EspeciesMarinasController@update');
     Route::get('usuarioPesca/especieMarinas/{id}/delete', 'EspeciesMarinasController@destroy');
 
-    Route::get('usuarioPesca/puertos', ['uses'=>'PuertosController@index','as'=>'admin.puertos']);
+    Route::get('usuarioPesca/puertos', ['uses'=>'PuertosController@index','as'=>'usuarioPesca.puertos']);
     Route::get('usuarioPesca/puertos/new', 'PuertosController@create');
     Route::post('usuarioPesca/puertos/new', 'PuertosController@store');
     Route::get('usuarioPesca/puertos/{id}/edit', 'PuertosController@edit');
     Route::post('admin/puertos/{id}/edit', 'PuertosController@update');
     Route::get('admin/puertos/{id}/delete', 'PuertosController@destroy');
 
-    Route::get('usuarioPesca/capitanias', ['uses'=>'CapitaniaController@index','as'=>'admin.capitanias']);
+    Route::get('usuarioPesca/capitanias', ['uses'=>'CapitaniaController@index','as'=>'usuarioPesca.capitanias']);
     Route::get('usuarioPesca/capitanias/new', 'CapitaniaController@create');
     Route::post('usuarioPesca/capitanias/new', 'CapitaniaController@store');
     Route::get('usuarioPesca/capitanias/{id}/edit', 'CapitaniaController@edit');
     Route::post('usuarioPesca/capitanias/{id}/edit', 'CapitaniaController@update');
     Route::get('usuarioPesca/capitanias/{id}/delete', 'CapitaniaController@destroy');
 
-    Route::get('usuarioPesca/dpas', ['uses'=>'DpaController@index','as'=>'admin.dpas']);
+    Route::get('usuarioPesca/dpas', ['uses'=>'DpaController@index','as'=>'usuarioPesca.dpas']);
     Route::get('usuarioPesca/dpas/new', 'DpaController@create');
     Route::post('usuarioPesca/dpas/new', 'DpaController@store');
     Route::get('usuarioPesca/dpas/{id}/edit', 'DpaController@edit');
@@ -434,7 +434,7 @@ Route::group(['middleware' => ['auth', 'usuarioPesca']], function () {
     Route::get('usuarioPesca/dpas/{id}/delete', 'DpaController@destroy');
 
 
-    Route::get('usuarioPesca/pescadores', ['uses'=>'PescadoresController@index','as'=>'admin.pescadores']);
+    Route::get('usuarioPesca/pescadores', ['uses'=>'PescadoresController@index','as'=>'usuarioPesca.pescadores']);
     Route::get('usuarioPesca/pescadores/new', 'PescadoresController@create');
     Route::post('usuarioPesca/pescadores/new', 'PescadoresController@store');
     Route::get('usuarioPesca/pescadores/{id}/edit', 'PescadoresController@edit');
@@ -445,7 +445,7 @@ Route::group(['middleware' => ['auth', 'usuarioPesca']], function () {
     Route::get('usuarioPesca/pescadores/{id}/editPermisoPatron', 'PescadoresController@editPermisoPatron');
     Route::get('usuarioPesca/pescadores/{id}/showPermisoPatron', 'PescadoresController@showPermisoPatron');
 
-    Route::get('usuarioPesca/embarcaciones', ['uses'=>'EmbarcacionController@index','as'=>'admin.embarcaciones']);
+    Route::get('usuarioPesca/embarcaciones', ['uses'=>'EmbarcacionController@index','as'=>'usuarioPesca.embarcaciones']);
     Route::get('usuarioPesca/embarcaciones/new', 'EmbarcacionController@create');
     Route::post('usuarioPesca/embarcaciones/new', 'EmbarcacionController@store');
     Route::get('usuarioPesca/embarcaciones/{id}/edit', 'EmbarcacionController@edit');
@@ -461,7 +461,7 @@ Route::group(['middleware' => ['auth', 'usuarioPesca']], function () {
     Route::get('usuarioPesca/certificadoMatriculas/new', 'CertificadoMatriculasController@create');
     Route::post('usuarioPesca/certificadoMatriculas/new', 'CertificadoMatriculasController@store');
     Route::get('usuarioPesca/certificadoMatriculas/{id}/edit', 'CertificadoMatriculasController@edit');
-    Route::post('usuarioPescan/certificadoMatriculas/{id}/edit', 'CertificadoMatriculasController@update');
+    Route::post('usuarioPesca/certificadoMatriculas/{id}/edit', 'CertificadoMatriculasController@update');
     Route::get('usuarioPesca/certificadoMatriculas/{id}/delete', 'CertificadoMatriculasController@destroy');
 
 })  ;
