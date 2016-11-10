@@ -12,19 +12,15 @@
 
 <div class="row">
   <div class="col-sm-8">
-    {!!Form::open(array('url' => 'usuarioPesca/permisoZarpes/new','files'=>true,'id'=>'form','class'=>'form-horizontal'))!!}
-      <div class="form-group">
-          <label for="inputEmail3" class="col-sm-3 control-label">Nombres</label>
-          <div class="col-sm-9">
-            {!!Form::input('text','nombre', null ,['class'=>'form-control','id'=>'inputEmai3', 'maxlength'=>'100','required'])!!}
-          </div>
-        </div>
+    {!!Form::open(array('url' => 'usuarioPesca/pescas/new','files'=>true,'id'=>'form','class'=>'form-horizontal'))!!}
+        
         <div class="form-group">
-          <label for="inputEmail3" class="col-sm-3 control-label">Numero de Matricula</label>
-          <div class="col-sm-9">
-            {!!Form::input('text','nMatricula', null ,['class'=>'form-control','id'=>'inputEmai3', 'maxlength'=>'50','required'])!!}
-          </div>
+            <label class="col-sm-3 control-label">Embarcacion</label>
+            <div class="col-sm-9">
+                {!! Form::select('embarcacion_id', $embarcaciones_lista->toArray(), null, ['class' => 'form-control','required', 'id'=>'embarcacion_id']) !!}
+            </div>
         </div>
+
         <div class="form-group">
           <label for="tamanoMin" class="col-sm-3 control-label">Latitud</label>
           <div class="col-sm-9">
@@ -47,31 +43,23 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="inputcumpleanos" class="col-sm-3 control-label">Fecha Arribo</label>
-          <div class="col-sm-9">
-            {!!Form::input('date','fechaArribo', null ,['class'=>'form-control','id'=>'fechaArribo','required'])!!}
-            <div class="col-sm-9" id="firefox" style="visibility: hidden">
-                Formato Año(D/M/Y)
-            </div> 
-          </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-3 control-label">Capitania</label>
-            <div class="col-sm-9">
-                {!! Form::select('capitania_id', $capitanias_lista->toArray(), null, ['class' => 'form-control','required', 'id'=>'capitania_id']) !!}
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-3 control-label">Puerto</label>
+            <label class="col-sm-3 control-label">Puerto Zarpe</label>
             <div class="col-sm-9">
                 {!! Form::select('puerto_id', $puertos_lista->toArray(), null, ['class' => 'form-control','required', 'id'=>'puerto_id']) !!}
             </div>
         </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">Permiso Zarpe</label>
+            <div class="col-sm-9">
+                {!! Form::select('permisoZarpe_id', $permisoZarpe_lista->toArray(), null, ['class' => 'form-control','required', 'id'=>'permisoZarpe_id']) !!}
+            </div>
+        </div>
+
 
       <div class="form-group">
         <div class="col-sm-offset-3 col-sm-9">
           <a class="btn btn-info" href="" title="submit" data-toggle="modal" data-target="#submitModal" >Guardar</a>
-          <a href="{{action('PermisoZarpeController@index')}}"><button type="button" class="btn btn-info">Cancelar</button></a>
+          <a href="{{action('PescaController@index')}}"><button type="button" class="btn btn-info">Cancelar</button></a>
         </div>
       </div>
 
