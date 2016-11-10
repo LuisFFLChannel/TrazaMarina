@@ -17,5 +17,8 @@ class Pescador extends Model
     public function permisoPatron(){
         return $this->belongsTo('App\Models\PermisoPatron');
     }
+    public function permisoZarpe(){
+    	 return $this->hasMany('App\Models\PermisoZarpePescadores','pescadores_id')->where('pescadores_id',$this->id);
+    }
 
 }

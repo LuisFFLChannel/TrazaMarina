@@ -5,7 +5,7 @@
 @stop
 
 @section('title')
-    Certificados de Matricula
+    Permisos de Patron
 @stop
 
 @section('content')
@@ -13,49 +13,50 @@
 <table class="table table-bordered table-striped">
     <tr>
         <th class="text-center">N° Documennto</th>
-        <th class="text-center">Dueño</th>   
-        <th class="text-center">N° de Matricula</th>
-        <th class="text-center">Barco</th>
+        <th class="text-center">Fecha Vigencia</th>   
+        <th class="text-center">N° de Patron</th>
+        <th class="text-center">Marinero</th>
         <!--<th>Imagen</th>-->
         <th class="text-center">Detalle</th>
         <th class="text-center">Editar</th>
         <th class="text-center">Eliminar</th>
     </tr>
     
-    @foreach($certificadoMatriculas as $certificadoMatricula)
+    @foreach($permisoPatrones as $permisoPatron)
     <tr>
-      <td class="text-center">{{$certificadoMatricula->id}}</td>
-      <td class="text-center">{{$certificadoMatricula->nombreDueno}} {{$certificadoMatricula->apellidosDueno}}</td>
-      <td class="text-center">{{$certificadoMatricula->nMatricula}}</td>
-      @if($certificadoMatricula->embarcacion!=null)
-        <td class="text-center">{{$certificadoMatricula->embarcacion->nMatricula}} - {{$certificadoMatricula->embarcacion->nombre}}</td>
+      <td class="text-center">{{$permisoPatron->id}}</td>
+      <td class="text-center">{{$permisoPatron->fechaVigencia}}</td>
+      <td class="text-center">{{$permisoPatron->numeroPatron}}</td>
+      @if($permisoPatron->pescador!=null)
+        <td class="text-center">{{$permisoPatron->pescador->dni}} - {{$permisoPatron->pescador->apellidos}}, {{$permisoPatron->pescador->nombres}} </td>
       @else
           <td class="text-center"> No Asociado aun</td>
       @endif
      
       
-      <!--<td>{!! Html::image($certificadoMatricula->imagen, null, array('class'=>'gift_img')) !!}</td>-->
+      <!--<td>{!! Html::image($permisoPatron->imagen, null, array('class'=>'gift_img')) !!}</td>-->
       <td class="text-center">
-            <a class="btn btn-info" href="detalles" title="Detalles" data-toggle="modal" data-target="#edit{{$certificadoMatricula->id}}"><i class="glyphicon glyphicon-plus"></i></a>
-            <div class="modal fade" id="edit{{$certificadoMatricula->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <a class="btn btn-info" href="detalles" title="Detalles" data-toggle="modal" data-target="#edit{{$permisoPatron->id}}"><i class="glyphicon glyphicon-plus"></i></a>
+            <div class="modal fade" id="edit{{$permisoPatron->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title text-left" id="myModalLabel">Detalle del Certificado de Matricula</h4>
+                    <h4 class="modal-title text-left" id="myModalLabel">Detalle del Permiso de Patron</h4>
                   </div>
                   <div class="modal-body">
                     <div class="row">
                       <div class="col-sm-1"></div>
                       <div class="col-sm-8">
-                          <h5 class="text-left">N° Documento: {{$certificadoMatricula->id}}</h5>
-                          <h5 class="text-left">Nombre Dueño: {{$certificadoMatricula->nombreDueno}} {{$certificadoMatricula->apellidosDueno}}</h5>
-                          <h5 class="text-left">DNI Dueño: {{$certificadoMatricula->dniDueno}}</h5>
-                          <h5 class="text-left">Numero de Matricula: {{$certificadoMatricula->nMatricula}} </h5>
-                          @if($certificadoMatricula->embarcacion!=null)
-                            <h5 class="text-left">Nombre del barco: {{$certificadoMatricula->embarcacion->nMatricula}} - {{$certificadoMatricula->embarcacion->nombre}}</h5> 
+                          <h5 class="text-left">N° Documento: {{$permisoPatron->id}}</h5>
+                          <h5 class="text-left">Nombres y Apellidos (en Documento): {{$permisoPatron->nombres}} - {{$permisoPatron->apellidos}}</h5>
+                          <h5 class="text-left">DNI (en Documento): {{$permisoPatron->dni}}</h5>
+                          <h5 class="text-left">Numero de Patron: {{$permisoPatron->numeroPatron}} </h5>
+                          <h5 class="text-left">Fecha Vigencia: {{date_format(date_create($permisoPatron->fechaVigencia),"d/m/Y")}} </h5>
+                          @if($permisoPatron->pescador!=null)
+                            <h5 class="text-left">Nombre del pescador: {{$permisoPatron->pescador->nombres}} - {{$permisoPatron->pescador->apellidos}}</h5> 
                           @else
-                            <h5 class="text-left">Nombre del barco: No Esta asociado aun</h5>
+                            <h5 class="text-left">Nombre del pescador: No Esta asociado aun</h5>
                           @endif                              
                           
                     </div>
@@ -68,27 +69,27 @@
             </div>
           </td>
       <td class="text-center">
-        <a class="btn btn-info" href="{{url('usuarioPesca/certificadoMatriculas/'.$certificadoMatricula->id.'/edit')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
+        <a class="btn btn-info" href="{{url('usuarioPesca/permisoPatrones/'.$permisoPatron->id.'/edit')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
       </td> 
       <td class="text-center">
-        <a class="btn btn-info" title="Eliminar" data-toggle="modal" data-target="#deleteModal{{$certificadoMatricula->id}}" ><i class="glyphicon glyphicon-remove"></i></a>
+        <a class="btn btn-info" title="Eliminar" data-toggle="modal" data-target="#deleteModal{{$permisoPatron->id}}" ><i class="glyphicon glyphicon-remove"></i></a>
       </td>
     </tr>
 
     <!-- MODAL -->
-    <div class="modal fade"  id="deleteModal{{$certificadoMatricula->id}}">
+    <div class="modal fade"  id="deleteModal{{$permisoPatron->id}}">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">¿Estas seguro que desea eliminar el Certificado de Matricula ?</h4>
+            <h4 class="modal-title">¿Estas seguro que desea eliminar el Permiso de Patron?</h4>
           </div>
           <div class="modal-body">
             <h5 class="modal-title">Los cambios serán permanentes</h5>
           </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-info" data-dismiss="modal">No</button>
-              <a class="btn btn-info" href="{{url('usuarioPesca/certificadoMatriculas/'.$certificadoMatricula->id.'/delete')}}" title="Delete" >Sí</a>
+              <a class="btn btn-info" href="{{url('usuarioPesca/permisoPatrones/'.$permisoPatron->id.'/delete')}}" title="Delete" >Sí</a>
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
@@ -98,7 +99,7 @@
     
 </table>
 
-{!!$certificadoMatriculas->render()!!}
+{!!$permisoPatrones->render()!!}
 @stop
 
 @section('javascript')

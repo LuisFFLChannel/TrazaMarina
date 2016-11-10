@@ -20,6 +20,7 @@ class CreatePermisoPatronTable extends Migration
             $table->integer('dni')->unique();
             $table->string('numeroPatron')->unique();
             $table->timestamp('fechaVigencia');
+            $table->boolean('asignado');
             $table->boolean('activo');
             $table->softDeletes();
             $table->timestamps();

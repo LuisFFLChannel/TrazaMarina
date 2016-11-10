@@ -5,56 +5,51 @@
 @stop
 
 @section('title')
-	Nueva Pescador
+	Nuevo Permiso de Patron
 @stop
 
 @section('content')
+
 <div class="row">
   <div class="col-sm-8">
-    {!!Form::open(array('url' => 'usuarioPesca/pescadores/new','files'=>true,'id'=>'form','class'=>'form-horizontal'))!!}
+    {!!Form::open(array('url' => 'usuarioPesca/permisoPatrones/new','files'=>true,'id'=>'form','class'=>'form-horizontal'))!!}
       <div class="form-group">
-          <label for="inputEmail3" class="col-sm-2 control-label">Nombres</label>
-          <div class="col-sm-10">
-            {!!Form::input('text','nombres', null ,['class'=>'form-control','id'=>'nombres', 'maxlength'=>'100','required'])!!}
+          <label for="inputEmail3" class="col-sm-3 control-label">Nombres</label>
+          <div class="col-sm-9">
+            {!!Form::input('text','nombres', null ,['class'=>'form-control','id'=>'inputEmai3', 'maxlength'=>'100','required'])!!}
           </div>
         </div>
         <div class="form-group">
-          <label for="inputEmail3" class="col-sm-2 control-label">Apellidos</label>
-          <div class="col-sm-10">
-            {!!Form::input('text','apellidos', null ,['class'=>'form-control','id'=>'apellidos', 'maxlength'=>'100','required'])!!}
+          <label for="inputEmail3" class="col-sm-3 control-label">Apellidos</label>
+          <div class="col-sm-9">
+            {!!Form::input('text','apellidos', null ,['class'=>'form-control','id'=>'inputEmai3', 'maxlength'=>'100','required'])!!}
           </div>
         </div>
         <div class="form-group">
-          <label for="inputEmail3" class="col-sm-2 control-label">DNI</label>
-          <div class="col-sm-10">
+          <label for="inputEmail3" class="col-sm-3 control-label">DNI</label>
+          <div class="col-sm-9">
             {!!Form::input('number','dni', null ,['class'=>'form-control','id'=>'dni','max'=>'99999999', 'min'=>'10000000','required'])!!}
           </div>
         </div>
         <div class="form-group">
-          <label for="inputEmail3" class="col-sm-2 control-label">Telefono</label>
-          <div class="col-sm-10">
-            {!!Form::input('number','telefono', null ,['class'=>'form-control','id'=>'telefono','required','min'>=1])!!}
+          <label for="inputEmail3" class="col-sm-3 control-label">Numero de Patron</label>
+          <div class="col-sm-9">
+            {!!Form::input('text','numeroPatron', null ,['class'=>'form-control','id'=>'inputEmai3', 'maxlength'=>'50','required'])!!}
           </div>
         </div>
         <div class="form-group">
-          <label for="correo" class="col-sm-2 control-label">Correo</label>
-          <div class="col-sm-10">
-           {!!Form::input('email','correo', null ,['class'=>'form-control','id'=>'correo','required'])!!}
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="inputcumpleanos" class="col-sm-2 control-label">Cumpleaños</label>
-          <div class="col-sm-10">
-            {!!Form::input('date','cumpleanos', null ,['class'=>'form-control','id'=>'cumpleanos','required'])!!}
-            <div class="col-sm-6" id="firefox" style="visibility: hidden">
+          <label for="inputcumpleanos" class="col-sm-3 control-label">Fecha Vigencia</label>
+          <div class="col-sm-9">
+            {!!Form::input('date','fechaVigencia', null ,['class'=>'form-control','id'=>'fechaVigencia','required'])!!}
+            <div class="col-sm-9" id="firefox" style="visibility: hidden">
                 Formato Año(D/M/Y)
             </div> 
           </div>
         </div>
       <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
+        <div class="col-sm-offset-3 col-sm-9">
           <a class="btn btn-info" href="" title="submit" data-toggle="modal" data-target="#submitModal" >Guardar</a>
-          <a href="{{action('PescadoresController@index')}}"><button type="button" class="btn btn-info">Cancelar</button></a>
+          <a href="{{action('PermisoPatronController@index')}}"><button type="button" class="btn btn-info">Cancelar</button></a>
         </div>
       </div>
 
@@ -64,7 +59,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title">¿Estas seguro que desea crear el Pescador?</h4>
+              <h4 class="modal-title">¿Estas seguro que desea crear el Permiso de Patron?</h4>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-info" data-dismiss="modal">No</button>
@@ -94,6 +89,5 @@ $('document').ready(function () {
   }
 })
 </script>  
-
 
 @stop

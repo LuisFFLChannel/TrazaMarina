@@ -13,4 +13,7 @@ class Capitania extends Model
     {
         return $this->hasMany('App\Usuario', 'perfilUsuario_id', 'id');
     }*/
+    public function permisoZarpe(){
+        return $this->hasMany('App\Models\PermisoZarpe');
+    }
 }

@@ -75,7 +75,7 @@
               </tr> 
               <tr>
                   <th>Fecha de Vigencia</th>
-                  <th > date_format(date_create(embarcacion->permisoPesca->fechaVigencia),"y/m/d") </th>   
+                  <th>{{date_format(date_create($embarcacion->permisoPesca->fechaVigencia),"d/m/Y")}}</th>   
               </tr> 
             </table>
         </div>
@@ -83,7 +83,7 @@
 @else
       <h4 class="text-center"> No Asociado aun</h4>
 @endif
-<h3> Busqueda del Certificado Actual </h3>
+<h3> Busqueda del Permiso Actual </h3>
 <br>
 <div class="row">
   <div class="col-sm-8">
@@ -103,8 +103,8 @@
               @foreach($permisoPescas as $permisoPesca)
                 <tr>
                   <td>{{$permisoPesca->id}}</td>
-                  <td>{{$permisoPesca->nombreDueno}}</td>
-                  <td>{{$permisoPesca->apellidosDueno}}</td>
+                  <td>{{$permisoPesca->nombre}}</td>
+                  <td>{{$permisoPesca->fechaVigencia}}</td>
                   <td> {!! Form::radio('permisoPesca', $permisoPesca->id ,   (Input::old('permisoPesca') == $permisoPesca->id ), array('id'=>'true', 'class'=>'radio  permisoPesca_id'         ,'required'   ))  !!} </td>
                 </tr>
 
@@ -113,7 +113,7 @@
           </table>
         </div>
       </div>
-      @if($permisoPescas)
+      @if(!$permisoPescas->isEmpty())
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10">
             <a class="btn btn-info" href="" title="submit" data-toggle="modal" data-target="#submitModal" >Guardar</a>

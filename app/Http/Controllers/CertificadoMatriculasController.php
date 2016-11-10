@@ -69,6 +69,7 @@ class CertificadoMatriculasController extends Controller
         $certificadoMatricula->apellidosDueno        =   $input['apellidosDueno'];
         $certificadoMatricula->dniDueno              =   $input['dniDueno'];
         $certificadoMatricula->nMatricula            =   $input['nMatricula'];
+        $certificadoMatricula->asignado              =   false;
         $certificadoMatricula->activo                =   true;
         //Control de subida de imagen por hacer
 

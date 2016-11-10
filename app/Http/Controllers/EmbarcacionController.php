@@ -187,14 +187,24 @@ class EmbarcacionController extends Controller
     {
         //
         $embarcacion = Embarcacion::find($id);
-        $certificadoMatriculas = DB::table('embarcacion')
+        /*$certificadoMatriculas = DB::table('embarcacion')
                     ->select(DB::raw('certificadoMatricula.id as id, certificadoMatricula.nombreDueno as nombreDueno, certificadoMatricula.apellidosDueno as apellidosDueno, certificadoMatricula.nMatricula as nMatricula'))
                     ->whereNotNull('embarcacion.certificado_matricula_id')
-                    ->leftJoin('certificadoMatricula', 'embarcacion.certificado_matricula_id', '!=', 'certificadoMatricula.id')
+                    ->rightJoin('certificadoMatricula', 'embarcacion.certificado_matricula_id', '!=', 'certificadoMatricula.id')
                     ->get();
 
+        dd($certificadoMatriculas) ;          
+        if($certificadoMatriculas==null){
+            $certificadoMatriculas =CertificadoMatricula::where('id','>=',0)->toList();
+        }
+        
+        if($certificadoMatriculas[0]->id==null){
+            unset($certificadoMatriculas[0]);
+        }*/
+        $certificadoMatriculas =CertificadoMatricula::where('asignado','=',false)->get();
+        
         if (Auth::user()->role_id == 4){
-            return view('internal.admin.asociarCertificadoMatricula', compact('embarcacion','certficadoMatriculas'));
+            return view('internal.admin.asociarCertificadoMatricula', compact('embarcacion','certificadoMatriculas'));
         }
         elseif  (Auth::user()->role_id == 5){
             return view('internal.usuarioPesca.asociarCertificadoMatricula', compact('embarcacion','certificadoMatriculas'));
@@ -206,14 +216,22 @@ class EmbarcacionController extends Controller
     {
         //
         $embarcacion = Embarcacion::find($id);
-        $permisoPescas = DB::table('embarcacion')
+        /*$permisoPescas = DB::table('embarcacion')
                     ->select(DB::raw('permisoPesca.id as id, permisoPesca.nombre as nombre, permisoPesca.fechaVigencia as fechaVigencia, permisoPesca.nMatricula as nMatricula'))
                     ->whereNotNull('embarcacion.permiso_pesca_id')
                     ->leftJoin('permisoPesca', 'embarcacion.permiso_pesca_id', '!=', 'permisoPesca.id')
                     ->get();
+        
+        if($permisoPescas==null){
+            $permisoPescas =PermisoPesca::where('id','>=',0)->get();
+        }
+        if($permisoPescas[0]->id==null){
+            unset($permisoPescas[0]);
+        }*/
+        $permisoPescas =PermisoPesca::where('asignado','=',false)->get();
 
         if (Auth::user()->role_id == 4){
-            return view('internal.admin.asociarPermisoPesca', compact('embarcacion'));
+            return view('internal.admin.asociarPermisoPesca', compact('embarcacion','permisoPescas'));
         }
         elseif  (Auth::user()->role_id == 5){
             return view('internal.usuarioPesca.asociarPermisoPesca', compact('embarcacion','permisoPescas'));
@@ -264,10 +282,10 @@ class EmbarcacionController extends Controller
         $embarcacion = Embarcacion::find($id);
 
         $embarcacion->certificado_matricula_id            =   $input['certificadoMatricula'];
-
-
+        $certificado= CertificadoMatricula::find($input['certificadoMatricula']);
+        $certificado->asignado=true;
         $embarcacion->save();
-
+        $certificado->save();
         if (Auth::user()->role_id == 4){
             return redirect()->route('admin.embarcaciones');
         }
@@ -284,10 +302,11 @@ class EmbarcacionController extends Controller
         $embarcacion = Embarcacion::find($id);
 
         $embarcacion->permiso_pesca_id            =   $input['permisoPesca'];
-
+        $permiso= PermisoPesca::find($input['permisoPesca']);
+        $permiso->asignado=true;
 
         $embarcacion->save();
-
+        $permiso->save();
         if (Auth::user()->role_id == 4){
             return redirect()->route('admin.embarcaciones');
         }

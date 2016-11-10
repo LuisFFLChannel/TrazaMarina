@@ -5,11 +5,11 @@
 @stop
 
 @section('title')
-	Asociar Certificado de Matricula a Embarcacion
+	Asociar Permiso Patron a Pescador
 @stop
 
 @section('content')
-<h3> Información de la Embarcacion </h3>
+<h3> Información de Pescador </h3>
 <br>
 <div class="row">
     <div class="col-sm-2">
@@ -18,43 +18,35 @@
     <div class="col-sm-8">
         <table class="table table-bordered table-striped">
           <tr>
-              <th >Nombre</th>
-              <th >{{$embarcacion->nombre}}</th>   
+              <th >Nombres</th>
+              <th >{{$pescador->nombres}}</th>   
           </tr>  
           <tr>
-              <th>Numero Matricula</th>
-              <th >{{$embarcacion->nMatricula}}</th>   
+              <th>Apellidos</th>
+              <th >{{$pescador->apellidos}}</th>   
           </tr> 
           <tr>
-              <th >Nombres Dueno</th>
-              <th >{{$embarcacion->nombreDueno}}</th>   
+              <th >DNI</th>
+              <th >{{$pescador->dni}}</th>   
           </tr> 
           <tr>
-              <th>Apellidos Dueno</th>
-              <th >{{$embarcacion->apellidoDueno}}</th>   
+              <th>Telefono</th>
+              <th >{{$pescador->telefono}}</th>   
           </tr> 
           <tr>
-              <th>Capacidad</th>
-              <th >{{$embarcacion->capacidad}}</th>   
+              <th>Correo</th>
+              <th >{{$pescador->correo}}</th>   
           </tr> 
            <tr>
-              <th>Estara</th>
-              <th >{{$embarcacion->estara}}</th>   
-          </tr> 
-           <tr>
-              <th>Manga</th>
-              <th >{{$embarcacion->manga}}</th>   
-          </tr> 
-           <tr>
-              <th>Puntual</th>
-              <th >{{$embarcacion->puntual}}</th>   
+              <th>Cumpleaños</th>
+              <th >{{ explode(" ",$pescador->cumpleanos)[0]}}</th>   
           </tr> 
         </table>
     </div>
 </div>
-<h3> Información del Certificado Actual </h3>
+<h3> Información del Permiso Patron Actual </h3>
 <br>
-@if($embarcacion->certificadoMatricula!=null)
+@if($pescador->permisoPatron!=null)
     <div class="row">
         <div class="col-sm-2">
       
@@ -63,19 +55,27 @@
             <table class="table table-bordered table-striped">
               <tr>
                   <th >Codigo</th>
-                  <th >{{$embarcacion->certificadoMatricula->id}}</th>   
+                  <th >{{$pescador->permisoPatron->id}}</th>   
               </tr>  
               <tr>
-                  <th>Nombre Dueño</th>
-                  <th >{{$embarcacion->certificadoMatricula->nombreDueno}}</th>   
+                  <th>Nombres</th>
+                  <th >{{$pescador->permisoPatron->nombres}}</th>   
               </tr> 
               <tr>
-                  <th >Apellidos Dueno</th>
-                  <th >{{$embarcacion->certificadoMatricula->apellidosDueno}}</th>   
+                  <th>Apellidos</th>
+                  <th >{{$pescador->permisoPatron->apellidos}}</th>   
               </tr> 
+              <tr>
+                  <th>DNI</th>
+                  <th >{{$pescador->permisoPatron->dni}}</th>   
+              </tr>
                <tr>
-                  <th>Numero de Matricula</th>
-                  <th >{{$embarcacion->certificadoMatricula->nMatricula}}</th>   
+                  <th>Numero de Patron</th>
+                  <th >{{$pescador->permisoPatron->numeroPatron}}</th>   
+              </tr> 
+              <tr>
+                  <th>Fecha de Vigencia</th>
+                  <th>{{date_format(date_create($pescador->permisoPatron->fechaVigencia),"d/m/Y")}}</th>   
               </tr> 
             </table>
         </div>
@@ -83,29 +83,29 @@
 @else
       <h4 class="text-center"> No Asociado aun</h4>
 @endif
-<h3> Busqueda del Certificado Actual </h3>
+<h3> Busqueda del Permiso Actual </h3>
 <br>
 <div class="row">
   <div class="col-sm-8">
-    {!!Form::open(array('url' => 'usuarioPesca/embarcaciones/'.$embarcacion->id.'/editCertificado','files'=>true,'id'=>'form','class'=>'form-horizontal'))!!}
+    {!!Form::open(array('url' => 'usuarioPesca/pescadores/'.$pescador->id.'/editPermisoPatron','files'=>true,'id'=>'form','class'=>'form-horizontal'))!!}
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
           <table id="example" class="table table-bordered display" >
             <thead>
                 <tr>
                   <th>Codigo</th>
-                  <th>Nombre Dueño</th>
-                  <th>Descripción</th>
+                  <th>Numero Patron</th>
+                  <th>Vigencia</th>
                   <th>Seleccionar</th>
                 </tr>
              </thead>
             <tbody>
-              @foreach($certificadoMatriculas as $certificadoMatricula)
+              @foreach($permisoPatrones as $permisoPatron)
                 <tr>
-                  <td>{{$certificadoMatricula->id}}</td>
-                  <td>{{$certificadoMatricula->nombreDueno}}</td>
-                  <td>{{$certificadoMatricula->apellidosDueno}}</td>
-                  <td> {!! Form::radio('certificadoMatricula', $certificadoMatricula->id ,   (Input::old('certificadoMatricula') == $certificadoMatricula->id ), array('id'=>'true', 'class'=>'radio  certificadoMatricula_id'         ,'required'   ))  !!} </td>
+                  <td>{{$permisoPatron->id}}</td>
+                  <td>{{$permisoPatron->numeroPatron}}</td>
+                  <td>{{ date_format(date_create($permisoPatron->fechaVigencia),"d/m/Y")}}</td>
+                  <td> {!! Form::radio('permisoPatron', $permisoPatron->id ,   (Input::old('permisoPatron') == $permisoPatron->id ), array('id'=>'true', 'class'=>'radio  permisoPatron_id'         ,'required'   ))  !!} </td>
                 </tr>
 
                 @endforeach
@@ -113,17 +113,17 @@
           </table>
         </div>
       </div>
-      @if(!$certificadoMatriculas->isEmpty())
+      @if(!$permisoPatrones->isEmpty())
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10">
             <a class="btn btn-info" href="" title="submit" data-toggle="modal" data-target="#submitModal" >Guardar</a>
-            <a href="{{action('EmbarcacionController@index')}}"><button type="button" class="btn btn-info">Cancelar</button></a>
+            <a href="{{action('PescadoresController@index')}}"><button type="button" class="btn btn-info">Cancelar</button></a>
           </div>
         </div>
       @else
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10">
-            <a href="{{action('EmbarcacionController@index')}}"><button type="button" class="btn btn-info">Regresar</button></a>
+            <a href="{{action('PescadoresController@index')}}"><button type="button" class="btn btn-info">Regresar</button></a>
           </div>
         </div>
       @endif
@@ -134,7 +134,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title">¿Estas seguro que desea asociar este Certificado de Matricula?</h4>
+              <h4 class="modal-title">¿Estas seguro que desea asociar este Permiso de Patron?</h4>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-info" data-dismiss="modal">No</button>

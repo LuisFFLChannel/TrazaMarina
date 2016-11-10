@@ -14,8 +14,8 @@ class AddFkToPescadoresTable extends Migration
     {
         //
         Schema::table('pescadores', function (Blueprint $table) {
-            $table->foreign('permisoMarinero_id')->references('id')->on('permisoMarinero');
-            $table->foreign('permisoPatron_id')->references('id')->on('permisoPatron');
+            $table->foreign('permiso_marinero_id')->references('id')->on('permisoMarinero');
+            $table->foreign('permiso_patron_id')->references('id')->on('permisoPatron');
         });
     }
 
@@ -28,8 +28,8 @@ class AddFkToPescadoresTable extends Migration
     {
         //
         Schema::table('pescadores', function (Blueprint $table) {
-            $table->dropForeign('pescadores_permisoMarinero_id_foreign');
-            $table->dropForeign('pescadores_permisoPatron_id_foreign');
+            $table->dropForeign('pescadores_permiso_marinero_id_foreign');
+            $table->dropForeign('pescadores_permiso_patron_id_foreign');
         });
     }
 }

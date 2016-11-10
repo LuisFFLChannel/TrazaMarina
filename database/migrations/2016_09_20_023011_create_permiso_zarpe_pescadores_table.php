@@ -16,6 +16,7 @@ class CreatePermisoZarpePescadoresTable extends Migration
         Schema::create('permisoZarpe_pescadores', function (Blueprint $table) {
             $table->integer('permisoZarpe_id')->unsigned()->index('permisoZarpe_pescadores_permisoZarpe_id_foreign');
             $table->integer('pescadores_id')->unsigned()->index('permisoZarpe_pescadores_pescadores_id_foreign');
+            $table->integer('tipo'); //1=Patron y 2=Marinero
             $table->softDeletes();
             $table->timestamps();
         });

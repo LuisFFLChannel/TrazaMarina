@@ -441,8 +441,10 @@ Route::group(['middleware' => ['auth', 'usuarioPesca']], function () {
     Route::post('usuarioPesca/pescadores/{id}/edit', 'PescadoresController@update');
     Route::get('usuarioPesca/pescadores/{id}/delete', 'PescadoresController@destroy');
     Route::get('usuarioPesca/pescadores/{id}/editPermisoMarinero', 'PescadoresController@editPermisoMarinero');
+    Route::post('usuarioPesca/pescadores/{id}/editPermisoMarinero', 'PescadoresController@updatePermisoMarinero');
     Route::get('usuarioPesca/pescadores/{id}/showPermisoMarinero', 'PescadoresController@showPermisoMarinero');
     Route::get('usuarioPesca/pescadores/{id}/editPermisoPatron', 'PescadoresController@editPermisoPatron');
+    Route::post('usuarioPesca/pescadores/{id}/editPermisoPatron', 'PescadoresController@updatePermisoPatron');
     Route::get('usuarioPesca/pescadores/{id}/showPermisoPatron', 'PescadoresController@showPermisoPatron');
 
     Route::get('usuarioPesca/embarcaciones', ['uses'=>'EmbarcacionController@index','as'=>'usuarioPesca.embarcaciones']);
@@ -455,8 +457,16 @@ Route::group(['middleware' => ['auth', 'usuarioPesca']], function () {
     Route::post('usuarioPesca/embarcaciones/{id}/editCertificado', 'EmbarcacionController@updateCertificado');
     Route::get('usuarioPesca/embarcaciones/{id}/showCertificado', 'EmbarcacionController@showCertificado');
     Route::get('usuarioPesca/embarcaciones/{id}/editPermiso', 'EmbarcacionController@editPermiso');
+    Route::post('usuarioPesca/embarcaciones/{id}/editPermiso', 'EmbarcacionController@updatePermiso');
     Route::get('usuarioPesca/embarcaciones/{id}/showPermiso', 'EmbarcacionController@showPermiso');
 
+
+    Route::get('usuarioPesca/permisoPescas', ['uses'=>'PermisoPescaController@index','as'=>'usuarioPesca.permisoPescas']);
+    Route::get('usuarioPesca/permisoPescas/new', 'PermisoPescaController@create');
+    Route::post('usuarioPesca/permisoPescas/new', 'PermisoPescaController@store');
+    Route::get('usuarioPesca/permisoPescas/{id}/edit', 'PermisoPescaController@edit');
+    Route::post('usuarioPesca/permisoPescas/{id}/edit', 'PermisoPescaController@update');
+    Route::get('usuarioPesca/permisoPescas/{id}/delete', 'PermisoPescaController@destroy');
 
     Route::get('usuarioPesca/certificadoMatriculas', ['uses'=>'CertificadoMatriculasController@index','as'=>'usuarioPesca.certificadoMatriculas']);
     Route::get('usuarioPesca/certificadoMatriculas/new', 'CertificadoMatriculasController@create');
@@ -464,6 +474,27 @@ Route::group(['middleware' => ['auth', 'usuarioPesca']], function () {
     Route::get('usuarioPesca/certificadoMatriculas/{id}/edit', 'CertificadoMatriculasController@edit');
     Route::post('usuarioPesca/certificadoMatriculas/{id}/edit', 'CertificadoMatriculasController@update');
     Route::get('usuarioPesca/certificadoMatriculas/{id}/delete', 'CertificadoMatriculasController@destroy');
+
+    Route::get('usuarioPesca/permisoZarpes', ['uses'=>'PermisoZarpeController@index','as'=>'usuarioPesca.permisoZarpes']);
+    Route::get('usuarioPesca/permisoZarpes/new', 'PermisoZarpeController@create');
+    Route::post('usuarioPesca/permisoZarpes/new', 'PermisoZarpeController@store');
+    Route::get('usuarioPesca/permisoZarpes/{id}/edit', 'PermisoZarpeController@edit');
+    Route::post('usuarioPesca/permisoZarpes/{id}/edit', 'PermisoZarpeController@update');
+    Route::get('usuarioPesca/permisoZarpes/{id}/delete', 'PermisoZarpeController@destroy');
+
+    Route::get('usuarioPesca/permisoMarineros', ['uses'=>'PermisoMarineroController@index','as'=>'usuarioPesca.permisoMarineros']);
+    Route::get('usuarioPesca/permisoMarineros/new', 'PermisoMarineroController@create');
+    Route::post('usuarioPesca/permisoMarineros/new', 'PermisoMarineroController@store');
+    Route::get('usuarioPesca/permisoMarineros/{id}/edit', 'PermisoMarineroController@edit');
+    Route::post('usuarioPesca/permisoMarineros/{id}/edit', 'PermisoMarineroController@update');
+    Route::get('usuarioPesca/permisoMarineros/{id}/delete', 'PermisoMarineroController@destroy');
+
+    Route::get('usuarioPesca/permisoPatrones', ['uses'=>'PermisoPatronController@index','as'=>'usuarioPesca.permisoPatrones']);
+    Route::get('usuarioPesca/permisoPatrones/new', 'PermisoPatronController@create');
+    Route::post('usuarioPesca/permisoPatrones/new', 'PermisoPatronController@store');
+    Route::get('usuarioPesca/permisoPatrones/{id}/edit', 'PermisoPatronController@edit');
+    Route::post('usuarioPesca/permisoPatrones/{id}/edit', 'PermisoPatronController@update');
+    Route::get('usuarioPesca/permisoPatrones/{id}/delete', 'PermisoPatronController@destroy');
 
 })  ;
 Route::get('token',function(){

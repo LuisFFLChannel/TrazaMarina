@@ -5,7 +5,7 @@
 @stop
 
 @section('title')
-    Certificados de Matricula
+    Permisos de Zarpes
 @stop
 
 @section('content')
@@ -13,51 +13,56 @@
 <table class="table table-bordered table-striped">
     <tr>
         <th class="text-center">N° Documennto</th>
-        <th class="text-center">Dueño</th>   
+        <th class="text-center">Nombre</th>   
         <th class="text-center">N° de Matricula</th>
-        <th class="text-center">Barco</th>
+        <th class="text-center">Fecha Zarpe</th>
         <!--<th>Imagen</th>-->
         <th class="text-center">Detalle</th>
         <th class="text-center">Editar</th>
         <th class="text-center">Eliminar</th>
     </tr>
     
-    @foreach($certificadoMatriculas as $certificadoMatricula)
+    @foreach($permisoZarpes as $permisoZarpe)
     <tr>
-      <td class="text-center">{{$certificadoMatricula->id}}</td>
-      <td class="text-center">{{$certificadoMatricula->nombreDueno}} {{$certificadoMatricula->apellidosDueno}}</td>
-      <td class="text-center">{{$certificadoMatricula->nMatricula}}</td>
-      @if($certificadoMatricula->embarcacion!=null)
-        <td class="text-center">{{$certificadoMatricula->embarcacion->nMatricula}} - {{$certificadoMatricula->embarcacion->nombre}}</td>
-      @else
-          <td class="text-center"> No Asociado aun</td>
-      @endif
-     
+      <td class="text-center">{{$permisoZarpe->id}}</td>
+      <td class="text-center">{{$permisoZarpe->nombre}}</td>
+      <td class="text-center">{{$permisoZarpe->nMatricula}}</td>
+      <th class="text-center">{{date_format(date_create($permisoZarpe->Zarpe),"d/m/Y")}} </td>
+         
       
-      <!--<td>{!! Html::image($certificadoMatricula->imagen, null, array('class'=>'gift_img')) !!}</td>-->
+      <!--<td>{!! Html::image($permisoZarpe->imagen, null, array('class'=>'gift_img')) !!}</td>-->
       <td class="text-center">
-            <a class="btn btn-info" href="detalles" title="Detalles" data-toggle="modal" data-target="#edit{{$certificadoMatricula->id}}"><i class="glyphicon glyphicon-plus"></i></a>
-            <div class="modal fade" id="edit{{$certificadoMatricula->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <a class="btn btn-info" href="detalles" title="Detalles" data-toggle="modal" data-target="#edit{{$permisoZarpe->id}}"><i class="glyphicon glyphicon-plus"></i></a>
+            <div class="modal fade" id="edit{{$permisoZarpe->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title text-left" id="myModalLabel">Detalle del Certificado de Matricula</h4>
+                    <h4 class="modal-title text-left" id="myModalLabel">Detalle del Permiso de Zarpe</h4>
                   </div>
                   <div class="modal-body">
                     <div class="row">
                       <div class="col-sm-1"></div>
                       <div class="col-sm-8">
-                          <h5 class="text-left">N° Documento: {{$certificadoMatricula->id}}</h5>
-                          <h5 class="text-left">Nombre Dueño: {{$certificadoMatricula->nombreDueno}} {{$certificadoMatricula->apellidosDueno}}</h5>
-                          <h5 class="text-left">DNI Dueño: {{$certificadoMatricula->dniDueno}}</h5>
-                          <h5 class="text-left">Numero de Matricula: {{$certificadoMatricula->nMatricula}} </h5>
-                          @if($certificadoMatricula->embarcacion!=null)
-                            <h5 class="text-left">Nombre del barco: {{$certificadoMatricula->embarcacion->nMatricula}} - {{$certificadoMatricula->embarcacion->nombre}}</h5> 
-                          @else
-                            <h5 class="text-left">Nombre del barco: No Esta asociado aun</h5>
-                          @endif                              
-                          
+                          <h5 class="text-left">N° Documento: {{$permisoZarpe->id}}</h5>
+                          <h5 class="text-left">Nombre: {{$permisoZarpe->nombre}}</h5>
+                          <h5 class="text-left">Numero de Matricula: {{$permisoZarpe->nMatricula}} </h5>
+                          <h5 class="text-left">Fecha Zarpe: {{date_format(date_create($permisoZarpe->fechaZarpe),"d/m/Y")}} </h5>
+                          <h5 class="text-left">Fecha Arribo: {{date_format(date_create($permisoZarpe->fechaArribo),"d/m/Y")}} </h5>
+                          <h5 class="text-left">Capitania Asociada: {{$permisoZarpe->capitania->id}} - {{$permisoZarpe->capitania->nombre}} </h5>
+                          <h5 class="text-left">Puerto de Zarpe: {{$permisoZarpe->puerto->id}} - {{$permisoZarpe->puerto->nombre}} </h5>
+                          <h5 class="text-left">Patron: </h5>
+                          @if($permisoZarpe->patron!=null)
+                              @foreach($permisoZarpe->patron as $pes)
+                                  <h6 class="text-center">DNI - Nombre: {{$pes->pescador->dni}} - {{$pes->pescador->apellidos}}, {{$pes->$pescador->nombres}}</h5> 
+                              @endforeach
+                          @endif 
+                          <h5 class="text-left">Pescadores: </h5>
+                          @if($permisoZarpe->pescadores!=null)
+                              @foreach($permisoZarpe->pescadores as $pes)
+                                  <h6 class="text-center">DNI - Nombre: {{$pes->pescador->dni}} - {{$pes->pescador->apellidos}}, {{$pes->$pescador->nombres}}</h5> 
+                              @endforeach                    
+                          @endif 
                     </div>
                   </div>
                   <div class="modal-footer">
@@ -68,27 +73,27 @@
             </div>
           </td>
       <td class="text-center">
-        <a class="btn btn-info" href="{{url('usuarioPesca/certificadoMatriculas/'.$certificadoMatricula->id.'/edit')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
+        <a class="btn btn-info" href="{{url('usuarioPesca/permisoZarpes/'.$permisoZarpe->id.'/edit')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
       </td> 
       <td class="text-center">
-        <a class="btn btn-info" title="Eliminar" data-toggle="modal" data-target="#deleteModal{{$certificadoMatricula->id}}" ><i class="glyphicon glyphicon-remove"></i></a>
+        <a class="btn btn-info" title="Eliminar" data-toggle="modal" data-target="#deleteModal{{$permisoZarpe->id}}" ><i class="glyphicon glyphicon-remove"></i></a>
       </td>
     </tr>
 
     <!-- MODAL -->
-    <div class="modal fade"  id="deleteModal{{$certificadoMatricula->id}}">
+    <div class="modal fade"  id="deleteModal{{$permisoZarpe->id}}">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">¿Estas seguro que desea eliminar el Certificado de Matricula ?</h4>
+            <h4 class="modal-title">¿Estas seguro que desea eliminar el Permiso de Zarpe?</h4>
           </div>
           <div class="modal-body">
             <h5 class="modal-title">Los cambios serán permanentes</h5>
           </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-info" data-dismiss="modal">No</button>
-              <a class="btn btn-info" href="{{url('usuarioPesca/certificadoMatriculas/'.$certificadoMatricula->id.'/delete')}}" title="Delete" >Sí</a>
+              <a class="btn btn-info" href="{{url('usuarioPesca/permisoZarpes/'.$permisoZarpe->id.'/delete')}}" title="Delete" >Sí</a>
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
@@ -98,7 +103,7 @@
     
 </table>
 
-{!!$certificadoMatriculas->render()!!}
+{!!$permisoZarpes->render()!!}
 @stop
 
 @section('javascript')

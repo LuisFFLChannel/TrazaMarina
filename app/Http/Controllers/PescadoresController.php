@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Pescador\StorePescadorRequest;
 use App\Http\Requests\Pescador\UpdatePescadorRequest;
 use App\Models\Pescador;
+use App\Models\PermisoMarinero;
+use App\Models\PermisoPatron;
 use App\Services\FileService;
 use App\User;
 use Carbon\Carbon;
@@ -27,7 +29,7 @@ class PescadoresController extends Controller
     {
         //
         $pescadores = Pescador::paginate(10);
-        $pescadores->setPath('pescadores');
+        $pescadores->setPath('pescador');
         if (Auth::user()->role_id == 4){
             return view('internal.admin.pescadores', compact('pescadores'));
         }
@@ -80,7 +82,7 @@ class PescadoresController extends Controller
             return redirect()->route('admin.pescadores');
         }
         elseif  (Auth::user()->role_id == 5){
-            return redirect()->route('admin.pescadores');
+            return redirect()->route('usuarioPesca.pescadores');
         }
         
     }
@@ -141,7 +143,7 @@ class PescadoresController extends Controller
             return redirect()->route('admin.pescadores');
         }
         elseif  (Auth::user()->role_id == 5){
-            return redirect()->route('admin.pescadores');
+            return redirect()->route('usuarioPesca.pescadores');
         }
 
     }
@@ -160,7 +162,7 @@ class PescadoresController extends Controller
             return redirect()->route('admin.pescadores');
         }
         elseif  (Auth::user()->role_id == 5){
-            return redirect()->route('admin.pescadores');
+            return redirect()->route('usuarioPesca.pescadores');
         }
    
     }
@@ -168,11 +170,13 @@ class PescadoresController extends Controller
     {
         //
         $pescador = Pescador::find($id);
+        $permisoMarineros =PermisoMarinero::where('asignado','=',false)->get();
+        //dd($permisoMarineros);
         if (Auth::user()->role_id == 4){
-            return view('internal.admin.asociarPermisoMarinero', compact('pescador'));
+            return view('internal.admin.asociarPermisoMarinero', compact('pescador','permisoMarineros'));
         }
         elseif  (Auth::user()->role_id == 5){
-            return view('internal.usuarioPesca.asociarPermisoMarinero', compact('pescador'));;
+            return view('internal.usuarioPesca.asociarPermisoMarinero', compact('pescador','permisoMarineros'));;
         }
         
     }
@@ -180,11 +184,14 @@ class PescadoresController extends Controller
     {
         //
         $pescador = Pescador::find($id);
+        $permisoPatrones = PermisoPatron::where('asignado','=',false)->get();
+        //$dd($permisoPatrones);
+        $pescador = Pescador::find($id);
         if (Auth::user()->role_id == 4){
-            return view('internal.admin.asociarPermisoPatron', compact('pescador'));
+            return view('internal.admin.asociarPermisoPatron', compact('pescador','permisoPatrones'));
         }
         elseif  (Auth::user()->role_id == 5){
-            return view('internal.usuarioPesca.asociarPermisoPatron', compact('pescador'));
+            return view('internal.usuarioPesca.asociarPermisoPatron', compact('pescador','permisoPatrones'));
         }
         
     }
@@ -219,5 +226,50 @@ class PescadoresController extends Controller
             return view('internal.usuarioPesca.mostrarPermisoPatron', compact('pescador'));
         }
         
+    }
+    public function updatePermisoPatron(Request $request, $id)
+    {
+        //
+        $input = $request->all();
+
+        $pescador = Pescador::find($id);
+
+        $pescador->permiso_patron_id            =   $input['permisoPatron'];
+        $permiso= PermisoPatron::find($input['permisoPatron']);
+        $permiso->asignado=true;
+
+        $permiso->save();
+
+        $pescador->save();
+
+        if (Auth::user()->role_id == 4){
+            return redirect()->route('admin.pescadores');
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return redirect()->route('usuarioPesca.pescadores');
+        }
+
+    }
+    public function updatePermisoMarinero(Request $request, $id)
+    {
+        //
+        $input = $request->all();
+
+        $pescador = Pescador::find($id);
+
+        $pescador->permiso_marinero_id            =   $input['permisoMarinero'];
+        $permiso= PermisoMarinero::find($input['permisoMarinero']);
+        $permiso->asignado=true;
+
+        $permiso->save();
+
+        $pescador->save();
+
+        if (Auth::user()->role_id == 4){
+            return redirect()->route('admin.pescadores');
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return redirect()->route('usuarioPesca.pescadores');
+        }
     }
 }
