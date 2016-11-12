@@ -6,6 +6,18 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Pesca\StorePescaRequest;
+use App\Http\Requests\Pesca\UpdatePescaRequest;
+use App\Models\Pesca;
+use App\Models\PermisoZarpe;
+use App\Models\Embarcacion;
+use App\Models\Pescador;
+use App\Models\Puerto;
+use App\User;
+use Carbon\Carbon;
+use Auth;
+//use App\Usuario;
+use Session;
 
 class PescaController extends Controller
 {
@@ -17,6 +29,15 @@ class PescaController extends Controller
     public function index()
     {
         //
+         $pescas = Pesca::paginate(10);
+
+        $pescas->setPath('pesca');
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.pescas', compact('pescas'));
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.pescas', compact('pescas'));
+        }
     }
 
     /**
@@ -27,6 +48,23 @@ class PescaController extends Controller
     public function create()
     {
         //
+        $embarcaciones_lista = Embarcacion::all()->lists('nombre','id');
+        $puertos_lista = Puerto::all()->lists('nombre','id');
+        $permisoZarpe_lista = PermisoZarpe::all()->lists('nombre','id');
+       
+      
+        $arreglo = [
+        'embarcaciones_lista'   =>$embarcaciones_lista,
+        'puertos_lista'      =>$puertos_lista,
+        'permisoZarpe_lista' =>$permisoZarpe_lista];
+
+
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.nuevoPesca',$arreglo);
+        }
+        elseif (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.nuevoPesca',$arreglo);
+        }
     }
 
     /**
@@ -38,13 +76,7 @@ class PescaController extends Controller
     public function store(Request $request)
     {
         //
-        $permisoMarinero = PermisoMarinero::find($id);
-        if (Auth::user()->role_id == 4){
-            return view('internal.admin.editarPermisoMarinero', compact('permisoMarinero'));
-        }
-        elseif (Auth::user()->role_id == 5){
-            return view('internal.usuarioPesca.editarPermisoMarinero', compact('permisoMarinero'));
-        }
+        
     }
 
     /**

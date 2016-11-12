@@ -54,13 +54,13 @@
                           <h5 class="text-left">Patron: </h5>
                           @if($permisoZarpe->patron!=null)
                               @foreach($permisoZarpe->patron as $pes)
-                                  <h6 class="text-center">DNI - Nombre: {{$pes->pescador->dni}} - {{$pes->pescador->apellidos}}, {{$pes->$pescador->nombres}}</h5> 
+                                  <h6 class="text-center">DNI - Nombre: {{$pes->dni}} - {{$pes->apellidos}}, {{$pes->nombres}}</h5> 
                               @endforeach
                           @endif 
                           <h5 class="text-left">Pescadores: </h5>
-                          @if($permisoZarpe->pescadores!=null)
-                              @foreach($permisoZarpe->pescadores as $pes)
-                                  <h6 class="text-center">DNI - Nombre: {{$pes->pescador->dni}} - {{$pes->pescador->apellidos}}, {{$pes->$pescador->nombres}}</h5> 
+                          @if($permisoZarpe->marineros!=null)
+                              @foreach($permisoZarpe->marineros as $pes)
+                                  <h6 class="text-center">DNI - Nombre: {{$pes->dni}} - {{$pes->apellidos}}, {{$pes->nombres}}</h5> 
                               @endforeach                    
                           @endif 
                     </div>

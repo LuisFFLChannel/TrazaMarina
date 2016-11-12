@@ -37,12 +37,12 @@ class PermisoZarpe extends Model
         return $patron;
     }*/
     public function pescadores(){
-        return $this->hasMany('App\Models\PermisoZarpePescadores','permisoZarpe_id')->where('permisoZarpe_id',$this->id);
+        return $this->belongsToMany('App\Models\Pescador','permisoZarpe_pescadores','permisoZarpe_id','pescadores_id');//->where('permisoZarpe_id',$this->id);
     }
     public function marineros(){
-    	return $this->hasMany('App\Models\PermisoZarpePescadores','permisoZarpes_id')->where('permisoZarpe_id',$this->id)->where('tipo',2);
+    	return $this->belongsToMany('App\Models\Pescador','permisoZarpe_pescadores','permisoZarpe_id','pescadores_id')->wherePivot('tipo', 2);//->where('permisoZarpe_id',$this->id)->where('tipo',2);
     }
     public function patron(){
-    	return $this->hasMany('App\Models\PermisoZarpePescadores','permisoZarpe_id')->where('permisoZarpe_id',$this->id)->where('tipo',1);
+    	return $this->belongsToMany('App\Models\Pescador','permisoZarpe_pescadores','permisoZarpe_id','pescadores_id')->wherePivot('tipo', 1);//->where('permisoZarpe_id',$this->id)->where('tipo',1);
     }
 }

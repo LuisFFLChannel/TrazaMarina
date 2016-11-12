@@ -277,7 +277,7 @@ $("#AgregarPescador").on("click",function(){
                         var x = document.createElement("INPUT");
                         x.setAttribute("type", "number");
                         x.setAttribute("value", data[id].id);
-                        x.setAttribute("name", "id");
+                        x.setAttribute("name", "pescadores_id[]");
                         x.style.border = 'none';
                         x.style.background = 'transparent';
                         x.setAttribute("readonly","readonly");
@@ -285,7 +285,7 @@ $("#AgregarPescador").on("click",function(){
                         var newText2 = document.createElement("INPUT");
                         newText2.setAttribute("type", "text");
                         newText2.setAttribute("value", ""+data[id].apellidos+", "+ data[id].nombres);
-                        newText2.setAttribute("name", "apelidos/nombres");
+                        newText2.setAttribute("name", "apelidos/nombres[]");
                         newText2.style.border = 'none';
                         newText2.style.background = 'transparent';
                         newText2.setAttribute("readonly","readonly");
@@ -294,7 +294,7 @@ $("#AgregarPescador").on("click",function(){
                         var newText3 = document.createElement("INPUT");
                         newText3.setAttribute("type", "text");
                         newText3.setAttribute("value", ""+data[id].dni);
-                        newText3.setAttribute("name", "dni");
+                        newText3.setAttribute("name", "dni[]");
                         newText3.style.border = 'none';
                         newText3.style.background = 'transparent';
                         newText3.setAttribute("readonly","readonly");
@@ -359,7 +359,7 @@ $("#AgregarPatron").on("click",function(){
                         var x = document.createElement("INPUT");
                         x.setAttribute("type", "number");
                         x.setAttribute("value", data[id].id);
-                        x.setAttribute("name", "id");
+                        x.setAttribute("name", "patrones_id[]");
                         x.style.border = 'none';
                         x.style.background = 'transparent';
                         x.setAttribute("readonly","readonly");
@@ -367,7 +367,7 @@ $("#AgregarPatron").on("click",function(){
                         var newText2 = document.createElement("INPUT");
                         newText2.setAttribute("type", "text");
                         newText2.setAttribute("value", ""+data[id].apellidos+", "+ data[id].nombres);
-                        newText2.setAttribute("name", "apelidos/nombres");
+                        newText2.setAttribute("name", "apelidos/nombres[]");
                         newText2.style.border = 'none';
                         newText2.style.background = 'transparent';
                         newText2.setAttribute("readonly","readonly");
@@ -376,7 +376,7 @@ $("#AgregarPatron").on("click",function(){
                         var newText3 = document.createElement("INPUT");
                         newText3.setAttribute("type", "text");
                         newText3.setAttribute("value", ""+data[id].dni);
-                        newText3.setAttribute("name", "dni");
+                        newText3.setAttribute("name", "dni[]");
                         newText3.style.border = 'none';
                         newText3.style.background = 'transparent';
                         newText3.setAttribute("readonly","readonly");

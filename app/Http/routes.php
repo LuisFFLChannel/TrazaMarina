@@ -497,6 +497,9 @@ Route::group(['middleware' => ['auth', 'usuarioPesca']], function () {
     Route::post('usuarioPesca/permisoPatrones/{id}/edit', 'PermisoPatronController@update');
     Route::get('usuarioPesca/permisoPatrones/{id}/delete', 'PermisoPatronController@destroy');
 
+    Route::get('usuarioPesca/pescas', ['uses'=>'PescaController@index','as'=>'usuarioPesca.pescas']);
+    Route::get('usuarioPesca/pescas/new', 'PescaController@create');
+
 })  ;
 Route::get('token',function(){
     return csrf_token();

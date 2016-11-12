@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\PermisoZarpe\StorePermisoZarpeRequest;
 use App\Http\Requests\PermisoZarpe\UpdatePermisoZarpeRequest;
 use App\Models\PermisoZarpe;
+use App\Models\PermisoZarpePescadores;
 use App\Models\Capitania;
 use App\Models\Pescador;
 use App\Models\Puerto;
@@ -29,7 +30,7 @@ class PermisoZarpeController extends Controller
     {
         //
         $permisoZarpes = PermisoZarpe::paginate(10);
-        //dd($permisoZarpes);
+
         $permisoZarpes->setPath('permisoZarpe');
         if (Auth::user()->role_id == 4){
             return view('internal.admin.PermisoZarpes', compact('permisoZarpes'));
@@ -70,6 +71,22 @@ class PermisoZarpeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function storePescadores($data, $permiso){
+        $var = new PermisoZarpePescadores();
+        $var->pescadores_id = $data['pescadores_id'];
+        $var->permisoZarpe_id = $permiso->id;
+        $var->tipo = 2;
+        $var->save();
+        return $var;
+    }
+    public function storePatrones($data, $permiso){
+        $var = new PermisoZarpePescadores();
+        $var->pescadores_id = $data['patrones_id'];
+        $var->permisoZarpe_id = $permiso->id;
+        $var->tipo = 1;
+        $var->save();
+        return $var;
+    }
     public function store(StorePermisoZarpeRequest $request)
     {
         //
@@ -88,7 +105,56 @@ class PermisoZarpeController extends Controller
         $permisoPatron->activo                  =   true;
         //Control de subida de imagen por hacer
 
+    
+        $pescadores_data = [
+            'pescadores_id'     => $request->input('pescadores_id')
+        ];
+        $patrones_data = [
+            'patrones_id'       => $request->input('patrones_id')
+        ];
+        foreach($pescadores_data ['pescadores_id'] as $key=>$value1){
+            $pes_data = [
+                'pescadores_id' => $value1
+            ];
+            foreach($patrones_data ['patrones_id'] as $key=>$value2){
+                $pats_data = [
+                    'patrones_id' => $value2
+                ];
+                if ($pes_data['pescadores_id']==$pats_data['patrones_id']){
+                     return redirect()->back()->withInput()->withErrors(['errors' => 'El Patron no puede ser marinero a la vez']);
+                }
+            }
+        }
+        foreach($pescadores_data ['pescadores_id'] as $key1=>$value1){
+            $pes_data = [
+                'pescadores_id' => $value1
+            ];
+            foreach($pescadores_data ['pescadores_id'] as $key2=>$value2){
+                $pes2_data = [
+                    'pescadores_id' => $value2
+                ];
+                if ($key1!= $key2 and $pes_data['pescadores_id']==$pes2_data['pescadores_id']){
+                     return redirect()->back()->withInput()->withErrors(['errors' => 'Existen Marineros Repetidos']);
+                }
+            }
+        }
+        
         $permisoPatron->save();
+        foreach($pescadores_data ['pescadores_id'] as $key=>$value){
+            $pes_data = [
+                'pescadores_id' => $value
+            ];
+            $var = $this->storePescadores($pes_data , $permisoPatron);
+        }
+        foreach($patrones_data ['patrones_id'] as $key=>$value){
+            $pats_data = [
+                'patrones_id' => $value
+            ];
+            $var = $this->storePatrones($pats_data , $permisoPatron);
+        }
+
+
+        
         
         if (Auth::user()->role_id == 4){
             return redirect()->route('admin.permisoZarpes');

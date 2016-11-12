@@ -12,10 +12,10 @@ class PermisoZarpePescadores extends Model
 	protected $dates = ['deleted_at'];
 
 	public function pescador(){
-        return $this->belongsTo('App\Models\Pescador','pescadores_id');
+        return $this->belongsTo('App\Models\Pescador')->where('id',$this->pescadores_id);
     }
 
     public function permizoZarpe(){
-        return $this->belongsTo('App\Models\Puerto','permisoZarpe_id');
+        return $this->belongsTo('App\Models\PermizoZarpe','permisoZarpe_id');
     }
 }
