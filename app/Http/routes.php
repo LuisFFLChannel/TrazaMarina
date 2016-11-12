@@ -481,6 +481,7 @@ Route::group(['middleware' => ['auth', 'usuarioPesca']], function () {
     Route::get('usuarioPesca/permisoZarpes/{id}/edit', 'PermisoZarpeController@edit');
     Route::post('usuarioPesca/permisoZarpes/{id}/edit', 'PermisoZarpeController@update');
     Route::get('usuarioPesca/permisoZarpes/{id}/delete', 'PermisoZarpeController@destroy');
+    Route::get('usuarioPesca/nuevoPermisoZarpes/new/{id_variable}', 'PescadoresController@ajaxPermisoZarpe');
 
     Route::get('usuarioPesca/permisoMarineros', ['uses'=>'PermisoMarineroController@index','as'=>'usuarioPesca.permisoMarineros']);
     Route::get('usuarioPesca/permisoMarineros/new', 'PermisoMarineroController@create');

@@ -272,4 +272,13 @@ class PescadoresController extends Controller
             return redirect()->route('usuarioPesca.pescadores');
         }
     }
+    public function ajaxPermisoZarpe($id_variable)
+    {
+
+        $pescad = Pescador::where("id","=",$id_variable)->get()->toArray() ;
+
+
+
+    return  json_encode(  $pescad);  
+    }
 }

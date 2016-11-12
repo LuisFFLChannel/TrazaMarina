@@ -10,6 +10,7 @@ use App\Http\Requests\PermisoZarpe\StorePermisoZarpeRequest;
 use App\Http\Requests\PermisoZarpe\UpdatePermisoZarpeRequest;
 use App\Models\PermisoZarpe;
 use App\Models\Capitania;
+use App\Models\Pescador;
 use App\Models\Puerto;
 use App\User;
 use Carbon\Carbon;
@@ -48,9 +49,13 @@ class PermisoZarpeController extends Controller
         //
         $capitanias_lista = Capitania::all()->lists('nombre','id');
         $puertos_lista = Puerto::all()->lists('nombre','id');
+        $pescadores = Pescador::whereNotNull('permiso_marinero_id')->get();
+        $patrones = Pescador::whereNotNull('permiso_patron_id')->get();
         $arreglo = [
         'capitanias_lista'   =>$capitanias_lista,
-        'puertos_lista'      =>$puertos_lista];
+        'puertos_lista'      =>$puertos_lista,
+        'pescadores'         =>$pescadores,
+        'patrones'           =>$patrones];
         if (Auth::user()->role_id == 4){
             return view('internal.admin.nuevoPermisoZarpe',$arreglo);
         }

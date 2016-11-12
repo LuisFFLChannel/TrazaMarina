@@ -27,7 +27,7 @@
       <td class="text-center">{{$permisoZarpe->id}}</td>
       <td class="text-center">{{$permisoZarpe->nombre}}</td>
       <td class="text-center">{{$permisoZarpe->nMatricula}}</td>
-      <th class="text-center">{{date_format(date_create($permisoZarpe->Zarpe),"d/m/Y")}} </td>
+      <td class="text-center">{{date_format(date_create($permisoZarpe->Zarpe),"d/m/Y")}} </td>
          
       
       <!--<td>{!! Html::image($permisoZarpe->imagen, null, array('class'=>'gift_img')) !!}</td>-->

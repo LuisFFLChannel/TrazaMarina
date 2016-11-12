@@ -141,6 +141,7 @@
  // Peticion ajax
      $.getJSON( url_base + "/promoter/promotion/new/"+variable  , function(data)
      {
+     	console.log(data);
        $("#id_zoneCombo").empty();
        $.each( data, function( id, name ) {
            $('#id_zoneCombo').append("<option value=\""+id+"\">"+name+"</option>");
@@ -162,6 +163,7 @@
      // Peticion ajax
      $.getJSON(url_base+"/promoter/"+category_id+"/subcategories", function(data)
      {
+
        $("#subcategory_id").empty();
        $.each( data, function( id, name ) {
            $('#subcategory_id').append("<option value=\""+id+"\">"+name+"</option>");

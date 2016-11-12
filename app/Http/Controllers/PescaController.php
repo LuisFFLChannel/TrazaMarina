@@ -38,6 +38,13 @@ class PescaController extends Controller
     public function store(Request $request)
     {
         //
+        $permisoMarinero = PermisoMarinero::find($id);
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.editarPermisoMarinero', compact('permisoMarinero'));
+        }
+        elseif (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.editarPermisoMarinero', compact('permisoMarinero'));
+        }
     }
 
     /**

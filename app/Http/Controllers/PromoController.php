@@ -228,7 +228,7 @@ class PromoController extends Controller
 
 public function ajax($event_id)
 {
-
+    
     $zones = Zone::where('event_id' ,$event_id )->lists('name','id') ;;
 
 
