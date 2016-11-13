@@ -9,4 +9,16 @@ class Pesca extends Model
     //
     protected $table = 'pesca';
 	protected $dates = ['deleted_at'];
+
+	public function embarcacion(){
+        return $this->belongsTo('App\Models\Embarcacion');
+    }
+    public function puerto(){
+        return $this->belongsTo('App\Models\Puerto');
+    }
+    public function permisoZarpe(){
+        return $this->belongsTo('App\Models\PermisoZarpe','permisoZarpe_id');
+    }
+
+
 }

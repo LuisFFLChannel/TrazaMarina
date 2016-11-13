@@ -26,7 +26,7 @@ class StoreEmbarcacionRequest extends Request
         return [
             //
             'nombre'                =>  'required|max:100',
-            'nMatricula'            =>  'required|max:50',
+            'nMatricula'            =>  'required|max:50|unique:embarcacion',
             'nombreDueno'           =>  'required|max:100',
             'apellidoDueno'         =>  'required|max:100',
             'capacidad'             =>  'required|numeric|min:0',

@@ -499,7 +499,9 @@ Route::group(['middleware' => ['auth', 'usuarioPesca']], function () {
 
     Route::get('usuarioPesca/pescas', ['uses'=>'PescaController@index','as'=>'usuarioPesca.pescas']);
     Route::get('usuarioPesca/pescas/new', 'PescaController@create');
-
+    Route::post('usuarioPesca/pescas/new', 'PescaController@store');
+    Route::get('usuarioPesca/pescas/{id}/edit', 'PescaController@edit');
+    Route::post('usuarioPesca/pescas/{id}/edit', 'PescaController@update');
 })  ;
 Route::get('token',function(){
     return csrf_token();

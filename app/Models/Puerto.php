@@ -16,4 +16,7 @@ class Puerto extends Model
     public function permisoZarpe(){
         return $this->hasMany('App\Models\PermisoZarpe');
     }
+    public function pesca(){
+        return $this->hasMany('App\Models\Pesca');
+    }
 }

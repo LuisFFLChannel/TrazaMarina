@@ -12,7 +12,7 @@
 
 <div class="row">
   <div class="col-sm-8">
-    {!!Form::open(array('url' => 'usuarioPesca/permisoMarineros/new','files'=>true,'id'=>'form','class'=>'form-horizontal'))!!}
+    {!!Form::open(array('url' => 'usuarioPesca/permisoPescas/new','files'=>true,'id'=>'form','class'=>'form-horizontal'))!!}
       <div class="form-group">
           <label for="inputEmail3" class="col-sm-3 control-label">Nombres</label>
           <div class="col-sm-9">

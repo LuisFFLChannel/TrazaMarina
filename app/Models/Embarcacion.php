@@ -17,5 +17,8 @@ class Embarcacion extends Model
     public function permisoPesca(){
         return $this->belongsTo('App\Models\PermisoPesca');
     }
+    public function pesca(){
+        return $this->hasMany('App\Models\Pesca');
+    }
 
 }

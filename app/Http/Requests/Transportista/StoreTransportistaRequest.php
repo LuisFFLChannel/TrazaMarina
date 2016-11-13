@@ -26,7 +26,7 @@ class StoreTransportistaRequest extends Request
         return [
             'nombres'           =>  'required|max:100',
             'apellidos'         =>  'required|max:100',
-            'dni'               =>  'required|integer',
+            'dni'               =>  'required|integer|unique:transportista',
             'telefono'          =>  'required|integer',
             'correo'            =>  'required|max:100',
             'brevete'           =>  'required|max:10'

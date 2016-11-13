@@ -30,7 +30,7 @@ class PescaController extends Controller
     {
         //
          $pescas = Pesca::paginate(10);
-
+       ;
         $pescas->setPath('pesca');
         if (Auth::user()->role_id == 4){
             return view('internal.admin.pescas', compact('pescas'));
@@ -50,7 +50,7 @@ class PescaController extends Controller
         //
         $embarcaciones_lista = Embarcacion::all()->lists('nombre','id');
         $puertos_lista = Puerto::all()->lists('nombre','id');
-        $permisoZarpe_lista = PermisoZarpe::all()->lists('nombre','id');
+        $permisoZarpe_lista = PermisoZarpe::where("asignado","=","false")->get()->lists('nombre','id');
        
       
         $arreglo = [
@@ -73,10 +73,64 @@ class PescaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePescaRequest $request)
     {
         //
+        $input = $request->all();
+
+
+        $embarcacion = Embarcacion::find($input['embarcacion_id']);
+        //dd($embarcacion->certificado_matricula_id);
+        if ($embarcacion->certificado_matricula_id == null or $embarcacion->certificado_matricula_id == 0 ){
+            return redirect()->back()->withInput()->withErrors(['errors' => 'La Embarcacion seleccionada no tiene asociado ningun Certificado de Matricula']);
+        }
+        if ($embarcacion->permiso_pesca_id == null or $embarcacion->permiso_pesca_id == 0 ){
+            return redirect()->back()->withInput()->withErrors(['errors' => 'La Embarcacion seleccionada no tiene asociado ningun Permiso de Pesca']);
+        }
+
+        $pescas = Pesca::where("arribo","=","false")->where('activo',true)->get();
         
+        $permisoZarpe = PermisoZarpe::find($input['permisoZarpe_id']);
+        foreach ($pescas as $pes ) {
+            //dd($pes->embarcacion->nombre);
+            if ($pes->embarcacion->id == $input['embarcacion_id']){
+                return redirect()->back()->withInput()->withErrors(['errors' => 'La Embarcacion seleccionada se encuentra en alta mar en estos momentos']);
+            }
+            $pescadoresActuales = $permisoZarpe->pescadores;
+            $pescadoresTotales = $pes->permisoZarpe->pescadores;
+            foreach ($pescadoresActuales as $auxPescadorActual ) {
+                foreach ($pescadoresTotales as $auxPescadorTotal ) {
+                    //dd($auxPescadorActual->id);
+                    if ($auxPescadorActual->id == $auxPescadorTotal->id){
+                        return redirect()->back()->withInput()->withErrors(['errors' => 'Hay pescadores en el permiso de Zarpe que se encuentran en alta mar en estos momentos. Revise el Permiso Zarpe']);
+                    }
+                }
+            }
+        }
+
+
+        dd($pescas);
+        $pesca                              =   new Pesca;
+        $pesca->embarcacion_id              =   $input['embarcacion_id'];
+        $pesca->coordenadaX                 =   $input['latitud'];
+        $pesca->coordenadaY                 =   $input['longitud'];
+        $pesca->fechaZarpe                  =   new Carbon($input['fechaZarpe']);
+        $pesca->puerto_id                   =   $input['puerto_id'];
+        $pesca->permisoZarpe_id             =   $input['permisoZarpe_id'];  
+        $pesca->activo                      =   true;
+        $pesca->arribo                      =   false;
+        $pesca->save();
+
+        if (Auth::user()->role_id == 4){
+            return redirect()->route('admin.pescas');
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return redirect()->route('usuarioPesca.pescas');
+        }
+
+
+
+
     }
 
     /**
@@ -99,6 +153,25 @@ class PescaController extends Controller
     public function edit($id)
     {
         //
+        $pesca = Pesca::find($id);
+        $embarcaciones_lista = Embarcacion::all()->lists('nombre','id');
+        $puertos_lista = Puerto::all()->lists('nombre','id');
+        $permisoZarpe_lista = PermisoZarpe::where("asignado","=","false")->get()->lists('nombre','id');
+       
+      
+        $arreglo = [
+        'pesca'     =>$pesca,
+        'embarcaciones_lista'   =>$embarcaciones_lista,
+        'puertos_lista'      =>$puertos_lista,
+        'permisoZarpe_lista' =>$permisoZarpe_lista];
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.editarPesca', $arreglo);
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.editarPesca', $arreglo);
+        }
+
+        
     }
 
     /**
@@ -108,9 +181,60 @@ class PescaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdatePescaRequest $request, $id)
     {
         //
+        $input = $request->all();
+
+        $embarcacion = Embarcacion::find($input['embarcacion_id']);
+        //dd($embarcacion->certificado_matricula_id);
+        if ($embarcacion->certificado_matricula_id == null or $embarcacion->certificado_matricula_id == 0 ){
+            return redirect()->back()->withInput()->withErrors(['errors' => 'La Embarcacion seleccionada no tiene asociado ningun Certificado de Matricula']);
+        }
+        if ($embarcacion->permiso_pesca_id == null or $embarcacion->permiso_pesca_id == 0 ){
+            return redirect()->back()->withInput()->withErrors(['errors' => 'La Embarcacion seleccionada no tiene asociado ningun Permiso de Pesca']);
+        }
+
+        $pescas = Pesca::where("arribo","=","false")->where('activo',true)->where("id","<>",$id)->get();
+        
+        $permisoZarpe = PermisoZarpe::find($input['permisoZarpe_id']);
+
+        foreach ($pescas as $pes ) {
+            //dd($pes->embarcacion->nombre);
+            if ($pes->embarcacion->id == $input['embarcacion_id']){
+                return redirect()->back()->withInput()->withErrors(['errors' => 'La Embarcacion seleccionada se encuentra en alta mar en estos momentos']);
+            }
+            $pescadoresActuales = $permisoZarpe->pescadores;
+            $pescadoresTotales = $pes->permisoZarpe->pescadores;
+            foreach ($pescadoresActuales as $auxPescadorActual ) {
+                foreach ($pescadoresTotales as $auxPescadorTotal ) {
+                    //dd($auxPescadorActual->id);
+                    if ($auxPescadorActual->id == $auxPescadorTotal->id){
+                        return redirect()->back()->withInput()->withErrors(['errors' => 'Hay pescadores en el permiso de Zarpe que se encuentran en alta mar en estos momentos. Revise el Permiso Zarpe']);
+                    }
+                }
+            }
+        }
+       
+        $pesca = Pesca::find($id);
+        if ($permisoZarpe->asociado == true and  $permisoZarpe->pesca->id != $id){
+            return redirect()->back()->withInput()->withErrors(['errors' => 'El permiso Zarpe ya ha sido asignado a una pesca']);
+        }
+
+        $pesca->embarcacion_id              =   $input['embarcacion_id'];
+        $pesca->coordenadaX                 =   $input['latitud'];
+        $pesca->coordenadaY                 =   $input['longitud'];
+        $pesca->fechaZarpe                  =   new Carbon($input['fechaZarpe']);
+        $pesca->puerto_id                   =   $input['puerto_id'];
+        $pesca->permisoZarpe_id             =   $input['permisoZarpe_id'];  
+        $pesca->save();
+
+        if (Auth::user()->role_id == 4){
+            return redirect()->route('admin.pescas');
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return redirect()->route('usuarioPesca.pescas');
+        }
     }
 
     /**

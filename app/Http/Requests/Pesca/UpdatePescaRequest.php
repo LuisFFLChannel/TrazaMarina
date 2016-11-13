@@ -13,7 +13,7 @@ class UpdatePescaRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,13 @@ class UpdatePescaRequest extends Request
     public function rules()
     {
         return [
-            //
+            
+            'embarcacion_id'                =>  'required|integer',
+            'longitud'                      =>  'required|numeric',
+            'latitud'                       =>  'required|numeric',
+            'fechaZarpe'                    =>  'required',
+            'puerto_id'                     =>  'required|integer',
+            'permisoZarpe_id'               =>  'required|integer'
         ];
     }
 }

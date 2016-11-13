@@ -18,9 +18,10 @@ class CreatePescaTable extends Migration
             $table->timestamp('fechaZarpe');
             $table->float('coordenadaX');
             $table->float('coordenadaY');
-            $table->integer('embarcacion_id')->unsigned()->unique();
-            $table->integer('puerto_id')->unsigned()->unique();
+            $table->integer('embarcacion_id')->unsigned();
+            $table->integer('puerto_id')->unsigned();
             $table->integer('permisoZarpe_id')->unsigned()->unique();
+            $table->boolean('arribo');
             $table->boolean('activo');
             $table->softDeletes();
             $table->timestamps();
