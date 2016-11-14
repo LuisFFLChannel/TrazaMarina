@@ -65,7 +65,7 @@ class PermisoPescaController extends Controller
         $permisoPesca                        =   new PermisoPesca;
         $permisoPesca->nombre                =   $input['nombre'];
         $permisoPesca->nMatricula            =   $input['nMatricula'];
-        $permisoPesca->fechaVigencia         =   $input['fechaVigencia'];
+        $permisoPesca->fechaVigencia         =   new Carbon($input['fechaVigencia']);
         $permisoPesca->asignado              =   false;
         $permisoPesca->activo                =   true;
         //Control de subida de imagen por hacer
@@ -125,7 +125,7 @@ class PermisoPescaController extends Controller
 
         $permisoPesca->nombre                =   $input['nombre'];
         $permisoPesca->nMatricula            =   $input['nMatricula'];
-        $permisoPesca->fechaVigencia         =   $input['fechaVigencia'];
+        $permisoPesca->fechaVigencia         =   new Carbon($input['fechaVigencia']);
         //Control de subida de imagen por hacer
 
         $permisoPesca->save();

@@ -233,7 +233,11 @@ class PescadoresController extends Controller
         $input = $request->all();
 
         $pescador = Pescador::find($id);
-
+        if($pescador->permiso_patron_id !=null){
+            $permi= PermisoPatron::find($pescador->permiso_patron_id );
+            $permi->asignado=false;
+            $permi->save();
+        }
         $pescador->permiso_patron_id            =   $input['permisoPatron'];
         $permiso= PermisoPatron::find($input['permisoPatron']);
         $permiso->asignado=true;
@@ -256,7 +260,11 @@ class PescadoresController extends Controller
         $input = $request->all();
 
         $pescador = Pescador::find($id);
-
+        if($pescador->permiso_marinero_id !=null){
+            $permi= PermisoMarinero::find($pescador->permiso_marinero_id );
+            $permi->asignado=false;
+            $permi->save();
+        }
         $pescador->permiso_marinero_id            =   $input['permisoMarinero'];
         $permiso= PermisoMarinero::find($input['permisoMarinero']);
         $permiso->asignado=true;

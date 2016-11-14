@@ -67,7 +67,7 @@ class PermisoMarineroController extends Controller
         $permisoMarinero->apellidos             =   $input['apellidos'];
         $permisoMarinero->dni                   =   $input['dni'];
         $permisoMarinero->numeroMarinero        =   $input['numeroMarinero'];
-        $permisoMarinero->fechaVigencia         =   $input['fechaVigencia'];
+        $permisoMarinero->fechaVigencia         =   new Carbon($input['fechaVigencia']);
         $permisoMarinero->asignado                =   false;
         $permisoMarinero->activo                =   true;
         //Control de subida de imagen por hacer
@@ -129,7 +129,7 @@ class PermisoMarineroController extends Controller
         $permisoMarinero->apellidos             =   $input['apellidos'];
         $permisoMarinero->dni                   =   $input['dni'];
         $permisoMarinero->numeroMarinero        =   $input['numeroMarinero'];
-        $permisoMarinero->fechaVigencia         =   $input['fechaVigencia'];
+        $permisoMarinero->fechaVigencia         =   new Carbon($input['fechaVigencia']);
         //Control de subida de imagen por hacer
 
         $permisoMarinero->save();

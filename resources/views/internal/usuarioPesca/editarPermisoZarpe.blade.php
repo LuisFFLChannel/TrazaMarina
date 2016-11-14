@@ -2,6 +2,7 @@
 
 @section('style')
 
+{!!Html::style('css/jquery.dataTables.min.css')!!}
 @stop
 
 @section('title')
@@ -67,6 +68,67 @@
                 {!! Form::select('puerto_id', $puertos_lista->toArray(), $permisoZarpe->puerto_id, ['class' => 'form-control','required', 'id'=>'puerto_id']) !!}
             </div>
         </div>
+         <br>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">Pescadores</label>
+            <div class="col-sm-9">
+                <a  id="botonPes" class="btn btn-info" href="" title="submit" data-toggle="modal" data-target="#submitPescadores"> Agregar Pescador</a>
+            </div>
+        </div>
+        <div class="form-group"> 
+          <div class="col-sm-offset-2 col-sm-10">
+              <table id="table-pescadores" class="table table-bordered table-striped ">
+                  <tr>
+                      <th>Codigo</th>
+                      <th>Apellidos y Nombre</th>
+                      <th>DNI </th>
+                      <th>Accion</th>
+                  </tr>
+                  @foreach($permisoZarpe->marineros as $marinero)
+                    <tr>
+                        <td><input name="pescadores_id[]" type="number" value="{{$marinero->id}}" style = "border:none"></td>
+                        <td><input name="apelidos/nombres[][]" type="text" value="{{$marinero->apellidos}} - {{$marinero->nombres}}" style = "border:none"></td>
+                        <td><input name="dni[]" type="number" value="{{$marinero->dni}}" style = "border:none"></td>
+                        <td>
+                          <a class="btn btn-info"   title="Eliminar"    onclick="deleteFunctionPesca(this)"><i class="glyphicon glyphicon-remove"></i></a>
+                         
+                        </td>
+                    </tr> 
+                   @endforeach    
+              </table>
+            </div>
+        </div>
+
+        <br>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">Patron</label>
+            <div class="col-sm-9">
+                <a id="botonPat" class="btn btn-info" href="" title="submit" data-toggle="modal" data-target="#submitPatron">Agregar Patron</a>
+            </div>
+        </div>
+        <div class="form-group"> 
+          <div class="col-sm-offset-2 col-sm-10">
+              <table id="table-patron" class="table table-bordered table-striped ">
+                  <tr>
+                      <th>Codigo</th>
+                      <th>Apellidos y Nombre</th>
+                      <th>DNI </th>
+                      <th>Accion</th>
+                  </tr>
+                  @foreach($permisoZarpe->patron as $marinero)
+                    <tr>
+                        <td><input name="patrones_id[]" type="number" value="{{$marinero->id}}" style = "border:none"></td>
+                        <td><input name="apelidos/nombres[][]" type="text" value="{{$marinero->apellidos}} - {{$marinero->nombres}}" style = "border:none"></td>
+                        <td><input name="dni[]" type="number" value="{{$marinero->dni}}" style = "border:none"></td>
+                        <td>
+                          <a class="btn btn-info"   title="Eliminar"    onclick="deleteFunctionPatron(this)"><i class="glyphicon glyphicon-remove"></i></a>
+                          
+                        </td>
+                    </tr> 
+                   @endforeach    
+              </table>
+            </div>
+        </div>
 
       <div class="form-group">
         <div class="col-sm-offset-3 col-sm-9">
@@ -74,6 +136,73 @@
           <a href="{{action('PermisoZarpeController@index')}}"><button type="button" class="btn btn-info">Cancelar</button></a>
         </div>
       </div>
+
+      <div class="modal fade"  id="submitPescadores">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h3>Seleccione pescador a relacionar</h3>
+              <table id="example" class="table table-bordered display" >
+                  <thead>
+                      <tr>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Seleccionar</th>
+                    </tr>
+                 </thead>
+                <tbody>
+                  @foreach($pescadores as $pescador)
+                    <tr>
+                      <td>{{$pescador->apellidos}}, {{$pescador->nombres}}</td>
+                      <td> {{$pescador->dni}}</td>
+                      <td> {!! Form::radio('pes', $pescador->id ,   (Input::old('pat') == $pescador->id ), array('id'=>'true', 'class'=>'radio  pes_id'         ,'required'   ))  !!} </td>
+                    </tr>
+
+                    @endforeach
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">No</button>
+                <button id="AgregarPescador" type="button" class="btn btn-info" data-dismiss="modal">Si</button>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+      <div class="modal fade"  id="submitPatron">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h3>Seleccione pescador a relacionar</h3>
+              <table id="examplePatron" class="table table-bordered display" >
+                  <thead>
+                      <tr>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Seleccionar</th>
+                    </tr>
+                 </thead>
+                <tbody>
+                  @foreach($patrones as $patron)
+                    <tr>
+                      <td>{{$patron->apellidos}}, {{$patron->nombres}}</td>
+                      <td> {{$patron->dni}}</td>
+                      <td> {!! Form::radio('pat', $patron->id ,   (Input::old('pat') == $patron->id ), array('id'=>'true', 'class'=>'radio  pat_id'         ,'required'   ))  !!} </td>
+                    </tr>
+
+                    @endforeach
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">No</button>
+                <button id="AgregarPatron" type="button" class="btn btn-info" data-dismiss="modal">Si</button>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
 
       <!-- MODAL -->
       <div class="modal fade"  id="submitModal">
@@ -96,6 +225,33 @@
 @stop
 
 @section('javascript')
+{!!Html::script('js/jquery.dataTables.min.js')!!}
+<script>
+  $(document).ready(function() {
+     $('#example').DataTable( {
+         "language": {
+             "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+         }
+      });
+     
+
+      });
+  </script>
+
+  <script>
+  $(document).ready(function() {
+     $('#examplePatron').DataTable( {
+         "language": {
+             "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+         }
+      });
+     
+
+      });
+  </script>
+
+
+
 <script type="text/javascript">
   $('#yes').click(function(){
     $('#submitModal').modal('hide');  
@@ -103,6 +259,8 @@
   
 </script>
 <script>
+//var data =[];
+var listaRegistro
 $('document').ready(function () {
 
   if(navigator.userAgent.indexOf("Firefox")>-1 ) {
@@ -110,6 +268,186 @@ $('document').ready(function () {
     document.getElementById('firefox').style.visibility='visible';
   }
 })
-</script>  
 
+$("#AgregarPescador").on("click",function(){
+  
+    id_variable = $('input[name="pes"]:checked').val();
+    console.log(id_variable);
+
+    //console.log("gg");
+    //variable  =  $( this).val() ;
+    url_base = "{{ url('/') }}";
+     // Peticion ajax
+    $.getJSON( url_base + "/usuarioPesca/nuevoPermisoZarpes/new/"+id_variable  , function(data)
+      {
+        console.log(data);
+        $.each( data, function( id) {
+
+
+                        var tableRef = document.getElementById('table-pescadores').getElementsByTagName('tbody')[0];
+
+                        // Insert a row in the table at the last row
+                        var newRow   = tableRef.insertRow(tableRef.rows.length);
+
+                        // Insert a cell in the row at index 0
+                        var newCell  = newRow.insertCell(0);
+                        var newCell2 = newRow.insertCell(1);
+                        var newCell3 = newRow.insertCell(2);
+                        var newCell4 = newRow.insertCell(3);
+
+                        // Append values to cells
+                        var x = document.createElement("INPUT");
+                        x.setAttribute("type", "number");
+                        x.setAttribute("value", data[id].id);
+                        x.setAttribute("name", "pescadores_id[]");
+                        x.style.border = 'none';
+                        x.style.background = 'transparent';
+                        x.setAttribute("readonly","readonly");
+                        x.required = true;
+                        var newText2 = document.createElement("INPUT");
+                        newText2.setAttribute("type", "text");
+                        newText2.setAttribute("value", ""+data[id].apellidos+", "+ data[id].nombres);
+                        newText2.setAttribute("name", "apelidos/nombres[]");
+                        newText2.style.border = 'none';
+                        newText2.style.background = 'transparent';
+                        newText2.setAttribute("readonly","readonly");
+                        newText2.required = true;
+
+                        var newText3 = document.createElement("INPUT");
+                        newText3.setAttribute("type", "text");
+                        newText3.setAttribute("value", ""+data[id].dni);
+                        newText3.setAttribute("name", "dni[]");
+                        newText3.style.border = 'none';
+                        newText3.style.background = 'transparent';
+                        newText3.setAttribute("readonly","readonly");
+                        newText3.required = true;
+                        // buttons
+                        var newDelete = document.createElement('button');
+                        newDelete.className = "btn";
+                        newDelete.className += " btn-info glyphicon glyphicon-remove";
+                        if (newDelete.addEventListener) {  // all browsers except IE before version 9
+                          newDelete.addEventListener("click", function(){deleteFunctionPesca(newDelete);}, false);
+                        } else {
+                          if (newDelete.attachEvent) {   // IE before version 9
+                            newDelete.attachEvent("click", function(){deleteFunctionPesca(newDelete);});
+                          }
+                        }
+                        newCell.appendChild(x);
+                        newCell2.appendChild(newText2);
+                        newCell3.appendChild(newText3);
+                        newCell4.appendChild(newDelete);
+                        //document.getElementById('input-function-date')[0].value = '';
+
+            //var result = "<tr><td>" + data[id].id +"</td> <td>" + data[id].apellidos + ", " +data[id].nombres +"</td> <td>" + data[id].dni+"</td> <td>" + newDelete + " </td> </tr>";
+            //$("#table-pescadores").append(result);
+            $('#submiPescadores').modal('hide');  
+
+
+        });
+            
+      })
+
+  //var result = "<tr><td>" + data.nombre +"</td> <td>xx</td> <td>xx</td> <td></td> </tr>";
+  //$("#table-pescadores").append(result);
+   //$('#submiPescadores').modal('hide');  
+  });
+$("#AgregarPatron").on("click",function(){
+    $('#botonPat').attr("disabled", false);
+    id_variable = $('input[name="pat"]:checked').val();
+    console.log(id_variable);
+
+    //console.log("gg");
+    //variable  =  $( this).val() ;
+    url_base = "{{ url('/') }}";
+     // Peticion ajax
+    $.getJSON( url_base + "/usuarioPesca/nuevoPermisoZarpes/new/"+id_variable  , function(data)
+      {
+        console.log(data);
+        $.each( data, function( id) {
+
+                        
+                        var tableRef = document.getElementById('table-patron').getElementsByTagName('tbody')[0];
+
+                        // Insert a row in the table at the last row
+                        var newRow   = tableRef.insertRow(tableRef.rows.length);
+
+                        // Insert a cell in the row at index 0
+                        var newCell  = newRow.insertCell(0);
+                        var newCell2 = newRow.insertCell(1);
+                        var newCell3 = newRow.insertCell(2);
+                        var newCell4 = newRow.insertCell(3);
+
+                        // Append values to cells
+                        var x = document.createElement("INPUT");
+                        x.setAttribute("type", "number");
+                        x.setAttribute("value", data[id].id);
+                        x.setAttribute("name", "patrones_id[]");
+                        x.style.border = 'none';
+                        x.style.background = 'transparent';
+                        x.setAttribute("readonly","readonly");
+                        x.required = true;
+                        var newText2 = document.createElement("INPUT");
+                        newText2.setAttribute("type", "text");
+                        newText2.setAttribute("value", ""+data[id].apellidos+", "+ data[id].nombres);
+                        newText2.setAttribute("name", "apelidos/nombres[]");
+                        newText2.style.border = 'none';
+                        newText2.style.background = 'transparent';
+                        newText2.setAttribute("readonly","readonly");
+                        newText2.required = true;
+
+                        var newText3 = document.createElement("INPUT");
+                        newText3.setAttribute("type", "text");
+                        newText3.setAttribute("value", ""+data[id].dni);
+                        newText3.setAttribute("name", "dni[]");
+                        newText3.style.border = 'none';
+                        newText3.style.background = 'transparent';
+                        newText3.setAttribute("readonly","readonly");
+                        newText3.required = true;
+                        // buttons
+                        var newDelete = document.createElement('button');
+                        newDelete.className = "btn";
+                        newDelete.className += " btn-info glyphicon glyphicon-remove";
+                        if (newDelete.addEventListener) {  // all browsers except IE before version 9
+                          newDelete.addEventListener("click", function(){deleteFunctionPatron(newDelete);}, false);
+                        } else {
+                          if (newDelete.attachEvent) {   // IE before version 9
+                            newDelete.attachEvent("click", function(){deleteFunctionPatron(newDelete);});
+                          }
+                        }
+                        newCell.appendChild(x);
+                        newCell2.appendChild(newText2);
+                        newCell3.appendChild(newText3);
+                        newCell4.appendChild(newDelete);
+                        
+                        //document.getElementById('input-function-date')[0].value = '';
+
+            //var result = "<tr><td>" + data[id].id +"</td> <td>" + data[id].apellidos + ", " +data[id].nombres +"</td> <td>" + data[id].dni+"</td> <td>" + newDelete + " </td> </tr>";
+            //$("#table-pescadores").append(result);
+            
+
+
+        });
+      
+            
+      })
+      $('#botonPat').attr("disabled", true);
+      $('#submiParton').modal('hide');  
+  //var result = "<tr><td>" + data.nombre +"</td> <td>xx</td> <td>xx</td> <td></td> </tr>";
+  //$("#table-pescadores").append(result);
+   //$('#submiPescadores').modal('hide');  
+  });
+    function deleteFunctionPesca(btn){
+      var row=btn.parentNode.parentNode.rowIndex;
+      document.getElementById('table-pescadores') .deleteRow(row);
+
+                
+    } 
+    function deleteFunctionPatron(btn){
+      var row=btn.parentNode.parentNode.rowIndex;
+      document.getElementById('table-patron') .deleteRow(row);
+      $('#botonPat').attr("disabled", false);
+                
+    }  
+
+</script>  
 @stop

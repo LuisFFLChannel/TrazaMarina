@@ -281,6 +281,13 @@ class EmbarcacionController extends Controller
 
         $embarcacion = Embarcacion::find($id);
 
+        if($embarcacion->certificado_matricula_id!=null){
+            $certif= CertificadoMatricula::find($embarcacion->certificado_matricula_id);
+            $certif->asignado=false;
+            $certif->save();
+        }
+
+
         $embarcacion->certificado_matricula_id            =   $input['certificadoMatricula'];
         $certificado= CertificadoMatricula::find($input['certificadoMatricula']);
         $certificado->asignado=true;
@@ -300,7 +307,11 @@ class EmbarcacionController extends Controller
         $input = $request->all();
 
         $embarcacion = Embarcacion::find($id);
-
+        if($embarcacion->permiso_pesca_id!=null){
+            $permiso= PermisoPesca::find($embarcacion->permiso_pesca_id);
+            $permiso->asignado=false;
+            $permiso->save();
+        }
         $embarcacion->permiso_pesca_id            =   $input['permisoPesca'];
         $permiso= PermisoPesca::find($input['permisoPesca']);
         $permiso->asignado=true;

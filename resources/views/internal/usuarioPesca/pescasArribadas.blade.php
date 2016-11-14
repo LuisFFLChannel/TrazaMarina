@@ -5,7 +5,7 @@
 @stop
 
 @section('title')
-    Pescas
+    Pescas Arribadas
 @stop
 
 @section('content')
@@ -20,7 +20,6 @@
         <!--<th>Imagen</th>-->
         <th class="text-center">Detalle</th>
         <th class="text-center">Editar</th>
-        <th class="text-center">Desembarque</th>
         <!--<th class="text-center">Eliminar</th>-->
     </tr>
     
@@ -72,13 +71,6 @@
       <td class="text-center">
         <a class="btn btn-info" href="{{url('usuarioPesca/pescas/'.$pesca->id.'/edit')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
       </td> 
-      <td class="text-center">
-        @if($pesca->arribo == false)
-            <a class="btn btn-info" href="{{url('usuarioPesca/pescas/'.$pesca->id.'/addDesembarque')}}" title="Agregar Desembarque" ><i class="glyphicon glyphicon-pencil"></i></a>
-        @else
-            <a class="btn btn-info" href="{{url('usuarioPesca/pescas/'.$pesca->id.'/showDesembarque')}}" title="Ver Desembarque" ><i class="glyphicon glyphicon-plus"></i></a>
-        @endif 
-      </td>
       <!--<td class="text-center">
         <a class="btn btn-info" title="Eliminar" data-toggle="modal" data-target="#deleteModal{{$pesca->id}}" ><i class="glyphicon glyphicon-remove"></i></a>
       </td>-->

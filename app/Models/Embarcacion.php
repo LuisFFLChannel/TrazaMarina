@@ -20,5 +20,7 @@ class Embarcacion extends Model
     public function pesca(){
         return $this->hasMany('App\Models\Pesca');
     }
-
+    public function desembarque(){
+        return $this->hasMany('App\Models\Desembarque');
+    }
 }

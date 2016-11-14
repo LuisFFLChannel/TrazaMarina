@@ -67,7 +67,7 @@ class PermisoPatronController extends Controller
         $permisoPatron->apellidos             =   $input['apellidos'];
         $permisoPatron->dni                   =   $input['dni'];
         $permisoPatron->numeroPatron          =   $input['numeroPatron'];
-        $permisoPatron->fechaVigencia         =   $input['fechaVigencia'];
+        $permisoPatron->fechaVigencia         =   new Carbon($input['fechaVigencia']);
         $permisoPatron->asignado              =   false;
         $permisoPatron->activo                =   true;
         //Control de subida de imagen por hacer
@@ -129,7 +129,7 @@ class PermisoPatronController extends Controller
         $permisoPatron->apellidos             =   $input['apellidos'];
         $permisoPatron->dni                   =   $input['dni'];
         $permisoPatron->numeroPatron          =   $input['numeroPatron'];
-        $permisoPatron->fechaVigencia         =   $input['fechaVigencia'];
+        $permisoPatron->fechaVigencia         =   new Carbon($input['fechaVigencia']);
         //Control de subida de imagen por hacer
 
         $permisoPatron->save();

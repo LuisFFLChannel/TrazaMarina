@@ -18,6 +18,7 @@ use Carbon\Carbon;
 use Auth;
 //use App\Usuario;
 use Session;
+use DB;
 
 class PermisoZarpeController extends Controller
 {
@@ -97,8 +98,8 @@ class PermisoZarpeController extends Controller
         $permisoPatron->nMatricula              =   $input['nMatricula'];
         $permisoPatron->coordenadaX             =   $input['latitud'];
         $permisoPatron->coordenadaY             =   $input['longitud'];
-        $permisoPatron->fechaZarpe              =   $input['fechaZarpe'];
-        $permisoPatron->fechaArribo             =   $input['fechaArribo'];
+        $permisoPatron->fechaZarpe              =   new Carbon($input['fechaZarpe']);
+        $permisoPatron->fechaArribo             =   new Carbon($input['fechaArribo']);
         $permisoPatron->puerto_id               =   $input['puerto_id'];
         $permisoPatron->capitania_id            =   $input['capitania_id'];
         $permisoPatron->asignado                =   false;
@@ -185,12 +186,16 @@ class PermisoZarpeController extends Controller
     {
         //
         $capitanias_lista = Capitania::all()->lists('nombre','id');;
-        $puertos_lista = Puerto::all()->lists('nombre','id');;
+        $puertos_lista = Puerto::all()->lists('nombre','id');
+        $pescadores_lista = Pescador::whereNotNull('permiso_marinero_id')->get();
+        $patrones_lista = Pescador::whereNotNull('permiso_patron_id')->get();
         $permisoZarpe = PermisoZarpe::find($id);
         $arreglo = [
         'permisoZarpe'      =>$permisoZarpe,
         'capitanias_lista'   =>$capitanias_lista,
-        'puertos_lista'      =>$puertos_lista];
+        'puertos_lista'      =>$puertos_lista,
+        'pescadores'  =>$pescadores_lista,
+        'patrones'    =>$patrones_lista];
         if (Auth::user()->role_id == 4){
             return view('internal.admin.editarPermisoZarpe', $arreglo);
         }
@@ -217,13 +222,66 @@ class PermisoZarpeController extends Controller
         $permisoPatron->nMatricula              =   $input['nMatricula'];
         $permisoPatron->coordenadaX             =   $input['latitud'];
         $permisoPatron->coordenadaY             =   $input['longitud'];
-        $permisoPatron->fechaZarpe              =   $input['fechaZarpe'];
-        $permisoPatron->fechaArribo             =   $input['fechaArribo'];
+        $permisoPatron->fechaZarpe              =   new Carbon($input['fechaZarpe']);
+        $permisoPatron->fechaArribo             =   new Carbon($input['fechaArribo']);
         $permisoPatron->puerto_id               =   $input['puerto_id'];
         $permisoPatron->capitania_id            =   $input['capitania_id'];
         //Control de subida de imagen por hacer
 
+        $pescadores_data = [
+            'pescadores_id'     => $request->input('pescadores_id')
+        ];
+        $patrones_data = [
+            'patrones_id'       => $request->input('patrones_id')
+        ];
+
+        foreach($pescadores_data ['pescadores_id'] as $key=>$value1){
+            $pes_data = [
+                'pescadores_id' => $value1
+            ];
+            foreach($patrones_data ['patrones_id'] as $key=>$value2){
+                $pats_data = [
+                    'patrones_id' => $value2
+                ];
+                if ($pes_data['pescadores_id']==$pats_data['patrones_id']){
+                     return redirect()->back()->withInput()->withErrors(['errors' => 'El Patron no puede ser marinero a la vez']);
+                }
+            }
+        }
+        foreach($pescadores_data ['pescadores_id'] as $key1=>$value1){
+            $pes_data = [
+                'pescadores_id' => $value1
+            ];
+            foreach($pescadores_data ['pescadores_id'] as $key2=>$value2){
+                $pes2_data = [
+                    'pescadores_id' => $value2
+                ];
+                if ($key1!= $key2 and $pes_data['pescadores_id']==$pes2_data['pescadores_id']){
+                     return redirect()->back()->withInput()->withErrors(['errors' => 'Existen Marineros Repetidos']);
+                }
+            }
+        }
+        $antiguosPescadores = PermisoZarpePescadores::where("permisoZarpe_id",'=',$permisoPatron->id)->get();
+
+        foreach ($antiguosPescadores as $auxPes) {
+            //dd($auxPes);
+            DB::table('permisoZarpe_pescadores')->where("permisoZarpe_id",'=',$permisoPatron->id)->delete();
+            //$auxPes->delete();
+        }
         $permisoPatron->save();
+        foreach($pescadores_data ['pescadores_id'] as $key=>$value){
+            $pes_data = [
+                'pescadores_id' => $value
+            ];
+            $var = $this->storePescadores($pes_data , $permisoPatron);
+        }
+        foreach($patrones_data ['patrones_id'] as $key=>$value){
+            $pats_data = [
+                'patrones_id' => $value
+            ];
+            $var = $this->storePatrones($pats_data , $permisoPatron);
+        }
+
         
         if (Auth::user()->role_id == 4){
             return redirect()->route('admin.permisoZarpes');

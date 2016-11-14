@@ -23,7 +23,7 @@ class UpdatePermisoZarpeRequest extends Request
      */
     public function rules()
     {
-        return [
+        $rules = [
             //
                 'nombre'                =>  'required|max:100',
                 'nMatricula'            =>  'required|max:50',
@@ -31,8 +31,19 @@ class UpdatePermisoZarpeRequest extends Request
                 'latitud'               =>  'required|numeric',
                 'fechaZarpe'            =>  'required',
                 'fechaArribo'           =>  'required',
-                'puerto'                =>  'integer',
-                'capitania'             =>  'integer',
+                'puerto_id'             =>  'required|integer',
+                'capitania_id'          =>  'required|integer',
+                'pescadores_id'         =>  'required',
+                'patrones_id'           =>  'required'
         ];
+        $pescadores = $this->request->get('pescadores_id');
+        //dd($pescadores);
+        if($pescadores)
+        foreach($pescadores as $key=>$val){
+            $rules['pescadores_id.'.$key]  = 'required';
+            //$rules['start_time.'.$key]  = 'required_with:start_date';
+
+        }
+        return $rules;
     }
 }

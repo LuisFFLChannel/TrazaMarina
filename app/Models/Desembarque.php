@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-class Pesca extends Model
+class Desembarque extends Model
 {
     //
-    protected $table = 'pesca';
+    protected $table = 'desembarque';
 	protected $dates = ['deleted_at'];
 
 	public function embarcacion(){
@@ -16,12 +16,13 @@ class Pesca extends Model
     public function puerto(){
         return $this->belongsTo('App\Models\Puerto');
     }
-    public function permisoZarpe(){
-        return $this->belongsTo('App\Models\PermisoZarpe','permisoZarpe_id');
+    public function dpa(){
+        return $this->belongsTo('App\Models\Dpa');
     }
-    public function desembarque(){
-        return $this->hasOne('App\Models\Desembarque');
+    public function pesca(){
+        return $this->belongsTo('App\Models\Pesca','pesca_id');
     }
-
-
+    public function certificadoArribo(){
+        return $this->belongsTo('App\Models\CertificadoArribo');
+    }
 }

@@ -434,13 +434,22 @@
                     <ul class="dropdown-menu">
                         <li><a href="{{url('usuarioPesca/pescas')}}">Listar</a></li>
                         <li><a href="{{url('usuarioPesca/pescas/new')}}">Nuevo</a></li>
+                        <!--<li><a href="{{url('usuarioPesca/pescasNoArribadas')}}">Listar Pescas No Arribadas</a></li>
+                        <li><a href="{{url('usuarioPesca/pescasArribadas')}}">Listar Pescas Arribadas</a></li>-->
                     </ul>
                 </li>
                 <li>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Desembarques<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{url('usuarioPesca/desembarques')}}">Listar</a></li>
-                        <li><a href="{{url('usuarioPesca/desembarques/new')}}">Nuevo</a></li>
+                        <!--<li><a href="{{url('usuarioPesca/desembarques/new')}}">Nuevo</a></li>-->
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">C. de Arribo<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('usuarioPesca/certificadoArribos')}}">Listar</a></li>
+                        <li><a href="{{url('usuarioPesca/certificadoArribos/new')}}">Nuevo</a></li>
                     </ul>
                 </li>
                 <!--<li class="dropdown">

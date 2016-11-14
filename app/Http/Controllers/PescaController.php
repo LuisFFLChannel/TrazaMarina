@@ -109,7 +109,7 @@ class PescaController extends Controller
         }
 
 
-        dd($pescas);
+        
         $pesca                              =   new Pesca;
         $pesca->embarcacion_id              =   $input['embarcacion_id'];
         $pesca->coordenadaX                 =   $input['latitud'];
@@ -120,6 +120,9 @@ class PescaController extends Controller
         $pesca->activo                      =   true;
         $pesca->arribo                      =   false;
         $pesca->save();
+        $permisoZarpe->asignado             =true;
+        $permisoZarpe->save();
+
 
         if (Auth::user()->role_id == 4){
             return redirect()->route('admin.pescas');
@@ -220,7 +223,11 @@ class PescaController extends Controller
         if ($permisoZarpe->asociado == true and  $permisoZarpe->pesca->id != $id){
             return redirect()->back()->withInput()->withErrors(['errors' => 'El permiso Zarpe ya ha sido asignado a una pesca']);
         }
-
+        if ($pesca->permisoZarpe_id != null){
+            $permiso = PermisoZarpe::find($pesca->permisoZarpe_id );
+            $permiso->asignado             =  false;
+            $permiso->save();
+        }
         $pesca->embarcacion_id              =   $input['embarcacion_id'];
         $pesca->coordenadaX                 =   $input['latitud'];
         $pesca->coordenadaY                 =   $input['longitud'];
@@ -228,6 +235,10 @@ class PescaController extends Controller
         $pesca->puerto_id                   =   $input['puerto_id'];
         $pesca->permisoZarpe_id             =   $input['permisoZarpe_id'];  
         $pesca->save();
+        $permisoZarpe->asignado             = true;
+        $permisoZarpe->save();
+
+
 
         if (Auth::user()->role_id == 4){
             return redirect()->route('admin.pescas');

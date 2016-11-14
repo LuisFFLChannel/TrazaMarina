@@ -502,6 +502,26 @@ Route::group(['middleware' => ['auth', 'usuarioPesca']], function () {
     Route::post('usuarioPesca/pescas/new', 'PescaController@store');
     Route::get('usuarioPesca/pescas/{id}/edit', 'PescaController@edit');
     Route::post('usuarioPesca/pescas/{id}/edit', 'PescaController@update');
+    //Route::get('usuarioPesca/pescasNoArribadas', 'PescaController@indexNoArribadas');
+    //Route::get('usuarioPesca/pescasArribadas', 'PescaController@indexArribadas');
+
+    Route::get('usuarioPesca/desembarques', ['uses'=>'DesembarqueController@index','as'=>'usuarioPesca.desembarques']);
+    Route::get('usuarioPesca/pescas/{id}/addDesembarque', 'DesembarqueController@create');
+    Route::post('usuarioPesca/pescas/{id}/addDesembarque', 'DesembarqueController@store');
+    Route::get('getEspecie/{especie_id}', 'DesembarqueController@getEspecieToAjax');
+    Route::get('usuarioPesca/desembarques/{id}/edit', 'DesembarqueController@edit');
+    Route::post('usuarioPesca/desembarques/{id}/edit', 'DesembarqueController@update');
+    Route::get('usuarioPesca/desembarques/{id}/editCertificado', 'DesembarqueController@editCertificado');
+    Route::post('usuarioPesca/desembarques/{id}/editCertificado', 'DesembarqueController@updateCertificado');
+    Route::get('usuarioPesca/desembarques/{id}/showCertificado', 'DesembarqueController@showCertificado');
+
+    Route::get('usuarioPesca/certificadoArribos', ['uses'=>'CertificadoArriboController@index','as'=>'usuarioPesca.certificadoArribos']);
+    Route::get('usuarioPesca/certificadoArribos/new', 'CertificadoArriboController@create');
+    Route::post('usuarioPesca/certificadoArribos/new', 'CertificadoArriboController@store');
+    Route::get('usuarioPesca/certificadoArribos/{id}/edit', 'CertificadoArriboController@edit');
+    Route::post('usuarioPesca/certificadoArribos/{id}/edit', 'CertificadoArriboController@update');
+    Route::get('usuarioPesca/certificadoArribos/{id}/delete', 'CertificadoArriboController@destroy');
+
 })  ;
 Route::get('token',function(){
     return csrf_token();

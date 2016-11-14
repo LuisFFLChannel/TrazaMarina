@@ -10,4 +10,8 @@ class Dpa extends Model
     //
     protected $table = 'dpa';
 	protected $dates = ['deleted_at'];
+
+	 public function desembarque(){
+        return $this->hasMany('App\Models\Desembarque');
+    }
 }
