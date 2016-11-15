@@ -33,6 +33,9 @@ class PermisoPatronController extends Controller
         elseif  (Auth::user()->role_id == 5){
             return view('internal.usuarioPesca.permisoPatrones', compact('permisoPatrones'));
         }
+        elseif  (Auth::user()->role_id == 6){
+            return view('internal.usuarioIntermediario.permisoPatrones', compact('permisoPatrones'));
+        }
     }
 
     /**

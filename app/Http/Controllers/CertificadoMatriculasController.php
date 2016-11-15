@@ -33,6 +33,9 @@ class CertificadoMatriculasController extends Controller
         elseif  (Auth::user()->role_id == 5){
             return view('internal.usuarioPesca.certificadoMatriculas', compact('certificadoMatriculas'));
         }
+        elseif  (Auth::user()->role_id == 6){
+            return view('internal.usuarioIntermediario.certificadoMatriculas', compact('certificadoMatriculas'));
+        }
         
     }
 

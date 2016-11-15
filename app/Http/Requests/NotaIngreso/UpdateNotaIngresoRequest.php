@@ -13,7 +13,7 @@ class UpdateNotaIngresoRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,6 +25,11 @@ class UpdateNotaIngresoRequest extends Request
     {
         return [
             //
+            'especie_id'    => 'required',
+            'toneladas' =>  'required|numeric',
+            'tallaPromedio' =>  'required|numeric',
+            'toneladasExportacion' =>  'required|numeric',
+            'toneladasMercado' =>  'required|numeric'
         ];
     }
 }

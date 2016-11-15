@@ -39,6 +39,9 @@ class PuertosController extends Controller
         elseif  (Auth::user()->role_id == 5){
             return view('internal.usuarioPesca.puertos', compact('puertos'));
         }
+        elseif  (Auth::user()->role_id == 6){
+            return view('internal.usuarioIntermediario.puertos', compact('puertos'));
+        }
         
     }
 

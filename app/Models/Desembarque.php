@@ -25,4 +25,7 @@ class Desembarque extends Model
     public function certificadoArribo(){
         return $this->belongsTo('App\Models\CertificadoArribo');
     }
+    public function notaIngreso(){
+        return $this->hasMany('App\Models\NotaIngreso');
+    }
 }

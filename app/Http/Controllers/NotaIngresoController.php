@@ -6,6 +6,18 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\NotaIngreso\StoreNotaIngresoRequest;
+use App\Http\Requests\NotaIngreso\UpdateNotaIngresoRequest;
+use App\Models\Pesca;
+use App\Models\Desembarque;
+use App\Models\EspecieMarina;
+use App\Models\NotaIngreso;
+use App\User;
+use Carbon\Carbon;
+use Auth;
+use DB;
+//use App\Usuario;
+use Session;
 
 class NotaIngresoController extends Controller
 {
@@ -17,6 +29,18 @@ class NotaIngresoController extends Controller
     public function index()
     {
         //
+        $notaIngresos = NotaIngreso::paginate(10);
+       
+        $notaIngresos->setPath('notaIngreso');
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.notasIngresos', compact('notaIngresos'));
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.notasIngresos', compact('notaIngresos'));
+        }
+        elseif  (Auth::user()->role_id == 6){
+            return view('internal.usuarioIntermediario.notasIngresos', compact('notaIngresos'));
+        }
     }
 
     /**
@@ -60,6 +84,18 @@ class NotaIngresoController extends Controller
     public function edit($id)
     {
         //
+        $nota = NotaIngreso::find($id);
+        $especie_lista = EspecieMarina::all()->lists('nombre','id');
+        $arreglo = [
+        'nota'     =>$nota,
+        'especie_lista'    => $especie_lista];
+
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.editarNotaIngreso', $arreglo);
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.editarNotaIngreso', $arreglo);
+        }
     }
 
     /**
@@ -69,9 +105,32 @@ class NotaIngresoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateNotaIngresoRequest $request, $id)
     {
         //
+        $input = $request->all();
+
+        $var = NotaIngreso::find($id);
+
+        $existeEspecie = NotaIngreso::where("especie_id","=",$input['especie_id'])->where("desembarque_id","=",$var->desembarque->id)->where("id","<>",$id)->get();
+        if ($existeEspecie!=null){
+            return redirect()->back()->withInput()->withErrors(['errors' => 'Exste ya una Nota de Ingreso con esa Especie Marina para este desembarque']);
+        }
+
+
+        $var->especie_id            = $input['especie_id'];
+        $var->toneladas             = $input['toneladas'];
+        $var->tallaPromedio         = $input['tallaPromedio'];
+        $var->toneladasExportacion  = $input['toneladasEXportacion'];;
+        $var->toneladasMercado      = $input['toneladasMercado'];
+        $var->save();
+
+        if (Auth::user()->role_id == 4){
+            return redirect()->route('admin.notasIngresos');
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return redirect()->route('usuarioPesca.notasIngresos');
+        }
     }
 
     /**

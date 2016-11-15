@@ -38,6 +38,9 @@ class CapitaniaController extends Controller
         elseif  (Auth::user()->role_id == 5){
             return view('internal.usuarioPesca.capitanias', compact('capitanias'));
         }
+        elseif  (Auth::user()->role_id == 6){
+            return view('internal.usuarioIntermediario.capitanias', compact('capitanias'));
+        }
         
     }
 

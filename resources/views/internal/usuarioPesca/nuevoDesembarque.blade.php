@@ -185,7 +185,7 @@ $("#AgregarEspecie").on("click",function(){
             var tableRef = document.getElementById('tabla-notas').getElementsByTagName('tbody')[0];
             var tonelada = document.getElementById('toneladas_inde').value;
 
-            var tamano = document.getElementById('promedios_inde').value;
+            var talla = document.getElementById('promedios_inde').value;
                         // Insert a row in the table at the last row
             var newRow   = tableRef.insertRow(tableRef.rows.length);
 
@@ -197,7 +197,7 @@ $("#AgregarEspecie").on("click",function(){
             var newCell5 = newRow.insertCell(4);
             // Append values to cells
             var x = document.createElement("INPUT");
-            x.setAttribute("type", "number");
+            x.setAttribute("type", "text");
             x.setAttribute("value", data[id].id);
             x.setAttribute("name", "especies_id[]");
             x.style.border = 'none';
@@ -214,7 +214,7 @@ $("#AgregarEspecie").on("click",function(){
             newText2.required = true;
 
             var newText3 = document.createElement("INPUT");
-            newText3.setAttribute("type", "number");
+            newText3.setAttribute("type", "text");
             newText3.setAttribute("value", ""+tonelada);
             newText3.setAttribute("name", "toneladas[]");
             newText3.style.border = 'none';
@@ -223,9 +223,9 @@ $("#AgregarEspecie").on("click",function(){
             newText3.required = true;
 
             var newText4 = document.createElement("INPUT");
-            newText4.setAttribute("type", "number");
-            newText4.setAttribute("value", ""+tamano);
-            newText4.setAttribute("name", "tallaPromedios[]");
+            newText4.setAttribute("type", "text");
+            newText4.setAttribute("value", ""+talla);
+            newText4.setAttribute("name", "tallas[]");
             newText4.style.border = 'none';
             newText4.style.background = 'transparent';
             newText4.setAttribute("readonly","readonly");
@@ -272,7 +272,7 @@ $("#AgregarEspecie").on("click",function(){
 })
 function deleteFunctionEspecie(btn){
       var row=btn.parentNode.parentNode.rowIndex;
-      document.getElementById('table-tabla-notas') .deleteRow(row);
+      document.getElementById('tabla-notas') .deleteRow(row);
 
                 
     } 

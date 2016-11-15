@@ -38,6 +38,9 @@ class PescaController extends Controller
         elseif  (Auth::user()->role_id == 5){
             return view('internal.usuarioPesca.pescas', compact('pescas'));
         }
+        elseif  (Auth::user()->role_id == 6){
+            return view('internal.usuarioIntermediario.pescas', compact('pescas'));
+        }
     }
 
     /**
@@ -257,5 +260,25 @@ class PescaController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function showDesembarque($id){
+
+        $pesca      =Pesca::find($id);
+        $desembarque    =$pesca->desembarque;
+       
+        $arreglo = [
+        'pesca'   =>$pesca,
+        'desembarque'      =>$desembarque];
+
+
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.mostrarDesembarque',$arreglo);
+        }
+        elseif (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.mostrarDesembarque',$arreglo);
+        }
+        elseif (Auth::user()->role_id == 6){
+            return view('internal.usuarioIntermediario.mostrarDesembarque',$arreglo);
+        }
     }
 }

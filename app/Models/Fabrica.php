@@ -10,4 +10,9 @@ class Fabrica extends Model
     //
     protected $table = 'fabrica';
 	protected $dates = ['deleted_at'];
+
+	public function certificadoProcedencia(){
+        return $this->hasMany('App\Models\CertificadoProcedencia');
+    }
+    
 }

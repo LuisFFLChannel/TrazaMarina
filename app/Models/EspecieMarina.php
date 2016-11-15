@@ -7,11 +7,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class EspecieMarina extends Model
 {
-	protected $table = 'EspecieMarina';
+	protected $table = 'especieMarina';
 	protected $dates = ['deleted_at'];
 
-    /*public function usuarios()
-    {
-        return $this->hasMany('App\Usuario', 'perfilUsuario_id', 'id');
-    }*/
+    public function notaIngreso(){
+        return $this->hasMany('App\Models\NotaIngreso');
+    }
 }

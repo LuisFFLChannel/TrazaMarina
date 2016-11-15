@@ -29,20 +29,34 @@ class StoreDesembarqueRequest extends Request
             'dpa_id'                        =>  'required|integer',
             'fechaLlegada'                  =>  'required',
             'puerto_id'                     =>  'required|integer',
-            'especies_id'                   =>  'required|integer',
-            'toneladas'                     =>  'required|number|min:0',
-            'tallaPromedios'                =>  'required|number|min:0'
+            'especies_id'                   =>  'required',
+            'toneladas'                     =>  'required',
+            'tallas'                =>  'required',
         ];
         $especies = $this->request->get('especies_id');
-        //dd($pescadores);
+        //dd($especies = $this->request->get('tallas'));
         if($especies)
         foreach($especies as $key=>$val){
             $rules['especies_id.'.$key]              = 'required|integer';
             $rules['toneladas.'.$key]               = 'required|numeric|min:0';
-            $rules['tallaPromedios'.$key]           = 'required|numeric|min:0';
-            //$rules['start_time.'.$key]  = 'required_with:start_date';
-
+            
+            $rules['tallas.'.$key]           = 'required|numeric|min:0';
+            
+            
         }
-        return $rules
+        return $rules;
+    }
+    public function messages(){
+        $messages = array();
+        
+        $especies = $this->request->get('especies_id'); 
+        if($especies)
+        foreach($especies as $key=>$val)
+        {
+            $messages['especies_id.'.$key.'.required'] = 'Se deben completar los campos de filas y columnas de la nota de ingreso '.($key+1);
+            $messages['toneladas.'.$key.'.required'] = 'Se deben completar los campos de filas y columnas de la nota de ingreso '.($key+1);
+            $messages['tallas.'.$key.'.required'] = 'Se deben completar los campos de filas y columnas de la nota de ingreso '.($key+1);
+        }
+        return $messages;
     }
 }

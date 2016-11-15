@@ -38,6 +38,9 @@ class DpaController extends Controller
         elseif  (Auth::user()->role_id == 5){
             return view('internal.usuarioPesca.dpas', compact('dpas'));
         }
+        elseif  (Auth::user()->role_id == 6){
+            return view('internal.usuarioIntermediario.dpas', compact('dpas'));
+        }
         
     }
 

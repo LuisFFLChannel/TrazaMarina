@@ -15,7 +15,7 @@ class UsuarioIntermediario
      */
     public function handle($request, Closure $next)
     {
-        if (\Auth::user()->role_id != '4') {
+        if (\Auth::user()->role_id != '6') {
             $request->session()->flash('message', 'No estas autorizado para entrar aqui');
             $request->session()->flash('alert-class', 'alert-danger');
             switch (\Auth::user()->role_id) {
@@ -23,7 +23,7 @@ class UsuarioIntermediario
                     return redirect('/usuarioPesca');
                     break;
                 case '4':
-                    return redirect('/usuarioPesca');
+                    return redirect('/admin');
                     break;
                 case '3':
                     return redirect('/promoter');

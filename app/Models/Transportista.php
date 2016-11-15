@@ -10,4 +10,8 @@ class Transportista extends Model
     //
     protected $table = 'transportista';
 	protected $dates = ['deleted_at'];
+
+	public function certificadoProcedencia(){
+        return $this->hasMany('App\Models\CertificadoProcedencia');
+    }
 }

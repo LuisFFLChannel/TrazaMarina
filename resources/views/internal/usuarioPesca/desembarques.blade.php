@@ -20,8 +20,9 @@
         <!--<th>Imagen</th>-->
         <th class="text-center">Detalle</th>
         <th class="text-center">Editar</th>
+        <th class="text-center">Editar C.Arribo</th>
         <th class="text-center">Ver C.Arribo</th>
-        <th class="text-center">Mostrar C.Arribo</th>
+        <th class="text-center">Mostrar Notas de Ingreso</th>
         <!--<th class="text-center">Eliminar</th>-->
     </tr>
     
@@ -80,6 +81,9 @@
       <td class="text-center">
         <a class="btn btn-info" href="{{url('usuarioPesca/desembarques/'.$desembarque->id.'/showCertificado')}}" title="Visualizar Certificado de Arribo" ><i class="glyphicon glyphicon-plus"></i></a>
       </td> 
+      <td class="text-center">
+        <a class="btn btn-info" href="{{url('usuarioPesca/desembarques/'.$desembarque->id.'/showNota')}}" title="Visualizar Notas de Ingreso" ><i class="glyphicon glyphicon-plus"></i></a>
+      </td>
       
       <!--<td class="text-center">
         <a class="btn btn-info" title="Eliminar" data-toggle="modal" data-target="#deleteModal{{$desembarque->id}}" ><i class="glyphicon glyphicon-remove"></i></a>

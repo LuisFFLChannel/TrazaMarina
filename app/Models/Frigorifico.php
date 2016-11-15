@@ -10,4 +10,8 @@ class Frigorifico extends Model
     //
     protected $table = 'frigorifico';
 	protected $dates = ['deleted_at'];
+
+	public function certificadoProcedencia(){
+        return $this->hasMany('App\Models\CertificadoProcedencia');
+    }
 }

@@ -292,7 +292,7 @@
                     </ul>
                 </li>
                 <li>
-                    <li>
+                    
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Transportistas <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{url('admin/transportistas')}}">Listar</a></li>
@@ -301,7 +301,7 @@
                 </li>
                  
                 <li>
-                    <li>
+                    
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Frigoríficos <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{url('admin/frigorificos')}}">Listar</a></li>
@@ -442,6 +442,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Desembarques<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{url('usuarioPesca/desembarques')}}">Listar</a></li>
+                        <li><a href="{{url('usuarioPesca/notasIngresos')}}">Notas de Ingreso</a></li>
                         <!--<li><a href="{{url('usuarioPesca/desembarques/new')}}">Nuevo</a></li>-->
                     </ul>
                 </li>
@@ -472,5 +473,100 @@
     </div>
     <!-- /.container -->
 </nav>
+@elseif(Auth::user()->role_id == config('constants.usuarioIntermediario'))
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{url('/')}}">{{$business_name}} </a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-left">
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Datos Maestros <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('usuarioIntermediario/especieMarinas')}}">Especies Marinas</a></li>
+                        <li><a href="{{url('usuarioIntermediario/puertos')}}">Puertos</a></li>
+                        <li><a href="{{url('usuarioIntermediario/dpas')}}">Dpa</a></li>
+                        <li><a href="{{url('usuarioIntermediario/capitanias')}}">Capitanias</a></li>
+                        <li><a href="{{url('usuarioIntermediario/embarcaciones')}}">Embaraciones</a></li>
+                        <li><a href="{{url('usuarioIntermediario/pescadores')}}">Pescadores</a></li>
+                        <li><a href="{{url('usuarioIntermediario/pescas')}}">Pescas</a></li>
+                        <li><a href="{{url('usuarioIntermediario/desembarques')}}">Desembarques</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Permisos/Certificados<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('usuarioIntermediario/certificadoMatriculas')}}">C. de Matricula</a></li>
+                        <li><a href="{{url('usuarioIntermediario/permisoPescas')}}">P. de Pesca</a></li>
+                        <li><a href="{{url('usuarioIntermediario/permisoPatrones')}}">P. de Patron</a></li>
+                        <li><a href="{{url('usuarioIntermediario/permisoMarineros')}}">P. de Marinero</a></li>
+                        <li><a href="{{url('usuarioIntermediario/permisoZarpes')}}">P. de Zarpe</a></li>
+                        <li><a href="{{url('usuarioIntermediario/certificadoArribos')}}">C. de Arribo</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Transportistas <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('usuarioIntermediario/transportistas')}}">Listar</a></li>
+                        <li><a href="{{url('usuarioIntermediario/transportistas/new')}}">Nuevo</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Frigoríficos <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('usuarioIntermediario/frigorificos')}}">Listar</a></li>
+                        <li><a href="{{url('usuarioIntermediario/frigorificos/new')}}">Nuevo</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Terminales <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('usuarioIntermediario/terminales')}}">Listar</a></li>
+                        <li><a href="{{url('usuarioIntermediario/terminales/new')}}">Nuevo</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Fabricas <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('usuarioIntermediario/fabricas')}}">Listar</a></li>
+                        <li><a href="{{url('usuarioIntermediario/fabricas/new')}}">Nuevo</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Nota de Ingreso<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('usuarioIntermediario/notasIngresos')}}">Listar</a></li>
+                        <!--<li><a href="{{url('usuarioPesca/desembarques/new')}}">Nuevo</a></li>-->
+                    </ul>
+                </li>
+                
+                <!--<li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Configuración  <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('admin/config/exchange_rate')}}">Tipo de cambio</a></li>
+                        <li><a href="{{url('admin/config/about')}}">Acerca de</a></li>
+                        <li><a href="{{url('admin/config/system')}}">Sistema</a></li>
+                    </ul>
+                </li>-->
 
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{url('usuarioPesca/')}}">{{ Auth::user()->name }}</a></li>
+                <li><a href="{{url('auth/logout')}}">Salir</a></li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
 @endif

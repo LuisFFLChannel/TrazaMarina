@@ -14,11 +14,13 @@ use App\Models\CertificadoArribo;
 use App\Models\Embarcacion;
 use App\Models\Pescador;
 use App\Models\EspecieMarina;
+use App\Models\NotaIngreso;
 use App\Models\Puerto;
 use App\Models\Dpa;
 use App\User;
 use Carbon\Carbon;
 use Auth;
+use DB;
 //use App\Usuario;
 use Session;
 
@@ -33,13 +35,16 @@ class DesembarqueController extends Controller
     {
         //
         $desembarques = Desembarque::paginate(10);
-       ;
+       
         $desembarques->setPath('desembarque');
         if (Auth::user()->role_id == 4){
             return view('internal.admin.desembarques', compact('desembarques'));
         }
         elseif  (Auth::user()->role_id == 5){
             return view('internal.usuarioPesca.desembarques', compact('desembarques'));
+        }
+        elseif  (Auth::user()->role_id == 6){
+            return view('internal.usuarioIntermediario.desembarques', compact('desembarques'));
         }
     }
 
@@ -80,12 +85,12 @@ class DesembarqueController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storeEspecies($data, $desembarque){
+    public function storeNotaIngreso($data, $desembarque){
         $var = new NotaIngreso();
-        $var->especies_id           = $data['especies_id'];
+        $var->especie_id           = $data['especies_id'];
         $var->desembarque_id        = $desembarque->id;
-        $var->toneladas             = $data['toneladas_id'];
-        $var->tallaPromedio         = $data['tallaPromedios_id'];
+        $var->toneladas             = $data['toneladas'];
+        $var->tallaPromedio         = $data['tallas'];
         $var->toneladasExportacion  = 0;
         $var->toneladasMercado      = 0;
         $var->save();
@@ -97,7 +102,7 @@ class DesembarqueController extends Controller
         //
         $input = $request->all();
         $pesca = Pesca::find($id);
-       
+        //dd($pesca);
 
         $desembarque                               =   new Desembarque;
         $desembarque ->embarcacion_id              =   $input['embarcacion_id'];
@@ -105,15 +110,17 @@ class DesembarqueController extends Controller
 
         $val = Carbon::parse($desembarque->fechaLlegada);
         $val2 = Carbon::parse($pesca->fechaZarpe);
-      
+        
         if($val->gt($val2)==false){
             return redirect()->back()->withInput()->withErrors(['errors' => 'La fecha de Arribo sucede antes que la fecha de Zarpe']);
         }   
 
         $especies_data = [
-            'especies_id'     => $request->input('especies_id')
+            'especies_id'     => $request->input('especies_id'),
+            'toneladas'     => $request->input('toneladas'),
+            'tallas'     => $request->input('tallas'),
         ];
-
+        
         foreach($especies_data ['especies_id'] as $key1=>$value1){
             $pes_data = [
                 'especies_id' => $value1
@@ -139,7 +146,9 @@ class DesembarqueController extends Controller
 
         foreach($especies_data ['especies_id'] as $key=>$value){
             $pes_data = [
-                'especies_id' => $value
+                'especies_id' => $value,
+                'toneladas'   => $especies_data['toneladas'][$key],
+                'tallas'   => $especies_data['tallas'][$key],
             ];
             $var = $this->storeNotaIngreso($pes_data , $desembarque);
         }
@@ -224,7 +233,9 @@ class DesembarqueController extends Controller
         }   
 
         $especies_data = [
-            'especies_id'     => $request->input('especies_id')
+            'especies_id'     => $request->input('especies_id'),
+            'toneladas'     => $request->input('toneladas'),
+            'tallas'     => $request->input('tallas'),
         ];
 
         foreach($especies_data ['especies_id'] as $key1=>$value1){
@@ -243,21 +254,31 @@ class DesembarqueController extends Controller
 
         $desembarque ->puerto_id                   =   $input['puerto_id'];
         $desembarque ->dpa_id                      =   $input['dpa_id']; 
-        $desembarque ->pesca_id                    =   $id; 
+        
         $desembarque ->save();
+
+        $antiguosEspecies = NotaIngreso::where("desembarque_id",'=',$desembarque->id)->get();
+
+        foreach ($antiguosEspecies as $auxPes) {
+            //dd($auxPes);
+            DB::table('notaIngreso')->where("desembarque_id",'=',$desembarque->id)->delete();
+            //$auxPes->delete();
+        }
 
         foreach($especies_data ['especies_id'] as $key=>$value){
             $pes_data = [
-                'especies_id' => $value
+                'especies_id' => $value,
+                'toneladas'   => $especies_data['toneladas'][$key],
+                'tallas'   => $especies_data['tallas'][$key],
             ];
             $var = $this->storeNotaIngreso($pes_data , $desembarque);
         }
       
         if (Auth::user()->role_id == 4){
-            return redirect()->route('admin.pescas');
+            return redirect()->route('admin.desembarques');
         }
         elseif  (Auth::user()->role_id == 5){
-            return redirect()->route('usuarioPesca.pescas');
+            return redirect()->route('usuarioPesca.desembarques');
         }
     }
 
@@ -315,6 +336,9 @@ class DesembarqueController extends Controller
         elseif  (Auth::user()->role_id == 5){
             return view('internal.usuarioPesca.mostrarCertificadoArribo', compact('desembarque'));
         }
+        elseif  (Auth::user()->role_id == 6){
+            return view('internal.usuarioIntermediario.mostrarCertificadoArribo', compact('desembarque'));
+        }
 
         
     }
@@ -353,5 +377,23 @@ class DesembarqueController extends Controller
 
 
         return  json_encode( $especie);  
+    }
+    public function showNota($id){
+
+        $desembarque      =Desembarque::find($id);
+       
+        $arreglo = [
+        'desembarque'      =>$desembarque];
+
+
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.mostrarNota',$arreglo);
+        }
+        elseif (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.mostrarNota',$arreglo);
+        }
+        elseif (Auth::user()->role_id == 6){
+            return view('internal.usuarioIntermediario.mostrarNota',$arreglo);
+        }
     }
 }

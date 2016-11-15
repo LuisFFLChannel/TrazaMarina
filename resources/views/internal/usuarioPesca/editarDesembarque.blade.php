@@ -5,7 +5,7 @@
 @stop
 
 @section('title')
-	Editar Pesca
+	Editar Desembarque
 @stop
 
 @section('content')
@@ -82,6 +82,60 @@
             </div>
         </div>
 
+        <legend>Agregar Notas de Ingreso:</legend>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">Especie Marina</label>
+            <div class="col-sm-9">
+                {!! Form::select('especie_id', $especies_lista->toArray(), null, ['class' => 'form-control','required', 'id'=>'especie_id']) !!}
+            </div>
+        </div>
+        <div class="form-group">
+          <label  class="col-md-3 control-label">Toneladas</label>
+          <div class="col-md-9">
+              {!! Form::number('toneladas_inde','', array('class' => 'form-control','id' => 'toneladas_inde','maxlength' => 50,'min' => '0')) !!}
+          </div>
+        </div>
+        <div class="form-group">
+          <label  class="col-md-3 control-label">Talla Promedio</label>
+          <div class="col-md-9">
+              {!! Form::number('promedios_inde','', array('class' => 'form-control','id' => 'promedios_inde','maxlength' => 50,'min' => '0')) !!}
+          </div>
+        </div>
+        <div class="form-group">
+            
+            <div class="col-sm-offset-3 col-sm-9">
+                <a id="AgregarEspecie" class="btn btn-info">Agregar</a>
+            </div>
+        </div>
+        <br>
+        <div class="form-group"> 
+          <div class="col-sm-offset-2 col-sm-10">
+              <table id="tabla-notas" class="table table-bordered table-striped ">
+                  <tr>
+                      <th>Codigo</th>
+                      <th>Nombre</th>
+                      <th>Toneladas</th>
+                      <th>Talla Promedios</th>
+                      <th>Accion</th>
+                  </tr>
+                  @foreach($desembarque->notaIngreso as $nota)
+                    <tr>
+                        <td><input name="especies_id[]" type="number" value="{{$nota->especieMarina->id}}" style = "border:none"></td>
+                        <td><input name="nombres[]" type="text" value="{{$nota->especieMarina->nombre}}" style = "border:none"></td>
+                        <td><input name="toneladas[]" type="number" value="{{$nota->toneladas}}" style = "border:none"></td>
+                        <td><input name="tallas[]" type="number" value="{{$nota->tallaPromedio}}" style = "border:none"></td>
+                        <td>
+                          <a class="btn btn-info"   title="Eliminar"    onclick="deleteFunctionEspecie(this)"><i class="glyphicon glyphicon-remove"></i></a>
+                         
+                        </td>
+                    </tr> 
+                   @endforeach  
+              </table>
+            </div>
+        </div>
+
+        <br>
+
       <div class="form-group">
         <div class="col-sm-offset-3 col-sm-9">
           <a class="btn btn-info" href="" title="submit" data-toggle="modal" data-target="#submitModal" >Guardar</a>
@@ -125,5 +179,111 @@ $('document').ready(function () {
   }
 })
 </script>  
+<script>
 
+$("#AgregarEspecie").on("click",function(){
+      console.log("logre");
+      if(document.getElementById('toneladas_inde').length==0 || document.getElementById('promedios_inde').length==0) return;
+      especie_id = $("#especie_id").val();
+      url_base = "{{ url('/') }}";
+      $.getJSON(url_base+"/getEspecie/"+especie_id, function(data)
+      {
+        
+          $.each( data, function( id) {
+            
+            var tableRef = document.getElementById('tabla-notas').getElementsByTagName('tbody')[0];
+            var tonelada = document.getElementById('toneladas_inde').value;
+
+            var talla = document.getElementById('promedios_inde').value;
+                        // Insert a row in the table at the last row
+            var newRow   = tableRef.insertRow(tableRef.rows.length);
+
+                        // Insert a cell in the row at index 0
+            var newCell  = newRow.insertCell(0);
+            var newCell2 = newRow.insertCell(1);
+            var newCell3 = newRow.insertCell(2);
+            var newCell4 = newRow.insertCell(3);
+            var newCell5 = newRow.insertCell(4);
+            // Append values to cells
+            var x = document.createElement("INPUT");
+            x.setAttribute("type", "text");
+            x.setAttribute("value", data[id].id);
+            x.setAttribute("name", "especies_id[]");
+            x.style.border = 'none';
+            x.style.background = 'transparent';
+            x.setAttribute("readonly","readonly");
+            x.required = true;
+            var newText2 = document.createElement("INPUT");
+            newText2.setAttribute("type", "text");
+            newText2.setAttribute("value", ""+data[id].nombre);
+            newText2.setAttribute("name", "nombres[]");
+            newText2.style.border = 'none';
+            newText2.style.background = 'transparent';
+            newText2.setAttribute("readonly","readonly");
+            newText2.required = true;
+
+            var newText3 = document.createElement("INPUT");
+            newText3.setAttribute("type", "text");
+            newText3.setAttribute("value", ""+tonelada);
+            newText3.setAttribute("name", "toneladas[]");
+            newText3.style.border = 'none';
+            newText3.style.background = 'transparent';
+            newText3.setAttribute("readonly","readonly");
+            newText3.required = true;
+
+            var newText4 = document.createElement("INPUT");
+            newText4.setAttribute("type", "text");
+            newText4.setAttribute("value", ""+talla);
+            newText4.setAttribute("name", "tallas[]");
+            newText4.style.border = 'none';
+            newText4.style.background = 'transparent';
+            newText4.setAttribute("readonly","readonly");
+            newText4.required = true;
+
+            // buttons
+            var newDelete = document.createElement('button');
+            newDelete.className = "btn";
+            newDelete.className += " btn-info glyphicon glyphicon-remove";
+            if (newDelete.addEventListener) {  // all browsers except IE before version 9
+              newDelete.addEventListener("click", function(){deleteFunctionEspecie(newDelete);}, false);
+            } else {
+              if (newDelete.attachEvent) {   // IE before version 9
+                newDelete.attachEvent("click", function(){deleteFunctionEspecie(newDelete);});
+              }
+            }
+            newCell.appendChild(x);
+            newCell2.appendChild(newText2);
+            newCell3.appendChild(newText3);
+            newCell4.appendChild(newText4);
+            newCell5.appendChild(newDelete);
+            //document.getElementById('input-function-date')[0].value = '';
+
+            //var result = "<tr><td>" + data[id].id +"</td> <td>" + data[id].apellidos + ", " +data[id].nombres +"</td> <td>" + data[id].dni+"</td> <td>" + newDelete + " </td> </tr>";
+            //$("#tabla-notas").append(result);
+            
+
+
+
+
+
+
+
+          });
+
+      })
+
+
+  
+
+        
+
+
+})
+function deleteFunctionEspecie(btn){
+      var row=btn.parentNode.parentNode.rowIndex;
+      document.getElementById('tabla-notas') .deleteRow(row);
+
+                
+    } 
+</script>
 @stop

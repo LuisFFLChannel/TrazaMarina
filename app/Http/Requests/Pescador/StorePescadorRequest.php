@@ -28,7 +28,7 @@ class StorePescadorRequest extends Request
             'apellidos'         =>  'required|max:100',
             'dni'               =>  'required|integer|unique:pescadores',
             'telefono'          =>  'required|integer',
-            'correo'            =>  'required|max:100',
+            'correo'            =>  'required|email|max:100',
             'cumpleanos'        =>  'required'
         ];
     }

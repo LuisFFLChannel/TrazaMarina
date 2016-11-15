@@ -33,6 +33,9 @@ class PermisoMarineroController extends Controller
         elseif  (Auth::user()->role_id == 5){
             return view('internal.usuarioPesca.permisoMarineros', compact('permisoMarineros'));
         }
+        elseif  (Auth::user()->role_id == 6){
+            return view('internal.usuarioIntermediario.permisoMarineros', compact('permisoMarineros'));
+        }
     }
 
     /**
@@ -49,6 +52,7 @@ class PermisoMarineroController extends Controller
         elseif (Auth::user()->role_id == 5){
             return view('internal.usuarioPesca.nuevoPermisoMarinero');
         }
+        
     }
 
     /**

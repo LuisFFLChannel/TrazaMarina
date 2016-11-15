@@ -39,6 +39,9 @@ class PermisoZarpeController extends Controller
         elseif  (Auth::user()->role_id == 5){
             return view('internal.usuarioPesca.PermisoZarpes', compact('permisoZarpes'));
         }
+        elseif  (Auth::user()->role_id == 6){
+            return view('internal.usuarioIntermediario.PermisoZarpes', compact('permisoZarpes'));
+        }
     }
 
     /**
