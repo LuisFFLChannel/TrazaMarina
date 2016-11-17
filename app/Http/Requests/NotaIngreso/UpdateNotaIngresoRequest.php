@@ -27,9 +27,9 @@ class UpdateNotaIngresoRequest extends Request
             //
             'especie_id'    => 'required',
             'toneladas' =>  'required|numeric',
-            'tallaPromedio' =>  'required|numeric',
-            'toneladasExportacion' =>  'required|numeric',
-            'toneladasMercado' =>  'required|numeric'
+            'tallaPromedio' =>  'required|numeric'
+            //'toneladasExportacion' =>  'required|numeric',
+            //'toneladasMercado' =>  'required|numeric'
         ];
     }
 }

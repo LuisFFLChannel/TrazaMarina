@@ -121,8 +121,9 @@ class NotaIngresoController extends Controller
         $var->especie_id            = $input['especie_id'];
         $var->toneladas             = $input['toneladas'];
         $var->tallaPromedio         = $input['tallaPromedio'];
-        $var->toneladasExportacion  = $input['toneladasEXportacion'];;
-        $var->toneladasMercado      = $input['toneladasMercado'];
+        $var->toneladasSobrante     = $var->tallaPromedio
+        //$var->toneladasExportacion  = $input['toneladasEXportacion'];;
+        //$var->toneladasMercado      = $input['toneladasMercado'];
         $var->save();
 
         if (Auth::user()->role_id == 4){
@@ -142,5 +143,9 @@ class NotaIngresoController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function sobrantes($id) {
+        $var = NotaIngreso::find($id);
+        return $var->toneladas - $var->toneladasMercado - $var->toneldasExportacion;
     }
 }

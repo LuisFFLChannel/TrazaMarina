@@ -32,7 +32,7 @@
             {!!Form::input('number','tallaPromedio', $nota->tallaPromedio ,['class'=>'form-control','id'=>'tallaPromedio', 'min'=>0,'required'])!!}
           </div>
         </div>
-        <div class="form-group">
+        <!--<div class="form-group">
           <label for="tamanoMin" class="col-sm-3 control-label">Toneladas a Exportacion</label>
           <div class="col-sm-9">
             {!!Form::input('number','toneladasExportacion', $nota->toneladas ,['class'=>'form-control','id'=>'toneladasExportacion','min'=>0,'required'])!!}
@@ -43,7 +43,7 @@
           <div class="col-sm-9">
             {!!Form::input('number','toneladasMercado', $nota->toneladas ,['class'=>'form-control','id'=>'toneladasMercado','min'=>0,'required'])!!}
           </div>
-        </div>
+        </div>-->
 
 
       <div class="form-group">

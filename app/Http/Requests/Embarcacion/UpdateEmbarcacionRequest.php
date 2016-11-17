@@ -26,7 +26,7 @@ class UpdateEmbarcacionRequest extends Request
         return [
             //
             'nombre'                =>  'required|max:100',
-            'nMatricula'            =>  'required|max:50|unique:embarcacion',
+            'nMatricula'            =>  'required|max:50|unique:embarcacion,nMatricula,'.$this->input('id'),
             'nombreDueno'           =>  'required|max:100',
             'apellidoDueno'         =>  'required|max:100',
             'capacidad'             =>  'required|numeric|min:0',

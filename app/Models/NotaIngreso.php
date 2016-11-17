@@ -16,4 +16,5 @@ class NotaIngreso extends Model
     public function especieMarina() {
         return $this->belongsTo('App\Models\EspecieMarina','especie_id');
     }
+
 }

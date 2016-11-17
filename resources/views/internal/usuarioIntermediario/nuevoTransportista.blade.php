@@ -27,7 +27,7 @@
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-2 control-label">DNI</label>
           <div class="col-sm-10">
-            {!!Form::input('tnumber','dni', null ,['class'=>'form-control','id'=>'dni','max'=>'99999999' 'min'=>'10000000','required'])!!}
+            {!!Form::input('number','dni', null ,['class'=>'form-control','id'=>'dni','max'=>'99999999', 'min'=>'10000000','required'])!!}
           </div>
         </div>
         <div class="form-group">
@@ -45,7 +45,7 @@
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-2 control-label">Brevete</label>
           <div class="col-sm-10">
-            {!!Form::input('text','brevete', null,['class'=>'form-control','id'=>'brevete','maxlength'=>'10','required'])!!}
+            {!!Form::input('text','brevete', null,['class'=>'form-control','id'=>'brevete','maxlength'=>'50','required'])!!}
           </div>
         </div>
       <div class="form-group">

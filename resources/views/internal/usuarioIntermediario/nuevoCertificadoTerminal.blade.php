@@ -1,4 +1,4 @@
-@extends('layout.usuarioPesca')
+@extends('layout.usuarioIntermediario')
 
 @section('style')
 
@@ -6,43 +6,36 @@
 @stop
 
 @section('title')
-	Editar Permiso de Zarpe
+	Nuevo Permiso de Zarpe
 @stop
 
 @section('content')
 
 <div class="row">
-  <div class="col-sm-8">
-    {!!Form::open(array('url' => 'usuarioPesca/permisoZarpes/'.$permisoZarpe->id.'/edit','files'=>true,'id'=>'form','class'=>'form-horizontal'))!!}
-      {!!Form::hidden('id', $permisoZarpe->id)!!}
-      <div class="form-group">
-          <label for="inputEmail3" class="col-sm-3 control-label">Nombres</label>
-          <div class="col-sm-9">
-            {!!Form::input('text','nombre', $permisoZarpe->nombre ,['class'=>'form-control','id'=>'inputEmai3', 'maxlength'=>'100','required'])!!}
-          </div>
-        </div>
+  <div class="col-sm-10">
+    {!!Form::open(array('url' => 'usuarioIntermediario/certificadoTerminales/new','files'=>true,'id'=>'form','class'=>'form-horizontal'))!!}
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-3 control-label">Numero de Matricula</label>
           <div class="col-sm-9">
-            {!!Form::input('text','nMatricula', $permisoZarpe->nMatricula ,['class'=>'form-control','id'=>'inputEmai3', 'maxlength'=>'50','required'])!!}
+            {!!Form::input('text','nMatricula', null ,['class'=>'form-control','id'=>'inputEmai3', 'maxlength'=>'50','required'])!!}
           </div>
         </div>
         <div class="form-group">
           <label for="tamanoMin" class="col-sm-3 control-label">Latitud</label>
           <div class="col-sm-9">
-            {!!Form::input('number','latitud', $permisoZarpe->coordenadaX ,['class'=>'form-control','id'=>'latitud','required'])!!}
+            {!!Form::input('number','latitud', null ,['class'=>'form-control','id'=>'latitud','required'])!!}
           </div>
         </div>
         <div class="form-group">
           <label for="tamanoMax" class="col-sm-3 control-label">Longitud</label>
           <div class="col-sm-9">
-            {!!Form::input('number','longitud', $permisoZarpe->coordenadaY,['class'=>'form-control','id'=>'longitud', 'required'])!!}
+            {!!Form::input('number','longitud', null ,['class'=>'form-control','id'=>'longitud', 'required'])!!}
           </div>
         </div>
         <div class="form-group">
           <label for="inputcumpleanos" class="col-sm-3 control-label">Fecha Zarpe</label>
           <div class="col-sm-9">
-            {!!Form::input('date','fechaZarpe', explode(" ",$permisoZarpe->fechaZarpe)[0]  ,['class'=>'form-control','id'=>'fechaZarpe','required'])!!}
+            {!!Form::input('date','fechaZarpe', null ,['class'=>'form-control','id'=>'fechaZarpe','required'])!!}
             <div class="col-sm-9" id="firefox" style="visibility: hidden">
                 Formato Año(D/M/Y)
             </div> 
@@ -51,7 +44,7 @@
         <div class="form-group">
           <label for="inputcumpleanos" class="col-sm-3 control-label">Fecha Arribo</label>
           <div class="col-sm-9">
-            {!!Form::input('date','fechaArribo',explode(" ",$permisoZarpe->fechaArribo)[0]  ,['class'=>'form-control','id'=>'fechaArribo','required'])!!}
+            {!!Form::input('date','fechaArribo', null ,['class'=>'form-control','id'=>'fechaArribo','required'])!!}
             <div class="col-sm-9" id="firefox" style="visibility: hidden">
                 Formato Año(D/M/Y)
             </div> 
@@ -60,16 +53,16 @@
         <div class="form-group">
             <label class="col-sm-3 control-label">Capitania</label>
             <div class="col-sm-9">
-                {!! Form::select('capitania_id', $capitanias_lista->toArray(), $permisoZarpe->capitania_id, ['class' => 'form-control','required', 'id'=>'capitania_id']) !!}
+                {!! Form::select('capitania_id', $capitanias_lista->toArray(), null, ['class' => 'form-control','required', 'id'=>'capitania_id']) !!}
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-3 control-label">Puerto</label>
             <div class="col-sm-9">
-                {!! Form::select('puerto_id', $puertos_lista->toArray(), $permisoZarpe->puerto_id, ['class' => 'form-control','required', 'id'=>'puerto_id']) !!}
+                {!! Form::select('puerto_id', $puertos_lista->toArray(), null, ['class' => 'form-control','required', 'id'=>'puerto_id']) !!}
             </div>
         </div>
-         <br>
+        <br>
         <div class="form-group">
             <label class="col-sm-3 control-label">Pescadores</label>
             <div class="col-sm-9">
@@ -85,17 +78,6 @@
                       <th>DNI </th>
                       <th>Accion</th>
                   </tr>
-                  @foreach($permisoZarpe->marineros as $marinero)
-                    <tr>
-                        <td><input name="pescadores_id[]" type="number" value="{{$marinero->id}}" style = "border:none"></td>
-                        <td><input name="apelidos/nombres[][]" type="text" value="{{$marinero->apellidos}} - {{$marinero->nombres}}" style = "border:none"></td>
-                        <td><input name="dni[]" type="number" value="{{$marinero->dni}}" style = "border:none"></td>
-                        <td>
-                          <a class="btn btn-info"   title="Eliminar"    onclick="deleteFunctionPesca(this)"><i class="glyphicon glyphicon-remove"></i></a>
-                         
-                        </td>
-                    </tr> 
-                   @endforeach    
               </table>
             </div>
         </div>
@@ -116,17 +98,6 @@
                       <th>DNI </th>
                       <th>Accion</th>
                   </tr>
-                  @foreach($permisoZarpe->patron as $marinero)
-                    <tr>
-                        <td><input name="patrones_id[]" type="number" value="{{$marinero->id}}" style = "border:none"></td>
-                        <td><input name="apelidos/nombres[][]" type="text" value="{{$marinero->apellidos}} - {{$marinero->nombres}}" style = "border:none"></td>
-                        <td><input name="dni[]" type="number" value="{{$marinero->dni}}" style = "border:none"></td>
-                        <td>
-                          <a class="btn btn-info"   title="Eliminar"    onclick="deleteFunctionPatron(this)"><i class="glyphicon glyphicon-remove"></i></a>
-                          
-                        </td>
-                    </tr> 
-                   @endforeach    
               </table>
             </div>
         </div>
@@ -134,10 +105,11 @@
       <div class="form-group">
         <div class="col-sm-offset-3 col-sm-9">
           <a class="btn btn-info" href="" title="submit" data-toggle="modal" data-target="#submitModal" >Guardar</a>
-          <a href="{{action('PermisoZarpeController@index')}}"><button type="button" class="btn btn-info">Cancelar</button></a>
+          <a href="{{action('CertificadoTerminalesController@index')}}"><button type="button" class="btn btn-info">Cancelar</button></a>
         </div>
       </div>
 
+      <!-- MODAL -->
       <div class="modal fade"  id="submitPescadores">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -205,13 +177,12 @@
         </div><!-- /.modal-dialog -->
       </div><!-- /.modal -->
 
-      <!-- MODAL -->
       <div class="modal fade"  id="submitModal">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title">¿Estas seguro que desea editar el Permiso de Zarpe?</h4>
+              <h4 class="modal-title">¿Estas seguro que desea crear el Permiso de Zarpe?</h4>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-info" data-dismiss="modal">No</button>
@@ -279,7 +250,7 @@ $("#AgregarPescador").on("click",function(){
     //variable  =  $( this).val() ;
     url_base = "{{ url('/') }}";
      // Peticion ajax
-    $.getJSON( url_base + "/usuarioPesca/nuevoPermisoZarpes/new/"+id_variable  , function(data)
+    $.getJSON( url_base + "/usuarioIntermediario/nuevoPermisoZarpes/new/"+id_variable  , function(data)
       {
         console.log(data);
         $.each( data, function( id) {
@@ -361,7 +332,7 @@ $("#AgregarPatron").on("click",function(){
     //variable  =  $( this).val() ;
     url_base = "{{ url('/') }}";
      // Peticion ajax
-    $.getJSON( url_base + "/usuarioPesca/nuevoPermisoZarpes/new/"+id_variable  , function(data)
+    $.getJSON( url_base + "/usuarioIntermediario/nuevoPermisoZarpes/new/"+id_variable  , function(data)
       {
         console.log(data);
         $.each( data, function( id) {
@@ -451,4 +422,5 @@ $("#AgregarPatron").on("click",function(){
     }  
 
 </script>  
+
 @stop

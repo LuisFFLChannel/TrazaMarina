@@ -12,6 +12,7 @@
   <div class="row">
     <div class="col-sm-8">
       {!!Form::open(array('url' => 'usuarioPesca/permisoPescas/'.$permisoPesca->id.'/edit','files'=>true,'id'=>'form','class'=>'form-horizontal'))!!}
+        {!!Form::hidden('id', $permisoPesca->id)!!}
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-3 control-label">Nombre</label>
           <div class="col-sm-9">

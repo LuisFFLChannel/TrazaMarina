@@ -28,7 +28,7 @@ class StorePermisoPatronRequest extends Request
             'nombres'           =>  'required|max:100',
             'apellidos'        =>  'required|max:100',
             'dni'                   =>  'required|integer',
-            'numeroPatron'          =>  'required|max:50',
+            'numeroPatron'          =>  'required|max:50|unique:permisoPatron',
             'fechaVigencia'         =>   'required'
         ];
     }

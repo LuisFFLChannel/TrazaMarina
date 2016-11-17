@@ -26,7 +26,7 @@ class UpdatePermisoPescaRequest extends Request
         return [
             //
             'nombre'                =>  'required|max:100',
-            'nMatricula'            =>  'required|max:50',
+            'nMatricula'            =>  'required|max:50|unique:permisoPesca,nMatricula,'.$this->input('id'),
             'fechaVigencia'         =>   'required'
         ];
     }

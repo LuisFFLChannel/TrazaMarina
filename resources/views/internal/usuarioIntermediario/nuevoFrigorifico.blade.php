@@ -27,7 +27,7 @@
         <div class="form-group">
           <label for="capacidad" class="col-sm-2 control-label">Capacidad (Kg)</label>
           <div class="col-sm-10">
-            {!!Form::input('text','capacidad', null ,['class'=>'form-control','id'=>'capacidad', 'maxlength'=>'10','min' >0,'required'])!!}
+            {!!Form::input('number','capacidad', null ,['class'=>'form-control','id'=>'capacidad', 'min'=>0,'required'])!!}
           </div>
         </div>
       <div class="form-group">

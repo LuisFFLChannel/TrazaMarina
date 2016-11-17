@@ -12,6 +12,7 @@
   <div class="row">
     <div class="col-sm-8">
       {!!Form::open(array('url' => 'usuarioPesca/certificadoMatriculas/'.$certificadoMatricula->id.'/edit','files'=>true,'id'=>'form','class'=>'form-horizontal'))!!}
+        {!!Form::hidden('id', $certificadoMatricula->id)!!}
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-3 control-label">Nombres del Dueño</label>
           <div class="col-sm-7">

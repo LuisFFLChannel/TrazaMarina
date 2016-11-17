@@ -5,54 +5,60 @@
 @stop
 
 @section('title')
-	Editar Transportista
+	Nueva Empresario Intermediario
 @stop
 
 @section('content')
 <div class="row">
   <div class="col-sm-8">
-    {!!Form::open(array('url' => 'usuarioIntermediario/transportistas/'.$transportista->id.'/edit','files'=>true,'id'=>'form','class'=>'form-horizontal'))!!}
-      {!!Form::hidden('id', $transportista->id)!!}
+    {!!Form::open(array('url' => 'usuarioIntermediario/empresarioComercializadores/new','files'=>true,'id'=>'form','class'=>'form-horizontal'))!!}
       <div class="form-group">
           <label for="inputEmail3" class="col-sm-2 control-label">Nombres</label>
           <div class="col-sm-10">
-            {!!Form::input('text','nombres', $transportista->nombres ,['class'=>'form-control','id'=>'nombres', 'maxlength'=>'100','required'])!!}
+            {!!Form::input('text','nombres', null ,['class'=>'form-control','id'=>'nombres', 'maxlength'=>'100','required'])!!}
           </div>
         </div>
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-2 control-label">Apellidos</label>
           <div class="col-sm-10">
-            {!!Form::input('text','apellidos', $transportista->apellidos ,['class'=>'form-control','id'=>'apellidos', 'maxlength'=>'100','required'])!!}
+            {!!Form::input('text','apellidos', null ,['class'=>'form-control','id'=>'apellidos', 'maxlength'=>'100','required'])!!}
           </div>
         </div>
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-2 control-label">DNI</label>
           <div class="col-sm-10">
-            {!!Form::input('number','dni', $transportista->dni ,['class'=>'form-control','id'=>'dni','max'=>'99999999', 'min'=>'10000000','required'])!!}
+            {!!Form::input('number','dni', null ,['class'=>'form-control','id'=>'dni','max'=>'99999999', 'min'=>'10000000','required'])!!}
           </div>
         </div>
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-2 control-label">Telefono</label>
           <div class="col-sm-10">
-            {!!Form::input('number','telefono', $transportista->telefono ,['class'=>'form-control','id'=>'telefono','required','min'>=1])!!}
+            {!!Form::input('number','telefono', null ,['class'=>'form-control','id'=>'telefono','required','min'>=1])!!}
           </div>
         </div>
         <div class="form-group">
           <label for="correo" class="col-sm-2 control-label">Correo</label>
           <div class="col-sm-10">
-           {!!Form::input('email','correo', $transportista->correo ,['class'=>'form-control','id'=>'correo','required'])!!}
+           {!!Form::input('email','correo', null ,['class'=>'form-control','id'=>'correo','required'])!!}
           </div>
         </div>
         <div class="form-group">
-          <label for="inputEmail3" class="col-sm-2 control-label">Brevete</label>
+          <label for="inputEmail3" class="col-sm-2 control-label">Nombre Empresa</label>
           <div class="col-sm-10">
-            {!!Form::input('text','brevete', $transportista->brevete ,['class'=>'form-control','id'=>'brevete','maxlength'=>'10','required'])!!}
+            {!!Form::input('text','nombreEmpresa', null ,['class'=>'form-control','id'=>'nombreEmpresa', 'maxlength'=>'100','required'])!!}
           </div>
         </div>
+        <div class="form-group">
+          <label for="inputEmail3" class="col-sm-2 control-label">Ruc</label>
+          <div class="col-sm-10">
+            {!!Form::input('text','ruc', null ,['class'=>'form-control','id'=>'ruc', 'maxlength'=>'100','required'])!!}
+          </div>
+        </div>
+        
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
           <a class="btn btn-info" href="" title="submit" data-toggle="modal" data-target="#submitModal" >Guardar</a>
-          <a href="{{action('TransportistaController@index')}}"><button type="button" class="btn btn-info">Cancelar</button></a>
+          <a href="{{action('EmpresarioComercializadorController@index')}}"><button type="button" class="btn btn-info">Cancelar</button></a>
         </div>
       </div>
 
@@ -62,7 +68,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title">¿Estas seguro que desea editar al transportista?</h4>
+              <h4 class="modal-title">¿Estas seguro que desea crear el Empresario Comercializador?</h4>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-info" data-dismiss="modal">No</button>

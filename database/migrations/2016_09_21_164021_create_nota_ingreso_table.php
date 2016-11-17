@@ -18,6 +18,7 @@ class CreateNotaIngresoTable extends Migration
             $table->integer('especie_id')->unsigned();
             $table->float('toneladas');
             $table->float('tallaPromedio');
+            $table->float('toneladasSobrantes');
             $table->float('toneladasExportacion');
             $table->float('toneladasMercado');
             $table->softDeletes();

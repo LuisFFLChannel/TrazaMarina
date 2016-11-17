@@ -27,7 +27,7 @@ class UpdatePescadorRequest extends Request
          return [
             'nombres'           =>  'required|max:100',
             'apellidos'         =>  'required|max:100',
-            'dni'               =>  'required|integer|unique:pescadores',
+            'dni'               =>  'required|integer|unique:pescadores,dni,'.$this->input('id'),
             'telefono'          =>  'required|integer',
             'correo'            =>  'required|email|max:100',
             'cumpleanos'        =>  'required'

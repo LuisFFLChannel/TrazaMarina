@@ -26,7 +26,7 @@ class UpdatePermisoZarpeRequest extends Request
         $rules = [
             //
                 'nombre'                =>  'required|max:100',
-                'nMatricula'            =>  'required|max:50',
+                'nMatricula'            =>  'required|max:50|unique:permizoZarpe,nMatricula,'.$this->input('id'),
                 'longitud'              =>  'required|numeric',
                 'latitud'               =>  'required|numeric',
                 'fechaZarpe'            =>  'required',

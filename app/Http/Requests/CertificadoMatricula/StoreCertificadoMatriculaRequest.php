@@ -28,7 +28,7 @@ class StoreCertificadoMatriculaRequest extends Request
             'nombreDueno'           =>  'required|max:100',
             'apellidosDueno'         =>  'required|max:100',
             'dniDueno'              =>  'required|integer',
-            'nMatricula'            =>  'required|max:50'
+            'nMatricula'            =>  'required|max:50|unique:certificadoMatricula'
         ];
     }
 }

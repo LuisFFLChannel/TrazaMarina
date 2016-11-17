@@ -91,6 +91,7 @@ class DesembarqueController extends Controller
         $var->desembarque_id        = $desembarque->id;
         $var->toneladas             = $data['toneladas'];
         $var->tallaPromedio         = $data['tallas'];
+        $var->toneladasSobrantes    = $data['toneladas'];
         $var->toneladasExportacion  = 0;
         $var->toneladasMercado      = 0;
         $var->save();

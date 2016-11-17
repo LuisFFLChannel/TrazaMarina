@@ -30,10 +30,10 @@ class EmpresarioComercializadorController extends Controller
         $empresarios = EmpresarioComercializador::paginate(10);
         $empresarios->setPath('empresario');
         if (Auth::user()->role_id == 4){
-            return view('internal.admin.empresarios', compact('empresarios'));
+            return view('internal.admin.empresarioComercializadores', compact('empresarios'));
         }
         elseif  (Auth::user()->role_id == 6){
-            return view('internal.usuarioIntermediario.empresarios', compact('empresarios'));
+            return view('internal.usuarioIntermediario.empresarioComercializadores', compact('empresarios'));
         }
     }
 
@@ -46,10 +46,10 @@ class EmpresarioComercializadorController extends Controller
     {
         //
         if (Auth::user()->role_id == 4){
-            return view('internal.admin.nuevoEmpresario');
+            return view('internal.admin.nuevoEmpresarioComercializador');
         }
         elseif  (Auth::user()->role_id == 6){
-            return view('internal.usuarioPesca.nuevoEmpresario');
+            return view('internal.usuarioIntermediario.nuevoEmpresarioComercializador');
         }
     }
 
@@ -77,10 +77,10 @@ class EmpresarioComercializadorController extends Controller
         $empresario->save();
 
         if (Auth::user()->role_id == 4){
-            return redirect()->route('admin.empresarios');
+            return redirect()->route('admin.empresarioComercializadores');
         }
         elseif  (Auth::user()->role_id == 6){
-            return redirect()->route('usuarioPesca.empresarios');
+            return redirect()->route('usuarioIntermediario.empresarioComercializadores');
         }
     }
 
@@ -104,12 +104,12 @@ class EmpresarioComercializadorController extends Controller
     public function edit($id)
     {
         //
-        $empresarios = EmpresarioComercializador::find($id);
+        $empresario = EmpresarioComercializador::find($id);
         if (Auth::user()->role_id == 4){
-            return view('internal.admin.editarEmpresario', compact('empresarios'));
+            return view('internal.admin.editarEmpresarioComercializador', compact('empresario'));
         }
         elseif  (Auth::user()->role_id == 6){
-            return view('internal.usuarioPesca.editarEmpresario', compact('empresarios'));
+            return view('internal.usuarioIntermediario.editarEmpresarioComercializador', compact('empresario'));
         }
     }
 
@@ -138,10 +138,10 @@ class EmpresarioComercializadorController extends Controller
         $empresario->save();
 
         if (Auth::user()->role_id == 4){
-            return redirect()->route('admin.empresarios');
+            return redirect()->route('admin.empresarioComercializadores');
         }
         elseif  (Auth::user()->role_id == 6){
-            return redirect()->route('usuarioPesca.empresarios');
+            return redirect()->route('usuarioIntermediario.empresarioComercializadores');
         }
     }
 
@@ -157,10 +157,10 @@ class EmpresarioComercializadorController extends Controller
         $empresario = EmpresarioComercializador::find($id);
         $empresario->delete();
         if (Auth::user()->role_id == 4){
-            return redirect()->route('admin.empresarios');
+            return redirect()->route('admin.empresarioComercializadores');
         }
         elseif  (Auth::user()->role_id == 6){
-            return redirect()->route('usuarioPesca.empresarios');
+            return redirect()->route('usuarioIntermediario.empresarioComercializadores');
         }
     }
 }

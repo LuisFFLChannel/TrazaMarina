@@ -564,11 +564,36 @@ Route::group(['middleware' => ['auth', 'usuarioIntermediario']], function () {
     Route::get('usuarioIntermediario/puertos', ['uses'=>'PuertosController@index','as'=>'usuarioIntermediario.puertos']);
     Route::get('usuarioIntermediario/capitanias', ['uses'=>'CapitaniaController@index','as'=>'usuarioIntermediario.capitanias']);
     Route::get('usuarioIntermediario/dpas', ['uses'=>'DpaController@index','as'=>'usuarioIntermediario.dpas']);
-    Route::get('usuarioIntermediario/transportistas', ['uses'=>'TransportistaController@index','as'=>'usuarioIntermediario.transportistas']);
-    Route::get('usuarioIntermediario/frigorificos', ['uses'=>'FrigorificoController@index','as'=>'usuarioIntermediario.frigorificos']);
-    Route::get('usuarioIntermediario/fabricas', ['uses'=>'FabricaController@index','as'=>'usuarioIntermediario.fabricas']);
-    Route::get('usuarioIntermediario/terminales', ['uses'=>'TerminalController@index','as'=>'usuarioIntermediario.terminales']);
 
+
+    Route::get('usuarioIntermediario/transportistas', ['uses'=>'TransportistaController@index','as'=>'usuarioIntermediario.transportistas']);
+    Route::get('usuarioIntermediario/transportistas/new', 'TransportistaController@create');
+    Route::post('usuarioIntermediario/transportistas/new', 'TransportistaController@store');
+    Route::get('usuarioIntermediario/transportistas/{id}/edit', 'TransportistaController@edit');
+    Route::post('usuarioIntermediario/transportistas/{id}/edit', 'TransportistaController@update');
+    Route::get('usuarioIntermediario/transportistas/{id}/delete', 'TransportistaController@destroy');
+
+    Route::get('usuarioIntermediario/frigorificos', ['uses'=>'FrigorificoController@index','as'=>'usuarioIntermediario.frigorificos']);
+    Route::get('usuarioIntermediario/frigorificos/new', 'FrigorificoController@create');
+    Route::post('usuarioIntermediario/frigorificos/new', 'FrigorificoController@store');
+    Route::get('usuarioIntermediario/frigorificos/{id}/edit', 'FrigorificoController@edit');
+    Route::post('usuarioIntermediario/frigorificos/{id}/edit', 'FrigorificoController@update');
+    Route::get('usuarioIntermediario/frigorificos/{id}/delete', 'FrigorificoController@destroy');
+
+    Route::get('usuarioIntermediario/fabricas', ['uses'=>'FabricaController@index','as'=>'usuarioIntermediario.fabricas']);
+    Route::get('usuarioIntermediario/fabricas/new', 'FabricaController@create');
+    Route::post('usuarioIntermediario/fabricas/new', 'FabricaController@store');
+    Route::get('usuarioIntermediario/fabricas/{id}/edit', 'FabricaController@edit');
+    Route::post('usuarioIntermediario/fabricas/{id}/edit', 'FabricaController@update');
+    Route::get('usuarioIntermediario/fabricas/{id}/delete', 'FabricaController@destroy');
+
+
+    Route::get('usuarioIntermediario/terminales', ['uses'=>'TerminalController@index','as'=>'usuarioIntermediario.terminales']);
+    Route::get('usuarioIntermediario/terminales/new', 'TerminalController@create');
+    Route::post('usuarioIntermediario/terminales/new', 'TerminalController@store');
+    Route::get('usuarioIntermediario/terminales/{id}/edit', 'TerminalController@edit');
+    Route::post('usuarioIntermediario/terminales/{id}/edit', 'TerminalController@update');
+    Route::get('usuarioIntermediario/terminales/{id}/delete', 'TerminalController@destroy');
 
     Route::get('usuarioIntermediario/pescadores', ['uses'=>'PescadoresController@index','as'=>'usuarioIntermediario.pescadores']);
     Route::get('usuarioIntermediario/pescadores/{id}/showPermisoMarinero', 'PescadoresController@showPermisoMarinero');
@@ -596,6 +621,20 @@ Route::group(['middleware' => ['auth', 'usuarioIntermediario']], function () {
 
     Route::get('usuarioIntermediario/notasIngresos', ['uses'=>'NotaIngresoController@index','as'=>'usuarioIntermediario.notasIngresos']);
 
+    Route::get('usuarioIntermediario/certificadoProcedencias', ['uses'=>'CertificadoProcedenciaController@index','as'=>'usuarioIntermediario.certificadoProcedencias']);
+    Route::get('usuarioIntermediario/certificadoProcedencias/new', 'CertificadoProcedenciaController@create');
+    Route::post('usuarioIntermediario/certificadoProcedencias/new', 'CertificadoProcedenciaController@store');
+    Route::get('usuarioIntermediario/certificadoProcedencias/{id}/edit', 'CertificadoProcedenciaController@edit');
+    Route::post('usuarioIntermediario/certificadoProcedencias/{id}/edit', 'CertificadoProcedenciaController@update');
+    Route::get('usuarioIntermediario/certificadoProcedencias/{id}/delete', 'CertificadoProcedenciaController@destroy');
+    Route::get('usuarioIntermediario/nuevoCertificadoProcedencias/new/{id_variable}', 'CertificadoProcedenciaController@ajaxNotaIngreso');
+    
+    Route::get('usuarioIntermediario/empresarioComercializadores', ['uses'=>'EmpresarioComercializadorController@index','as'=>'usuarioIntermediario.empresarioComercializadores']);
+    Route::get('usuarioIntermediario/empresarioComercializadores/new', 'EmpresarioComercializadorController@create');
+    Route::post('usuarioIntermediario/empresarioComercializadores/new', 'EmpresarioComercializadorController@store');
+    Route::get('usuarioIntermediario/empresarioComercializadores/{id}/edit', 'EmpresarioComercializadorController@edit');
+    Route::post('usuarioIntermediario/empresarioComercializadores/{id}/edit', 'EmpresarioComercializadorController@update');
+    Route::get('usuarioIntermediario/empresarioComercializadores/{id}/delete', 'EmpresarioComercializadorController@destroy');
 
 
   

@@ -27,8 +27,8 @@ class UpdatePermisoMarineroRequest extends Request
             //
             'nombres'           =>  'required|max:100',
             'apellidos'        =>  'required|max:100',
-            'dni'                   =>  'required|integer',
-            'numeroMarinero'        =>  'required|max:50',
+            'dni'                   =>  'required|integer|unique:permisoMarinero,dni,'.$this->input('id'),
+            'numeroMarinero'        =>  'required|max:50|unique:permisoMarinero,numeroMarineo,'.$this->input('id'),
             'fechaVigencia'         =>   'required'
         ];
     }

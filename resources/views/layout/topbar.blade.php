@@ -548,6 +548,27 @@
                         <!--<li><a href="{{url('usuarioPesca/desembarques/new')}}">Nuevo</a></li>-->
                     </ul>
                 </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Emp. Comercializador<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('usuarioIntermediario/empresarioComercializadores')}}">Listar</a></li>
+                        <li><a href="{{url('usuarioIntermediario/empresarioComercializadores/new')}}">Nuevo</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cert. Procedencia<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('usuarioIntermediario/certificadoProcedencias')}}">Listar</a></li>
+                        <li><a href="{{url('usuarioIntermediario/certificadoProcedencias/new')}}">Nuevo</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cert.o a Terminal<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('usuarioIntermediario/certificadoTerminales')}}">Listar</a></li>
+                        <li><a href="{{url('usuarioIntermediario/certificadoTerminales/new')}}">Nuevo</a></li>
+                    </ul>
+                </li>
                 
                 <!--<li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Configuración  <b class="caret"></b></a>

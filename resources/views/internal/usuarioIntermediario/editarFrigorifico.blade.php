@@ -12,6 +12,7 @@
 <div class="row">
   <div class="col-sm-8">
     {!!Form::open(array('url' => 'usuarioIntermediario/frigorificos/'.$frigorifico->id.'/edit','files'=>true,'id'=>'form','class'=>'form-horizontal'))!!}
+      {!!Form::hidden('id', $frigorifico->id)!!}
       <div class="form-group">
           <label for="inputEmail3" class="col-sm-2 control-label">Nombre</label>
           <div class="col-sm-10">
@@ -27,7 +28,7 @@
         <div class="form-group">
           <label for="capacidad" class="col-sm-2 control-label">Capacidad (Kg)</label>
           <div class="col-sm-10">
-            {!!Form::input('text','capacidad', $frigorifico->capacidad ,['class'=>'form-control','id'=>'capacidad', 'maxlength'=>'10','min' >0,'required'])!!}
+            {!!Form::input('number','capacidad', $frigorifico->capacidad ,['class'=>'form-control','id'=>'capacidad', 'min' >0,'required'])!!}
           </div>
         </div>
 

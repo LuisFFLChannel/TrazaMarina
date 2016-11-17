@@ -25,7 +25,7 @@ class StoreFrigorificoRequest extends Request
     {
        return [
             'nombre'            =>  'required|max:100',
-            'placa'             =>  'required|max:50',
+            'placa'             =>  'required|max:50|unique:frigorifico',
             'capacidad'          =>  'required|numeric'
         ];
     }
