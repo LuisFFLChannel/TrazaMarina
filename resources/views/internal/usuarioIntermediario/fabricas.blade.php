@@ -15,6 +15,7 @@
         <th class="text-center">Nombre</th>
         <th class="text-center">Direccion</th>   
         <th class="text-center">Coordenadas (Latitud , Longitud) </th>
+        <th class="text-center">Mostrar Mapa</th>
         <!--<th>Imagen</th>-->
         <th class="text-center">Detalle</th>
         <th class="text-center">Editar</th>
@@ -26,6 +27,9 @@
       <td class="text-center">{{$fabrica->nombre}}</td>
       <td class="text-center">{{$fabrica->direccion}}</td>
       <td class="text-center">( {{$fabrica->coordenadaX}} , {{$fabrica->coordenadaY}} )</td>
+      <td class="text-center">
+          <a class="btn btn-info" href="{{url('usuarioIntermediario/mapas/'.$fabrica->id.'/mostarMapaFabrica')}}" title="Mostrar Mapa" ><i class="glyphicon glyphicon-map-marker"></i></a>
+        </td>
       <!--<td>{!! Html::image($fabrica->imagen, null, array('class'=>'gift_img')) !!}</td>-->
       <td class="text-center">
             <a class="btn btn-info" href="detalles" title="Detalles" data-toggle="modal" data-target="#edit{{$fabrica->id}}"><i class="glyphicon glyphicon-plus"></i></a>
@@ -44,7 +48,7 @@
                           <h5 class="text-left">Direccion: {{$fabrica->direccion}} </h5>                              
                           <h5 class="text-left">Latitud: {{$fabrica->coordenadaX}}</h5> 
                           <h5 class="text-left">Longitud: {{$fabrica->coordenadaY}}</h5> 
-                          <h5 class="text-left">Mapa: </h5>
+                          
                           
                           <hr>
                           <h5 class="text-left">Imagen:</h5> 

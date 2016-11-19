@@ -196,9 +196,57 @@ class CertificadoProcedenciaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateCertificadoProcedenciaRequest $request, $id)
     {
         //
+        $input = $request->all();
+
+        $certificado = CertificadoProcedencia::find($id);
+
+        $certificado->fabrica_id                    =   $input['fabrica_id'];
+        $certificado->frigorifico_id                =   $input['frigorifico_id'];
+        $certificado->transportista_id              =   $input['transportista_id'];
+        $certificado->empresarioComercializador_id  =   $input['empresario_id'];
+        $certificado->fechaDictada                  =   new Carbon($input['fechaDictada']);
+        //$certificado->activo                        =   true;
+
+        $notas_data = [
+            'notas_id'     => $request->input('notas_id'),
+            'toneladas'     => $request->input('toneladas')
+        ];
+        //dd($notas_data);
+        foreach($notas_data ['notas_id'] as $key1=>$value1){
+            $pes_data = [
+                'notas_id' => $value1
+            ];
+            foreach($notas_data ['notas_id'] as $key2=>$value2){
+                $pes2_data = [
+                    'notas_id' => $value2
+                ];
+                if ($key1!= $key2 and $pes_data['notas_id']==$pes2_data['notas_id']){
+                     return redirect()->back()->withInput()->withErrors(['errors' => 'Se esta Repitiendo Notas de Ingresos de una misma Especie Marina en la creación de Notas de Ingreso']);
+                }
+            }
+        }
+        //dd($certificado);
+        $this->BorrarRelacionesPasadasNotaIngreso($nos_data , $certificado);
+        $certificado->save();
+
+        foreach($notas_data ['notas_id'] as $key=>$value){
+            $nos_data = [
+                'notas_id' => $value,
+                'toneladas'   => $notas_data['toneladas'][$key]
+            ];
+            $var = $this->storeRelacionNotaIngreso($nos_data , $certificado);
+            $var2 = $this->storeActualizarNotaIngreso($nos_data , $certificado);
+        }
+
+        if (Auth::user()->role_id == 4){
+            return redirect()->route('admin.certificadoProcedencias');
+        }
+        elseif  (Auth::user()->role_id == 6){
+            return redirect()->route('usuarioIntermediario.certificadoProcedencias');
+        }
     }
 
     /**

@@ -171,4 +171,27 @@ class DpaController extends Controller
         }
         
     }
+    public function mostrarMapa($id)
+    {
+        //
+        $dpa = Dpa::find($id);
+        $arreglo = [
+            'dpa'             => $dpa,
+            'latitud'               => $dpa->coordenadaX,
+            'longitud'              => $dpa->coordenadaY,
+            'valorEscogido'         => 2
+
+        ];
+        //$capitania->delete();
+        if (Auth::user()->role_id == 4){
+            return view('internal.usuarioPesca.mostrarMapa', $arreglo);
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.mostrarMapa', $arreglo);
+        }
+        elseif  (Auth::user()->role_id == 6){
+            return view('internal.usuarioIntermediario.mostrarMapa', $arreglo);
+        }
+
+    }
 }

@@ -15,6 +15,7 @@
         <th class="text-center">Nombre</th>
         <th class="text-center">Direccion</th>   
         <th class="text-center">Coordenadas (Latitud , Longitud) </th>
+        <th class="text-center">Ver Mapa</th>
         <!--<th>Imagen</th>-->
         <th class="text-center">Detalle</th>
         <th class="text-center">Editar</th>
@@ -26,6 +27,7 @@
       <td class="text-center">{{$dpa->nombre}}</td>
       <td class="text-center">{{$dpa->direccion}}</td>
       <td class="text-center">( {{$dpa->coordenadaX}} , {{$dpa->coordenadaY}} )</td>
+      
       <!--<td>{!! Html::image($dpa->imagen, null, array('class'=>'gift_img')) !!}</td>-->
       <td class="text-center">
             <a class="btn btn-info" href="detalles" title="Detalles" data-toggle="modal" data-target="#edit{{$dpa->id}}"><i class="glyphicon glyphicon-plus"></i></a>

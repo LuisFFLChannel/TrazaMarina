@@ -66,11 +66,15 @@
                       <th>Toneladas</th>
                       <th>Accion</th>
                   </tr>
-                  @foreach($certificadoProcedencia->notas as $nota)
+                  @foreach($certificadoProcedencia->notasIngreso as $nota)
                     <tr>
-                        <td><input name="pescadores_id[]" type="number" value="{{$marinero->id}}" style = "border:none"></td>
-                        <td><input name="apelidos/nombres[][]" type="text" value="{{$marinero->apellidos}} - {{$marinero->nombres}}" style = "border:none"></td>
-                        <td><input name="dni[]" type="number" value="{{$marinero->dni}}" style = "border:none"></td>
+                        <td><input name="notas_id[]" type="number" value="{{$nota->nota->id}}" style = "border:none;width:60px;background:transparent" readonly></td>
+                        <td><input name="especies[]"  type="text" value="{{$nota->nota->especieMarina->nombre}}" style = "border:none;width:120px;background:transparent" readonly></td>
+                        <td><input name="desembarques[]" type="text" value="{{$nota->nota->desembarque->id}}" style = "border:none;width:15px;background:transparent" readonly></td>
+                        <td><input name="pescas[]" type="text" value="{{$nota->nota->desembarque->pesca->id}}" style = "border:none;width:15px;background:transparent" readonly></td>
+                        <td><input name="embarcaciones[]" type="text" value="{{$nota->nota->desembarque->embarcacion->id}}" style = "border:none;width:120p;background:transparent" readonly></td>
+                        <td><input name="puertos[]" type="text" value="{{$nota->nota->desembarque->puerto->id}}" style = "border:none;width:120px;background:transparent" readonly></td>
+                        <td><input name="toneladas[]" type="number" value="{{$nota->toneladas}}" style = "border:none;width:60px;background:transparent"></td>
                         <td>
                           <a class="btn btn-info"   title="Eliminar"    onclick="deleteFunctionPesca(this)"><i class="glyphicon glyphicon-remove"></i></a>
                          

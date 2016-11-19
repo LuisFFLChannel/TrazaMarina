@@ -121,7 +121,7 @@ class NotaIngresoController extends Controller
         $var->especie_id            = $input['especie_id'];
         $var->toneladas             = $input['toneladas'];
         $var->tallaPromedio         = $input['tallaPromedio'];
-        $var->toneladasSobrante     = $var->tallaPromedio
+        $var->toneladasSobrante     = $var->tallaPromedio;
         //$var->toneladasExportacion  = $input['toneladasEXportacion'];;
         //$var->toneladasMercado      = $input['toneladasMercado'];
         $var->save();

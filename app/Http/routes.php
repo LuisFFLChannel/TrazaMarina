@@ -374,6 +374,12 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::post('admin/certificadoMatriculas/{id}/edit', 'CertificadoMatriculasController@update');
     Route::get('admin/certificadoMatriculas/{id}/delete', 'CertificadoMatriculasController@destroy');
 
+    Route::get('admin/mapas/{id}/mostarMapaCapitania', 'CapitaniaController@mostrarMapa');
+    Route::get('admin/mapas/{id}/mostarMapaDpa', 'DpaController@mostrarMapa');
+    Route::get('admin/mapas/{id}/mostarMapaPuerto', 'PuertosController@mostrarMapa');
+    Route::get('admin/mapas/{id}/mostarMapaTerminal', 'TerminalController@mostrarMapa');
+    Route::get('admin/mapas/{id}/mostarMapaFabrica', 'FabricaController@mostrarMapa');
+
 })  ;
 Route::group(['middleware' => ['auth', 'usuarioPesca']], function () {
 
@@ -529,6 +535,12 @@ Route::group(['middleware' => ['auth', 'usuarioPesca']], function () {
     Route::post('usuarioPesca/certificadoArribos/{id}/edit', 'CertificadoArriboController@update');
     Route::get('usuarioPesca/certificadoArribos/{id}/delete', 'CertificadoArriboController@destroy');
 
+    Route::get('usuarioPesca/mapas/{id}/mostarMapaCapitania', 'CapitaniaController@mostrarMapa');
+    Route::get('usuarioPesca/mapas/{id}/mostarMapaDpa', 'DpaController@mostrarMapa');
+    Route::get('usuarioPesca/mapas/{id}/mostarMapaPuerto', 'PuertosController@mostrarMapa');
+    Route::get('usuarioPesca/mapas/{id}/mostarMapaTerminal', 'TerminalController@mostrarMapa');
+    Route::get('usuarioPesca/mapas/{id}/mostarMapaFabrica', 'FabricaController@mostrarMapa');
+
 })  ;
 Route::group(['middleware' => ['auth', 'usuarioIntermediario']], function () {
 
@@ -565,6 +577,11 @@ Route::group(['middleware' => ['auth', 'usuarioIntermediario']], function () {
     Route::get('usuarioIntermediario/capitanias', ['uses'=>'CapitaniaController@index','as'=>'usuarioIntermediario.capitanias']);
     Route::get('usuarioIntermediario/dpas', ['uses'=>'DpaController@index','as'=>'usuarioIntermediario.dpas']);
 
+    Route::get('usuarioIntermediario/mapas/{id}/mostarMapaCapitania', 'CapitaniaController@mostrarMapa');
+    Route::get('usuarioIntermediario/mapas/{id}/mostarMapaDpa', 'DpaController@mostrarMapa');
+    Route::get('usuarioIntermediario/mapas/{id}/mostarMapaPuerto', 'PuertosController@mostrarMapa');
+    Route::get('usuarioIntermediario/mapas/{id}/mostarMapaTerminal', 'TerminalController@mostrarMapa');
+    Route::get('usuarioIntermediario/mapas/{id}/mostarMapaFabrica', 'FabricaController@mostrarMapa');
 
     Route::get('usuarioIntermediario/transportistas', ['uses'=>'TransportistaController@index','as'=>'usuarioIntermediario.transportistas']);
     Route::get('usuarioIntermediario/transportistas/new', 'TransportistaController@create');

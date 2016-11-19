@@ -170,4 +170,27 @@ class FabricaController extends Controller
             return redirect()->route('usuarioIntermediario.fabricas');
         }
     }
+    public function mostrarMapa($id)
+    {
+        //
+        $fabrica = Fabrica::find($id);
+        $arreglo = [
+            'fabrica'             => $fabrica,
+            'latitud'               => $fabrica->coordenadaX,
+            'longitud'              => $fabrica->coordenadaY,
+            'valorEscogido'         => 3
+
+        ];
+        //$capitania->delete();
+        if (Auth::user()->role_id == 4){
+            return view('internal.usuarioPesca.mostrarMapa', $arreglo);
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.mostrarMapa', $arreglo);
+        }
+        elseif  (Auth::user()->role_id == 6){
+            return view('internal.usuarioIntermediario.mostrarMapa', $arreglo);
+        }
+
+    }
 }
