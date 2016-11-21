@@ -14,4 +14,7 @@ class Frigorifico extends Model
 	public function certificadoProcedencia(){
         return $this->hasMany('App\Models\CertificadoProcedencia');
     }
+    public function transporteTerminal(){
+        return $this->hasMany('App\Models\TransporteTerminal');
+    }
 }

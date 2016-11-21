@@ -526,7 +526,9 @@ Route::group(['middleware' => ['auth', 'usuarioPesca']], function () {
     Route::get('usuarioPesca/notasIngresos', ['uses'=>'NotaIngresoController@index','as'=>'usuarioPesca.notasIngresos']);
     Route::get('usuarioPesca/notasIngresos/{id}/edit', 'NotaIngresoController@edit');
     Route::post('usuarioPesca/notasIngresos/{id}/edit', 'NotaIngresoController@update');
-
+    Route::get('usuarioPesca/notasIngresos/{id}/agregarTrazabilidad', 'NotaIngresoController@agregarTraza');
+    Route::post('usuarioPesca/notasIngresos/{id}/agregarTrazabilidad', 'NotaIngresoController@updateTraza');
+    Route::get('usuarioPesca/notasIngresos/{id}/mostrarTrazabiliadad', 'NotaIngresoController@verTraza');
 
     Route::get('usuarioPesca/certificadoArribos', ['uses'=>'CertificadoArriboController@index','as'=>'usuarioPesca.certificadoArribos']);
     Route::get('usuarioPesca/certificadoArribos/new', 'CertificadoArriboController@create');
@@ -637,6 +639,8 @@ Route::group(['middleware' => ['auth', 'usuarioIntermediario']], function () {
     Route::get('usuarioIntermediario/desembarques/{id}/showNota', 'DesembarqueController@showNota');
 
     Route::get('usuarioIntermediario/notasIngresos', ['uses'=>'NotaIngresoController@index','as'=>'usuarioIntermediario.notasIngresos']);
+    Route::get('usuarioIntermediario/notasIngresos/{id}/mostrarTrazabiliadad', 'NotaIngresoController@verTraza');
+
 
     Route::get('usuarioIntermediario/certificadoProcedencias', ['uses'=>'CertificadoProcedenciaController@index','as'=>'usuarioIntermediario.certificadoProcedencias']);
     Route::get('usuarioIntermediario/certificadoProcedencias/new', 'CertificadoProcedenciaController@create');

@@ -53,7 +53,7 @@
   <div class="col-sm-8">
       <div class="form-group">
         <div class="col-sm-offset-3 col-sm-8">
-          <a href="{{action('PescadoresController@index')}}"><button type="button" class="btn btn-info">Regresar</button></a>
+          <a href="{{URL::previous()}}"><button type="button" class="btn btn-info">Regresar</button></a>
         </div>
       </div>
   </div>

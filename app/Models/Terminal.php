@@ -14,4 +14,7 @@ class Terminal extends Model
     {
         return $this->hasMany('App\Usuario', 'perfilUsuario_id', 'id');
     }*/
+    public function transporteTerminal(){
+        return $this->hasMany('App\Models\TransporteTerminal');
+    }
 }

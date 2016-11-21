@@ -35,7 +35,7 @@ class DesembarqueController extends Controller
     {
         //
         $desembarques = Desembarque::paginate(10);
-       
+        
         $desembarques->setPath('desembarque');
         if (Auth::user()->role_id == 4){
             return view('internal.admin.desembarques', compact('desembarques'));

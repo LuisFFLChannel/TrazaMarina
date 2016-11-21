@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login | {{$business_name}} - StarkTicket</title>
+    <title>Login | {{$business_name}} - TrazaPerico</title>
     <link rel="shortcut icon" href="{{ $favicon }}">
     {!!Html::style('css/bootstrap.min.css')!!}
     {!!Html::style('css/font-awesome.min.css')!!}
@@ -43,9 +43,9 @@
             <a href = "{{url('/password/email')}}" > Olvidaste tu contraseña? </a>
             <!-- Button trigger modal -->
             
-            <button class="btn">Iniciar sesión</button>
-            <a href="{{url('/auth/register')}}" class="btn" data-target="#info" data-whatever="@mdo" style="width:100%">Registrarse</a>
-            <a href="{{URL::previous()}}" class="btn" role="button" data-target="#info" data-whatever="@mdo" style="width:100%">Regresar</a>
+            <button id="botonLoggin" class="btn">Iniciar sesión</button>
+            <a id="botonLoggin" href="{{url('/auth/register')}}" class="btn" data-target="#info" data-whatever="@mdo" style="width:100%">Registrarse</a>
+            <a id="botonLoggin" href="{{URL::previous()}}" class="btn" role="button" data-target="#info" data-whatever="@mdo" style="width:100%">Regresar</a>
         </div>
 
 

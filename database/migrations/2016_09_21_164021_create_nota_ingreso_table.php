@@ -21,6 +21,7 @@ class CreateNotaIngresoTable extends Migration
             $table->float('toneladasSobrantes');
             $table->float('toneladasExportacion');
             $table->float('toneladasMercado');
+            $table->string('codigoTraza')->unsigned();
             $table->softDeletes();
             $table->timestamps();
         });

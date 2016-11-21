@@ -12,12 +12,12 @@ class BusinessTableSeeder extends Seeder
     public function run()
     {
         Business::insert([
-            'business_name'	=>	'Teleticke',
+            'business_name'	=>	'WWF - Trazabilidad',
             'ruc'			=>	12345678912,
-            'address'		=>	'Monte del destino #423 Mordor Tierra Media',
+            'address'		=>	'Av. Trinidad Morán 853 Lima 14 - Perú',
             'reserve_time'  =>  24,
             'logo'			=>	'images/logo.jpg',
-            'favicon'		=>	'images/teletickeico.jpg',
+            'favicon'		=>	'images/wwfico.jpg',
         ]);
     }
 }

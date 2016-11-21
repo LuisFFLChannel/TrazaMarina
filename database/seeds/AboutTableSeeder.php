@@ -16,7 +16,7 @@ class AboutTableSeeder extends Seeder
             'mision'=>'Mision de la empresa',
             'vision'=>'Vision de la empresa',
             'history'=>'Historia breve de la empresa',
-            'youtube_url'=>'https://www.youtube.com/embed/sGbxmsDFVnE',
+            'youtube_url'=>'https://www.youtube.com/embed/eWlMfjuVqjk',
             'image'=>'images/logo.jpg',
         ]);
     }

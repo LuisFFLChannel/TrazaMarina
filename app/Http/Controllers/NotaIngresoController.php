@@ -16,6 +16,8 @@ use App\User;
 use Carbon\Carbon;
 use Auth;
 use DB;
+use Illuminate\Support\Str;
+use Form;
 //use App\Usuario;
 use Session;
 
@@ -119,6 +121,7 @@ class NotaIngresoController extends Controller
 
 
         $var->especie_id            = $input['especie_id'];
+        $var->toneladasSobrante     = $var->toneladasSobrante - $var->toneladas + $input['toneladas'];
         $var->toneladas             = $input['toneladas'];
         $var->tallaPromedio         = $input['tallaPromedio'];
         $var->toneladasSobrante     = $var->tallaPromedio;
@@ -147,5 +150,66 @@ class NotaIngresoController extends Controller
     public function sobrantes($id) {
         $var = NotaIngreso::find($id);
         return $var->toneladas - $var->toneladasMercado - $var->toneldasExportacion;
+    }
+    public function agregarTraza($id) {
+        $notaIngreso = NotaIngreso::find($id);
+        
+        $codNota =str_pad($notaIngreso->id, 6, "0", STR_PAD_LEFT);
+        $codPescado = str_pad($notaIngreso->especieMarina->id, 3, "0", STR_PAD_LEFT).substr($notaIngreso->especieMarina->nombre, 0,3);
+        $codPuerto = str_pad($notaIngreso->desembarque->puerto->id, 3, "0", STR_PAD_LEFT).substr($notaIngreso->desembarque->puerto->nombre, 0,3);
+        $codEmb = str_pad($notaIngreso->desembarque->embarcacion->id, 3, "0", STR_PAD_LEFT).substr($notaIngreso->desembarque->embarcacion->nombre, 0,3);
+        $valor = $codPescado.$codEmb.$codPuerto.$codNota;
+
+        $arreglo = [
+            'notaIngreso'   => $notaIngreso,
+            'codNota'       => $codNota,
+            'codPescado'    => $codPescado,
+            'codPuerto'     => $codPuerto,
+            'codEmb'        => $codEmb,
+            'valor'         => $valor
+        ];
+
+        //dd($valor);
+         if (Auth::user()->role_id == 4){
+            return view('internal.admin.agregarTraza', $arreglo);
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.agregarTraza', $arreglo);
+        }
+    }
+    public function updateTraza(Request $request, $id) {
+        
+        $input = $request->all();
+
+        $var = NotaIngreso::find($id);
+
+        $var->codigoTraza            = $input['codigoTrazabilidad'];
+        $var->save();
+
+        if (Auth::user()->role_id == 4){
+            return redirect()->route('admin.notasIngresos');
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return redirect()->route('usuarioPesca.notasIngresos');
+        }
+    }
+    public function verTraza($id) {
+        $notaIngreso = NotaIngreso::find($id);
+        if ($notaIngreso->codigoTraza==null){
+            return redirect()->back()->withInput()->withErrors(['errors' => 'Aun no se ha asignado un codigo de trazabilidad']);
+        }
+        $arreglo = [
+            'notaIngreso'   => $notaIngreso
+        ];
+
+         if (Auth::user()->role_id == 4){
+            return view('internal.admin.mostrarTraza', $arreglo);
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.mostrarTraza', $arreglo);
+        }
+        elseif  (Auth::user()->role_id == 6){
+            return view('internal.usuarioIntermediario.mostrarTraza', $arreglo);
+        }
     }
 }

@@ -119,7 +119,7 @@
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
           <a class="btn btn-info" href="" title="submit" data-toggle="modal" data-target="#submitModal" >Guardar</a>
-          <a href="{{action('EmbarcacionController@index')}}"><button type="button" class="btn btn-info">Cancelar</button></a>
+          <a href="{{URL::previous()}}"><button type="button" class="btn btn-info">Cancelar</button></a>
         </div>
       </div>
 

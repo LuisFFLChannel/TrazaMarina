@@ -4,7 +4,7 @@
 @stop
 
 @section('title')
-	Welcome...
+	Bienvenido...
 @stop
 
 @section('content')

@@ -21,7 +21,8 @@
         <!--<th>Imagen</th>-->
         <th class="text-center">Detalle</th>
         <th class="text-center">Editar</th>
-
+        <th class="text-center">Crear/Actualizar Codigo Traza.</th>
+        <th class="text-center">Ver Codigo Traza.</th>
         <!--<th class="text-center">Eliminar</th>-->
     </tr>
     
@@ -69,7 +70,12 @@
       <td class="text-center">
         <a class="btn btn-info" href="{{url('usuarioPesca/notasIngresos/'.$notaIngreso->id.'/edit')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
       </td> 
-      
+        <td class="text-center">
+          <a class="btn btn-info" href="{{url('usuarioPesca/notasIngresos/'.$notaIngreso->id.'/agregarTrazabilidad')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
+      </td> 
+      <td class="text-center">
+          <a class="btn btn-info" href="{{url('usuarioPesca/notasIngresos/'.$notaIngreso->id.'/mostrarTrazabiliadad')}}" title="Editar" ><i class="glyphicon glyphicon-plus"></i></a>
+      </td> 
       
       <!--<td class="text-center">
         <a class="btn btn-info" title="Eliminar" data-toggle="modal" data-target="#deleteModal{{$notaIngreso->id}}" ><i class="glyphicon glyphicon-remove"></i></a>

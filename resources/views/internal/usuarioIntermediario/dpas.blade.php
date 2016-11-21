@@ -26,7 +26,7 @@
       <td class="text-center">{{$dpa->direccion}}</td>
       <td class="text-center">( {{$dpa->coordenadaX}} , {{$dpa->coordenadaY}} )</td>
       <td class="text-center">
-          <a class="btn btn-info" href="{{url('usuarioPesca/mapas/'.$dpa->id.'/mostarMapaDpa')}}" title="Mostrar Mapa" ><i class="glyphicon glyphicon-map-marker"></i></a>
+          <a class="btn btn-info" href="{{url('usuarioIntermediario/mapas/'.$dpa->id.'/mostarMapaDpa')}}" title="Mostrar Mapa" ><i class="glyphicon glyphicon-map-marker"></i></a>
         </td>
       <!--<td>{!! Html::image($dpa->imagen, null, array('class'=>'gift_img')) !!}</td>-->
       <td class="text-center">
