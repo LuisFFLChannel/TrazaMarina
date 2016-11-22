@@ -229,7 +229,23 @@ class CertificadoProcedenciaController extends Controller
             }
         }
         //dd($certificado);
-        $this->BorrarRelacionesPasadasNotaIngreso($nos_data , $certificado);
+        //$this->BorrarRelacionesPasadasNotaIngreso($notas_data , $certificado);
+
+        $antiguosRelaNotas = NotaIngresoCertificadoProcedencia::where("certificado_id",'=',$certificado->id)->get();
+
+        foreach ($antiguosRelaNotas as $auxPes) {
+            //dd($auxPes);
+            //$auxPes->toneladas = 
+            $notaIngresoAuxiliar = NotaIngreso::find($auxPes->notaIngreso_id);
+           // dd($notaIngresoAuxiliar);
+            $notaIngresoAuxiliar->toneladasSobrantes =  $notaIngresoAuxiliar->toneladasSobrantes + $auxPes->toneladas;
+            $notaIngresoAuxiliar->toneladasExportacion =  $notaIngresoAuxiliar->toneladasExportacion - $auxPes->toneladas;
+            $notaIngresoAuxiliar->save();
+            //$auxPes->delete();
+        }
+        DB::table('notaingreso_certificadoprocedencia')->where("certificado_id",'=',$certificado->id)->delete();
+
+
         $certificado->save();
 
         foreach($notas_data ['notas_id'] as $key=>$value){

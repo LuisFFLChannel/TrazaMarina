@@ -563,10 +563,17 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cert.o a Terminal<b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cert. Terminales<b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{url('usuarioIntermediario/certificadoTerminales')}}">Listar</a></li>
-                        <li><a href="{{url('usuarioIntermediario/certificadoTerminales/new')}}">Nuevo</a></li>
+                        <li><a href="{{url('usuarioIntermediario/transporteTerminales')}}">Listar</a></li>
+                        <li><a href="{{url('usuarioIntermediario/transporteTerminales/new')}}">Nuevo</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Lotes<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('usuarioIntermediario/lotes')}}">Listar</a></li>
+                        <!--<li><a href="{{url('usuarioIntermediario/transporteTerminales/new')}}">Nuevo</a></li>-->
                     </ul>
                 </li>
                 

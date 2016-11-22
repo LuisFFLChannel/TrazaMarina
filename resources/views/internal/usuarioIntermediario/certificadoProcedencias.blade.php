@@ -57,7 +57,7 @@
                                   <h6 class="text-left"> + Codigo de Nota: {{$not->nota->id}} </h6> 
                                   <h6 class="text-left"> + Nombre de la Especie: {{$not->nota->especieMarina->nombre}} </h6>
                                   <h6 class="text-left"> + Embarcacion: {{$not->nota->desembarque->embarcacion->nombre}} </h6>
-                                  <h6 class="text-left"> + Embarcacion: {{$not->toneladas}} </h6>
+                                  <h6 class="text-left"> + Toneladas: {{$not->toneladas}} </h6>
                               @endforeach 
                             
                           @else

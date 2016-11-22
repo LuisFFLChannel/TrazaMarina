@@ -15,6 +15,6 @@ class NotaIngresoTransporteTerminal extends Model
         return $this->belongsTo('App\Models\NotaIngreso','notaIngreso_id');
     }
     public function certificadoTerminal(){
-        return $this->belongsTo('App\Models\CertificadoProcedencia','transporteTerminal_id');
+        return $this->belongsTo('App\Models\TransporteTerminal','transporte_id');
     }
 }

@@ -17,8 +17,8 @@ class CreatePuertoTable extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->string('direccion');
-            $table->float('coordenadaX');
-            $table->float('coordenadaY');
+            $table->double('coordenadaX',15,8);
+            $table->double('coordenadaY',15,8);
             $table->string('imagen'); 
             $table->boolean('activo');
             $table->softDeletes();

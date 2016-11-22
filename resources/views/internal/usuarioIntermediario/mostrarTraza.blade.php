@@ -9,7 +9,7 @@
 @stop
 
 @section('content')
-<h3> Información de creación para el código de trabilidad</h3>
+<h3> Información de creación para el código de trazabilidad</h3>
 <br>
 <div class="row">
     <div class="col-sm-2">

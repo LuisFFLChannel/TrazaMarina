@@ -640,7 +640,7 @@ Route::group(['middleware' => ['auth', 'usuarioIntermediario']], function () {
 
     Route::get('usuarioIntermediario/notasIngresos', ['uses'=>'NotaIngresoController@index','as'=>'usuarioIntermediario.notasIngresos']);
     Route::get('usuarioIntermediario/notasIngresos/{id}/mostrarTrazabiliadad', 'NotaIngresoController@verTraza');
-
+    Route::get('usuarioIntermediario/notasIngresos/{id}/verLotesporNota', 'NotaIngresoController@verLotesporNota');
 
     Route::get('usuarioIntermediario/certificadoProcedencias', ['uses'=>'CertificadoProcedenciaController@index','as'=>'usuarioIntermediario.certificadoProcedencias']);
     Route::get('usuarioIntermediario/certificadoProcedencias/new', 'CertificadoProcedenciaController@create');
@@ -650,6 +650,17 @@ Route::group(['middleware' => ['auth', 'usuarioIntermediario']], function () {
     Route::get('usuarioIntermediario/certificadoProcedencias/{id}/delete', 'CertificadoProcedenciaController@destroy');
     Route::get('usuarioIntermediario/nuevoCertificadoProcedencias/new/{id_variable}', 'CertificadoProcedenciaController@ajaxNotaIngreso');
     
+    Route::get('usuarioIntermediario/transporteTerminales', ['uses'=>'TransporteTerminalController@index','as'=>'usuarioIntermediario.transporteTerminales']);
+    Route::get('usuarioIntermediario/transporteTerminales/new', 'TransporteTerminalController@create');
+    Route::post('usuarioIntermediario/transporteTerminales/new', 'TransporteTerminalController@store');
+    Route::get('usuarioIntermediario/transporteTerminales/{id}/edit', 'TransporteTerminalController@edit');
+    Route::post('usuarioIntermediario/transporteTerminales/{id}/edit', 'TransporteTerminalController@update');
+    Route::get('usuarioIntermediario/transporteTerminales/{id}/delete', 'TransporteTerminalController@destroy');
+    Route::get('usuarioIntermediario/nuevoTransporteTerminales/new/{id_variable}', 'TransporteTerminalController@ajaxNotaIngreso');
+
+
+
+
     Route::get('usuarioIntermediario/empresarioComercializadores', ['uses'=>'EmpresarioComercializadorController@index','as'=>'usuarioIntermediario.empresarioComercializadores']);
     Route::get('usuarioIntermediario/empresarioComercializadores/new', 'EmpresarioComercializadorController@create');
     Route::post('usuarioIntermediario/empresarioComercializadores/new', 'EmpresarioComercializadorController@store');

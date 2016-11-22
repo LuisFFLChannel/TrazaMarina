@@ -16,8 +16,8 @@ class CreatePescaTable extends Migration
         Schema::create('pesca', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamp('fechaZarpe');
-            $table->float('coordenadaX');
-            $table->float('coordenadaY');
+            $table->double('coordenadaX',15,8);
+            $table->double('coordenadaY',15,8);
             $table->integer('embarcacion_id')->unsigned();
             $table->integer('puerto_id')->unsigned();
             $table->integer('permisoZarpe_id')->unsigned()->unique();

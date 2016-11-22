@@ -25,7 +25,7 @@
     @foreach($transporteTerminales as $transporteTerminal)
     <tr>
       <td class="text-center">{{$transporteTerminal->id}}</td>
-      <td class="text-center">{{$transporteTerminal->fabrica->nombre}}</td>
+      <td class="text-center">{{$transporteTerminal->terminal->nombre}}</td>
       <td class="text-center">{{$transporteTerminal->transportista->nombres}} {{$transporteTerminal->transportista->nombres}}</td>
       <td class="text-center">{{$transporteTerminal->frigorifico->placa}} - {{$transporteTerminal->frigorifico->nombre}}</td>
      
@@ -46,9 +46,9 @@
                       <div class="col-sm-8">
                           <h5 class="text-left">N° Documento: {{$transporteTerminal->id}}</h5>
                           <h5 class="text-left">Transportista: {{$transporteTerminal->transportista->nombres}} {{$transporteTerminal->transportista->apellidos}}</h5>
-                          <h5 class="text-left">Fabrica: {{$transporteTerminal->fabrica->nombre}}</h5>
+                          <h5 class="text-left">Terminal: {{$transporteTerminal->terminal->nombre}}</h5>
                           <h5 class="text-left">Frigorifico: {{$transporteTerminal->frigorifico->placa}} - {{$transporteTerminal->frigorifico->nombre}} </h5>
-                          
+                                  
                           <h5 class="text-left">Fecha de Envio: {{date_format(date_create($transporteTerminal->fechaDictada),"d/m/Y")}} </h5>
                           @if($transporteTerminal->notasIngreso!=null)
                                <h5 class="text-left">Notas de Ingreso: </h5>
@@ -57,7 +57,7 @@
                                   <h6 class="text-left"> + Codigo de Nota: {{$not->nota->id}} </h6> 
                                   <h6 class="text-left"> + Nombre de la Especie: {{$not->nota->especieMarina->nombre}} </h6>
                                   <h6 class="text-left"> + Embarcacion: {{$not->nota->desembarque->embarcacion->nombre}} </h6>
-                                  <h6 class="text-left"> + Embarcacion: {{$not->toneladas}} </h6>
+                                  <h6 class="text-left"> + Toneladas: {{$not->toneladas}} </h6>
                               @endforeach 
                             
                           @else
@@ -86,7 +86,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">¿Estas seguro que desea eliminar el Certificado Procedencia?</h4>
+                <h4 class="modal-title">¿Estas seguro que desea eliminar el Certificado Procedencia de Terminal?</h4>
               </div>
               <div class="modal-body">
                 <h5 class="modal-title">Los cambios serán permanentes</h5>

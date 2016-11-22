@@ -6,42 +6,36 @@
 @stop
 
 @section('title')
-	Editar Certificado de Procedencia
+	Editar Certificado de Procedencia de Terminales
 @stop
 
 @section('content')
 
 <div class="row">
   <div class="col-sm-10">
-    {!!Form::open(array('url' => 'usuarioIntermediario/certificadoProcedencias/'.$certificadoProcedencia->id.'/edit','files'=>true,'id'=>'form','class'=>'form-horizontal'))!!}
+    {!!Form::open(array('url' => 'usuarioIntermediario/transporteTerminales/'.$transporteTerminal->id.'/edit','files'=>true,'id'=>'form','class'=>'form-horizontal'))!!}
         <div class="form-group">
-            <label class="col-sm-3 control-label">Fábrica</label>
+            <label class="col-sm-3 control-label">Terminal</label>
             <div class="col-sm-9">
-                {!! Form::select('fabrica_id', $fabricas_lista->toArray(), $certificadoProcedencia->fabrica_id, ['class' => 'form-control','required', 'id'=>'fabrica_id']) !!}
+                {!! Form::select('terminal_id', $terminales_lista->toArray(), $transporteTerminal->terminal_id, ['class' => 'form-control','required', 'id'=>'terminal_id']) !!}
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-3 control-label">Frigorífico</label>
             <div class="col-sm-9">
-                {!! Form::select('frigorifico_id', $frigorificos_lista->toArray(),  $certificadoProcedencia->frigorifico_id, ['class' => 'form-control','required', 'id'=>'frigorifico_id']) !!}
+                {!! Form::select('frigorifico_id', $frigorificos_lista->toArray(),  $transporteTerminal->frigorifico_id, ['class' => 'form-control','required', 'id'=>'frigorifico_id']) !!}
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-3 control-label">Transportista</label>
             <div class="col-sm-9">
-                {!! Form::select('transportista_id', $transportistas_lista->toArray(),  $certificadoProcedencia->transportista_id, ['class' => 'form-control','required', 'id'=>'transportista_id']) !!}
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-3 control-label">Empresario Comercializador</label>
-            <div class="col-sm-9">
-                {!! Form::select('empresario_id', $empresarios_lista->toArray(),  $certificadoProcedencia->empresario_id, ['class' => 'form-control','required', 'id'=>'empresario_id']) !!}
+                {!! Form::select('transportista_id', $transportistas_lista->toArray(),  $transporteTerminal->transportista_id, ['class' => 'form-control','required', 'id'=>'transportista_id']) !!}
             </div>
         </div>
         <div class="form-group">
           <label for="inputcumpleanos" class="col-sm-3 control-label">Fecha Transporte</label>
           <div class="col-sm-9">
-            {!!Form::input('date','fechaDictada', explode(" ",$certificadoProcedencia->fechaDictada)[0]  ,['class'=>'form-control','id'=>'fechaDictada','required'])!!}
+            {!!Form::input('date','fechaDictada', explode(" ",$transporteTerminal->fechaSalida)[0]  ,['class'=>'form-control','id'=>'fechaDictada','required'])!!}
             <div class="col-sm-9" id="firefox" style="visibility: hidden">
                 Formato Año(D/M/Y)
             </div> 
@@ -66,7 +60,7 @@
                       <th>Toneladas</th>
                       <th>Accion</th>
                   </tr>
-                  @foreach($certificadoProcedencia->notasIngreso as $nota)
+                  @foreach($transporteTerminal->notasIngreso as $nota)
                     <tr>
                         <td><input name="notas_id[]" type="number" value="{{$nota->nota->id}}" style = "border:none;width:60px;background:transparent" readonly></td>
                         <td><input name="especies[]"  type="text" value="{{$nota->nota->especieMarina->nombre}}" style = "border:none;width:120px;background:transparent" readonly></td>
@@ -142,7 +136,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title">¿Estas seguro que desea editar el Certificado de Procedencia?</h4>
+              <h4 class="modal-title">¿Estas seguro que desea editar el Certificado de Procedencia de un Terminal?</h4>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-info" data-dismiss="modal">No</button>
@@ -197,7 +191,7 @@ $("#AgregarNota").on("click",function(){
     //variable  =  $( this).val() ;
     url_base = "{{ url('/') }}";
      // Peticion ajax
-    $.getJSON( url_base + "/usuarioIntermediario/nuevoCertificadoProcedencias/new/"+id_variable  , function(data)
+    $.getJSON( url_base + "/usuarioIntermediario/nuevoTransporteTerminales/new/"+id_variable  , function(data)
       {
         console.log(data);
         //$.each( data, function( id) {

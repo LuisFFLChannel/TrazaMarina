@@ -16,5 +16,11 @@ class NotaIngreso extends Model
     public function especieMarina() {
         return $this->belongsTo('App\Models\EspecieMarina','especie_id');
     }
+    public function notasPorFabrica(){
+        return $this->hasMany('App\Models\NotaIngresoCertificadoProcedencia','notaIngreso_id','id');
+    } 
+    public function notasPorTerminal(){
+        return $this->hasMany('App\Models\NotaIngresoTransporteTerminal','notaIngreso_id','id');
+    } 
 
 }

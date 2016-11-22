@@ -17,8 +17,8 @@ class CreatePermisoZarpeTable extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->string('nMatricula');
-            $table->float('coordenadaX');
-            $table->float('coordenadaY');
+            $table->double('coordenadaX',15,8);
+            $table->double('coordenadaY',15,8);
             $table->timestamp('fechaZarpe');
             $table->timestamp('fechaArribo');
             $table->integer('puerto_id')->unsigned();

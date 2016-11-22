@@ -12,7 +12,7 @@ use App\Models\TransporteTerminal;
 use App\Models\NotaIngresoTransporteTerminal;
 use App\Models\NotaIngreso;
 use App\Models\EmpresarioComercializador;
-use App\Models\Fabrica;
+use App\Models\Terminal;
 use App\Models\Transportista;
 use App\Models\Frigorifico;
 use App\User;
@@ -54,11 +54,11 @@ class TransporteTerminalController extends Controller
         //
         $frigorificos_lista = Frigorifico::all()->lists('nombre','id');
         $transportistas_lista = Transportista::select('id', DB::raw('CONCAT(nombres, " ",apellidos) AS nombreCompleto'))->lists('nombreCompleto','id');
-        $fabricas_lista = Fabrica::all()->lists('nombre','id');
+        $terminales_lista = Terminal::all()->lists('nombre','id');
         //$empresarios_lista = EmpresarioComercializador::select('id', DB::raw('CONCAT(nombres, " ",apellidos) AS nombreCompleto'))->lists('nombreCompleto','id');
         $notas = NotaIngreso::whereNotNull("id")->get();
         $arreglo = [
-        'fabricas_lista'   =>$fabricas_lista,
+        'terminales_lista'   =>$terminales_lista,
         'transportistas_lista'      =>$transportistas_lista,
         'frigorificos_lista'      =>$frigorificos_lista,
         //'empresarios_lista'      =>$empresarios_lista,
@@ -82,14 +82,14 @@ class TransporteTerminalController extends Controller
         //$var = new NotaIngreso();
 
         $nota       =   NotaIngreso::find($data['notas_id']);    
-        $nota->toneladasExportacion = $nota->toneladasExportacion + $data['toneladas'];
+        $nota->toneladasMercado = $nota->toneladasMercado + $data['toneladas'];
         $nota->toneladasSobrantes   = $nota->toneladasSobrantes - $data['toneladas'];
         $nota->save();
         return $nota;
     }
      public function storeRelacionNotaIngreso($data, $certificado){
-        $var = new NotaIngresotransporteTerminal();
-        $var->certificado_id = $certificado->id;
+        $var = new NotaIngresoTransporteTerminal();
+        $var->transporte_id = $certificado->id;
         $var->notaIngreso_id = $data['notas_id'];
         $var->toneladas      = $data['toneladas'];
         $var->save();
@@ -102,11 +102,11 @@ class TransporteTerminalController extends Controller
         $input = $request->all();
 
         $certificado                                =   new TransporteTerminal;
-        $certificado->fabrica_id                    =   $input['fabrica_id'];
+        $certificado->terminal_id                    =   $input['terminal_id'];
         $certificado->frigorifico_id                =   $input['frigorifico_id'];
         $certificado->transportista_id              =   $input['transportista_id'];
         //$certificado->empresarioComercializador_id  =   $input['empresario_id'];
-        $certificado->fechaDictada                  =   new Carbon($input['fechaDictada']);
+        $certificado->fechaSalida                  =   new Carbon($input['fechaDictada']);
         $certificado->activo                        =   true;
 
         $notas_data = [
@@ -128,6 +128,8 @@ class TransporteTerminalController extends Controller
             }
         }
         //dd($certificado);
+        
+
         $certificado->save();
 
         foreach($notas_data ['notas_id'] as $key=>$value){
@@ -171,13 +173,13 @@ class TransporteTerminalController extends Controller
         //
         $frigorificos_lista = Frigorifico::all()->lists('nombre','id');
         $transportistas_lista = Transportista::select('id', DB::raw('CONCAT(nombres, " ",apellidos) AS nombreCompleto'))->lists('nombreCompleto','id');
-        $fabricas_lista = Fabrica::all()->lists('nombre','id');
+        $terminales_lista = Terminal::all()->lists('nombre','id');
         //$empresarios_lista = EmpresarioComercializador::select('id', DB::raw('CONCAT(nombres, " ",apellidos) AS nombreCompleto'))->lists('nombreCompleto','id');
         $notas = NotaIngreso::whereNotNull("id")->get();
         $transporteTerminal = TransporteTerminal::find($id);
         $arreglo = [
         'transporteTerminal'    =>$transporteTerminal,
-        'fabricas_lista'   =>$fabricas_lista,
+        'terminales_lista'   =>$terminales_lista,
         'transportistas_lista'      =>$transportistas_lista,
         'frigorificos_lista'      =>$frigorificos_lista,
         //'empresarios_lista'      =>$empresarios_lista,
@@ -204,11 +206,11 @@ class TransporteTerminalController extends Controller
 
         $certificado = TransporteTerminal::find($id);
 
-        $certificado->fabrica_id                    =   $input['fabrica_id'];
+        $certificado->terminal_id                    =   $input['terminal_id'];
         $certificado->frigorifico_id                =   $input['frigorifico_id'];
         $certificado->transportista_id              =   $input['transportista_id'];
         //$certificado->empresarioComercializador_id  =   $input['empresario_id'];
-        $certificado->fechaDictada                  =   new Carbon($input['fechaDictada']);
+        $certificado->fechaSalida                  =   new Carbon($input['fechaDictada']);
         //$certificado->activo                        =   true;
 
         $notas_data = [
@@ -230,7 +232,19 @@ class TransporteTerminalController extends Controller
             }
         }
         //dd($certificado);
-        $this->BorrarRelacionesPasadasNotaIngreso($nos_data , $certificado);
+        $antiguosRelaNotas = NotaIngresoTransporteTerminal::where("transporte_id",'=',$certificado->id)->get();
+
+        foreach ($antiguosRelaNotas as $auxPes) {
+            //dd($auxPes);
+            //$auxPes->toneladas = 
+            $notaIngresoAuxiliar = NotaIngreso::find($auxPes->notaIngreso_id);
+           // dd($notaIngresoAuxiliar);
+            $notaIngresoAuxiliar->toneladasSobrantes =  $notaIngresoAuxiliar->toneladasSobrantes + $auxPes->toneladas;
+            $notaIngresoAuxiliar->toneladasMercado =  $notaIngresoAuxiliar->toneladasMercado - $auxPes->toneladas;
+            $notaIngresoAuxiliar->save();
+            //$auxPes->delete();
+        }
+        DB::table('notaingreso_transporteterminal')->where("transporte_id",'=',$certificado->id)->delete();
         $certificado->save();
 
         foreach($notas_data ['notas_id'] as $key=>$value){

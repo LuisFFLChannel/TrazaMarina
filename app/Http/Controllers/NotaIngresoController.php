@@ -202,7 +202,7 @@ class NotaIngresoController extends Controller
             'notaIngreso'   => $notaIngreso
         ];
 
-         if (Auth::user()->role_id == 4){
+        if (Auth::user()->role_id == 4){
             return view('internal.admin.mostrarTraza', $arreglo);
         }
         elseif  (Auth::user()->role_id == 5){
@@ -210,6 +210,26 @@ class NotaIngresoController extends Controller
         }
         elseif  (Auth::user()->role_id == 6){
             return view('internal.usuarioIntermediario.mostrarTraza', $arreglo);
+        }
+    }
+    public function verLotesporNota($id){
+        $nota = NotaIngreso::find($id);
+        $lista_Terminal = $nota->notasPorTerminal;
+        $lista_Fabrica  = $nota->notasPorFabrica;
+        //dd($lista_Terminal);
+        $arreglo = [
+            'nota'   => $nota,
+            'lista_Terminal'        => $lista_Terminal,
+            'lista_Fabrica'         => $lista_Fabrica
+        ];
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.verLotesporNota', $arreglo);
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.verLotesporNota', $arreglo);
+        }
+        elseif  (Auth::user()->role_id == 6){
+            return view('internal.usuarioIntermediario.verLotesporNota', $arreglo);
         }
     }
 }

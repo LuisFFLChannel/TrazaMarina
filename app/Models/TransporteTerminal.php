@@ -21,6 +21,6 @@ class TransporteTerminal extends Model
         return $this->belongsTo('App\Models\Frigorifico','frigorifico_id');
     }
     public function notasIngreso(){
-        return $this->hasMany('App\Models\NotaIngresoTransporteTerminal','transporteTerminal_id','id');
+        return $this->hasMany('App\Models\NotaIngresoTransporteTerminal','transporte_id','id');
     } 
 }
