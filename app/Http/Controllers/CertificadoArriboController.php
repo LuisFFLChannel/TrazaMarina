@@ -37,6 +37,9 @@ class CertificadoArriboController extends Controller
         elseif  (Auth::user()->role_id == 6){
             return view('internal.usuarioIntermediario.certificadoArribos', compact('certificadoArribos'));
         }
+        elseif  (Auth::user()->role_id == 7){
+            return view('internal.usuarioValidacion.certificadoArribos', compact('certificadoArribos'));
+        }
 
     }
 

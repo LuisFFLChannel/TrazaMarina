@@ -29,5 +29,9 @@ class TestUsuarioTableSeeder extends Seeder
                         'correo' => 'admin1@mail.com', 'telefono' => '956133643', 'cumpleanos'=>Carbon::create(1990,1,4)->toDateString(), 
                         'tipoUsuario_id'=>4, 'usuario' => 'admin1', 'contrasena' => bcrypt('admin')]);
 
+        Usuario::insert([  'nombres' => 'Validador1','apellidos' => 'ApellidoV', 'dni' => '75578117', 'direccion'=>'Av. Validador 123',
+                        'correo' => 'validador1@mail.com', 'telefono' => '956013643', 'cumpleanos'=>Carbon::create(1990,9,2)->toDateString(), 
+                        'tipoUsuario_id'=>5, 'usuario' => 'validador1', 'contrasena' => bcrypt('validador')]);
+
     }
 }

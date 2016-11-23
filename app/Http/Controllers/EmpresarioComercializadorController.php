@@ -35,6 +35,10 @@ class EmpresarioComercializadorController extends Controller
         elseif  (Auth::user()->role_id == 6){
             return view('internal.usuarioIntermediario.empresarioComercializadores', compact('empresarios'));
         }
+        elseif  (Auth::user()->role_id == 7){
+            return view('internal.usuarioValidacion.empresarioComercializadores', compact('empresarios'));
+        }
+        
     }
 
     /**

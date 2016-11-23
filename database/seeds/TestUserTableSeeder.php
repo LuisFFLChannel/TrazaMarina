@@ -40,6 +40,9 @@ class TestUserTableSeeder extends Seeder
         User::insert([  'name' => 'UserInter','lastname' => 'ApellidoInt', 'di_type'=> config('constants.national'), 'di' => '34627543', 'address'=>'Av. Ejemplo',
                         'email' => 'intermediario@mail.com', 'phone' => '977139700', 'birthday'=>Carbon::create(1990,2,14)->toDateString(), 
                         'iniDate'=>Carbon::today(), 'role_id'=>6, 'password' => bcrypt('intermediario')]);
+        User::insert([  'name' => 'UserValida','lastname' => 'ApellidoVal', 'di_type'=> config('constants.national'), 'di' => '12453899', 'address'=>'Av. Ejemplo',
+                        'email' => 'validor@mail.com', 'phone' => '977133700', 'birthday'=>Carbon::create(1990,2,14)->toDateString(), 
+                        'iniDate'=>Carbon::today(), 'role_id'=>7, 'password' => bcrypt('validor')]);
 
 
     }

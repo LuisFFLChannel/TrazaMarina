@@ -41,6 +41,9 @@ class TransporteTerminalController extends Controller
         elseif  (Auth::user()->role_id == 6){
             return view('internal.usuarioIntermediario.transporteTerminales', compact('transporteTerminales'));
         }
+        elseif  (Auth::user()->role_id == 7){
+            return view('internal.usuarioValidacion.transporteTerminales', compact('transporteTerminales'));
+        }
     
     }
 
@@ -289,5 +292,99 @@ class TransporteTerminalController extends Controller
         //dd($arreglo);
 
     return  json_encode($arreglo);  
+    }
+    public function lotesTerminales()
+    {
+        //
+        $lista_Terminales = NotaIngresoTransporteTerminal::paginate(10);
+       
+        $lista_Terminales->setPath('$lista_Terminal');
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.lotesTerminales', compact('lista_Terminales'));
+        }
+        elseif  (Auth::user()->role_id == 6){
+            return view('internal.usuarioIntermediario.lotesTerminales', compact('lista_Terminales'));
+        }
+        elseif  (Auth::user()->role_id == 7){
+            return view('internal.usuarioValidacion.lotesTerminales', compact('lista_Terminales'));
+        }
+    
+    }
+    public function agregarTraza($idNota, $idCertificado) {
+        $notaIngreso = NotaIngreso::find($idNota);
+        if ($notaIngreso->codigoTraza == null){
+             return redirect()->back()->withInput()->withErrors(['errors' => 'El usuario Pesca aun no han asignado la primera parte del código de trazabilidad']);
+        }
+        $certificado = TransporteTerminal::find($idCertificado);
+        //dd($certificado->id);
+        $codFrigorifico =str_pad($certificado->frigorifico->placa,6,"X",STR_PAD_LEFT);
+        $codTerminal = "F".str_pad($certificado->terminal->id,3,"0",STR_PAD_LEFT).substr($certificado->terminal->nombre, 0,3);
+        $codCert = str_pad($idCertificado,6,"0",STR_PAD_LEFT);
+        $valor = $codCert.$codFrigorifico.$codTerminal;
+        $valorCompleto = $notaIngreso->codigoTraza.$valor;
+        //dd($valorCompleto);
+        $lote = NotaIngresoTransporteTerminal::where("notaIngreso_id","=",$idNota)->where("transporte_id","=",$idCertificado)->get()->first();
+        $arreglo = [
+            'notaIngreso'   => $notaIngreso,
+            'certificado'   => $certificado,
+            'lote'          => $lote,
+            'codTerminal'    => $codTerminal,
+            'codFrigorifico'=> $codFrigorifico,
+            'codCert'       => $codCert,
+            'valorCompleto' => $valorCompleto,
+            'valor'         => $valor
+        ];
+
+        //dd($valor);
+         if (Auth::user()->role_id == 4){
+            return view('internal.admin.agregarTraza2Te', $arreglo);
+        }
+        elseif  (Auth::user()->role_id == 6){
+            return view('internal.usuarioIntermediario.agregarTraza2Te', $arreglo);
+        }
+    }
+    public function updateTraza(Request $request, $idNota, $idCertificado) {
+        
+        $input = $request->all();
+      
+        $var = NotaIngresoTransporteTerminal::where("notaIngreso_id","=",$idNota)->where("transporte_id","=",$idCertificado)->get()->first();
+        //dd($var);
+           
+            //$var->save();
+        
+        DB::table('notaingreso_transporteterminal')->where('notaIngreso_id', $idNota)->where('transporte_id',$idCertificado)->update(['codigoTraza' => $input['codigoTrazabilidad']]);
+
+        if (Auth::user()->role_id == 4){
+            return redirect()->route('admin.lotesTerminales');
+        }
+        elseif  (Auth::user()->role_id == 6){
+            return redirect()->route('usuarioIntermediario.lotesTerminales');
+        }
+    }
+    public function mostrarTrazabilidad($idNota, $idCertificado) {
+
+        $notaIngreso = NotaIngreso::find($idNota);
+        if ($notaIngreso->codigoTraza == null){
+             return redirect()->back()->withInput()->withErrors(['errors' => 'El usuario Pesca aun no han asignado la primera parte del código de trazabilidad']);
+        }
+        $lote = NotaIngresoTransporteTerminal::where("notaIngreso_id","=",$idNota)->where("transporte_id","=",$idCertificado)->get()->first();
+        //dd($lote->codigoTraz);
+        if ($lote->codigoTraza==null){
+            return redirect()->back()->withInput()->withErrors(['errors' => 'Aun no se ha asignado un codigo de trazabilidad']);
+        }
+        $arreglo = [
+            'lote'   => $lote,
+            'notaIngreso' => $notaIngreso
+        ];
+
+        if (Auth::user()->role_id == 4){
+            return view('internal.admin.mostrarTraza2Te', $arreglo);
+        }
+        elseif  (Auth::user()->role_id == 6){
+            return view('internal.usuarioIntermediario.mostrarTraza2Te', $arreglo);
+        }
+        elseif  (Auth::user()->role_id == 7){
+            return view('internal.usuarioValidacion.mostrarTraza2Te', $arreglo);
+        }
     }
 }

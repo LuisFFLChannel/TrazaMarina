@@ -19,6 +19,9 @@ class Promoter
             $request->session()->flash('message', 'You are not authorized!.');
             $request->session()->flash('alert-class', 'alert-danger');
             switch (\Auth::user()->role_id) {
+                case '7':
+                    return redirect('/usuarioValidacion');
+                    break;
                 case '5':
                     return redirect('/usuarioPesca');
                     break;

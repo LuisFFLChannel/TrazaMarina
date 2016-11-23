@@ -35,5 +35,6 @@ class Kernel extends HttpKernel
         'client' => \App\Http\Middleware\Client::class,
         'usuarioPesca' => \App\Http\Middleware\UsuarioPesca::class,
         'usuarioIntermediario' => \App\Http\Middleware\UsuarioIntermediario::class,
+        'usuarioValidacion' => \App\Http\Middleware\UsuarioValidacion::class,
     ];
 }

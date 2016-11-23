@@ -50,8 +50,6 @@
                           <h5 class="text-left">Longitud: {{$capitania->coordenadaY}}</h5>
                           <h5 class="text-left">Imagen:</h5> 
                           <p class="text-left">{!! Html::image($capitania->imagen, null, array('class'=>'gift_img')) !!}</p>
-                          <h5 class="text-left">Mapa: </h5>
-                          <div id="map"></div>
                           <hr>
                           
                            

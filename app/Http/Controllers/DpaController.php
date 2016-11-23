@@ -41,6 +41,9 @@ class DpaController extends Controller
         elseif  (Auth::user()->role_id == 6){
             return view('internal.usuarioIntermediario.dpas', compact('dpas'));
         }
+        elseif  (Auth::user()->role_id == 7){
+            return view('internal.usuarioValidacion.dpas', compact('dpas'));
+        }
         
     }
 
@@ -191,6 +194,9 @@ class DpaController extends Controller
         }
         elseif  (Auth::user()->role_id == 6){
             return view('internal.usuarioIntermediario.mostrarMapa', $arreglo);
+        }
+        elseif  (Auth::user()->role_id == 7){
+            return view('internal.usuarioValidacion.mostrarMapa', $arreglo);
         }
 
     }

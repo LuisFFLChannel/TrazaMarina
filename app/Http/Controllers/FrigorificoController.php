@@ -35,6 +35,9 @@ class FrigorificoController extends Controller
         elseif  (Auth::user()->role_id == 6){
             return view('internal.usuarioIntermediario.frigorificos', compact('frigorificos'));
         }
+        elseif  (Auth::user()->role_id == 7){
+            return view('internal.usuarioValidacion.frigorificos', compact('frigorificos'));
+        }
         
     }
 

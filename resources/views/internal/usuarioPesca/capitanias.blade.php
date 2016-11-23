@@ -48,7 +48,6 @@
                           <h5 class="text-left">Direccion: {{$capitania->direccion}} </h5>                              
                           <h5 class="text-left">Latitud: {{$capitania->coordenadaX}}</h5> 
                           <h5 class="text-left">Longitud: {{$capitania->coordenadaY}}</h5> 
-                          <h5 class="text-left">Mapa: </h5>
                           
                           <hr>
                           <h5 class="text-left">Imagen:</h5> 

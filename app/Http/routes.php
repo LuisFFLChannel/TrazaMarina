@@ -617,17 +617,17 @@ Route::group(['middleware' => ['auth', 'usuarioIntermediario']], function () {
     Route::get('usuarioIntermediario/pescadores', ['uses'=>'PescadoresController@index','as'=>'usuarioIntermediario.pescadores']);
     Route::get('usuarioIntermediario/pescadores/{id}/showPermisoMarinero', 'PescadoresController@showPermisoMarinero');
     Route::get('usuarioIntermediario/pescadores/{id}/showPermisoPatron', 'PescadoresController@showPermisoPatron');
-    Route::get('usuarioIntermediario/embarcaciones', ['uses'=>'EmbarcacionController@index','as'=>'usuarioPesca.embarcaciones']); 
+    Route::get('usuarioIntermediario/embarcaciones', ['uses'=>'EmbarcacionController@index','as'=>'usuarioIntermediario.embarcaciones']); 
     Route::get('usuarioIntermediario/embarcaciones/{id}/showCertificado', 'EmbarcacionController@showCertificado');
     Route::get('usuarioIntermediario/embarcaciones/{id}/showPermiso', 'EmbarcacionController@showPermiso');
 
 
     Route::get('usuarioIntermediario/permisoPescas', ['uses'=>'PermisoPescaController@index','as'=>'usuarioIntermediario.permisoPescas']);
-    Route::get('usuarioIntermediario/certificadoMatriculas', ['uses'=>'CertificadoMatriculasController@index','as'=>'usuarioPesca.certificadoMatriculas']);
-    Route::get('usuarioIntermediario/permisoZarpes', ['uses'=>'PermisoZarpeController@index','as'=>'usuarioPesca.permisoZarpes']);
-    Route::get('usuarioIntermediario/permisoMarineros', ['uses'=>'PermisoMarineroController@index','as'=>'usuarioPesca.permisoMarineros']);
-    Route::get('usuarioIntermediario/permisoPatrones', ['uses'=>'PermisoPatronController@index','as'=>'usuarioPesca.permisoPatrones']);
-    Route::get('usuarioIntermediario/certificadoArribos', ['uses'=>'CertificadoArriboController@index','as'=>'usuarioPesca.certificadoArribos']);
+    Route::get('usuarioIntermediario/certificadoMatriculas', ['uses'=>'CertificadoMatriculasController@index','as'=>'usuarioIntermediario.certificadoMatriculas']);
+    Route::get('usuarioIntermediario/permisoZarpes', ['uses'=>'PermisoZarpeController@index','as'=>'usuarioIntermediario.permisoZarpes']);
+    Route::get('usuarioIntermediario/permisoMarineros', ['uses'=>'PermisoMarineroController@index','as'=>'usuarioIntermediario.permisoMarineros']);
+    Route::get('usuarioIntermediario/permisoPatrones', ['uses'=>'PermisoPatronController@index','as'=>'usuarioIntermediario.permisoPatrones']);
+    Route::get('usuarioIntermediario/certificadoArribos', ['uses'=>'CertificadoArriboController@index','as'=>'usuarioIntermediario.certificadoArribos']);
 
     Route::get('usuarioIntermediario/pescas', ['uses'=>'PescaController@index','as'=>'usuarioIntermediario.pescas']);
     Route::get('usuarioIntermediario/pescas/{id}/showDesembarque', 'PescaController@showDesembarque');
@@ -658,9 +658,6 @@ Route::group(['middleware' => ['auth', 'usuarioIntermediario']], function () {
     Route::get('usuarioIntermediario/transporteTerminales/{id}/delete', 'TransporteTerminalController@destroy');
     Route::get('usuarioIntermediario/nuevoTransporteTerminales/new/{id_variable}', 'TransporteTerminalController@ajaxNotaIngreso');
 
-
-
-
     Route::get('usuarioIntermediario/empresarioComercializadores', ['uses'=>'EmpresarioComercializadorController@index','as'=>'usuarioIntermediario.empresarioComercializadores']);
     Route::get('usuarioIntermediario/empresarioComercializadores/new', 'EmpresarioComercializadorController@create');
     Route::post('usuarioIntermediario/empresarioComercializadores/new', 'EmpresarioComercializadorController@store');
@@ -668,9 +665,112 @@ Route::group(['middleware' => ['auth', 'usuarioIntermediario']], function () {
     Route::post('usuarioIntermediario/empresarioComercializadores/{id}/edit', 'EmpresarioComercializadorController@update');
     Route::get('usuarioIntermediario/empresarioComercializadores/{id}/delete', 'EmpresarioComercializadorController@destroy');
 
+    Route::get('usuarioIntermediario/lotesFabricas', ['uses'=>'CertificadoProcedenciaController@lotesFabricas','as'=>'usuarioIntermediario.lotesFabricas']); 
+    Route::get('usuarioIntermediario/lotesTerminales', ['uses'=>'TransporteTerminalController@lotesTerminales','as'=>'usuarioIntermediario.lotesTerminales']); 
+    Route::get('usuarioIntermediario/lotesFabricas/{idNota}/{idCertificado}/agregarTrazabilidad', 'CertificadoProcedenciaController@agregarTraza');
+    Route::post('usuarioIntermediario/lotesFabricas/{idNota}/{idCertificado}/agregarTrazabilidad', 'CertificadoProcedenciaController@updateTraza');
+    Route::get('usuarioIntermediario/lotesTerminales/{idNota}/{idTransporte}/agregarTrazabilidad', 'TransporteTerminalController@agregarTraza');
+    Route::post('usuarioIntermediario/lotesTerminales/{idNota}/{idTransporte}/agregarTrazabilidad', 'TransporteTerminalController@updateTraza');
+    Route::get('usuarioIntermediario/lotesFabricas/{idNota}/{idCertificado}/mostrarTrazabilidad', 'CertificadoProcedenciaController@mostrarTrazabilidad');
+    Route::get('usuarioIntermediario/lotesTerminales/{idNota}/{idTransporte}/mostrarTrazabilidad', 'TransporteTerminalController@mostrarTrazabilidad');
 
+
+
+
+})  ;
+Route::group(['middleware' => ['auth', 'usuarioValidacion']], function () {
+
+   
+    Route::get('usuarioValidacion/', ['uses'=>'PagesController@usuarioValidacionHome','as'=>'usuarioValidacion.home']);
+    /*Route::get('admin/password', 'AdminController@passwordAdmin');
+    Route::post('admin/password', 'AdminController@passwordUpdateAdmin');
+
+
+    Route::get('admin/client', 'ClientController@index');
+    Route::post('admin/client/desactive', 'ClientController@desactive');
+
+    Route::get('admin/salesman', ['as'=>'admin.salesman','uses'=>'AdminController@salesman']);
+    Route::get('admin/salesman/{id}/edit', 'AdminController@editSalesman');
+    Route::post('admin/salesman/{id}/edit', 'AdminController@updateSalesman');
+    Route::get('admin/salesman/{id}/delete', 'AdminController@destroySalesman');
+
+    Route::get('admin/user/new', 'AdminController@newUser');
+    Route::post('admin/user/new', 'AdminController@store');
+
+    Route::get('admin/admin', 'AdminController@admin');
+    Route::get('admin/admin/{id}/edit', 'AdminController@editAdmin');
+    Route::post('admin/admin/{id}/edit', 'AdminController@updateAdmin');
+    //
+    Route::get('admin/admin/{id}/delete', 'AdminController@destroy');
+
+    Route::get('admin/promoter', 'AdminController@promoter');
+    Route::get('admin/promoter/{id}/edit', 'AdminController@editPromoter');
+    Route::post('admin/promoter/{id}/edit', 'AdminController@updatePromoter');
+    Route::get('admin/promoter/{id}/delete', 'AdminController@destroyPromoter');*/
+
+    Route::get('usuarioValidacion/especieMarinas', ['uses'=>'EspeciesMarinasController@index','as'=>'usuarioValidacion.especieMarinas']);
+
+
+    Route::get('usuarioValidacion/puertos', ['uses'=>'PuertosController@index','as'=>'usuarioValidacion.puertos']);
+    Route::get('usuarioValidacion/capitanias', ['uses'=>'CapitaniaController@index','as'=>'usuarioValidacion.capitanias']);
+    Route::get('usuarioValidacion/dpas', ['uses'=>'DpaController@index','as'=>'usuarioValidacion.dpas']);
+
+    Route::get('usuarioValidacion/mapas/{id}/mostarMapaCapitania', 'CapitaniaController@mostrarMapa');
+    Route::get('usuarioValidacion/mapas/{id}/mostarMapaDpa', 'DpaController@mostrarMapa');
+    Route::get('usuarioValidacion/mapas/{id}/mostarMapaPuerto', 'PuertosController@mostrarMapa');
+    Route::get('usuarioValidacion/mapas/{id}/mostarMapaTerminal', 'TerminalController@mostrarMapa');
+    Route::get('usuarioValidacion/mapas/{id}/mostarMapaFabrica', 'FabricaController@mostrarMapa');
+
+    Route::get('usuarioValidacion/transportistas', ['uses'=>'TransportistaController@index','as'=>'usuarioValidacion.transportistas']);
+    Route::get('usuarioValidacion/frigorificos', ['uses'=>'FrigorificoController@index','as'=>'usuarioValidacion.frigorificos']);
+    Route::get('usuarioValidacion/fabricas', ['uses'=>'FabricaController@index','as'=>'usuarioValidacion.fabricas']);
+    Route::get('usuarioValidacion/terminales', ['uses'=>'TerminalController@index','as'=>'usuarioValidacion.terminales']);
+
+
+    Route::get('usuarioValidacion/pescadores', ['uses'=>'PescadoresController@index','as'=>'usuarioValidacion.pescadores']);
+    Route::get('usuarioValidacion/pescadores/{id}/showPermisoMarinero', 'PescadoresController@showPermisoMarinero');
+    Route::get('usuarioValidacion/pescadores/{id}/showPermisoPatron', 'PescadoresController@showPermisoPatron');
+    Route::get('usuarioValidacion/pescadores/{id}/validarPescador', 'PescadoresController@validarPescador');
+
+
+    Route::get('usuarioValidacion/embarcaciones', ['uses'=>'EmbarcacionController@index','as'=>'usuarioValidacion.embarcaciones']); 
+    Route::get('usuarioValidacion/embarcaciones/{id}/showCertificado', 'EmbarcacionController@showCertificado');
+    Route::get('usuarioValidacion/embarcaciones/{id}/showPermiso', 'EmbarcacionController@showPermiso');
+    Route::get('usuarioValidacion/embarcaciones/{id}/validarEmbarcacion', 'EmbarcacionController@validarEmbarcacion');
+
+    Route::get('usuarioValidacion/permisoPescas', ['uses'=>'PermisoPescaController@index','as'=>'usuarioValidacion.permisoPescas']);
+    Route::get('usuarioValidacion/certificadoMatriculas', ['uses'=>'CertificadoMatriculasController@index','as'=>'usuarioValidacion.certificadoMatriculas']);
+    Route::get('usuarioValidacion/permisoZarpes', ['uses'=>'PermisoZarpeController@index','as'=>'usuarioValidacion.permisoZarpes']);
+    Route::get('usuarioValidacion/permisoMarineros', ['uses'=>'PermisoMarineroController@index','as'=>'usuarioValidacion.permisoMarineros']);
+    Route::get('usuarioValidacion/permisoPatrones', ['uses'=>'PermisoPatronController@index','as'=>'usuarioValidacion.permisoPatrones']);
+    Route::get('usuarioValidacion/certificadoArribos', ['uses'=>'CertificadoArriboController@index','as'=>'usuarioValidacion.certificadoArribos']);
+
+    Route::get('usuarioValidacion/pescas', ['uses'=>'PescaController@index','as'=>'usuarioValidacion.pescas']);
+    Route::get('usuarioValidacion/pescas/{id}/showDesembarque', 'PescaController@showDesembarque');
+    //Route::get('usuarioPesca/pescasNoArribadas', 'PescaController@indexNoArribadas');
+    //Route::get('usuarioPesca/pescasArribadas', 'PescaController@indexArribadas');
+
+    Route::get('usuarioValidacion/desembarques', ['uses'=>'DesembarqueController@index','as'=>'usuarioValidacion.desembarques']);
+    Route::get('usuarioValidacion/desembarques/{id}/showCertificado', 'DesembarqueController@showCertificado');
+    Route::get('usuarioValidacion/desembarques/{id}/showNota', 'DesembarqueController@showNota');
+
+    Route::get('usuarioValidacion/notasIngresos', ['uses'=>'NotaIngresoController@index','as'=>'usuarioValidacion.notasIngresos']);
+    Route::get('usuarioValidacion/notasIngresos/{id}/mostrarTrazabiliadad', 'NotaIngresoController@verTraza');
+    Route::get('usuarioValidacion/notasIngresos/{id}/verLotesporNota', 'NotaIngresoController@verLotesporNota');
+
+    Route::get('usuarioValidacion/certificadoProcedencias', ['uses'=>'CertificadoProcedenciaController@index','as'=>'usuarioValidacion.certificadoProcedencias']);
+
+    
+    Route::get('usuarioValidacion/transporteTerminales', ['uses'=>'TransporteTerminalController@index','as'=>'usuarioValidacion.transporteTerminales']);
+
+
+    Route::get('usuarioValidacion/empresarioComercializadores', ['uses'=>'EmpresarioComercializadorController@index','as'=>'usuarioValidacion.empresarioComercializadores']);
   
 
+    Route::get('usuarioValidacion/lotesFabricas', ['uses'=>'CertificadoProcedenciaController@lotesFabricas','as'=>'usuarioValidacion.lotesFabricas']); 
+    Route::get('usuarioValidacion/lotesTerminales', ['uses'=>'TransporteTerminalController@lotesTerminales','as'=>'usuarioValidacion.lotesTerminales']); 
+    Route::get('usuarioValidacion/lotesFabricas/{idNota}/{idCertificado}/mostrarTrazabilidad', 'CertificadoProcedenciaController@mostrarTrazabilidad');
+    Route::get('usuarioValidacion/lotesTerminales/{idNota}/{idTransporte}/mostrarTrazabilidad', 'TransporteTerminalController@mostrarTrazabilidad');
 
 })  ;
 

@@ -43,6 +43,9 @@ class EmbarcacionController extends Controller
         elseif  (Auth::user()->role_id == 6){
             return view('internal.usuarioIntermediario.embarcaciones', compact('embarcaciones'));
         }
+        elseif  (Auth::user()->role_id == 7){
+            return view('internal.usuarioValidacion.embarcaciones', compact('embarcaciones'));
+        }
     
     }
 
@@ -259,6 +262,9 @@ class EmbarcacionController extends Controller
         elseif  (Auth::user()->role_id == 6){
             return view('internal.usuarioIntermediario.mostrarCertificadoMatricula', compact('embarcacion'));
         }
+        elseif  (Auth::user()->role_id == 7){
+            return view('internal.usuarioValidacion.mostrarCertificadoMatricula', compact('embarcacion'));
+        }
 
         
     }
@@ -279,6 +285,9 @@ class EmbarcacionController extends Controller
         }
         elseif  (Auth::user()->role_id == 6){
             return view('internal.usuarioIntermediario.mostrarPermisoPesca', compact('embarcacion'));
+        }
+        elseif  (Auth::user()->role_id == 7){
+            return view('internal.usuarioValidacion.mostrarPermisoPesca', compact('embarcacion'));
         }
         
     }

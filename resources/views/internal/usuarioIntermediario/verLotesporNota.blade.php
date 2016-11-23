@@ -85,7 +85,7 @@
               <tr>
                   <th class="text-center">Codigo Cert. Procedencia</th>
                   <th class="text-center">Toneladas</th>
-                  <th class="text-center">Fabrica</th>
+                  <th class="text-center">Terminal</th>
                   <th class="text-center">Transportista</th>
                   <th class="text-center">Frigorífico</th>
               </tr> 

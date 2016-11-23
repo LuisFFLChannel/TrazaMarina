@@ -39,6 +39,9 @@ class PescadoresController extends Controller
         elseif  (Auth::user()->role_id == 6){
             return view('internal.usuarioIntermediario.pescadores', compact('pescadores'));
         }
+        elseif  (Auth::user()->role_id == 7){
+            return view('internal.usuarioValidacion.pescadores', compact('pescadores'));
+        }
         
     }
 
@@ -215,6 +218,9 @@ class PescadoresController extends Controller
         elseif  (Auth::user()->role_id == 6){
             return view('internal.usuarioIntermediario.mostrarPermisoMarinero', compact('pescador'));
         }
+        elseif  (Auth::user()->role_id == 7){
+            return view('internal.usuarioValidacion.mostrarPermisoMarinero', compact('pescador'));
+        }
         
     }
     public function showPermisoPatron($id)
@@ -233,6 +239,9 @@ class PescadoresController extends Controller
         }
         elseif  (Auth::user()->role_id == 6){
             return view('internal.usuarioIntermediario.mostrarPermisoPatron', compact('pescador'));
+        }
+        elseif  (Auth::user()->role_id == 6){
+            return view('internal.usuarioValidacion.mostrarPermisoPatron', compact('pescador'));
         }
         
     }
@@ -297,5 +306,14 @@ class PescadoresController extends Controller
 
 
     return  json_encode(  $pescad);  
+    }
+    public function validarPescador()
+    {
+        //
+        $pescador = Pescador::find($id);
+        if  (Auth::user()->role_id == 7){
+            return view('internal.usuarioValidacion.validarPescador', compact('pescador'));
+        }
+
     }
 }

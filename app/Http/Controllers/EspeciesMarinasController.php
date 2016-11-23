@@ -42,6 +42,9 @@ class EspeciesMarinasController extends Controller
         elseif  (Auth::user()->role_id == 6){
             return view('internal.usuarioIntermediario.especieMarinas', compact('especies'));
         }
+        elseif  (Auth::user()->role_id == 7){
+            return view('internal.usuarioValidacion.especieMarinas', compact('especies'));
+        }
         
     }
 

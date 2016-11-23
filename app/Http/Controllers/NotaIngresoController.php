@@ -43,6 +43,9 @@ class NotaIngresoController extends Controller
         elseif  (Auth::user()->role_id == 6){
             return view('internal.usuarioIntermediario.notasIngresos', compact('notaIngresos'));
         }
+        elseif  (Auth::user()->role_id == 7){
+            return view('internal.usuarioValidacion.notasIngresos', compact('notaIngresos'));
+        }
     }
 
     /**
@@ -211,6 +214,9 @@ class NotaIngresoController extends Controller
         elseif  (Auth::user()->role_id == 6){
             return view('internal.usuarioIntermediario.mostrarTraza', $arreglo);
         }
+        elseif  (Auth::user()->role_id == 7){
+            return view('internal.usuarioValidacion.mostrarTraza', $arreglo);
+        }
     }
     public function verLotesporNota($id){
         $nota = NotaIngreso::find($id);
@@ -230,6 +236,9 @@ class NotaIngresoController extends Controller
         }
         elseif  (Auth::user()->role_id == 6){
             return view('internal.usuarioIntermediario.verLotesporNota', $arreglo);
+        }
+        elseif  (Auth::user()->role_id == 7){
+            return view('internal.usuarioValidacion.verLotesporNota', $arreglo);
         }
     }
 }

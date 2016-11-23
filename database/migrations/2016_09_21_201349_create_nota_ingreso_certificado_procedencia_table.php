@@ -17,6 +17,7 @@ class CreateNotaIngresoCertificadoProcedenciaTable extends Migration
             $table->integer('certificado_id')->unsigned()->index('notaIngreso_certificadoProcedencia_certificado_id_foreign');
             $table->integer('notaIngreso_id')->unsigned()->index('notaIngreso_certificadoProcedencia_notaIngreso_id_foreign');
             $table->float('toneladas');
+            $table->string('codigoTraza')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

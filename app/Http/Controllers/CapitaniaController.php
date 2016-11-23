@@ -30,6 +30,7 @@ class CapitaniaController extends Controller
     public function index()
     {
         //
+
         $capitanias = Capitania::paginate(10);
         $capitanias->setPath('capitania');
         if (Auth::user()->role_id == 4){
@@ -40,6 +41,9 @@ class CapitaniaController extends Controller
         }
         elseif  (Auth::user()->role_id == 6){
             return view('internal.usuarioIntermediario.capitanias', compact('capitanias'));
+        }
+        elseif  (Auth::user()->role_id == 7){
+            return view('internal.usuarioValidacion.capitanias', compact('capitanias'));
         }
         
     }
@@ -193,6 +197,9 @@ class CapitaniaController extends Controller
         }
         elseif  (Auth::user()->role_id == 6){
             return view('internal.usuarioIntermediario.mostrarMapa', $arreglo);
+        }
+        elseif  (Auth::user()->role_id == 7){
+            return view('internal.usuarioValidacion.mostrarMapa', $arreglo);
         }
 
     }

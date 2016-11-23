@@ -17,6 +17,7 @@ class CreateNotaIngresoTransporteTerminalTable extends Migration
             $table->integer('transporte_id')->unsigned()->index('notaIngreso_transporteTerminal_transporte_id_foreign');
             $table->integer('notaIngreso_id')->unsigned()->index('notaIngreso_transporteTerminal_notaIngreso_id_foreign');
             $table->float('toneladas');
+            $table->string('codigoTraza')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

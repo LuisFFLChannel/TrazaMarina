@@ -41,6 +41,9 @@ class PescaController extends Controller
         elseif  (Auth::user()->role_id == 6){
             return view('internal.usuarioIntermediario.pescas', compact('pescas'));
         }
+        elseif  (Auth::user()->role_id == 7){
+            return view('internal.usuarioValidacion.pescas', compact('pescas'));
+        }
     }
 
     /**
@@ -279,6 +282,9 @@ class PescaController extends Controller
         }
         elseif (Auth::user()->role_id == 6){
             return view('internal.usuarioIntermediario.mostrarDesembarque',$arreglo);
+        }
+        elseif (Auth::user()->role_id == 7){
+            return view('internal.usuarioValidacion.mostrarDesembarque',$arreglo);
         }
     }
 }

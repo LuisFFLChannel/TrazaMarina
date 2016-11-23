@@ -35,6 +35,9 @@ class TransportistaController extends Controller
         elseif  (Auth::user()->role_id == 6){
             return view('internal.usuarioIntermediario.transportistas', compact('transportistas'));
         }
+        elseif  (Auth::user()->role_id == 7){
+            return view('internal.usuarioValidacion.transportistas', compact('transportistas'));
+        }
         
     }
 
@@ -166,6 +169,9 @@ class TransportistaController extends Controller
         }
         elseif  (Auth::user()->role_id == 6){
             return redirect()->route('usuarioIntermediario.transportistas');
+        }
+        elseif  (Auth::user()->role_id == 7){
+            return redirect()->route('usuarioValidacion.transportistas');
         }
 
     }

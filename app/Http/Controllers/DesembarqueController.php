@@ -46,6 +46,9 @@ class DesembarqueController extends Controller
         elseif  (Auth::user()->role_id == 6){
             return view('internal.usuarioIntermediario.desembarques', compact('desembarques'));
         }
+        elseif  (Auth::user()->role_id == 7){
+            return view('internal.usuarioValidacion.desembarques', compact('desembarques'));
+        }
     }
 
     /**
@@ -340,6 +343,9 @@ class DesembarqueController extends Controller
         elseif  (Auth::user()->role_id == 6){
             return view('internal.usuarioIntermediario.mostrarCertificadoArribo', compact('desembarque'));
         }
+        elseif  (Auth::user()->role_id == 7){
+            return view('internal.usuarioValidacion.mostrarCertificadoArribo', compact('desembarque'));
+        }
 
         
     }
@@ -395,6 +401,9 @@ class DesembarqueController extends Controller
         }
         elseif (Auth::user()->role_id == 6){
             return view('internal.usuarioIntermediario.mostrarNota',$arreglo);
+        }
+        elseif (Auth::user()->role_id == 7){
+            return view('internal.usuarioValidacion.mostrarNota',$arreglo);
         }
     }
 }

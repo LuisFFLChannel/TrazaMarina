@@ -22,7 +22,7 @@ return [
 	'admin'	          		=> 4,
 	'usuarioPesca'    		=> 5,
 	'usuarioIntermediario'	=> 6,
-	'validacion'       		=> 7,
+	'usuarioValidacion' 	=> 7,
 
    	//Status de los asientos 
    	'seat_available' => 1,

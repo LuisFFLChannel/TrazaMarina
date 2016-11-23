@@ -38,7 +38,7 @@
               <th >{{$notaIngreso->desembarque->pesca->id}}</th>  
           </tr> 
           <tr>
-              <th >Pesca</th>
+              <th >Desembarque</th>
               <th >{{$notaIngreso->desembarque->id}}</th>  
           </tr> 
         </table>

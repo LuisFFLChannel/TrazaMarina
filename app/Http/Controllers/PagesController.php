@@ -154,5 +154,9 @@ class PagesController extends Controller
     {
         return view('internal.usuarioIntermediario.home');
     }
+    public function usuarioValidacionHome()
+    {
+        return view('internal.usuarioValidacion.home');
+    }
 
 }

@@ -42,6 +42,9 @@ class PuertosController extends Controller
         elseif  (Auth::user()->role_id == 6){
             return view('internal.usuarioIntermediario.puertos', compact('puertos'));
         }
+        elseif  (Auth::user()->role_id == 7){
+            return view('internal.usuarioValidacion.puertos', compact('puertos'));
+        }
         
     }
 
@@ -197,6 +200,9 @@ class PuertosController extends Controller
         }
         elseif  (Auth::user()->role_id == 6){
             return view('internal.usuarioIntermediario.mostrarMapa', $arreglo);
+        }
+        elseif  (Auth::user()->role_id == 7){
+            return view('internal.usuarioValidacion.mostrarMapa', $arreglo);
         }
 
     }

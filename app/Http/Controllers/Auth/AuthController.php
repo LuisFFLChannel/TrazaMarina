@@ -114,6 +114,7 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
+        
         $role = 1;
         if (isset($data['role_id']))
             $role = $data['role_id'];
@@ -133,6 +134,9 @@ class AuthController extends Controller
     public function redirectPath()
     {
         switch (\Auth::user()->role_id) {
+            case '7':
+            return '/usuarioValidacion';
+            break;
             case '6':
             return '/usuarioIntermediario';
             break;

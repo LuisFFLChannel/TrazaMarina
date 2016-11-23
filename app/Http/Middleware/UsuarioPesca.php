@@ -19,6 +19,9 @@ class UsuarioPesca
             $request->session()->flash('message', 'No estas autorizado para entrar aqui');
             $request->session()->flash('alert-class', 'alert-danger');
             switch (\Auth::user()->role_id) {
+                case '7':
+                    return redirect('/usuarioValidacion');
+                    break;
                 case '4':
                     return redirect('/admin');
                     break;
