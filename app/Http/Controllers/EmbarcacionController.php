@@ -343,4 +343,30 @@ class EmbarcacionController extends Controller
         }
 
     }
+    public function validarEmbarcacion($id)
+    {
+        //
+        $embarcacion = Embarcacion::find($id);
+        
+     
+        
+        $validarPermiso = false;
+        if ($embarcacion->permisoPesca){
+           $validarPermiso = Carbon::parse($embarcacion->permisoPesca->fechaVigencia)->gte(Carbon::now());
+        }
+        $validarCertificado = false;
+        if ($embarcacion->certificadoMatricula){
+           $validarCertificado = Carbon::parse($embarcacion->certificadoMatricula->fechaVigencia)->gte(Carbon::now());
+        }
+        $arreglo =[
+            'embarcacion' =>   $embarcacion,
+            'validarPermiso'   => $validarPermiso,
+            'validarCertificado'     => $validarCertificado
+        ];
+        
+        if  (Auth::user()->role_id == 7){
+            return view('internal.usuarioValidacion.validarembarcacion', $arreglo);
+        }
+
+    }
 }

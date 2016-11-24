@@ -542,6 +542,7 @@ Route::group(['middleware' => ['auth', 'usuarioPesca']], function () {
     Route::get('usuarioPesca/mapas/{id}/mostarMapaPuerto', 'PuertosController@mostrarMapa');
     Route::get('usuarioPesca/mapas/{id}/mostarMapaTerminal', 'TerminalController@mostrarMapa');
     Route::get('usuarioPesca/mapas/{id}/mostarMapaFabrica', 'FabricaController@mostrarMapa');
+    Route::get('usuarioPesca/mapas/{id}/mostarMapaPesca', 'PescaController@mostrarMapa');
 
 })  ;
 Route::group(['middleware' => ['auth', 'usuarioIntermediario']], function () {
@@ -584,6 +585,7 @@ Route::group(['middleware' => ['auth', 'usuarioIntermediario']], function () {
     Route::get('usuarioIntermediario/mapas/{id}/mostarMapaPuerto', 'PuertosController@mostrarMapa');
     Route::get('usuarioIntermediario/mapas/{id}/mostarMapaTerminal', 'TerminalController@mostrarMapa');
     Route::get('usuarioIntermediario/mapas/{id}/mostarMapaFabrica', 'FabricaController@mostrarMapa');
+    Route::get('usuarioIntermediario/mapas/{id}/mostarMapaPesca', 'PescaController@mostrarMapa');
 
     Route::get('usuarioIntermediario/transportistas', ['uses'=>'TransportistaController@index','as'=>'usuarioIntermediario.transportistas']);
     Route::get('usuarioIntermediario/transportistas/new', 'TransportistaController@create');
@@ -720,6 +722,7 @@ Route::group(['middleware' => ['auth', 'usuarioValidacion']], function () {
     Route::get('usuarioValidacion/mapas/{id}/mostarMapaPuerto', 'PuertosController@mostrarMapa');
     Route::get('usuarioValidacion/mapas/{id}/mostarMapaTerminal', 'TerminalController@mostrarMapa');
     Route::get('usuarioValidacion/mapas/{id}/mostarMapaFabrica', 'FabricaController@mostrarMapa');
+    Route::get('usuarioValidacion/mapas/{id}/mostarMapaPesca', 'PescaController@mostrarMapa');
 
     Route::get('usuarioValidacion/transportistas', ['uses'=>'TransportistaController@index','as'=>'usuarioValidacion.transportistas']);
     Route::get('usuarioValidacion/frigorificos', ['uses'=>'FrigorificoController@index','as'=>'usuarioValidacion.frigorificos']);
@@ -747,6 +750,7 @@ Route::group(['middleware' => ['auth', 'usuarioValidacion']], function () {
 
     Route::get('usuarioValidacion/pescas', ['uses'=>'PescaController@index','as'=>'usuarioValidacion.pescas']);
     Route::get('usuarioValidacion/pescas/{id}/showDesembarque', 'PescaController@showDesembarque');
+    Route::get('usuarioValidacion/pescas/{id}/validarPesca', 'PescaController@validarPesca');
     //Route::get('usuarioPesca/pescasNoArribadas', 'PescaController@indexNoArribadas');
     //Route::get('usuarioPesca/pescasArribadas', 'PescaController@indexArribadas');
 

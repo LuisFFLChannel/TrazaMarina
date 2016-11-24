@@ -18,6 +18,7 @@
         <th class="text-center">Coordenadas de Pesca (Latitud , Longitud) </th>
         <th class="text-center">¿Esta en alta mar? </th>
         <!--<th>Imagen</th>-->
+        <th class="text-center">Mapa</th>
         <th class="text-center">Detalle</th>
         <th class="text-center">Desembarque</th>
         <!--<th class="text-center">Eliminar</th>-->
@@ -34,6 +35,9 @@
       @else
           <td class="text-center"> No </td>
       @endif 
+      <td class="text-center">
+          <a class="btn btn-info" href="{{url('usuarioIntermediario/mapas/'.$pesca->id.'/mostarMapaPesca')}}" title="Mostrar Mapa" ><i class="glyphicon glyphicon-map-marker"></i></a>
+        </td>
       <!--<td>{!! Html::image($pesca->imagen, null, array('class'=>'gift_img')) !!}</td>-->
       <td class="text-center">
             <a class="btn btn-info" href="detalles" title="Detalles" data-toggle="modal" data-target="#edit{{$pesca->id}}"><i class="glyphicon glyphicon-plus"></i></a>

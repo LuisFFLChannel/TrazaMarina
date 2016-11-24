@@ -15,6 +15,8 @@
     Mapa de Puerto: {{$puerto->id}} - {{$puerto->nombre}}
 @elseif ($valorEscogido==5)
     Mapa de Terminal: {{$terminal->id}} - {{$terminal->nombre}}
+@elseif ($valorEscogido==6)
+    Mapa de Pesca: Número {{$pesca->id}}
 @endif
 
 @stop
@@ -67,7 +69,7 @@
                     <th >{{$dpa->direccion}}</th>   
                 </tr> 
                 <tr>
-                    <th>Laitud</th>
+                    <th>Latitud</th>
                     <th >{{$dpa->coordenadaX}}</th>   
                 </tr> 
                 <tr>
@@ -92,7 +94,7 @@
                     <th >{{$fabrica->direccion}}</th>   
                 </tr> 
                 <tr>
-                    <th>Laitud</th>
+                    <th>Latitud</th>
                     <th >{{$fabrica->coordenadaX}}</th>   
                 </tr> 
                 <tr>
@@ -117,7 +119,7 @@
                     <th >{{$puerto->direccion}}</th>   
                 </tr> 
                 <tr>
-                    <th>Laitud</th>
+                    <th>Latitud</th>
                     <th >{{$puerto->coordenadaX}}</th>   
                 </tr> 
                 <tr>
@@ -142,7 +144,7 @@
                     <th >{{$terminal->direccion}}</th>   
                 </tr> 
                 <tr>
-                    <th>Laitud</th>
+                    <th>Latitud</th>
                     <th >{{$terminal->coordenadaX}}</th>   
                 </tr> 
                 <tr>
@@ -153,6 +155,44 @@
                     <th>Imagen</th>
                     <th >{!! Html::image($terminal->imagen, null, array('class'=>'cat_img')) !!}</th>   
                 </tr>
+                @elseif ($valorEscogido==6)
+                <tr>
+                    <th >Codigo</th>
+                    <th >{{$pesca->id}}</th>   
+                </tr> 
+                <tr>
+                    <th>Embarcación</th>
+                    <th >{{$pesca->embarcacion->id}} {{$pesca->embarcacion->nombre}}</th>   
+                </tr>  
+                 <tr>
+                    <th>Puerto</th>
+                    <th >{{$pesca->puerto->id}} {{$pesca->puerto->nombre}}</th>   
+                </tr> 
+                <tr>
+                    <th>Latitud</th>
+                    <th >{{$pesca->coordenadaX}}</th>   
+                </tr> 
+                <tr>
+                    <th>Longitud</th>
+                    <th >{{$pesca->coordenadaY}}</th>   
+                </tr> 
+                <tr>
+                    <th>Numero de Permiso Zarpe</th>
+                    <th >{{$pesca->permisoZarpe->id}}</th>   
+                </tr>
+                <tr>
+                    <th>Fecha Zarpe</th>
+                    <th >{{date_format(date_create($pesca->fechaZarpe),"d/m/Y") }}</th>   
+                </tr>
+                <tr>
+                    <th>¿Arribó la Pesca?</th>
+                    @if($pesca->arribo == true)
+                        <th > Si </td>
+                    @else
+                        <th > No </td>
+                    @endif 
+                </tr>
+
               @endif
 
             </table>

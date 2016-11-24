@@ -307,12 +307,29 @@ class PescadoresController extends Controller
 
     return  json_encode(  $pescad);  
     }
-    public function validarPescador()
+    public function validarPescador($id)
     {
         //
         $pescador = Pescador::find($id);
+        
+     
+        
+        $validarMarinero = false;
+        if ($pescador->permisoMarinero){
+           $validarMarinero = Carbon::parse($pescador->permisoMarinero->fechaVigencia)->gte(Carbon::now());
+        }
+        $validarPatron = false;
+        if ($pescador->permisoPatron){
+           $validarPatron = Carbon::parse($pescador->permisoPatron->fechaVigencia)->gte(Carbon::now());
+        }
+        $arreglo =[
+            'pescador' =>   $pescador,
+            'validarMarinero'   => $validarMarinero,
+            'validarPatron'     => $validarPatron
+        ];
+        
         if  (Auth::user()->role_id == 7){
-            return view('internal.usuarioValidacion.validarPescador', compact('pescador'));
+            return view('internal.usuarioValidacion.validarPescador', $arreglo);
         }
 
     }

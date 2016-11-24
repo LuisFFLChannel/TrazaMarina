@@ -287,4 +287,56 @@ class PescaController extends Controller
             return view('internal.usuarioValidacion.mostrarDesembarque',$arreglo);
         }
     }
+    public function mostrarMapa($id)
+    {
+        //
+        $pesca = Pesca::find($id);
+        $arreglo = [
+            'pesca'             => $pesca,
+            'latitud'               => $pesca->coordenadaX,
+            'longitud'              => $pesca->coordenadaY,
+            'valorEscogido'         => 6
+
+        ];
+        //$capitania->delete();
+        if (Auth::user()->role_id == 4){
+            return view('internal.usuarioPesca.mostrarMapa', $arreglo);
+        }
+        elseif  (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.mostrarMapa', $arreglo);
+        }
+        elseif  (Auth::user()->role_id == 6){
+            return view('internal.usuarioIntermediario.mostrarMapa', $arreglo);
+        }
+        elseif  (Auth::user()->role_id == 7){
+            return view('internal.usuarioValidacion.mostrarMapa', $arreglo);
+        }
+
+    }
+    public function validarPesca($id)
+    {
+        //
+        $pesca = Pesca::find($id);
+        
+     
+        
+        $validarMarinero = false;
+        if ($pesca->permisoMarinero){
+           $validarMarinero = Carbon::parse($pesca->permisoMarinero->fechaVigencia)->gte(Carbon::now());
+        }
+        $validarPatron = false;
+        if ($pesca->permisoPatron){
+           $validarPatron = Carbon::parse($pesca->permisoPatron->fechaVigencia)->gte(Carbon::now());
+        }
+        $arreglo =[
+            'pesca' =>   $pesca,
+            'validarMarinero'   => $validarMarinero,
+            'validarPatron'     => $validarPatron
+        ];
+        
+        if  (Auth::user()->role_id == 7){
+            return view('internal.usuarioValidacion.validarPesca', $arreglo);
+        }
+
+    }
 }

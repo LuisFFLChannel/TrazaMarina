@@ -18,8 +18,10 @@
         <th class="text-center">Coordenadas de Pesca (Latitud , Longitud) </th>
         <th class="text-center">¿Esta en alta mar? </th>
         <!--<th>Imagen</th>-->
+        <th class="text-center">Mostrar Mapa</th>
         <th class="text-center">Detalle</th>
         <th class="text-center">Desembarque</th>
+        <th class="text-center">Validación</th>
         <!--<th class="text-center">Eliminar</th>-->
     </tr>
     
@@ -35,6 +37,9 @@
           <td class="text-center"> No </td>
       @endif 
       <!--<td>{!! Html::image($pesca->imagen, null, array('class'=>'gift_img')) !!}</td>-->
+      <td class="text-center">
+          <a class="btn btn-info" href="{{url('usuarioValidacion/mapas/'.$pesca->id.'/mostarMapaPesca')}}" title="Mostrar Mapa" ><i class="glyphicon glyphicon-map-marker"></i></a>
+        </td>
       <td class="text-center">
             <a class="btn btn-info" href="detalles" title="Detalles" data-toggle="modal" data-target="#edit{{$pesca->id}}"><i class="glyphicon glyphicon-plus"></i></a>
             <div class="modal fade" id="edit{{$pesca->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -55,7 +60,6 @@
                           <h5 class="text-left">Longitud de Pesca: {{$pesca->coordenadaY}}</h5> 
                           <h5 class="text-left">Permiso Zarpe: {{$pesca->permisoZarpe->nombre}}</h5> 
                           <h5 class="text-left">Fecha Zarpe: {{date_format(date_create($pesca->fechaZarpe),"d/m/Y") }}</h5> 
-                          <h5 class="text-left">Mapa: </h5>
                           
                           <hr>
                        </div>
@@ -71,6 +75,9 @@
       <td class="text-center"> 
             <a class="btn btn-info" href="{{url('usuarioValidacion/pescas/'.$pesca->id.'/showDesembarque')}}" title="Ver Desembarque" ><i class="glyphicon glyphicon-plus"></i></a>
       </td>
+      <td class="text-center">
+        <a class="btn btn-info" href="{{url('usuarioValidacion/pescas/'.$pesca->id.'/validarPesca')}}" title="Validar Embarcacion" ><i class="glyphicon glyphicon-check"></i></a>
+      </td> 
       <!--<td class="text-center">
         <a class="btn btn-info" title="Eliminar" data-toggle="modal" data-target="#deleteModal{{$pesca->id}}" ><i class="glyphicon glyphicon-remove"></i></a>
       </td>-->

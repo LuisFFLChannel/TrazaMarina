@@ -18,7 +18,7 @@
         <th class="text-center">Detalle</th>
         <th class="text-center">Ver C.Matricula</th>
         <th class="text-center">Ver P.Pesca</th>
-        
+        <th class="text-center">Validar</th>
     </tr>
     
     @foreach($embarcaciones as $embarcacion)
@@ -64,7 +64,10 @@
       </td> 
       <td class="text-center">
         <a class="btn btn-info" href="{{url('usuarioValidacion/embarcaciones/'.$embarcacion->id.'/showPermiso')}}" title="Visualizar Permiso de Pesca" ><i class="glyphicon glyphicon-plus"></i></a>
-      </td> 
+      </td>
+      <td class="text-center">
+        <a class="btn btn-info" href="{{url('usuarioValidacion/embarcaciones/'.$embarcacion->id.'/validarEmbarcacion')}}" title="Validar Embarcacion" ><i class="glyphicon glyphicon-check"></i></a>
+      </td>  
       
     </tr>
 
