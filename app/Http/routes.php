@@ -48,6 +48,7 @@ Route::get('event/{id}', ['as' => 'event.external.show' , 'uses' =>'EventControl
 Route::post('event/{id}', 'EventController@showExternalPost');
 Route::get('event/delete/{id}/comment', 'EventController@destroyComment');
 
+Route::post('codigoTrazabilidad', 'PagesController@buscarCodigo');
 
 
 Route::group(['middleware' => ['auth', 'client']], function () {
@@ -757,10 +758,12 @@ Route::group(['middleware' => ['auth', 'usuarioValidacion']], function () {
     Route::get('usuarioValidacion/desembarques', ['uses'=>'DesembarqueController@index','as'=>'usuarioValidacion.desembarques']);
     Route::get('usuarioValidacion/desembarques/{id}/showCertificado', 'DesembarqueController@showCertificado');
     Route::get('usuarioValidacion/desembarques/{id}/showNota', 'DesembarqueController@showNota');
+    Route::get('usuarioValidacion/desembarques/{id}/validarDesembarque', 'DesembarqueController@validarDesembarque');
 
     Route::get('usuarioValidacion/notasIngresos', ['uses'=>'NotaIngresoController@index','as'=>'usuarioValidacion.notasIngresos']);
     Route::get('usuarioValidacion/notasIngresos/{id}/mostrarTrazabiliadad', 'NotaIngresoController@verTraza');
     Route::get('usuarioValidacion/notasIngresos/{id}/verLotesporNota', 'NotaIngresoController@verLotesporNota');
+    Route::get('usuarioValidacion/notasIngresos/{id}/validarNotaIngreso', 'NotaIngresoController@validarNota');
 
     Route::get('usuarioValidacion/certificadoProcedencias', ['uses'=>'CertificadoProcedenciaController@index','as'=>'usuarioValidacion.certificadoProcedencias']);
 

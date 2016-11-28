@@ -13,6 +13,9 @@ use App\User;
 use App\Models\Preference;
 use App\Models\Event;
 use App\Models\About;
+use App\Models\NotaIngresoCertificadoProcedencia;
+use App\Models\NotaIngresoTransporteTerminal;
+use App\Models\NotaIngreso;
 use Carbon\Carbon;
 use App\Models\Presentation;
 use DB;
@@ -21,13 +24,14 @@ class PagesController extends Controller
 {
     public function home()
     {
-        $destacados = Highlight::where('active','1')->get();
-        $upcoming   = Event::where('selling_date','>',strtotime(Carbon::now()))->where('publication_date','>',strtotime(Carbon::now()))->get();
-        return view('external.home',array('destacados'=>$destacados,'upcoming'=>$upcoming));
+        /*$destacados = Highlight::where('active','1')->get();
+        $upcoming   = Event::where('selling_date','>',strtotime(Carbon::now()))->where('publication_date','>',strtotime(Carbon::now()))->get();*/
+        return view('external.home'/*,array('destacados'=>$destacados,'upcoming'=>$upcoming)*/);
     }
 
     public function about()
     {
+        
         $about = About::all()->first();
         return view('external.about', compact('about'));
     }
@@ -35,6 +39,43 @@ class PagesController extends Controller
     public function modules()
     {
         return view('external.modules');
+    }
+    public function buscarCodigo(request $request)
+    {
+        $input = $request->all();
+        $tipoProducto = 0;
+        $codigoTrazabilidad = "";
+        $auxData = NotaIngresoCertificadoProcedencia::where('codigoTraza', 'like', '%' . $input['buscar'] . '%')->get()->first();
+        if ($auxData == null){
+            $auxData = NotaIngresoTransporteTerminal::where('codigoTraza', 'like', '%' . $input['buscar'] . '%')->get()->first();
+            if ($auxData == null){
+                $auxData = NotaIngreso::where('codigoTraza', 'like', '%' . $input['buscar'] . '%')->get()->first();
+                if ($auxData==null){
+                    return redirect()->back()->withInput()->withErrors(['errors' => 'Este código de trazabilidad no pertenece a ningun producto']);
+                }
+                else{
+                    $tipoProducto = 3;
+                    $codigoTrazabilidad = $auxData->codigoTraza;//nota sin distribución aun a mercado o fábrica
+                }
+            }
+            else{
+                $tipoProducto = 2;
+                $codigoTrazabilidad = $auxData->codigoTraza;//lote de mercado
+            }
+        }
+        else{
+            $tipoProducto = 1;
+            $codigoTrazabilidad = $auxData->codigoTraza; //lote de fabrica
+        }
+        
+        $arreglo=[
+            'producto' => $auxData,
+            'tipoProducto'  => $tipoProducto,
+            'codigoTrazabilidad'  => $codigoTrazabilidad
+
+        ];
+         
+        return view('external.producto', $arreglo);
     }
 
     public function calendar(request $request)

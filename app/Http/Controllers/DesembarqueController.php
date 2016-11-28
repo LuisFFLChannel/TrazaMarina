@@ -406,4 +406,23 @@ class DesembarqueController extends Controller
             return view('internal.usuarioValidacion.mostrarNota',$arreglo);
         }
     }
+    public function validarDesembarque($id)
+    {
+        //
+        $desembarque = Desembarque::find($id);
+        
+     
+        
+        //$validarMarinero = false;
+        
+        $arreglo =[
+            'desembarque' =>   $desembarque 
+    
+        ];
+        
+        if  (Auth::user()->role_id == 7){
+            return view('internal.usuarioValidacion.validarDesembarque', $arreglo);
+        }
+
+    }
 }

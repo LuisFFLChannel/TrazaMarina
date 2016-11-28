@@ -22,7 +22,7 @@
         <th class="text-center">Detalle</th>
         <th class="text-center">Ver Lotes</th>
         <th class="text-center">Ver Codigo Traza.</th>
-
+        <th class="text-center">Validar</th>
         <!--<th class="text-center">Eliminar</th>-->
     </tr>
     
@@ -72,7 +72,10 @@
           </td> 
           <td class="text-center">
             <a class="btn btn-info" href="{{url('usuarioValidacion/notasIngresos/'.$notaIngreso->id.'/mostrarTrazabiliadad')}}" title="Editar" ><i class="glyphicon glyphicon-plus"></i></a>
-        </td> 
+        </td>
+        <td class="text-center">
+          <a class="btn btn-info" href="{{url('usuarioValidacion/notasIngresos/'.$notaIngreso->id.'/validarNotaIngreso')}}" title="Validar Embarcacion" ><i class="glyphicon glyphicon-check"></i></a>
+        </td>  
     </tr>
    
     @endforeach

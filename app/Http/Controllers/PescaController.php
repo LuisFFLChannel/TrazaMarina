@@ -321,17 +321,10 @@ class PescaController extends Controller
      
         
         $validarMarinero = false;
-        if ($pesca->permisoMarinero){
-           $validarMarinero = Carbon::parse($pesca->permisoMarinero->fechaVigencia)->gte(Carbon::now());
-        }
-        $validarPatron = false;
-        if ($pesca->permisoPatron){
-           $validarPatron = Carbon::parse($pesca->permisoPatron->fechaVigencia)->gte(Carbon::now());
-        }
+
         $arreglo =[
-            'pesca' =>   $pesca,
-            'validarMarinero'   => $validarMarinero,
-            'validarPatron'     => $validarPatron
+            'pesca' =>   $pesca
+
         ];
         
         if  (Auth::user()->role_id == 7){

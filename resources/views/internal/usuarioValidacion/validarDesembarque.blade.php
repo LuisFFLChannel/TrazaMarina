@@ -5,38 +5,14 @@
 @stop
 
 @section('title')
-	Validar pesca (Número {{$pesca->id}})
+	Validar desembarque (Número {{$desembarque->id}})
 @stop
 
 @section('content')
 
-<h3> 1) Validar Permiso Zarpe</h3>
+<h3> 1) Validar Certificado Arribo</h3>
 <br>
-@if($pesca->PermisoZarpe!=null)
-    <div class="row">
-        <div class="col-sm-2">
-      
-        </div>
-        <div class="col-sm-8">
-            <table class="table table-bordered table-striped">
-              <tr>
-                  <th class="text-center">Puerto Zarpe en BD de la Pesca</th>
-                  <th class="text-center">Puerto de Zarpe en el Permiso Zarpe</th>
-                  <th class="text-center">Estado</th>
-              </tr> 
-              <tr>
-                  <td class="text-center">{{$pesca->puerto->id}} - {{$pesca->puerto->nombre}}</td>
-                  <td class="text-center">{{$pesca->permisoZarpe->puerto->id}} - {{$pesca->permisoZarpe->puerto->nombre}}</td>
-                  @if( $pesca->puerto->id == $pesca->permisoZarpe->puerto->id)
-                      <td class="text-center">Iguales</td>
-                  @else
-                      <td class="text-center" style="color:red;">Diferentes</td>
-                  @endif
-              </tr>
-
-            </table>
-        </div>
-    </div>
+@if($desembarque->certificadoArribo!=null)
 
     <div class="row">
         <div class="col-sm-2">
@@ -45,14 +21,14 @@
         <div class="col-sm-8">
             <table class="table table-bordered table-striped">
               <tr>
-                  <th class="text-center">NMatricula de la Embarcacion en BD de la Pesca</th>
+                  <th class="text-center">NMatricula de la Embarcacion en BD del desembarque</th>
                   <th class="text-center">NMatricula de la Embarcacion de Zarpe en el Permiso Zarpe</th>
                   <th class="text-center">Estado</th>
               </tr> 
               <tr>
-                  <td class="text-center">{{$pesca->embarcacion->nMatricula}}</td>
-                  <td class="text-center">{{$pesca->permisoZarpe->nMatricula}}</td>
-                  @if(strcmp($pesca->embarcacion->nMatricula,$pesca->permisoZarpe->nMatricula)==0)
+                  <td class="text-center">{{$desembarque->embarcacion->nMatricula}}</td>
+                  <td class="text-center">{{$desembarque->certificadoArribo->nMatricula}}</td>
+                  @if(strcmp($desembarque->embarcacion->nMatricula,$desembarque->certificadoArribo->nMatricula)==0)
                       <td class="text-center">Iguales</td>
                   @else
                       <td class="text-center" style="color:red;">Diferentes</td>
@@ -71,14 +47,14 @@
         <div class="col-sm-8">
             <table class="table table-bordered table-striped">
               <tr>
-                  <th class="text-center">Fecha de Zarpe en la Pesca</th>
-                  <th class="text-center">Fecha de Zarpe en el Permiso Zarpe</th>
+                  <th class="text-center">Fecha de Arribo en la desembarque</th>
+                  <th class="text-center">Fecha de Arribo en el Certificado de Arribo</th>
                   <th class="text-center">Estado</th>
               </tr> 
               <tr>
-                  <td class="text-center">{{date_format(date_create($pesca->fechaZarpe),"d/m/Y")}}</td>
-                  <td class="text-center">{{date_format(date_create($pesca->permisoZarpe->fechaZarpe),"d/m/Y")}}</td>
-                  @if($pesca->fechaZarpe == $pesca->permisoZarpe->fechaZarpe )
+                  <td class="text-center">{{date_format(date_create($desembarque->fechaLlegada),"d/m/Y")}}</td>
+                  <td class="text-center">{{date_format(date_create($desembarque->certificadoArribo->fechaArribo),"d/m/Y")}}</td>
+                  @if($desembarque->fechaLlegada == $desembarque->certificadoArribo->fechaArribo)
                       <td class="text-center">Iguales</td>
                   @else
                       <td class="text-center" style="color:red;">Diferentes</td>
@@ -88,59 +64,69 @@
             </table>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-2">
-      
-        </div>
-        <div class="col-sm-8">
-            <table class="table table-bordered table-striped">
-              <tr>
-                  <th class="text-center">Latitud en BD de la Pesca</th>
-                  <th class="text-center">Latitud en el Permiso Zarpe</th>
-                  <th class="text-center">Estado</th>
-              </tr> 
-              <tr>
-                  <td class="text-center">{{$pesca->coordenadaX}}</td>
-                  <td class="text-center">{{$pesca->permisoZarpe->coordenadaX}}</td>
-                  @if($pesca->coordenadaX == $pesca->permisoZarpe->coordenadaX )
-                      <td class="text-center">Iguales</td>
-                  @else
-                      <td class="text-center" style="color:red;">Diferentes</td>
-                  @endif
-              </tr>
-
-            </table>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-2">
-      
-        </div>
-        <div class="col-sm-8">
-            <table class="table table-bordered table-striped">
-              <tr>
-                  <th class="text-center">Longitud en BD de la Pesca</th>
-                  <th class="text-center">Longitud en el Permiso Zarpe</th>
-                  <th class="text-center">Estado</th>
-              </tr> 
-              <tr>
-                  <td class="text-center">{{$pesca->coordenadaY}}</td>
-                  <td class="text-center">{{$pesca->permisoZarpe->coordenadaY}}</td>
-                  @if($pesca->coordenadaY == $pesca->permisoZarpe->coordenadaY)
-                      <td class="text-center">Iguales</td>
-                  @else
-                      <td class="text-center" style="color:red;">Diferentes</td>
-                  @endif
-              </tr>
-
-            </table>
-        </div>
-    </div>
+    
 @else
       <h4 class="text-center"> No hay Permiso Zarpe</h4>
 @endif
 
+<h3> 2) Validar con la Pesca Registrada</h3>
+<br>
+@if($desembarque->pesca!=null)
 
+    <div class="row">
+        <div class="col-sm-2">
+      
+        </div>
+        <div class="col-sm-8">
+            <table class="table table-bordered table-striped">
+              <tr>
+                  <th class="text-center">Embarcacion en BD del desembarque</th>
+                  <th class="text-center">Embarcacion en DB de la pesca</th>
+                  <th class="text-center">Estado</th>
+              </tr> 
+              <tr>
+                  <td class="text-center">{{$desembarque->embarcacion->id}} {{$desembarque->embarcacion->nombre}}</td>
+                  <td class="text-center">{{$desembarque->pesca->embarcacion->id}} {{$desembarque->pesca->embarcacion->nombre}}</td>
+                  @if($desembarque->embarcacion->id==$desembarque->pesca->embarcacion->id)
+                      <td class="text-center">Iguales</td>
+                  @else
+                      <td class="text-center" style="color:red;">Diferentes</td>
+                  @endif
+              </tr>
+
+            </table>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-2">
+      
+        </div>
+        <div class="col-sm-8">
+            <table class="table table-bordered table-striped">
+              <tr>
+                  <th class="text-center">Fecha de Arribo en la desembarque</th>
+                  <th class="text-center">Fecha de Arribo en el Permiso Zarpe</th>
+                  <th class="text-center">Estado</th>
+              </tr> 
+              <tr>
+                  <td class="text-center">{{date_format(date_create($desembarque->fechaLlegada),"d/m/Y")}}</td>
+                  <td class="text-center">{{date_format(date_create($desembarque->pesca->permisoZarpe->fechaLlegada),"d/m/Y")}}</td>
+                  @if($desembarque->fechaLlegada == $desembarque->pesca->permisoZarpe->fechaLlegada)
+                      <td class="text-center">Iguales</td>
+                  @else
+                      <td class="text-center" style="color:red;">Diferentes</td>
+                  @endif
+              </tr>
+
+            </table>
+        </div>
+    </div>
+    
+@else
+      <h4 class="text-center"> No tiene una pesca realizada</h4>
+@endif
 <br>
 <br>
 <div class="row">
