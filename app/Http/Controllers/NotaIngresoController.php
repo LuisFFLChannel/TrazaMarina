@@ -37,7 +37,7 @@ class NotaIngresoController extends Controller
             return view('internal.admin.notasIngresos', compact('notaIngresos'));
         }
         elseif  (Auth::user()->role_id == 5){
-            return view('internal.usuarionotaIngreso.notasIngresos', compact('notaIngresos'));
+            return view('internal.usuarioPesca.notasIngresos', compact('notaIngresos'));
         }
         elseif  (Auth::user()->role_id == 6){
             return view('internal.usuarioIntermediario.notasIngresos', compact('notaIngresos'));
@@ -98,7 +98,7 @@ class NotaIngresoController extends Controller
             return view('internal.admin.editarNotaIngreso', $arreglo);
         }
         elseif  (Auth::user()->role_id == 5){
-            return view('internal.usuarionotaIngreso.editarNotaIngreso', $arreglo);
+            return view('internal.usuarioPesca.editarNotaIngreso', $arreglo);
         }
     }
 
@@ -135,7 +135,7 @@ class NotaIngresoController extends Controller
             return redirect()->route('admin.notasIngresos');
         }
         elseif  (Auth::user()->role_id == 5){
-            return redirect()->route('usuarionotaIngreso.notasIngresos');
+            return redirect()->route('usuarioPesca.notasIngresos');
         }
     }
 
@@ -157,15 +157,15 @@ class NotaIngresoController extends Controller
         $notaIngreso = NotaIngreso::find($id);
         
         $codNota =str_pad($notaIngreso->id, 6, "0", STR_PAD_LEFT);
-        $codnotaIngresodo = str_pad($notaIngreso->especieMarina->id, 3, "0", STR_PAD_LEFT).substr($notaIngreso->especieMarina->nombre, 0,3);
+        $codPescado = str_pad($notaIngreso->especieMarina->id, 3, "0", STR_PAD_LEFT).substr($notaIngreso->especieMarina->nombre, 0,3);
         $codPuerto = str_pad($notaIngreso->desembarque->puerto->id, 3, "0", STR_PAD_LEFT).substr($notaIngreso->desembarque->puerto->nombre, 0,3);
         $codEmb = str_pad($notaIngreso->desembarque->embarcacion->id, 3, "0", STR_PAD_LEFT).substr($notaIngreso->desembarque->embarcacion->nombre, 0,3);
-        $valor = $codnotaIngresodo.$codEmb.$codPuerto.$codNota;
+        $valor = $codPescado.$codEmb.$codPuerto.$codNota;
 
         $arreglo = [
             'notaIngreso'   => $notaIngreso,
             'codNota'       => $codNota,
-            'codnotaIngresodo'    => $codnotaIngresodo,
+            'codPescado'    => $codPescado,
             'codPuerto'     => $codPuerto,
             'codEmb'        => $codEmb,
             'valor'         => $valor
@@ -176,7 +176,7 @@ class NotaIngresoController extends Controller
             return view('internal.admin.agregarTraza', $arreglo);
         }
         elseif  (Auth::user()->role_id == 5){
-            return view('internal.usuarionotaIngreso.agregarTraza', $arreglo);
+            return view('internal.usuarioPesca.agregarTraza', $arreglo);
         }
     }
     public function updateTraza(Request $request, $id) {
@@ -192,7 +192,7 @@ class NotaIngresoController extends Controller
             return redirect()->route('admin.notasIngresos');
         }
         elseif  (Auth::user()->role_id == 5){
-            return redirect()->route('usuarionotaIngreso.notasIngresos');
+            return redirect()->route('usuarioPesca.notasIngresos');
         }
     }
     public function verTraza($id) {
@@ -208,7 +208,7 @@ class NotaIngresoController extends Controller
             return view('internal.admin.mostrarTraza', $arreglo);
         }
         elseif  (Auth::user()->role_id == 5){
-            return view('internal.usuarionotaIngreso.mostrarTraza', $arreglo);
+            return view('internal.usuarioPesca.mostrarTraza', $arreglo);
         }
         elseif  (Auth::user()->role_id == 6){
             return view('internal.usuarioIntermediario.mostrarTraza', $arreglo);
@@ -231,7 +231,7 @@ class NotaIngresoController extends Controller
             return view('internal.admin.verLotesporNota', $arreglo);
         }
         elseif  (Auth::user()->role_id == 5){
-            return view('internal.usuarionotaIngreso.verLotesporNota', $arreglo);
+            return view('internal.usuarioPesca.verLotesporNota', $arreglo);
         }
         elseif  (Auth::user()->role_id == 6){
             return view('internal.usuarioIntermediario.verLotesporNota', $arreglo);

@@ -9,6 +9,7 @@
     {!!Html::style('css/bootstrap.min.css')!!}
     {!!Html::style('css/font-awesome.min.css')!!}
     {!!Html::style('css/style.css')!!}
+    {!!Html::style('css/images.css')!!}
     {!!Html::style('css/style-desktop.css')!!}
     {!!Html::script('js/jQuery-2.1.4.min.js')!!}
 
