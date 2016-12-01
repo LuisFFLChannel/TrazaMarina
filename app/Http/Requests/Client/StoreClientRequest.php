@@ -24,12 +24,11 @@ class StoreClientRequest extends Request
     public function rules()
     {
         return [
-            'name'     => 'required|min:3|max:16',
-            'lastname' => 'required|min:3|max:30',
+            'name'     => 'required|min:3|max:100',
+            'lastname' => 'required|min:3|max:100',
             'password' => 'required|min:8|max:16',
             'address'  => 'required|min:3|max:100',
             'phone'    => 'required|integer|digits_between: 7,9',
-            'di_type'  => 'required|integer|digits_between:0,2',
             'di'       => 'required|integer|digits:8|unique:users,di,NULL,id,role_id,1',
             'email'    => 'required|email|unique:users',
             'birthday' => 'required|date',

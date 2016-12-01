@@ -5,14 +5,14 @@
 @stop
 
 @section('title')
-  Editar Administrador
+  Editar Validador
 @stop
 
 @section('content')
         <!-- Contenido-->
         <div class="row">
           <div class="col-sm-8">
-             {!!Form::open(array('url' => 'admin/admin/'.$user->id.'/edit','files'=>true,'id'=>'form','class'=>'form-horizontal'))!!}
+             {!!Form::open(array('url' => 'admin/validador/'.$user->id.'/edit','files'=>true,'id'=>'form','class'=>'form-horizontal'))!!}
              {!!Form::hidden('id', $user->id)!!}
               <div class="form-group">
                 <label for="inputName" class="col-sm-2 control-label">Nombre</label>
@@ -89,7 +89,7 @@
                   <!-- <a class="btn btn-info"  data-toggle="modal" data-target="#agregado">Guardar</a> -->
                   <a class="btn btn-info" type="button" href=""  title="Create"  data-toggle="modal" data-target="#editModalAdmin">Guardar</a>
                   <!-- <button type="submit" class="btn btn-info">Guardar</button> -->
-                  <a href="{{url('admin/admin')}}"><button type="button" class="btn btn-info">Cancelar</button></a>
+                  <a href="{{URL::previous()}}"><button type="button" class="btn btn-info">Cancelar</button></a>
 
                 </div>
               </div>

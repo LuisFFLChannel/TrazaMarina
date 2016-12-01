@@ -14,7 +14,7 @@
           <div class="col-sm-8">
              {!!Form::open(array('url' => 'admin/user/new','files'=>true,'id'=>'form','class'=>'form-horizontal'))!!}
               <div class="form-group">
-                <label for="inputName" class="col-sm-2 control-label">Nombre</label>
+                <label for="inputName" class="col-sm-2 control-label">Nombres</label>
                 <div class="col-sm-10">
                    {!!Form::input('text','name', null ,['class'=>'form-control','id'=>'inputName','maxlength' => 50,'required'])!!}
                 </div>
@@ -32,15 +32,6 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="inputType" class="col-sm-2 control-label">Tipo de documento</label>
-                <div class="col-sm-10">
-                  {!! Form::select('di_type', [
-                     '1' => 'DNI',
-                     '2' => 'Carnet de Extranjeria'], null, ['class'=>'form-control']
-                  ) !!}
-                </div>
-              </div>
-              <div class="form-group">
                 <label for="inputDi" class="col-sm-2 control-label">Documento de Identidad</label>
                 <div class="col-sm-10">
                   {!!Form::input('number','di', null ,['class'=>'form-control','id'=>'inputDi','required','maxlength' => 8])!!} 
@@ -53,13 +44,13 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="inputPhone" class="col-sm-2 control-label">Teléfono(s)</label>
+                <label for="inputPhone" class="col-sm-2 control-label">Teléfono</label>
                 <div class="col-sm-10">
                   {!!Form::input('number','phone', null ,['class'=>'form-control','id'=>'inputPhone','required','maxlength' => 10,'min'=>0])!!}
                 </div>
               </div>
               <div class="form-group">
-                <label for="inputEmail3" class="col-sm-2 control-label">E-mail(s)</label>
+                <label for="inputEmail3" class="col-sm-2 control-label">E-mail</label>
                 <div class="col-sm-10">
                     {!!Form::input('text','email', null ,['class'=>'form-control','id'=>'inputEmai3','maxlength' => 30,'required'])!!}
                 </div>
@@ -76,7 +67,7 @@
               <div class="form-group">
                 <label for="inputRole" class="col-sm-2 control-label">Cargo</label>
                 <div class="col-sm-10">
-                {!!Form::select('role_id', ['2' => 'Vendedor', '3' => 'Promotor de Ventas',  '4'=>'Administrador'], null, ['class'=>'form-control','required'])!!}
+                {!!Form::select('role_id', ['4'=>'Administrador', '5'=>'Usuario Pesca', '6'=>'Usuario Intermediario','7'=>'Validador'], null, ['class'=>'form-control','required'])!!}
                 </div>
               </div>
               <!--
@@ -92,7 +83,7 @@
                   <!-- <a class="btn btn-info"  data-toggle="modal" data-target="#agregado">Guardar</a> -->
                   <a class="btn btn-info" type="button" href=""  title="Create"  data-toggle="modal" data-target="#saveModalUser">Guardar</a>
                   <!-- <button type="submit" class="btn btn-info">Guardar</button>-->
-                  <a href="{{route('admin.home')}}"><button type="button" class="btn btn-info">Cancelar</button></a>
+                  <a href="{{URL::previous()}}"><button type="button" class="btn btn-info">Cancelar</button></a>
                 </div>
               </div>
 

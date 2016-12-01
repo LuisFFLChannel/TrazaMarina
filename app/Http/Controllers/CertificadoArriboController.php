@@ -111,6 +111,9 @@ class CertificadoArriboController extends Controller
     {
         //
         $certificadoArribo = CertificadoArribo::find($id);
+        if ($certificadoArribo==null){
+            return response()->view('errors.503', [], 404);
+        }
         if (Auth::user()->role_id == 4){
             return view('internal.admin.editarCertificadoArribo', compact('certificadoArribo'));
         }
@@ -157,13 +160,19 @@ class CertificadoArriboController extends Controller
     public function destroy($id)
     {
         //
-        $certificadoArribo = CertificadoArribo::find($id);
-        $certificadoArribo->delete();
-        if (Auth::user()->role_id == 4){
-            return redirect()->route('admin.certificadoArribos');
-        }
-        elseif (Auth::user()->role_id == 5){
-            return redirect()->route('usuarioPesca.certificadoArribos');
+        try{
+            $certificadoArribo = CertificadoArribo::find($id);
+            $certificadoArribo->delete();
+            if (Auth::user()->role_id == 4){
+                return redirect()->route('admin.certificadoArribos');
+            }
+            elseif (Auth::user()->role_id == 5){
+                return redirect()->route('usuarioPesca.certificadoArribos');
+            }
+        } 
+        catch(\Exception $e){
+           // catch code
+             return redirect()->back()->withInput()->withErrors(['errors' => 'NO SE PUEDE ELIMINAR DEBIDO A QUE ESTA SIENDO USADA EN TRANSACCIONES']);
         }
     }
 }

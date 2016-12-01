@@ -163,6 +163,9 @@ class PescaController extends Controller
     {
         //
         $pesca = Pesca::find($id);
+        if ($pesca ==null){
+            return response()->view('errors.503', [], 404);
+        }
         $embarcaciones_lista = Embarcacion::all()->lists('nombre','id');
         $puertos_lista = Puerto::all()->lists('nombre','id');
         $permisoZarpe_lista = PermisoZarpe::where("asignado","=","false")->get()->lists('nombre','id');
@@ -267,6 +270,9 @@ class PescaController extends Controller
     public function showDesembarque($id){
 
         $pesca      =Pesca::find($id);
+        if ($pesca ==null){
+            return response()->view('errors.503', [], 404);
+        }
         $desembarque    =$pesca->desembarque;
        
         $arreglo = [
@@ -291,6 +297,9 @@ class PescaController extends Controller
     {
         //
         $pesca = Pesca::find($id);
+        if ($pesca ==null){
+            return response()->view('errors.503', [], 404);
+        }
         $arreglo = [
             'pesca'             => $pesca,
             'latitud'               => $pesca->coordenadaX,
@@ -317,7 +326,9 @@ class PescaController extends Controller
     {
         //
         $pesca = Pesca::find($id);
-        
+        if ($pesca ==null){
+            return response()->view('errors.503', [], 404);
+        }
      
         
         $validarMarinero = false;

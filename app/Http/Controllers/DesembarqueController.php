@@ -190,9 +190,12 @@ class DesembarqueController extends Controller
         $puertos_lista = Puerto::all()->lists('nombre','id');
         $dpas_lista = Dpa::all()->lists('nombre','id');
         $desembarque = Desembarque::find($id);
+        if ($desembarque ==null){
+            return response()->view('errors.503', [], 404);
+        }
         $especies_lista = EspecieMarina::all()->lists('nombre','id');
         $pesca = Pesca::find($desembarque->pesca_id);
-       
+        
       
         $arreglo = [
         'dpas_lista'   =>$dpas_lista,
@@ -300,6 +303,9 @@ class DesembarqueController extends Controller
     {
         //
         $desembarque = Desembarque::find($id);
+        if ($desembarque ==null){
+            return response()->view('errors.503', [], 404);
+        }
         /*$certificadoMatriculas = DB::table('embarcacion')
                     ->select(DB::raw('certificadoMatricula.id as id, certificadoMatricula.nombreDueno as nombreDueno, certificadoMatricula.apellidosDueno as apellidosDueno, certificadoMatricula.nMatricula as nMatricula'))
                     ->whereNotNull('embarcacion.certificado_matricula_id')
@@ -329,6 +335,9 @@ class DesembarqueController extends Controller
     {
         //
         $desembarque = Desembarque::find($id);
+        if ($desembarque ==null){
+            return response()->view('errors.503', [], 404);
+        }
        // $certificado = CertificadoMatricula::find($embarcacion->certtificadoMatricula_id);
         if ($desembarque->certificadoArribo == null){
             return back()->withErrors(['Aun no se a asociado un certificado de arribo al desembarque']);
@@ -388,7 +397,9 @@ class DesembarqueController extends Controller
     public function showNota($id){
 
         $desembarque      =Desembarque::find($id);
-       
+       if ($desembarque ==null){
+            return response()->view('errors.503', [], 404);
+        }
         $arreglo = [
         'desembarque'      =>$desembarque];
 
@@ -411,6 +422,9 @@ class DesembarqueController extends Controller
         //
         $desembarque = Desembarque::find($id);
         
+        if ($desembarque ==null){
+            return response()->view('errors.503', [], 404);
+        }
      
         
         //$validarMarinero = false;

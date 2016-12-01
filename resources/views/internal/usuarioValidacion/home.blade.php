@@ -9,7 +9,7 @@
 @stop
 
 @section('content')
-	<a  class="btn btn-info" href="{{url('admin/password')}}">Restaurar contraseña</a>
+	<a  class="btn btn-info" href="{{url('usuarioValidacion/password')}}">Restaurar contraseña</a>
 @stop
 
 @section('javascript')

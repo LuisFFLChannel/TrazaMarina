@@ -109,6 +109,9 @@ class PermisoPatronController extends Controller
     {
         //
         $permisoPatron = PermisoPatron::find($id);
+        if ($permisoPatron ==null){
+            return response()->view('errors.503', [], 404);
+        }
         if (Auth::user()->role_id == 4){
             return view('internal.admin.editarPermisoPatron', compact('permisoPatron'));
         }
@@ -156,13 +159,19 @@ class PermisoPatronController extends Controller
     public function destroy($id)
     {
         //
-        $permisoPatron = PermisoPatron::find($id);
-        $permisoPatron->delete();
-        if (Auth::user()->role_id == 4){
-            return redirect()->route('admin.permisoPatrones');
-        }
-        elseif (Auth::user()->role_id == 5){
-            return redirect()->route('usuarioPesca.permisoPatrones');
+        try{
+            $permisoPatron = PermisoPatron::find($id);
+            $permisoPatron->delete();
+            if (Auth::user()->role_id == 4){
+                return redirect()->route('admin.permisoPatrones');
+            }
+            elseif (Auth::user()->role_id == 5){
+                return redirect()->route('usuarioPesca.permisoPatrones');
+            }
+        } 
+        catch(\Exception $e){
+           // catch code
+             return redirect()->back()->withInput()->withErrors(['errors' => 'NO SE PUEDE ELIMINAR DEBIDO A QUE ESTA SIENDO USADA EN TRANSACCIONES']);
         }
     }
 }

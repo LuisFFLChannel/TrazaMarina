@@ -167,60 +167,26 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-left">
-                <!--
-                <li>
-                    <a href="" class="dropdown-toggle" data-toggle="dropdown">Categorias <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{url('admin/category')}}">Listar</a></li>
-                        <li><a href="{{url('admin/category/new')}}">Nuevo</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Regalos <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{url('admin/gifts')}}">Listar</a></li>
-                        <li><a href="{{url('admin/gifts/new')}}">Nuevo</a></li>
-                        <li><a href="{{url('admin/exchange_gift')}}">Canjear</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Locales <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{url('admin/local')}}">Listar</a></li>
-                        <li><a href="{{url('admin/local/new')}}">Nuevo</a></li>
-                    </ul>
-                </li>
                 <li>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Trabajadores <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{url('admin/user/new')}}">Nuevo</a></li>
                         <li class="divider"></li>
-                        <li><a href="{{url('admin/promoter')}}">Promotores de ventas</a></li>
-                        <li><a href="{{url('admin/salesman')}}">Vendedores</a></li>
+                        <!--<li><a href="{{url('admin/promoter')}}">Promotores de ventas</a></li>
+                        <li><a href="{{url('admin/salesman')}}">Vendedores</a></li>-->
                         <li><a href="{{url('admin/admin')}}">Administradores</a></li>
+                        <li><a href="{{url('admin/usuarioPesca')}}">Usuarios Pesca</a></li>
+                        <li><a href="{{url('admin/usuarioIntermediario')}}">Usuarios Intermediario</a></li>
+                        <li><a href="{{url('admin/validador')}}">Usuarios Validación</a></li>
                     </ul>
                 </li>
+               
                 <li>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Clientes <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{url('admin/client')}}">Listar</a></li>
                     </ul>
-                </li>
-                <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Puntos de Venta <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{url('admin/modules')}}">Listar</a></li>
-                        <li><a href="{{url('admin/modules/new')}}">Nuevo</a></li>
-                        <li><a href="{{url('admin/modules/assigment')}}">Asignación de Módulos</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Negocio <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li class="divider"></li>
-                        <li><a href="{{url('admin/politics')}}">Politicas </a></li>
-                    </ul>
-                </li>
+                </li><!--
                 <li>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reportes <b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -316,14 +282,13 @@
                         <li><a href="{{url('admin/certificadoMatriculas/new')}}">Nuevo</a></li>
                     </ul>
                 </li>-->
-                <!--<li class="dropdown">
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Configuración  <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{url('admin/config/exchange_rate')}}">Tipo de cambio</a></li>
                         <li><a href="{{url('admin/config/about')}}">Acerca de</a></li>
                         <li><a href="{{url('admin/config/system')}}">Sistema</a></li>
                     </ul>
-                </li>-->
+                </li>
 
             </ul>
 

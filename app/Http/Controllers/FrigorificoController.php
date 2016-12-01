@@ -107,6 +107,9 @@ class FrigorificoController extends Controller
     {
         //
         $frigorifico = Frigorifico::find($id);
+        if ($frigorifico ==null){
+            return response()->view('errors.503', [], 404);
+        }
 
         if (Auth::user()->role_id == 4){
             return view('internal.admin.editarFrigorifico', compact('frigorifico'));
@@ -154,13 +157,19 @@ class FrigorificoController extends Controller
     public function destroy($id)
     {
         //
-        $frigorifico = Frigorifico::find($id);
-        $frigorifico->delete();
-        if (Auth::user()->role_id == 4){
-            return redirect()->route('admin.frigorificos');
-        }
-        elseif  (Auth::user()->role_id == 6){
-            return redirect()->route('usuarioIntermediario.frigorificos');
+        try{
+            $frigorifico = Frigorifico::find($id);
+            $frigorifico->delete();
+            if (Auth::user()->role_id == 4){
+                return redirect()->route('admin.frigorificos');
+            }
+            elseif  (Auth::user()->role_id == 6){
+                return redirect()->route('usuarioIntermediario.frigorificos');
+            }
+        } 
+        catch(\Exception $e){
+           // catch code
+             return redirect()->back()->withInput()->withErrors(['errors' => 'NO SE PUEDE ELIMINAR  DEBIDO A QUE ESTA SIENDO USADA EN TRANSACCIONES']);
         }
     }
 }

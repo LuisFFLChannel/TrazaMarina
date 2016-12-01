@@ -114,6 +114,9 @@ class PescadoresController extends Controller
     {
         //
         $pescador = Pescador::find($id);
+        if ($pescador ==null){
+            return response()->view('errors.503', [], 404);
+        }
         if (Auth::user()->role_id == 4){
             return view('internal.admin.editarPescador', compact('pescador'));
         }
@@ -162,13 +165,19 @@ class PescadoresController extends Controller
      */
     public function destroy($id)
     {
-        $pescador = Pescador::find($id);
-        $pescador->delete();
-        if (Auth::user()->role_id == 4){
-            return redirect()->route('admin.pescadores');
-        }
-        elseif  (Auth::user()->role_id == 5){
-            return redirect()->route('usuarioPesca.pescadores');
+        try{
+            $pescador = Pescador::find($id);
+            $pescador->delete();
+            if (Auth::user()->role_id == 4){
+                return redirect()->route('admin.pescadores');
+            }
+            elseif  (Auth::user()->role_id == 5){
+                return redirect()->route('usuarioPesca.pescadores');
+            }
+        } 
+        catch(\Exception $e){
+           // catch code
+             return redirect()->back()->withInput()->withErrors(['errors' => 'NO SE PUEDE ELIMINAR DEBIDO A QUE ESTA SIENDO USADA EN TRANSACCIONES']);
         }
    
     }
@@ -176,6 +185,9 @@ class PescadoresController extends Controller
     {
         //
         $pescador = Pescador::find($id);
+        if ($pescador ==null){
+            return response()->view('errors.503', [], 404);
+        }
         $permisoMarineros =PermisoMarinero::where('asignado','=',false)->get();
         //dd($permisoMarineros);
         if (Auth::user()->role_id == 4){
@@ -190,6 +202,9 @@ class PescadoresController extends Controller
     {
         //
         $pescador = Pescador::find($id);
+        if ($pescador ==null){
+            return response()->view('errors.503', [], 404);
+        }
         $permisoPatrones = PermisoPatron::where('asignado','=',false)->get();
         //$dd($permisoPatrones);
         $pescador = Pescador::find($id);
@@ -205,6 +220,9 @@ class PescadoresController extends Controller
     {
         //
         $pescador = Pescador::find($id);
+        if ($pescador ==null){
+            return response()->view('errors.503', [], 404);
+        }
        // $certificado = CertificadoMatricula::find($pescador->certtificadoMatricula_id);
         if ($pescador->permisoMarinero == null){
             return back()->withErrors(['Aun no se a asociado un permiso marinero al pescador']);
@@ -227,6 +245,9 @@ class PescadoresController extends Controller
     {
         //
         $pescador = Pescador::find($id);
+        if ($pescador ==null){
+            return response()->view('errors.503', [], 404);
+        }
        // $permiso = PermisoPesca::find($pescador->permisoPesca_id);
         if ($pescador->permisoPatron == null){
             return back()->withErrors(['Aun no se a asociado un permiso patron al pescador']);
@@ -311,7 +332,9 @@ class PescadoresController extends Controller
     {
         //
         $pescador = Pescador::find($id);
-        
+        if ($pescador ==null){
+            return response()->view('errors.503', [], 404);
+        }
      
         
         $validarMarinero = false;

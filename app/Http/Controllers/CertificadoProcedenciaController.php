@@ -177,6 +177,9 @@ class CertificadoProcedenciaController extends Controller
         $empresarios_lista = EmpresarioComercializador::select('id', DB::raw('CONCAT(nombres, " ",apellidos) AS nombreCompleto'))->lists('nombreCompleto','id');
         $notas = NotaIngreso::whereNotNull("id")->get();
         $certificadoProcedencia = CertificadoProcedencia::find($id);
+        if ($certificadoProcedencia ==null){
+            return response()->view('errors.503', [], 404);
+        }
         $arreglo = [
         'certificadoProcedencia'    =>$certificadoProcedencia,
         'fabricas_lista'   =>$fabricas_lista,
@@ -314,10 +317,16 @@ class CertificadoProcedenciaController extends Controller
     }
     public function agregarTraza($idNota, $idCertificado) {
         $notaIngreso = NotaIngreso::find($idNota);
+        if ($notaIngreso ==null){
+            return response()->view('errors.503', [], 404);
+        }
         if ($notaIngreso->codigoTraza == null){
              return redirect()->back()->withInput()->withErrors(['errors' => 'El usuario Pesca aun no han asignado la primera parte del código de trazabilidad']);
         }
         $certificado = CertificadoProcedencia::find($idCertificado);
+        if ($certificado ==null){
+            return response()->view('errors.503', [], 404);
+        }
         //dd($certificado->id);
         $codFrigorifico =str_pad($certificado->frigorifico->placa,6,"X",STR_PAD_LEFT);
         $codFabrica = "F".str_pad($certificado->fabrica->id,3,"0",STR_PAD_LEFT).substr($certificado->fabrica->nombre, 0,3);
@@ -366,10 +375,16 @@ class CertificadoProcedenciaController extends Controller
     public function mostrarTrazabilidad($idNota, $idCertificado) {
 
         $notaIngreso = NotaIngreso::find($idNota);
+        if ($notaIngreso ==null){
+            return response()->view('errors.503', [], 404);
+        }
         if ($notaIngreso->codigoTraza == null){
              return redirect()->back()->withInput()->withErrors(['errors' => 'El usuario Pesca aun no han asignado la primera parte del código de trazabilidad']);
         }
         $lote = NotaIngresoCertificadoProcedencia::where("notaIngreso_id","=",$idNota)->where("certificado_id","=",$idCertificado)->get()->first();
+        if ($lote ==null){
+            return response()->view('errors.503', [], 404);
+        }
         //dd($lote->codigoTraz);
         if ($lote->codigoTraza==null){
             return redirect()->back()->withInput()->withErrors(['errors' => 'Aun no se ha asignado un codigo de trazabilidad']);

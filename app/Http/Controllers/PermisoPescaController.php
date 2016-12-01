@@ -107,6 +107,9 @@ class PermisoPescaController extends Controller
     {
         //
         $permisoPesca = PermisoPesca::find($id);
+        if ($permisoPesca ==null){
+            return response()->view('errors.503', [], 404);
+        }
         if (Auth::user()->role_id == 4){
             return view('internal.admin.editarPermisoPesca', compact('permisoPesca'));
         }
@@ -152,13 +155,19 @@ class PermisoPescaController extends Controller
     public function destroy($id)
     {
         //
-        $permisoPesca = PermisoPesca::find($id);
-        $permisoPesca->delete();
-        if (Auth::user()->role_id == 4){
-            return redirect()->route('admin.permisoPescas');
-        }
-        elseif (Auth::user()->role_id == 5){
-            return redirect()->route('usuarioPesca.permisoPescas');
+        try{
+            $permisoPesca = PermisoPesca::find($id);
+            $permisoPesca->delete();
+            if (Auth::user()->role_id == 4){
+                return redirect()->route('admin.permisoPescas');
+            }
+            elseif (Auth::user()->role_id == 5){
+                return redirect()->route('usuarioPesca.permisoPescas');
+            }
+        } 
+        catch(\Exception $e){
+           // catch code
+             return redirect()->back()->withInput()->withErrors(['errors' => 'NO SE PUEDE ELIMINAR DEBIDO A QUE ESTA SIENDO USADA EN TRANSACCIONES']);
         }
     }
 }

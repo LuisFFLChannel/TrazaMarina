@@ -47,6 +47,15 @@ class EspeciesMarinasController extends Controller
         }
         
     }
+    public function indexExternal()
+    {
+        //
+        $especies = EspecieMarina::paginate(5);
+        $especies->setPath('especies');
+
+        return view('external.especieMarinas', compact('especies'));
+   
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -56,6 +65,7 @@ class EspeciesMarinasController extends Controller
     public function create()
     {
         //
+
         if (Auth::user()->role_id == 4){
             return view('internal.admin.nuevaEspecieMarina');
         }
@@ -124,12 +134,19 @@ class EspeciesMarinasController extends Controller
 
         $especie = EspecieMarina::find($idEspecie);
 
+        if ($especie==null){
+            return response()->view('errors.503', [], 404);
+        }
+
         if (Auth::user()->role_id == 4){
             return view('internal.admin.editarEspecieMarina', compact('especie'));
         }
         elseif  (Auth::user()->role_id == 5){
             return view('internal.usuarioPesca.editarEspecieMarina', compact('especie'));
         }
+
+        
+
 
         
     }
@@ -179,14 +196,23 @@ class EspeciesMarinasController extends Controller
     public function destroy($idEspecie)
     {
         //
-        $especie = EspecieMarina::find($idEspecie);
-        $especie->delete();
+        try{
+            $especie = EspecieMarina::find($idEspecie);
+            if ($especie==null){
+                return response()->view('errors.503', [], 404);
+            }
+            $especie->delete();
 
-        if (Auth::user()->role_id == 4){
-            return redirect()->route('admin.especieMarinas');
-        }
-        elseif  (Auth::user()->role_id == 5){
-            return redirect()->route('usuarioPesca.especieMarinas');
+            if (Auth::user()->role_id == 4){
+                return redirect()->route('admin.especieMarinas');
+            }
+            elseif  (Auth::user()->role_id == 5){
+                return redirect()->route('usuarioPesca.especieMarinas');
+            }
+        } 
+        catch(\Exception $e){
+           // catch code
+             return redirect()->back()->withInput()->withErrors(['errors' => 'NO SE PUEDE ELIMINAR DEBIDO A QUE ESTA SIENDO USADA EN TRANSACCIONES']);
         }
 
     }

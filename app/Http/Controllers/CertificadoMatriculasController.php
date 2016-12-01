@@ -110,6 +110,9 @@ class CertificadoMatriculasController extends Controller
     {
         //
         $certificadoMatricula = CertificadoMatricula::find($id);
+        if ($certificadoMatricula==null){
+            return response()->view('errors.503', [], 404);
+        }
         if (Auth::user()->role_id == 4){
             return view('internal.admin.editarCertificadoMatricula', compact('certificadoMatricula'));
         }
@@ -157,13 +160,19 @@ class CertificadoMatriculasController extends Controller
     public function destroy($id)
     {
         //
-        $certificadoMatricula = CertificadoMatricula::find($id);
-        $certificadoMatricula->delete();
-        if (Auth::user()->role_id == 4){
-            return redirect()->route('admin.certificadoMatriculas');
-        }
-        elseif (Auth::user()->role_id == 5){
-            return redirect()->route('usuarioPesca.certificadoMatriculas');
+        try{
+            $certificadoMatricula = CertificadoMatricula::find($id);
+            $certificadoMatricula->delete();
+            if (Auth::user()->role_id == 4){
+                return redirect()->route('admin.certificadoMatriculas');
+            }
+            elseif (Auth::user()->role_id == 5){
+                return redirect()->route('usuarioPesca.certificadoMatriculas');
+            }
+        } 
+        catch(\Exception $e){
+           // catch code
+             return redirect()->back()->withInput()->withErrors(['errors' => 'NO SE PUEDE ELIMINAR DEBIDO A QUE ESTA SIENDO USADA EN TRANSACCIONES']);
         }
         
     }

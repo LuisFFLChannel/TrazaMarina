@@ -109,6 +109,9 @@ class EmpresarioComercializadorController extends Controller
     {
         //
         $empresario = EmpresarioComercializador::find($id);
+        if ($empresario ==null){
+            return response()->view('errors.503', [], 404);
+        }
         if (Auth::user()->role_id == 4){
             return view('internal.admin.editarEmpresarioComercializador', compact('empresario'));
         }
@@ -158,13 +161,19 @@ class EmpresarioComercializadorController extends Controller
     public function destroy($id)
     {
         //
-        $empresario = EmpresarioComercializador::find($id);
-        $empresario->delete();
-        if (Auth::user()->role_id == 4){
-            return redirect()->route('admin.empresarioComercializadores');
-        }
-        elseif  (Auth::user()->role_id == 6){
-            return redirect()->route('usuarioIntermediario.empresarioComercializadores');
+        try{
+            $empresario = EmpresarioComercializador::find($id);
+            $empresario->delete();
+            if (Auth::user()->role_id == 4){
+                return redirect()->route('admin.empresarioComercializadores');
+            }
+            elseif  (Auth::user()->role_id == 6){
+                return redirect()->route('usuarioIntermediario.empresarioComercializadores');
+            }
+        } 
+        catch(\Exception $e){
+           // catch code
+             return redirect()->back()->withInput()->withErrors(['errors' => 'NO SE PUEDE ELIMINAR DEBIDO A QUE ESTA SIENDO USADA EN TRANSACCIONES']);
         }
     }
 }

@@ -115,6 +115,9 @@ class TerminalController extends Controller
     {
         //
         $terminal = Terminal::find($id);
+        if ($terminal ==null){
+            return response()->view('errors.503', [], 404);
+        }
         if (Auth::user()->role_id == 4){
             return view('internal.admin.editarTerminal', compact('terminal'));
         }
@@ -164,19 +167,28 @@ class TerminalController extends Controller
     public function destroy($id)
     {
         //
-        $terminal = Terminal::find($id);
-        $terminal->delete();
-        if (Auth::user()->role_id == 4){
-            return redirect()->route('admin.terminales');
-        }
-        elseif  (Auth::user()->role_id == 6){
-            return redirect()->route('usuarioIntermediario.terminales');
+        try{
+            $terminal = Terminal::find($id);
+            $terminal->delete();
+            if (Auth::user()->role_id == 4){
+                return redirect()->route('admin.terminales');
+            }
+            elseif  (Auth::user()->role_id == 6){
+                return redirect()->route('usuarioIntermediario.terminales');
+            }
+            } 
+        catch(\Exception $e){
+           // catch code
+             return redirect()->back()->withInput()->withErrors(['errors' => 'NO SE PUEDE ELIMINAR DEBIDO A QUE ESTA SIENDO USADA EN TRANSACCIONES']);
         }
     }
     public function mostrarMapa($id)
     {
         //
         $terminal = Terminal::find($id);
+        if ($terminal ==null){
+            return response()->view('errors.503', [], 404);
+        }
         $arreglo = [
             'terminal'             => $terminal,
             'latitud'               => $terminal->coordenadaX,

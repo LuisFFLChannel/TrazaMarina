@@ -5,7 +5,7 @@
 @stop
 
 @section('title')
-	Lista de Administradores
+	Lista de Validadores
 @stop
 
 @section('content')
@@ -34,14 +34,14 @@
             <a class="btn btn-info" href="" data-toggle="modal" data-target="#edit{{$user->id}}" title="Detalles"><i class="glyphicon glyphicon-plus"></i></a>
           </td> 
           <td>
-            <a class="btn btn-info" href="{{url('admin/admin/'.$user->id.'/edit')}}" title="Editar"><i class="glyphicon glyphicon-pencil"></i></a>
+            <a class="btn btn-info" href="{{url('admin/validador/'.$user->id.'/edit')}}" title="Editar"><i class="glyphicon glyphicon-pencil"></i></a>
             <div class="modal fade" id="edit{{$user->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     
-                    <h4 class="modal-title" id="myModalLabel">Detalle del Administrador</h4>
+                    <h4 class="modal-title" id="myModalLabel">Detalle del Validador</h4>
                   </div>
                   <div class="modal-body">
                     <h4>Nombre</h4>
@@ -74,14 +74,14 @@
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">¿Estas seguro que desea eliminar al administrador?</h4>
+                    <h4 class="modal-title">¿Estas seguro que desea eliminar el validador?</h4>
                   </div>
                   <div class="modal-body">
                     <h5 class="modal-title">Los cambios serán permanentes</h5>
                   </div>
                   <div class="modal-footer">
                       <button type="button" class="btn btn-info" data-dismiss="modal">No</button>
-                      <a class="btn btn-info" href="{{url('admin/admin/'.$user->id.'/delete')}}" title="Delete" >Sí</a>
+                      <a class="btn btn-info" href="{{url('admin/validador/'.$user->id.'/delete')}}" title="Delete" >Sí</a>
                   </div>
                 </div><!-- /.modal-content -->
               </div><!-- /.modal-dialog -->

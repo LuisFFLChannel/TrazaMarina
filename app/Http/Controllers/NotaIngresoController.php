@@ -89,6 +89,9 @@ class NotaIngresoController extends Controller
     {
         //
         $nota = NotaIngreso::find($id);
+        if ($nota ==null){
+            return response()->view('errors.503', [], 404);
+        }
         $especie_lista = EspecieMarina::all()->lists('nombre','id');
         $arreglo = [
         'nota'     =>$nota,
@@ -155,7 +158,9 @@ class NotaIngresoController extends Controller
     }
     public function agregarTraza($id) {
         $notaIngreso = NotaIngreso::find($id);
-        
+        if ($notaIngreso ==null){
+            return response()->view('errors.503', [], 404);
+        }
         $codNota =str_pad($notaIngreso->id, 6, "0", STR_PAD_LEFT);
         $codPescado = str_pad($notaIngreso->especieMarina->id, 3, "0", STR_PAD_LEFT).substr($notaIngreso->especieMarina->nombre, 0,3);
         $codPuerto = str_pad($notaIngreso->desembarque->puerto->id, 3, "0", STR_PAD_LEFT).substr($notaIngreso->desembarque->puerto->nombre, 0,3);
@@ -197,6 +202,9 @@ class NotaIngresoController extends Controller
     }
     public function verTraza($id) {
         $notaIngreso = NotaIngreso::find($id);
+        if ($notaIngreso ==null){
+            return response()->view('errors.503', [], 404);
+        }
         if ($notaIngreso->codigoTraza==null){
             return redirect()->back()->withInput()->withErrors(['errors' => 'Aun no se ha asignado un codigo de trazabilidad']);
         }
@@ -219,6 +227,9 @@ class NotaIngresoController extends Controller
     }
     public function verLotesporNota($id){
         $nota = NotaIngreso::find($id);
+        if ($nota ==null){
+            return response()->view('errors.503', [], 404);
+        }
         $lista_Terminal = $nota->notasPorTerminal;
         $lista_Fabrica  = $nota->notasPorFabrica;
         //dd($lista_Terminal);
@@ -244,7 +255,9 @@ class NotaIngresoController extends Controller
     {
         //
         $notaIngreso = NotaIngreso::find($id);
-        
+        if ($notaIngreso ==null){
+            return response()->view('errors.503', [], 404);
+        }
      
         
         $validarMarinero = false;

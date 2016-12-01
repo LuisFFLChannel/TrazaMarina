@@ -196,6 +196,9 @@ class PermisoZarpeController extends Controller
         $pescadores_lista = Pescador::whereNotNull('permiso_marinero_id')->get();
         $patrones_lista = Pescador::whereNotNull('permiso_patron_id')->get();
         $permisoZarpe = PermisoZarpe::find($id);
+        if ($permisoZarpe ==null){
+            return response()->view('errors.503', [], 404);
+        }
         $arreglo = [
         'permisoZarpe'      =>$permisoZarpe,
         'capitanias_lista'   =>$capitanias_lista,
@@ -306,13 +309,19 @@ class PermisoZarpeController extends Controller
     public function destroy($id)
     {
         //
-        $permisoZarpe = PermisoZarpe::find($id);
-        $permisoZarpe->delete();
-        if (Auth::user()->role_id == 4){
-            return redirect()->route('admin.permisoZarpes');
-        }
-        elseif (Auth::user()->role_id == 5){
-            return redirect()->route('usuarioPesca.permisoZarpes');
+        try{
+            $permisoZarpe = PermisoZarpe::find($id);
+            $permisoZarpe->delete();
+            if (Auth::user()->role_id == 4){
+                return redirect()->route('admin.permisoZarpes');
+            }
+            elseif (Auth::user()->role_id == 5){
+                return redirect()->route('usuarioPesca.permisoZarpes');
+            }
+        } 
+        catch(\Exception $e){
+           // catch code
+             return redirect()->back()->withInput()->withErrors(['errors' => 'NO SE PUEDE ELIMINAR DEBIDO A QUE ESTA SIENDO USADA EN TRANSACCIONES']);
         }
     }
 }

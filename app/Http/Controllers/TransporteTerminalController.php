@@ -179,7 +179,11 @@ class TransporteTerminalController extends Controller
         $terminales_lista = Terminal::all()->lists('nombre','id');
         //$empresarios_lista = EmpresarioComercializador::select('id', DB::raw('CONCAT(nombres, " ",apellidos) AS nombreCompleto'))->lists('nombreCompleto','id');
         $notas = NotaIngreso::whereNotNull("id")->get();
+
         $transporteTerminal = TransporteTerminal::find($id);
+        if ($transporteTerminal ==null){
+            return response()->view('errors.503', [], 404);
+        }
         $arreglo = [
         'transporteTerminal'    =>$transporteTerminal,
         'terminales_lista'   =>$terminales_lista,

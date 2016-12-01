@@ -10,7 +10,7 @@
 
 @section('content')
 <div class="col-sm-6">
-{!!Form::open(array('url' => 'admin/password','id'=>'form','class'=>'form-horizontal'))!!}
+{!!Form::open(array('url' => 'usuarioIntermediario/password','id'=>'form','class'=>'form-horizontal'))!!}
     <div class="form-group">
         <label for="password" class="col-sm-2 control-label">Contraseña</label>
         <div class="col-sm-10">

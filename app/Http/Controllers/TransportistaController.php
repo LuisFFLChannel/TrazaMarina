@@ -111,7 +111,9 @@ class TransportistaController extends Controller
     {
         //
         $transportista = Transportista::find($id);
-
+        if ($transportista ==null){
+            return response()->view('errors.503', [], 404);
+        }
         if (Auth::user()->role_id == 4){
             return view('internal.admin.editarTransportista', compact('transportista'));
         }
@@ -162,16 +164,22 @@ class TransportistaController extends Controller
     public function destroy($id)
     {
         //
-        $transportista = Transportista::find($id);
-        $transportista->delete();
-        if (Auth::user()->role_id == 4){
-            return redirect()->route('admin.transportistas');
-        }
-        elseif  (Auth::user()->role_id == 6){
-            return redirect()->route('usuarioIntermediario.transportistas');
-        }
-        elseif  (Auth::user()->role_id == 7){
-            return redirect()->route('usuarioValidacion.transportistas');
+        try{
+            $transportista = Transportista::find($id);
+            $transportista->delete();
+            if (Auth::user()->role_id == 4){
+                return redirect()->route('admin.transportistas');
+            }
+            elseif  (Auth::user()->role_id == 6){
+                return redirect()->route('usuarioIntermediario.transportistas');
+            }
+            elseif  (Auth::user()->role_id == 7){
+                return redirect()->route('usuarioValidacion.transportistas');
+            }
+        } 
+        catch(\Exception $e){
+           // catch code
+             return redirect()->back()->withInput()->withErrors(['errors' => 'NO SE PUEDE ELIMINAR DEBIDO A QUE ESTA SIENDO USADA EN TRANSACCIONES']);
         }
 
     }

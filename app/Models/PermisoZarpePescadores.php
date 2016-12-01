@@ -15,7 +15,7 @@ class PermisoZarpePescadores extends Model
         return $this->belongsTo('App\Models\Pescador')->where('id',$this->pescadores_id);
     }
 
-    public function permizoZarpe(){
-        return $this->belongsTo('App\Models\PermizoZarpe','permisoZarpe_id');
+    public function permisoZarpe(){
+        return $this->belongsTo('App\Models\PermisoZarpe','permisoZarpe_id');
     }
 }

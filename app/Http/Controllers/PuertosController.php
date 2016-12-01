@@ -47,6 +47,17 @@ class PuertosController extends Controller
         }
         
     }
+    public function indexExternal()
+    {
+        //
+        $puertos = Puerto::paginate(5);
+        $puertos->setPath('puerto');
+
+        return view('external.puertos', compact('puertos'));
+   
+    }
+    
+
 
     /**
      * Show the form for creating a new resource.
@@ -118,7 +129,9 @@ class PuertosController extends Controller
     {
         //
         $puerto = Puerto::find($id);
-
+        if ($puerto ==null){
+            return response()->view('errors.503', [], 404);
+        }
         if (Auth::user()->role_id == 4){
             return view('internal.admin.editarPuerto', compact('puerto'));
         }
@@ -169,14 +182,20 @@ class PuertosController extends Controller
     public function destroy($id)
     {
         //
-        $puerto = Puerto::find($id);
-        $puerto->delete();
+        try{
+            $puerto = Puerto::find($id);
+            $puerto->delete();
 
-        if (Auth::user()->role_id == 4){
-            return redirect()->route('admin.puertos');
-        }
-        elseif  (Auth::user()->role_id == 5){
-            return redirect()->route('usuarioPesca.puertos');
+            if (Auth::user()->role_id == 4){
+                return redirect()->route('admin.puertos');
+            }
+            elseif  (Auth::user()->role_id == 5){
+                return redirect()->route('usuarioPesca.puertos');
+            }
+            } 
+        catch(\Exception $e){
+           // catch code
+             return redirect()->back()->withInput()->withErrors(['errors' => 'NO SE PUEDE ELIMINAR DEBIDO A QUE ESTA SIENDO USADA EN TRANSACCIONES']);
         }
 
     }
@@ -184,6 +203,9 @@ class PuertosController extends Controller
     {
         //
         $puerto = Puerto::find($id);
+        if ($puerto ==null){
+            return response()->view('errors.503', [], 404);
+        }
         $arreglo = [
             'puerto'             => $puerto,
             'latitud'               => $puerto->coordenadaX,

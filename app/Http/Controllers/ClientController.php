@@ -76,7 +76,7 @@ class ClientController extends Controller
         $user->name = $input['name'];
         $user->lastName = $input['lastname'];
         $user->password = bcrypt($input['password']);
-        $user->di_type = $input['di_type'];
+        $user->di_type = 1;
         $user->di = $input['di'];
         $user->address = $input['address'];
         $user->phone = $input['phone'];
@@ -111,28 +111,10 @@ class ClientController extends Controller
     {
         $id = Auth::user()->id;
         $obj = User::findOrFail($id);
-        $categories = Category::all();
-        $preference = Preference::where('idUser',$id)->get();
-        $datosUsar = [];
-        $contador = 0;
-        //return $preference; //idCategories
-        //return $preference[0]->idCategories;
-        if(!$preference || count($preference)!= 0){
-            foreach ($categories as $category) {
-                //return $category->id;
-                if ($contador != count($preference) && $preference[$contador]->idCategories == $category->id){
-                    array_push($datosUsar, array($category->name,$category->id,true));
-                    $contador = $contador + 1;
-                }
-                else
-                    array_push($datosUsar, array($category->name,$category->id,false));
-            }
-        }else{
-            $noPreference = $categories;
-        }
+        
         //return view('internal.client.edit', ['obj' => $obj]);
         //return $categories;
-        return view('internal.client.edit', compact('obj','datosUsar','preference','noPreference'));
+        return view('internal.client.edit', compact('obj'));
     }
     /**
      * Update the specified resource in storage.
@@ -153,20 +135,11 @@ class ClientController extends Controller
         $obj->address = $input['address'];
         $obj->phone = $input['phone'];
         $obj->email = $input['email'];
-        $obj->di_type = $input['di_type'];
+        $obj->di_type = 1;
         $obj->di = $input['di'];
         $obj->save();
 
-        Preference::where('idUser','=',$obj->id)->delete(); // rip tabla preferences
-        $values = array_values($input);
-        $i = 8  ;
-        while (!empty($values[$i])){
-           $preference = new Preference;
-           $preference->idUser = $obj->id;
-           $preference->idCategories = $values[$i];
-           $preference->save();
-           $i = $i + 1;
-        }
+        
         Session::flash('message', 'Información de perfil actualizada!');
         Session::flash('alert-class','alert-success');
         return redirect('client');

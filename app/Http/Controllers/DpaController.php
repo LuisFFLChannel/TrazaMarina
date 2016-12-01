@@ -115,6 +115,9 @@ class DpaController extends Controller
     {
         //
         $dpa = Dpa::find($id);
+        if ($dpa ==null){
+            return response()->view('errors.503', [], 404);
+        }
         if (Auth::user()->role_id == 4){
             return view('internal.admin.editarDpa', compact('dpa'));
         }
@@ -164,13 +167,19 @@ class DpaController extends Controller
     public function destroy($id)
     {
         //
-         $dpa = Dpa::find($id);
-        $dpa->delete();
-        if (Auth::user()->role_id == 4){
-            return redirect()->route('admin.dpas');
-        }
-        elseif  (Auth::user()->role_id == 5){
-            return redirect()->route('admin.usuarioPesca');
+        try{
+             $dpa = Dpa::find($id);
+            $dpa->delete();
+            if (Auth::user()->role_id == 4){
+                return redirect()->route('admin.dpas');
+            }
+            elseif  (Auth::user()->role_id == 5){
+                return redirect()->route('admin.usuarioPesca');
+            }
+        } 
+        catch(\Exception $e){
+           // catch code
+             return redirect()->back()->withInput()->withErrors(['errors' => 'NO SE PUEDE ELIMINAR DEBIDO A QUE ESTA SIENDO USADA EN TRANSACCIONES']);
         }
         
     }
@@ -178,6 +187,9 @@ class DpaController extends Controller
     {
         //
         $dpa = Dpa::find($id);
+        if ($dpa ==null){
+            return response()->view('errors.503', [], 404);
+        }
         $arreglo = [
             'dpa'             => $dpa,
             'latitud'               => $dpa->coordenadaX,

@@ -118,6 +118,9 @@ class CapitaniaController extends Controller
     {
         //
         $capitania = Capitania::find($id);
+        if ($capitania==null){
+            return response()->view('errors.503', [], 404);
+        }
         if (Auth::user()->role_id == 4){
             return view('internal.admin.editarCapitania', compact('capitania'));
         }
@@ -167,20 +170,31 @@ class CapitaniaController extends Controller
     public function destroy($id)
     {
         //
-        $capitania = Capitania::find($id);
-        $capitania->delete();
-        if (Auth::user()->role_id == 4){
-            return redirect()->route('admin.capitanias');
+        try{
+            // try code
+            $capitania = Capitania::find($id);
+            $capitania->delete();
+            if (Auth::user()->role_id == 4){
+                return redirect()->route('admin.capitanias');
+            }
+            elseif  (Auth::user()->role_id == 5){
+                return redirect()->route('usuarioPesca.capitanias');
+            }
+        } 
+        catch(\Exception $e){
+           // catch code
+             return redirect()->back()->withInput()->withErrors(['errors' => 'NO SE PUEDE ELIMINAR DEBIDO A QUE ESTA SIENDO USADA EN TRANSACCIONES']);
         }
-        elseif  (Auth::user()->role_id == 5){
-            return redirect()->route('usuarioPesca.capitanias');
-        }
+        
 
     }
     public function mostrarMapa($id)
     {
         //
         $capitania = Capitania::find($id);
+        if ($capitania ==null){
+            return response()->view('errors.503', [], 404);
+        }
         $arreglo = [
             'capitania'             => $capitania,
             'valorEscogido'         => 1,

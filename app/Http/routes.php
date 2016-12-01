@@ -49,7 +49,8 @@ Route::post('event/{id}', 'EventController@showExternalPost');
 Route::get('event/delete/{id}/comment', 'EventController@destroyComment');
 
 Route::post('codigoTrazabilidad', 'PagesController@buscarCodigo');
-
+Route::get('especiesMarinas', 'EspeciesMarinasController@indexExternal');
+Route::get('puertos', 'PuertosController@indexExternal');
 
 Route::group(['middleware' => ['auth', 'client']], function () {
     Route::get('client/', ['uses'=>'ClientController@profile','as'=>'client.home']);
@@ -285,10 +286,27 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     //
     Route::get('admin/admin/{id}/delete', 'AdminController@destroy');
 
+    Route::get('admin/usuarioPesca', 'AdminController@usuarioPesca');
+    Route::get('admin/usuarioPesca/{id}/edit', 'AdminController@editUsuarioPesca');
+    Route::post('admin/usuarioPesca/{id}/edit', 'AdminController@updateUsuarioPesca');
+    Route::get('admin/usuarioPesca/{id}/delete', 'AdminController@destroyUsuarioPesca');
+
+    Route::get('admin/usuarioIntermediario', 'AdminController@usuarioIntermediario');
+    Route::get('admin/usuarioIntermediario/{id}/edit', 'AdminController@editUsuarioIntermediario');
+    Route::post('admin/usuarioIntermediario/{id}/edit', 'AdminController@updateUsuarioIntermediario');
+    Route::get('admin/usuarioIntermediario/{id}/delete', 'AdminController@destroyUsuarioIntermediario');
+
+    Route::get('admin/validador', 'AdminController@validador');
+    Route::get('admin/validador/{id}/edit', 'AdminController@editValidador');
+    Route::post('admin/validador/{id}/edit', 'AdminController@updateValidador');
+    Route::get('admin/validador/{id}/delete', 'AdminController@destroyValidador4');
+
     Route::get('admin/promoter', 'AdminController@promoter');
     Route::get('admin/promoter/{id}/edit', 'AdminController@editPromoter');
     Route::post('admin/promoter/{id}/edit', 'AdminController@updatePromoter');
     Route::get('admin/promoter/{id}/delete', 'AdminController@destroyPromoter');
+
+
 
     Route::get('admin/especieMarinas', ['uses'=>'EspeciesMarinasController@index','as'=>'admin.especieMarinas']);
     Route::get('admin/especieMarinas/new', 'EspeciesMarinasController@create');
@@ -386,31 +404,8 @@ Route::group(['middleware' => ['auth', 'usuarioPesca']], function () {
 
    
     Route::get('usuarioPesca/', ['uses'=>'PagesController@usuarioPescaHome','as'=>'usuarioPesca.home']);
-    /*Route::get('admin/password', 'AdminController@passwordAdmin');
-    Route::post('admin/password', 'AdminController@passwordUpdateAdmin');
-
-
-    Route::get('admin/client', 'ClientController@index');
-    Route::post('admin/client/desactive', 'ClientController@desactive');
-
-    Route::get('admin/salesman', ['as'=>'admin.salesman','uses'=>'AdminController@salesman']);
-    Route::get('admin/salesman/{id}/edit', 'AdminController@editSalesman');
-    Route::post('admin/salesman/{id}/edit', 'AdminController@updateSalesman');
-    Route::get('admin/salesman/{id}/delete', 'AdminController@destroySalesman');
-
-    Route::get('admin/user/new', 'AdminController@newUser');
-    Route::post('admin/user/new', 'AdminController@store');
-
-    Route::get('admin/admin', 'AdminController@admin');
-    Route::get('admin/admin/{id}/edit', 'AdminController@editAdmin');
-    Route::post('admin/admin/{id}/edit', 'AdminController@updateAdmin');
-    //
-    Route::get('admin/admin/{id}/delete', 'AdminController@destroy');
-
-    Route::get('admin/promoter', 'AdminController@promoter');
-    Route::get('admin/promoter/{id}/edit', 'AdminController@editPromoter');
-    Route::post('admin/promoter/{id}/edit', 'AdminController@updatePromoter');
-    Route::get('admin/promoter/{id}/delete', 'AdminController@destroyPromoter');*/
+    Route::get('usuarioPesca/password', 'AdminController@passwordUsuarioPesca');
+    Route::post('usuarioPesca/password', 'AdminController@passwordUpdateUsuarioPesca');
 
     Route::get('usuarioPesca/especieMarinas', ['uses'=>'EspeciesMarinasController@index','as'=>'usuarioPesca.especieMarinas']);
     Route::get('usuarioPesca/especieMarinas/new', 'EspeciesMarinasController@create');
@@ -550,31 +545,8 @@ Route::group(['middleware' => ['auth', 'usuarioIntermediario']], function () {
 
    
     Route::get('usuarioIntermediario/', ['uses'=>'PagesController@usuarioIntermediarioHome','as'=>'usuarioIntermediario.home']);
-    /*Route::get('admin/password', 'AdminController@passwordAdmin');
-    Route::post('admin/password', 'AdminController@passwordUpdateAdmin');
-
-
-    Route::get('admin/client', 'ClientController@index');
-    Route::post('admin/client/desactive', 'ClientController@desactive');
-
-    Route::get('admin/salesman', ['as'=>'admin.salesman','uses'=>'AdminController@salesman']);
-    Route::get('admin/salesman/{id}/edit', 'AdminController@editSalesman');
-    Route::post('admin/salesman/{id}/edit', 'AdminController@updateSalesman');
-    Route::get('admin/salesman/{id}/delete', 'AdminController@destroySalesman');
-
-    Route::get('admin/user/new', 'AdminController@newUser');
-    Route::post('admin/user/new', 'AdminController@store');
-
-    Route::get('admin/admin', 'AdminController@admin');
-    Route::get('admin/admin/{id}/edit', 'AdminController@editAdmin');
-    Route::post('admin/admin/{id}/edit', 'AdminController@updateAdmin');
-    //
-    Route::get('admin/admin/{id}/delete', 'AdminController@destroy');
-
-    Route::get('admin/promoter', 'AdminController@promoter');
-    Route::get('admin/promoter/{id}/edit', 'AdminController@editPromoter');
-    Route::post('admin/promoter/{id}/edit', 'AdminController@updatePromoter');
-    Route::get('admin/promoter/{id}/delete', 'AdminController@destroyPromoter');*/
+    Route::get('usuarioIntermediario/password', 'AdminController@passwordUsuarioIntermediario');
+    Route::post('usuarioIntermediario/password', 'AdminController@passwordUpdateUsuarioIntermediario');
 
     Route::get('usuarioIntermediario/especieMarinas', ['uses'=>'EspeciesMarinasController@index','as'=>'usuarioIntermediario.especieMarinas']);
     Route::get('usuarioIntermediario/puertos', ['uses'=>'PuertosController@index','as'=>'usuarioIntermediario.puertos']);
@@ -685,31 +657,9 @@ Route::group(['middleware' => ['auth', 'usuarioValidacion']], function () {
 
    
     Route::get('usuarioValidacion/', ['uses'=>'PagesController@usuarioValidacionHome','as'=>'usuarioValidacion.home']);
-    /*Route::get('admin/password', 'AdminController@passwordAdmin');
-    Route::post('admin/password', 'AdminController@passwordUpdateAdmin');
+    Route::get('usuarioValidacion/password', 'AdminController@passwordUsuarioValidacion');
+    Route::post('usuarioValidacion/password', 'AdminController@passwordUpdateUsuarioValidacion');
 
-
-    Route::get('admin/client', 'ClientController@index');
-    Route::post('admin/client/desactive', 'ClientController@desactive');
-
-    Route::get('admin/salesman', ['as'=>'admin.salesman','uses'=>'AdminController@salesman']);
-    Route::get('admin/salesman/{id}/edit', 'AdminController@editSalesman');
-    Route::post('admin/salesman/{id}/edit', 'AdminController@updateSalesman');
-    Route::get('admin/salesman/{id}/delete', 'AdminController@destroySalesman');
-
-    Route::get('admin/user/new', 'AdminController@newUser');
-    Route::post('admin/user/new', 'AdminController@store');
-
-    Route::get('admin/admin', 'AdminController@admin');
-    Route::get('admin/admin/{id}/edit', 'AdminController@editAdmin');
-    Route::post('admin/admin/{id}/edit', 'AdminController@updateAdmin');
-    //
-    Route::get('admin/admin/{id}/delete', 'AdminController@destroy');
-
-    Route::get('admin/promoter', 'AdminController@promoter');
-    Route::get('admin/promoter/{id}/edit', 'AdminController@editPromoter');
-    Route::post('admin/promoter/{id}/edit', 'AdminController@updatePromoter');
-    Route::get('admin/promoter/{id}/delete', 'AdminController@destroyPromoter');*/
 
     Route::get('usuarioValidacion/especieMarinas', ['uses'=>'EspeciesMarinasController@index','as'=>'usuarioValidacion.especieMarinas']);
 

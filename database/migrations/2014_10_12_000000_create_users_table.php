@@ -27,7 +27,6 @@ class CreateUsersTable extends Migration
             $table->timestamp('iniDate');
             $table->timestamp('endDate');
             $table->integer('role_id')->unsigned();
-            $table->integer('module_id')->unsigned()->unique()->nullable();
             $table->string('password', 60);
             $table->rememberToken();
             $table->softDeletes();

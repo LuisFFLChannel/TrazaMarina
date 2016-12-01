@@ -47,7 +47,7 @@
                           <h5 class="text-left">Tamano Minimo: {{$especie->tamanoMin}}</h5> 
                           <h5 class="text-left">Tamano Maximo:  {{$especie->tamanoMax}}</h5>     
                           <h5 class="text-left">Inicio de Veda: {{date_format(date_create($especie->inicioVeda),"d/M")}} </h5>
-                          <h5 class="text-left">Fin de Veda: {{date_format(date_create($especie->finVeda),"d/M")}}</h5>    
+                          <h5 class="text-left">Fin de Veda: {{date_format(date_create($especie->finVeda),"d/m")}}</h5>    
                           <h5 class="text-left">Promedio de Pesca: {{$especie->pescaPromedio}}</h5>                       
                           <hr>
                           <p class="text-left">{!! Html::image($especie->imagen, null, array('class'=>'gift_img')) !!}</p>
@@ -82,7 +82,7 @@
           </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-info" data-dismiss="modal">No</button>
-              <a class="btn btn-info" href="{{url('usuarioPesca/especiesMarina/'.$especie->id.'/delete')}}" title="Delete" >Sí</a>
+              <a class="btn btn-info" href="{{url('usuarioPesca/especieMarinas/'.$especie->id.'/delete')}}"  title="Delete" >Sí</a>
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->

@@ -121,6 +121,9 @@ class EmbarcacionController extends Controller
     {
         //
         $embarcacion = Embarcacion::find($id);
+        if ($embarcacion ==null){
+            return response()->view('errors.503', [], 404);
+        }
         if (Auth::user()->role_id == 4){
             return view('internal.admin.editarEmbarcacion', compact('embarcacion'));
         }
@@ -177,14 +180,20 @@ class EmbarcacionController extends Controller
     public function destroy($id)
     {
         //
-        $embarcacion = Embarcacion::find($id);
-        $embarcacion->delete();
+        try{
+            $embarcacion = Embarcacion::find($id);
+            $embarcacion->delete();
 
-        if (Auth::user()->role_id == 4){
-            return redirect()->route('admin.embarcaciones');
-        }
-        elseif  (Auth::user()->role_id == 5){
-            return redirect()->route('usuarioPesca.embarcaciones');
+            if (Auth::user()->role_id == 4){
+                return redirect()->route('admin.embarcaciones');
+            }
+            elseif  (Auth::user()->role_id == 5){
+                return redirect()->route('usuarioPesca.embarcaciones');
+            }
+        } 
+        catch(\Exception $e){
+           // catch code
+             return redirect()->back()->withInput()->withErrors(['errors' => 'NO SE PUEDE ELIMINAR DEBIDO A QUE ESTA SIENDO USADA EN TRANSACCIONES']);
         }
         
     }
@@ -192,6 +201,9 @@ class EmbarcacionController extends Controller
     {
         //
         $embarcacion = Embarcacion::find($id);
+        if ($embarcacion ==null){
+            return response()->view('errors.503', [], 404);
+        }
         /*$certificadoMatriculas = DB::table('embarcacion')
                     ->select(DB::raw('certificadoMatricula.id as id, certificadoMatricula.nombreDueno as nombreDueno, certificadoMatricula.apellidosDueno as apellidosDueno, certificadoMatricula.nMatricula as nMatricula'))
                     ->whereNotNull('embarcacion.certificado_matricula_id')
@@ -221,6 +233,9 @@ class EmbarcacionController extends Controller
     {
         //
         $embarcacion = Embarcacion::find($id);
+        if ($embarcacion ==null){
+            return response()->view('errors.503', [], 404);
+        }
         /*$permisoPescas = DB::table('embarcacion')
                     ->select(DB::raw('permisoPesca.id as id, permisoPesca.nombre as nombre, permisoPesca.fechaVigencia as fechaVigencia, permisoPesca.nMatricula as nMatricula'))
                     ->whereNotNull('embarcacion.permiso_pesca_id')
@@ -248,6 +263,9 @@ class EmbarcacionController extends Controller
     {
         //
         $embarcacion = Embarcacion::find($id);
+        if ($embarcacion ==null){
+            return response()->view('errors.503', [], 404);
+        }
        // $certificado = CertificadoMatricula::find($embarcacion->certtificadoMatricula_id);
         if ($embarcacion->certificadoMatricula == null){
             return back()->withErrors(['Aun no se a asociado un certificado de matricula a la embarcacion']);
@@ -272,6 +290,9 @@ class EmbarcacionController extends Controller
     {
         //
         $embarcacion = Embarcacion::find($id);
+        if ($embarcacion ==null){
+            return response()->view('errors.503', [], 404);
+        }
         //$permiso = PermisoPesca::find($embarcacion->permisoPesca_id);
         if ($embarcacion->permisoPesca == null){
             return back()->withErrors(['Aun no se a asociado un permiso de pesca a la embarcacion']);
@@ -347,7 +368,9 @@ class EmbarcacionController extends Controller
     {
         //
         $embarcacion = Embarcacion::find($id);
-        
+        if ($embarcacion ==null){
+            return response()->view('errors.503', [], 404);
+        }
      
         
         $validarPermiso = false;

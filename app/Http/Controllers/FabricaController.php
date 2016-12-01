@@ -115,6 +115,9 @@ class FabricaController extends Controller
     {
         //
         $fabrica = Fabrica::find($id);
+        if ($fabrica ==null){
+            return response()->view('errors.503', [], 404);
+        }
         if (Auth::user()->role_id == 4){
             return view('internal.admin.editarFabrica', compact('fabrica'));
         }
@@ -164,19 +167,28 @@ class FabricaController extends Controller
     public function destroy($id)
     {
         //
-        $fabrica = Fabrica::find($id);
-        $fabrica->delete();
-        if (Auth::user()->role_id == 4){
-            return redirect()->route('admin.fabricas');
-        }
-        elseif  (Auth::user()->role_id == 6){
-            return redirect()->route('usuarioIntermediario.fabricas');
+        try{
+            $fabrica = Fabrica::find($id);
+            $fabrica->delete();
+            if (Auth::user()->role_id == 4){
+                return redirect()->route('admin.fabricas');
+            }
+            elseif  (Auth::user()->role_id == 6){
+                return redirect()->route('usuarioIntermediario.fabricas');
+            }
+        } 
+        catch(\Exception $e){
+           // catch code
+             return redirect()->back()->withInput()->withErrors(['errors' => 'NO SE PUEDE ELIMINAR DEBIDO A QUE ESTA SIENDO USADA EN TRANSACCIONES']);
         }
     }
     public function mostrarMapa($id)
     {
         //
         $fabrica = Fabrica::find($id);
+        if ($fabrica ==null){
+            return response()->view('errors.503', [], 404);
+        }
         $arreglo = [
             'fabrica'             => $fabrica,
             'latitud'               => $fabrica->coordenadaX,
