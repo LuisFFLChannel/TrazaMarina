@@ -12,31 +12,36 @@
     {!!Html::style('css/bootstrap.min.css')!!}
     {!!Html::style('css/font-awesome.min.css')!!}
     {!!Html::style('css/admin.css')!!}
+    {!!Html::style('css/estilosLayOut.css')!!}
     @yield('style')
 
 </head>
 <body>
     @extends('layout.topbar')
-    
-    <div class="container">
-        <h1>@yield('title')</h1>
-        <hr>
-        @if($errors->any())
-        <ul class="alert alert-danger">
-            @foreach($errors->all() as $error)
-                <li>{{$error}}</li>
-            @endforeach
-        </ul>
-        @endif
-        @if(Session::has('message'))
-        <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
-        @endif
-        @yield('content')
-    </div>
-    <div class="container">
-        <hr>
-        <p><b>Desarrollado por Luis Fernández León</b></p>
-    </div>
+    <div class="col-sm-2">
+            
+        </div>
+        <div class="col-sm-10">
+            <div class="container">
+                <h1>@yield('title')</h1>
+                <hr>
+                @if($errors->any())
+                <ul class="alert alert-danger">
+                    @foreach($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+                @endif
+                @if(Session::has('message'))
+                <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+                @endif
+                @yield('content')
+            </div>
+            <div class="container">
+                <hr>
+                <p><b>Desarrollado por Luis Fernández León</b></p>
+            </div>
+        </div>
 
 
     {!!Html::script('js/jQuery-2.1.4.min.js')!!}

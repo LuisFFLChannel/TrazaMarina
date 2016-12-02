@@ -25,12 +25,9 @@
             <nav id="nav">
                 <ul>
                     <li><a href="{{url('client/home')}}">Inicio</a></li>
-                    <li><a href="{{url('about')}}">Nosotros</a></li>
-                    <li><a href="{{url('category')}}">Categorias</a></li>
-                    <li><a href="{{url('event')}}">Eventos</a></li>
-                    <li><a href="{{url('modules')}}">Puntos de venta</a></li>
-                    <li><a href="{{url('calendar')}}">Calendario</a></li>
-                    <li><a href="{{url('gifts')}}">Canjealo</a></li>
+                    <li><a href="{{url('about')}}" class="fourth">Nosotros</a></li>
+                    <li><a href="{{url('especiesMarinas')}} " class="second">Especies Marinas</a></li>
+                    <li><a href="{{url('puertos')}} " class="second">Puertos</a></li>
                 </ul>
             </nav>
 

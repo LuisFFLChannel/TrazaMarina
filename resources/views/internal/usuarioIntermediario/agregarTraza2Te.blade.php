@@ -52,7 +52,7 @@
             </div>
           </div>
       </div>
-    <div>
+    </div>
 @else
       <h4 class="text-center"> Aun no tiene un código de trazabilidad</h4>
 @endif
@@ -95,7 +95,7 @@
           {!!Form::close()!!}
 
     </div>
-  <div>
+  </div>
 <br>
 <br>
 <br>

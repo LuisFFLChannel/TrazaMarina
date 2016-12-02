@@ -8,35 +8,44 @@
     <title>@yield('title') | {{$business_name}} - TrazaPerico</title>
     <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoElgDQ21cdBJtVLgvpFB8ywDLqhn4cKI&libraries=places"></script> -->
     {!!Html::style('css/bootstrap.min.css')!!}
     {!!Html::style('css/font-awesome.min.css')!!}
     {!!Html::style('css/admin.css')!!}
+    {!!Html::style('css/estilosLayOut.css')!!}
     @yield('style')
 
 </head>
 <body>
     @extends('layout.topbar')
+
     
-    <div class="container">
-        <h1>@yield('title')</h1>
-        <hr>
-        @if($errors->any())
-        <ul class="alert alert-danger">
-            @foreach($errors->all() as $error)
-                <li>{{$error}}</li>
-            @endforeach
-        </ul>
-        @endif
-        @if(Session::has('message'))
-        <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
-        @endif
-        @yield('content')
-    </div>
-    <div class="container">
-        <hr>
-        <p><b>Desarrollado por Luis Fernández León</b></p>
-    </div>
+        
+        <div class="col-sm-2">
+            
+        </div>
+        <div class="col-sm-10">
+            <div class="container">
+                <h1>@yield('title')</h1>
+                <hr>
+                @if($errors->any())
+                <ul class="alert alert-danger">
+                    @foreach($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+                @endif
+                @if(Session::has('message'))
+                <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+                @endif
+                @yield('content')
+            </div>
+            <div class="container">
+                <hr>
+                <p><b>Desarrollado por Luis Fernández León</b></p>
+            </div>
+        </div>
 
 
     {!!Html::script('js/jQuery-2.1.4.min.js')!!}
@@ -68,5 +77,9 @@
     </script>
     @yield('javascript')
 
+
+<!-- aqui empieza el programa-->
+
 </body>
+
 </html>

@@ -72,7 +72,7 @@
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-left">
+           <!-- <ul class="nav navbar-nav navbar-left">
                 <li>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Eventos <b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -80,10 +80,9 @@
                         <li><a href="{{url('client/event_record')}}">Historial</a></li>
                     </ul>
                 </li>
-            </ul>
+            </ul>-->
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a>Puntos Acumulados: {{Auth::user()->points}}</a></li>
                 <li> {!! Html::image(Auth::user()->image,  null, array( "width"=>45, 'height' => 45)) !!} </li>
                 <li><a href="{{url('client')}}">{{\Auth::user()->name}}</a></li>
                 <li><a href="{{url('auth/logout')}}">Salir</a></li>
@@ -180,7 +179,7 @@
                         <li><a href="{{url('admin/validador')}}">Usuarios Validación</a></li>
                     </ul>
                 </li>
-               
+                
                 <li>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Clientes <b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -302,161 +301,150 @@
     <!-- /.container -->
 </nav>
 @elseif(Auth::user()->role_id == config('constants.usuarioPesca'))
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+<!--<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">-->
+    <div class="nav-side-menu">
+        
+        <div class="brand" >
+            <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{{url('/')}}">{{$business_name}} </a>
+            </button>-->
+            <a  class= "brandA" href="{{url('/')}}">{{$business_name}} </a>
         </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-left">
+        <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+        <div class="menu-list">
+            <ul id="menu-content" class="menu-content collapse out">
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Esp. Marinas <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a data-toggle="collapse" data-target="#especiesPes" class="collapsed">Esp. Marinas <b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="especiesPes">
                         <li><a href="{{url('usuarioPesca/especieMarinas')}}">Listar</a></li>
                         <li><a href="{{url('usuarioPesca/especieMarinas/new')}}">Nuevo</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Puertos <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a data-toggle="collapse" data-target="#puertosPes" class="collapsed">Puertos <b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="puertosPes">
                         <li><a href="{{url('usuarioPesca/puertos')}}">Listar</a></li>
                         <li><a href="{{url('usuarioPesca/puertos/new')}}">Nuevo</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dpa <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a data-toggle="collapse" data-target="#dpasPes" class="collapsed">Dpa <b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="dpasPes">
                         <li><a href="{{url('usuarioPesca/dpas')}}">Listar</a></li>
                         <li><a href="{{url('usuarioPesca/dpas/new')}}">Nuevo</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Capitanias <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a data-toggle="collapse" data-target="#capitaniasPes" class="collapsed">Capitanias <b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="capitaniasPes">
                         <li><a href="{{url('usuarioPesca/capitanias')}}">Listar</a></li>
                         <li><a href="{{url('usuarioPesca/capitanias/new')}}">Nuevo</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pescadores <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a data-toggle="collapse" data-target="#pescadoresPes" class="collapsed ">Pescadores <b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="pescadoresPes">
                         <li><a href="{{url('usuarioPesca/pescadores')}}">Listar</a></li>
                         <li><a href="{{url('usuarioPesca/pescadores/new')}}">Nuevo</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Embarcaciones <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a data-toggle="collapse" data-target="#embarcacionesPes" class="collapsed">Embarcaciones <b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="embarcacionesPes">
                         <li><a href="{{url('usuarioPesca/embarcaciones')}}">Listar</a></li>
                         <li><a href="{{url('usuarioPesca/embarcaciones/new')}}">Nuevo</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">C. de Matricula<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a data-toggle="collapse" data-target="#matriculasPes" class="collapsed">C. de Matricula<b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="matriculasPes">
                         <li><a href="{{url('usuarioPesca/certificadoMatriculas')}}">Listar</a></li>
                         <li><a href="{{url('usuarioPesca/certificadoMatriculas/new')}}">Nuevo</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">P. de Pesca<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a data-toggle="collapse" data-target="#permisosPescaPes" class="collapsed">P. de Pesca<b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="permisosPescaPes">
                         <li><a href="{{url('usuarioPesca/permisoPescas')}}">Listar</a></li>
                         <li><a href="{{url('usuarioPesca/permisoPescas/new')}}">Nuevo</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">P. Zarpe<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a data-toggle="collapse" data-target="#permisosZarpePes" class="collapsed">P. Zarpe<b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="permisosZarpePes">
                         <li><a href="{{url('usuarioPesca/permisoZarpes')}}">Listar</a></li>
                         <li><a href="{{url('usuarioPesca/permisoZarpes/new')}}">Nuevo</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">P. Marinero<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a data-toggle="collapse" data-target="#permisosMarineroPes" class="collapsed">P. Marinero<b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="permisosMarineroPes">
                         <li><a href="{{url('usuarioPesca/permisoMarineros')}}">Listar</a></li>
                         <li><a href="{{url('usuarioPesca/permisoMarineros/new')}}">Nuevo</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">P. Patron<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a data-toggle="collapse" data-target="#permisosPatronPes" class="collapsed">P. Patron<b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="permisosPatronPes">
                         <li><a href="{{url('usuarioPesca/permisoPatrones')}}">Listar</a></li>
                         <li><a href="{{url('usuarioPesca/permisoPatrones/new')}}">Nuevo</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pescas<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a data-toggle="collapse" data-target="#pescasPes" class="collapsed">Pescas<b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="pescasPes">
                         <li><a href="{{url('usuarioPesca/pescas')}}">Listar</a></li>
                         <li><a href="{{url('usuarioPesca/pescas/new')}}">Nuevo</a></li>
-                        <!--<li><a href="{{url('usuarioPesca/pescasNoArribadas')}}">Listar Pescas No Arribadas</a></li>
-                        <li><a href="{{url('usuarioPesca/pescasArribadas')}}">Listar Pescas Arribadas</a></li>-->
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Desembarques<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a data-toggle="collapse" data-target="#desembarquesPes" class="collapsed">Desembarques<b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="desembarquesPes">
                         <li><a href="{{url('usuarioPesca/desembarques')}}">Listar</a></li>
                         <li><a href="{{url('usuarioPesca/notasIngresos')}}">Notas de Ingreso</a></li>
-                        <!--<li><a href="{{url('usuarioPesca/desembarques/new')}}">Nuevo</a></li>-->
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">C. de Arribo<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a data-toggle="collapse" data-target="#arribosPes" class="collapsed">C. de Arribo<b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="arribosPes">
                         <li><a href="{{url('usuarioPesca/certificadoArribos')}}">Listar</a></li>
                         <li><a href="{{url('usuarioPesca/certificadoArribos/new')}}">Nuevo</a></li>
                     </ul>
                 </li>
-                <!--<li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Configuración  <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{url('admin/config/exchange_rate')}}">Tipo de cambio</a></li>
-                        <li><a href="{{url('admin/config/about')}}">Acerca de</a></li>
-                        <li><a href="{{url('admin/config/system')}}">Sistema</a></li>
-                    </ul>
-                </li>-->
-
             </ul>
 
-            <ul class="nav navbar-nav navbar-right">
+            <ul id="menu-content" class="menu-content collapse out">
                 <li><a href="{{url('usuarioPesca/')}}">{{ Auth::user()->name }}</a></li>
                 <li><a href="{{url('auth/logout')}}">Salir</a></li>
           </ul>
         </div>
-        <!-- /.navbar-collapse -->
+        
     </div>
-    <!-- /.container -->
-</nav>
+    
+<!--</nav>-->
 @elseif(Auth::user()->role_id == config('constants.usuarioIntermediario'))
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+<!--<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">-->
+    <div class="nav-side-menu">
+        
+        <div class="brand" >
+            <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{{url('/')}}">{{$business_name}} </a>
+            </button>-->
+            <a  class= "brandA" href="{{url('/')}}">{{$business_name}} </a>
         </div>
+        <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-left">
+        <div class="menu-list">
+            <ul id="menu-content" class="menu-content collapse out">
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Datos Maestros <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a data-toggle="collapse" data-target="#datosMaestrosInt" class="collapsed">Datos Maestros <b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="datosMaestrosInt">
                         <li><a href="{{url('usuarioIntermediario/especieMarinas')}}">Especies Marinas</a></li>
                         <li><a href="{{url('usuarioIntermediario/puertos')}}">Puertos</a></li>
                         <li><a href="{{url('usuarioIntermediario/dpas')}}">Dpa</a></li>
@@ -468,8 +456,8 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Permisos/Certificados<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a data-toggle="collapse" data-target="#permisosInt" class="collapsed">Permisos/Certificados<b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="permisosInt">
                         <li><a href="{{url('usuarioIntermediario/certificadoMatriculas')}}">C. de Matricula</a></li>
                         <li><a href="{{url('usuarioIntermediario/permisoPescas')}}">P. de Pesca</a></li>
                         <li><a href="{{url('usuarioIntermediario/permisoPatrones')}}">P. de Patron</a></li>
@@ -479,82 +467,72 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Transportistas <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a data-toggle="collapse" data-target="#transportistasInt" class="collapsed">Transportistas <b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="transportistasInt">
                         <li><a href="{{url('usuarioIntermediario/transportistas')}}">Listar</a></li>
                         <li><a href="{{url('usuarioIntermediario/transportistas/new')}}">Nuevo</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Frigoríficos <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a data-toggle="collapse" data-target="#frigorificosInt" class="collapsed">Frigoríficos <b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="frigorificosInt">
                         <li><a href="{{url('usuarioIntermediario/frigorificos')}}">Listar</a></li>
                         <li><a href="{{url('usuarioIntermediario/frigorificos/new')}}">Nuevo</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Terminales <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a data-toggle="collapse" data-target="#terminalesInt" class="collapsed">Terminales <b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="terminalesInt">
                         <li><a href="{{url('usuarioIntermediario/terminales')}}">Listar</a></li>
                         <li><a href="{{url('usuarioIntermediario/terminales/new')}}">Nuevo</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Fabricas <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a data-toggle="collapse" data-target="#fabricasInt" class="collapsed">Fabricas <b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="fabricasInt">
                         <li><a href="{{url('usuarioIntermediario/fabricas')}}">Listar</a></li>
                         <li><a href="{{url('usuarioIntermediario/fabricas/new')}}">Nuevo</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Nota de Ingreso<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a data-toggle="collapse" data-target="#notasIngresosInt" class="collapsed">Nota de Ingreso<b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="notasIngresosInt">
                         <li><a href="{{url('usuarioIntermediario/notasIngresos')}}">Listar</a></li>
                         <!--<li><a href="{{url('usuarioPesca/desembarques/new')}}">Nuevo</a></li>-->
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Emp. Comercializador<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a data-toggle="collapse" data-target="#empresariosInt" class="collapsed">Emp. Comercializador<b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="empresariosInt">
                         <li><a href="{{url('usuarioIntermediario/empresarioComercializadores')}}">Listar</a></li>
                         <li><a href="{{url('usuarioIntermediario/empresarioComercializadores/new')}}">Nuevo</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cert. Procedencia<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a data-toggle="collapse" data-target="#certificadosProcedenciasInt" class="collapsed">Cert. Procedencia<b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="certificadosProcedenciasInt">
                         <li><a href="{{url('usuarioIntermediario/certificadoProcedencias')}}">Listar</a></li>
                         <li><a href="{{url('usuarioIntermediario/certificadoProcedencias/new')}}">Nuevo</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cert. Terminal<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a data-toggle="collapse" data-target="#transporteTerminalesInt" class="collapsed">Cert. Terminal<b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="transporteTerminalesInt">
                         <li><a href="{{url('usuarioIntermediario/transporteTerminales')}}">Listar</a></li>
                         <li><a href="{{url('usuarioIntermediario/transporteTerminales/new')}}">Nuevo</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Lotes<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a data-toggle="collapse" data-target="#lotesInt" class="collapsed">Lotes<b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="lotesInt">
                         <li><a href="{{url('usuarioIntermediario/lotesFabricas')}}">Listar Lotes hacia Fabrica</a></li>
                         <li><a href="{{url('usuarioIntermediario/lotesTerminales')}}">Listar Lotes hacia Terminal</a></li>
-                        <!--<li><a href="{{url('usuarioIntermediario/transporteTerminales/new')}}">Nuevo</a></li>-->
                     </ul>
                 </li>
                 
-                <!--<li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Configuración  <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{url('admin/config/exchange_rate')}}">Tipo de cambio</a></li>
-                        <li><a href="{{url('admin/config/about')}}">Acerca de</a></li>
-                        <li><a href="{{url('admin/config/system')}}">Sistema</a></li>
-                    </ul>
-                </li>-->
 
             </ul>
-
-            <ul class="nav navbar-nav navbar-right">
+            <ul id="menu-content" class="menu-content collapse out">
                 <li><a href="{{url('usuarioIntermediario/')}}">{{ Auth::user()->name }}</a></li>
                 <li><a href="{{url('auth/logout')}}">Salir</a></li>
           </ul>
@@ -562,7 +540,7 @@
         <!-- /.navbar-collapse -->
     </div>
     <!-- /.container -->
-</nav>
+<!--</nav>-->
 @elseif(Auth::user()->role_id == config('constants.usuarioValidacion'))
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container-fluid">

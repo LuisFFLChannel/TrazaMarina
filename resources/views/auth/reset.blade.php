@@ -22,13 +22,13 @@
 	         </div>
 	    	
 	         <div class="form-group col-sm-12">
-	         	<div class="col-sm-5"> <label  class="control-label">Contraseña</label></div>
+	         	<div class="col-sm-5"> <label  class="control-label">Escribir Nueva Contraseña</label></div>
 	        	<div class="col-sm-7"> <input type="password" name="password"></div>
 	         </div>
 
 
 			<div class="form-group col-sm-12">
-				<div class="col-sm-5"> <label for="password" class="control-label">Recuperar contraseña</label></div>
+				<div class="col-sm-5"> <label for="password" class="control-label">Repetir Contraseña</label></div>
 				<div class="col-sm-7">
 					<input type="password" name="password_confirmation">
 				</div>
