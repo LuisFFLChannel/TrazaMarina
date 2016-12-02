@@ -24,7 +24,7 @@
                           <h5 class="text-left">Tamano Maximo:  {{$especieMarina->tamanoMax}}</h5>     
                           <h5 class="text-left">Inicio de Veda: {{date_format(date_create($especieMarina->inicioVeda),"d/m")}} </h5>
                           <h5 class="text-left">Fin de Veda: {{date_format(date_create($especieMarina->finVeda),"d/m")}}</h5>    
-                          <p class="text-center">{!! Html::image($especieMarina->imagen, null, array('class'=>'cat_img')) !!}</p>
+                          <p class="text-left">{!! Html::image($especieMarina->imagen, null, array('class'=>'cat_img')) !!}</p>
                 
             </div>
             <div class="col-sm-4">
@@ -37,16 +37,19 @@
                           <h5 class="text-left">Estara: {{$embarcacion->estara}}</h5> 
                           <h5 class="text-left">Manga: {{$embarcacion->manga}}</h5> 
                           <h5 class="text-left">Puntual: {{$embarcacion->puntual}}</h5> 
-                          <p class="text-center">{!! Html::image($embarcacion->imagen, null, array('class'=>'cat_img')) !!}</p>
+                          <p class="text-left">{!! Html::image($embarcacion->imagen, null, array('class'=>'cat_img')) !!}</p>
 
                 
             </div>   
             <div class="col-sm-4">
-                
+                  <div class="container">
                     <h4> Ubicación de la pesca: </h4>
                           <h5 class="text-left">Latitud: {{$pesca->coordenadaX}} </h5>
-                          <h5 class="text-left">Longitud: {{$pesca->coordenadaY}} </h5>                              
-                            <div id="map"></div>
+                          <h5 class="text-left">Longitud: {{$pesca->coordenadaY}} </h5>
+                  </div>
+                  <div class="container">                              
+                            <div class="text-left" id="map"></div>
+                  </div>
 
                 
             </div>   
@@ -64,8 +67,8 @@
                           <h5 class="text-left">Latitud: {{$puertoZ->coordenadaX}} </h5>        
                           <h5 class="text-left">Longitud: {{$puertoZ->coordenadaY}}</h5>     
                           <h5 class="text-left">Fecha Zarpe: {{date_format(date_create($pesca->fechaZarpe),"d/m/Y")}}</h5>                           
-                          <p class="text-center">{!! Html::image($puertoZ->imagen, null, array('class'=>'cat_img')) !!}</p>
-                          <div id="map2"></div>
+                          <p class="text-left">{!! Html::image($puertoZ->imagen, null, array('class'=>'cat_img')) !!}</p>
+                          <div class="text-left" id="map2"></div>
                 
             </div>
             <div class="col-sm-1"></div> 
@@ -77,8 +80,8 @@
                           <h5 class="text-left">Latitud: {{$puertoA->coordenadaX}} </h5>        
                           <h5 class="text-left">Longitud: {{$puertoA->coordenadaY}}</h5>     
                           <h5 class="text-left">Fecha Arribo: {{date_format(date_create($desembarque->fechaLlegada),"d/m/Y")}}</h5>                           
-                          <p class="text-center">{!! Html::image($puertoA->imagen, null, array('class'=>'cat_img')) !!}</p>
-                          <div id="map3"></div>
+                          <p class="text-left">{!! Html::image($puertoA->imagen, null, array('class'=>'cat_img')) !!}</p>
+                          <div class="text-left" id="map3"></div>
                 
 
                 
@@ -107,7 +110,7 @@
                           <h5 class="text-left">Dirección: {{$producto->certificadoTerminal->terminal->direccion}} </h5>                        
                           <h5 class="text-left">Latitud: {{$producto->certificadoTerminal->terminal->coordenadaX}} </h5>        
                           <h5 class="text-left">Longitud: {{$producto->certificadoTerminal->terminal->coordenadaY}}</h5> 
-                          <p class="text-center">{!! Html::image($producto->certificadoTerminal->terminal->imagen, null, array('class'=>'cat_img')) !!}</p>
+                          <p class="text-left">{!! Html::image($producto->certificadoTerminal->terminal->imagen, null, array('class'=>'cat_img')) !!}</p>
 
                     @endif
                 
@@ -249,10 +252,10 @@
 
 </script>
 <style type="text/css">
-  #map { height: 350px; width: 350px }
-  #map2 { height: 350px; width: 450px }
-  #map3 { height: 350px; width: 450px }
-  #map4 { height: 350px; width: 350px }
+  #map { height: 250px; width: 250px }
+  #map2 { height: 250px; width: 250px }
+  #map3 { height: 250px; width: 250px }
+  #map4 { height: 250px; width: 250px }
   #boxProducto {border-style: solid; border-color: black; border-width:1px}
 </style>
 @stop

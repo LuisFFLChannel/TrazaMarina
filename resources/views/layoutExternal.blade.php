@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="{{ asset($favicon) }}">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 	<title>@yield('title') | {{$business_name}}</title>
     {!!Html::style('css/bootstrap.min.css')!!}
     {!!Html::style('css/font-awesome.min.css')!!}
@@ -12,53 +13,58 @@
     {!!Html::style('css/images.css')!!}
     {!!Html::style('css/style-desktop.css')!!}
     {!!Html::script('js/jQuery-2.1.4.min.js')!!}
+    {!!Html::style('css/estilosLayOut.css')!!}
 
 	@yield('style')
 
 </head>
 <body>
     @extends('layout.topbar')
+    <div class="col-sm-2">
+            
+    </div>
+    <div class="col-sm-10">
+    	<div id="header">
+    		<div class="container">
+    			<!-- Logo -->
 
-	<div id="header">
-		<div class="container">
-			<!-- Logo -->
+    			<div id="logo">
+    				<h1 id="portada"><a href="{{url('/')}}">{{$business_name}}</a></h1>
+    			</div>
+    			<!-- Nav -->
+    			<nav id="nav">
+    				<ul>
+    					<li><a href="{{url('/')}}" class="first">Inicio</a></li>
+    					<li><a href="{{url('about')}}" class="fourth">Nosotros</a></li>
+    					<li><a href="{{url('especiesMarinas')}} " class="second">Especies Marinas</a></li>
+                        <li><a href="{{url('puertos')}} " class="second">Puertos</a></li>
+                        
+                        <!--<li><a href="{{url('category')}} " class="second">Categorias</a></li>-->
+    					<!--<li><a href="{{url('event')}}" class="third">Eventos</a></li>
+    					<li><a href="{{url('modules')}}" class="fifth">Puntos de venta</a></li>
+    					<li><a href="{{url('calendar')}}" class="sixth">Calendario</a></li>
+    					<li><a href="{{url('gifts')}}" class="seventh">Canjealo</a></li>-->
+    				</ul>
+    			</nav>
 
-			<div id="logo">
-				<h1 id="portada"><a href="{{url('/')}}">{{$business_name}}</a></h1>
-			</div>
-			<!-- Nav -->
-			<nav id="nav">
-				<ul>
-					<li><a href="{{url('/')}}" class="first">Inicio</a></li>
-					<li><a href="{{url('about')}}" class="fourth">Nosotros</a></li>
-					<li><a href="{{url('especiesMarinas')}} " class="second">Especies Marinas</a></li>
-                    <li><a href="{{url('puertos')}} " class="second">Puertos</a></li>
-                    
-                    <!--<li><a href="{{url('category')}} " class="second">Categorias</a></li>-->
-					<!--<li><a href="{{url('event')}}" class="third">Eventos</a></li>
-					<li><a href="{{url('modules')}}" class="fifth">Puntos de venta</a></li>
-					<li><a href="{{url('calendar')}}" class="sixth">Calendario</a></li>
-					<li><a href="{{url('gifts')}}" class="seventh">Canjealo</a></li>-->
-				</ul>
-			</nav>
+    		</div>
+    	</div>
+    	<div class="container">
+            <h1>@yield('title')</h1>
+            <hr>
 
-		</div>
-	</div>
+            @include('errors.list')
 
-	<div class="container">
-        <h1>@yield('title')</h1>
-        <hr>
+            @if(Session::has('message'))
+                <div class="alert {{ Session::get('alert-class', 'alert-info') }}">
+                    {{ Session::get('message') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                </div>
+            @endif
+    		@yield('content')
+    	</div>
+    </div>
 
-        @include('errors.list')
-
-        @if(Session::has('message'))
-            <div class="alert {{ Session::get('alert-class', 'alert-info') }}">
-                {{ Session::get('message') }}
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            </div>
-        @endif
-		@yield('content')
-	</div>
 </body>
 <!--
 <footer id="footer">
