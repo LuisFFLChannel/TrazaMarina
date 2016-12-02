@@ -22,6 +22,7 @@ class CreateEspecieMarinaTable extends Migration
             $table->timestamp('inicioVeda');
             $table->timestamp('finVeda');
             $table->float('pescaPromedio');
+            $table->float('factorHielo');
             $table->string('imagen'); 
             $table->boolean('activo');
             $table->softDeletes();

@@ -533,6 +533,12 @@ Route::group(['middleware' => ['auth', 'usuarioPesca']], function () {
     Route::post('usuarioPesca/certificadoArribos/{id}/edit', 'CertificadoArriboController@update');
     Route::get('usuarioPesca/certificadoArribos/{id}/delete', 'CertificadoArriboController@destroy');
 
+    Route::get('usuarioPesca/cantidadHielo', 'HieloController@calcularHielo');
+    Route::post('usuarioPesca/cantidadHielo', 'HieloController@actualizarHielo');
+    Route::get('getHistorialHielo/{idEspecie}/{idPuerto}/{idEmbarcacion}', 'HieloController@ajaxHistorialHielo');
+    Route::post('usuarioPesca/verificarHielo', 'HieloController@actualizarHielo');
+    Route::post('usuarioPesca/verificarHielo', 'HieloController@actualizarHielo');
+
     Route::get('usuarioPesca/mapas/{id}/mostarMapaCapitania', 'CapitaniaController@mostrarMapa');
     Route::get('usuarioPesca/mapas/{id}/mostarMapaDpa', 'DpaController@mostrarMapa');
     Route::get('usuarioPesca/mapas/{id}/mostarMapaPuerto', 'PuertosController@mostrarMapa');

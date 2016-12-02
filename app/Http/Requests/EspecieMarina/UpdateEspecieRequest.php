@@ -33,6 +33,7 @@ class UpdateEspecieRequest extends Request
             'inicioVeda'            =>  'required|date',
             'finVeda'               =>  'required|date',
             'pescaPromedio'         =>  'required|numeric',
+            'factorHielo'         =>  'required|numeric',
             'imagen'                =>  'image'
         ];
     }

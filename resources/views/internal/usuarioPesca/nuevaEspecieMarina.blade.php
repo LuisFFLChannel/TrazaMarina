@@ -67,6 +67,12 @@
           </div>
         </div>
         <div class="form-group">
+          <label for="inputEmail3" class="col-sm-2 control-label">Factor Hielo</label>
+          <div class="col-sm-10">
+            {!!Form::input('number','factorHielo', null ,['class'=>'form-control','id'=>'inputEmai3', 'min' =>0,'required'])!!}
+          </div>
+        </div>
+        <div class="form-group">
           <label for="inputEmail3" class="col-sm-2 control-label">Imagen</label>
           <div class="col-sm-10">
             {!!Form::input('file','imagen', null ,['class'=>'form-control','id'=>'inputEmail3'])!!}

@@ -33,6 +33,7 @@ class StoreEspecieRequest extends Request
             'inicioVeda'            =>  'required|date',
             'finVeda'               =>  'required|date',
             'pescaPromedio'         =>  'required|numeric',
+            'factorHielo'           =>  'required|numeric',
             'imagen'                =>  'required|image'
         ];
     }

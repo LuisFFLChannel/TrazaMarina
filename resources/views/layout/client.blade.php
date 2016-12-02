@@ -5,53 +5,61 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="{{ asset($favicon) }}">
-    <title>@yield('title') | {{$business_name}}</title>
+    <title>@yield('title') | {{$business_name}} - TrazaPerico</title>
+     <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     {!!Html::style('css/bootstrap.min.css')!!}
     {!!Html::style('css/font-awesome.min.css')!!}
     {!!Html::style('css/admin.css')!!}
     {!!Html::style('css/style.css')!!}
     {!!Html::style('css/style-desktop.css')!!}
+    {!!Html::style('css/estilosLayOut.css')!!}
     @yield('style')
 </head>
 <body>
     @extends('layout.topbar')
+    <div class="col-sm-2">
+            
+    </div>
+    <div class="col-sm-10">
+        <div id="header" class="noprint">
+            <div class="container">
+                <div id="logo">
+                    <h1 id="portada"><a href="{{url('client/home')}}">{{$business_name}}</a></h1>
+                </div>
+                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="{{url('client/home')}}">Inicio</a></li>
+                        <li><a href="{{url('about')}}" class="fourth">Nosotros</a></li>
+                        <li><a href="{{url('especiesMarinas')}} " class="second">Especies Marinas</a></li>
+                        <li><a href="{{url('puertos')}} " class="second">Puertos</a></li>
+                    </ul>
+                </nav>
 
-    <div id="header" class="noprint">
-        <div class="container">
-            <div id="logo">
-                <h1 id="portada"><a href="{{url('client/home')}}">{{$business_name}}</a></h1>
             </div>
-            <!-- Nav -->
-            <nav id="nav">
-                <ul>
-                    <li><a href="{{url('client/home')}}">Inicio</a></li>
-                    <li><a href="{{url('about')}}" class="fourth">Nosotros</a></li>
-                    <li><a href="{{url('especiesMarinas')}} " class="second">Especies Marinas</a></li>
-                    <li><a href="{{url('puertos')}} " class="second">Puertos</a></li>
-                </ul>
-            </nav>
-
         </div>
-    </div>
 
-    <div class="container">
-        <h1>@yield('title')</h1>
-        <hr>
-        @if($errors->any())
-        <ul class="alert alert-danger">
-            @foreach($errors->all() as $error)
-                <li>{{$error}}</li>
-            @endforeach
-        </ul>
-        @endif
-        @if(Session::has('message'))
-        <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
-        @endif
-        @yield('content')
-    </div>
-    <div class="container">
-        <hr>
-        <p><b>Desarrollado por Stark</b></p>
+        <div class="container">
+            <h1>@yield('title')</h1>
+            <hr>
+            @if($errors->any())
+            <ul class="alert alert-danger">
+                @foreach($errors->all() as $error)
+                    <li>{{$error}}</li>
+                @endforeach
+            </ul>
+            @endif
+            @if(Session::has('message'))
+            <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+            @endif
+            @yield('content')
+        </div>
+        <div class="container">
+            <hr>
+            <p><b>Desarrollado por Luis Fernandez Leon</b></p>
+        </div>
     </div>
 
     {!!Html::script('js/jQuery-2.1.4.min.js')!!}

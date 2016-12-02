@@ -48,7 +48,8 @@
                           <h5 class="text-left">Tamano Maximo:  {{$especie->tamanoMax}}</h5>     
                           <h5 class="text-left">Inicio de Veda: {{date_format(date_create($especie->inicioVeda),"d/M")}} </h5>
                           <h5 class="text-left">Fin de Veda: {{date_format(date_create($especie->finVeda),"d/m")}}</h5>    
-                          <h5 class="text-left">Promedio de Pesca: {{$especie->pescaPromedio}}</h5>                       
+                          <h5 class="text-left">Promedio de Pesca: {{$especie->pescaPromedio}}</h5> 
+                          <h5 class="text-left">Factor Hielo: {{$especie->factorHielo}}</h5>                       
                           <hr>
                           <p class="text-left">{!! Html::image($especie->imagen, null, array('class'=>'gift_img')) !!}</p>
                        </div>

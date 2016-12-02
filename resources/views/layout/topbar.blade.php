@@ -23,67 +23,22 @@
     </div>
     <!-- /.container -->
 <!--</nav>-->
-@elseif(Auth::user()->role_id == config('constants.salesman'))
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{{url('/')}}">{{$business_name}} </a>
-        </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-            <ul class="nav navbar-nav navbar-left">
-
-                <li><a href="{{url('salesman/cash_count')}}">Apertura y Arqueo de caja</a></li>
-                <li><a href="{{url('salesman/exchange_gift')}}">Canjeo de regalos</a></li>
-                <li><a href="{{url('event')}}">Venta Ticket</a></li>
-                <li><a href="{{url('salesman/giveaway')}}">Entrega Ticket</a></li>
-                <li><a href="{{url('salesman/devolutions/')}}">Devoluciones </a></li>
-                <li><a href="{{url('salesman/event/pay_booking')}}">Cobrar Reserva</a></li>
-
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="{{url('/salesman')}}">{{ Auth::user()->name }}</a></li>
-                <li><a href="{{url('auth/logout')}}">Salir</a></li>
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container -->
-</nav>
 @elseif(Auth::user()->role_id == config('constants.client'))
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+<!--<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">-->
+    <div class="nav-side-menu">
+        
+        <div class="brand" >
+            <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{{url('/')}}">{{$business_name}} </a>
+            </button>-->
+            <a  class= "brandA" href="{{url('/')}}">{{$business_name}} </a>
         </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-           <!-- <ul class="nav navbar-nav navbar-left">
-                <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Eventos <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{url('client')}}">Perfil</a></li>
-                        <li><a href="{{url('client/event_record')}}">Historial</a></li>
-                    </ul>
-                </li>
-            </ul>-->
-
-            <ul class="nav navbar-nav navbar-right">
+        <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+        <div class="menu-list">
+            <ul id="menu-content" class="menu-content collapse out">
                 <li> {!! Html::image(Auth::user()->image,  null, array( "width"=>45, 'height' => 45)) !!} </li>
                 <li><a href="{{url('client')}}">{{\Auth::user()->name}}</a></li>
                 <li><a href="{{url('auth/logout')}}">Salir</a></li>
@@ -92,65 +47,7 @@
         <!-- /.navbar-collapse -->
     </div>
     <!-- /.container -->
-</nav>
-@elseif(Auth::user()->role_id == config('constants.promoter'))
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a href="{{url('/')}}" class="navbar-brand" >{{$business_name}} </a>
-        </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-left">
-                <li>
-                    <a href="" class="dropdown-toggle" data-toggle="dropdown">Eventos <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{url('promoter/event/create')}}">Nuevo</a></li>
-                        <li><a href="{{url('promoter/event/record')}}">Historial</a></li>
-                        <li><a href="{{url('promoter/presentation/cancelled')}}">Presentaciones cancelados</a></li>
-                        <li><a href="{{url('promoter/highlights')}}">Destacados</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="" class="dropdown-toggle" data-toggle="dropdown">Promociones <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{url('promoter/promotion')}}">Listar</a></li>
-                        <li><a href="{{url('promoter/promotion/new')}}">Nuevo</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Negocio<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{url('promoter/transfer_payments')}}">Transferencias de pago</a></li>
-                        <!--li><a href="{{url('promoter/event/recordPayment')}}">Historial de pagos</a></li-->
-                    </ul>
-                </li>
-                <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Organizador <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{url('promoter/organizers')}}">Listar</a></li>
-                        <li><a href="{{url('promoter/organizer/create')}}">Nuevo</a></li>
-                    </ul>
-                </li>
-                <li><a href="{{url('promoter/politics')}}">Politicas</a></li>
-            </ul>
-
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="{{url('promoter')}}">{{ Auth::user()->name }}</a></li>
-                <li><a href="{{url('auth/logout')}}">Salir</a></li>
-          </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container -->
-</nav>
+<!--</nav>-->
 @elseif(Auth::user()->role_id == config('constants.admin'))
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container-fluid">
@@ -415,6 +312,12 @@
                         <li><a href="{{url('usuarioPesca/certificadoArribos/new')}}">Nuevo</a></li>
                     </ul>
                 </li>
+                <li>
+                    <a data-toggle="collapse" data-target="#calHielo" class="collapsed">Calculo Hielo<b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="calHielo">
+                        <li><a href="{{url('usuarioPesca/cantidadHielo')}}">Calcular Hielo Necesario</a></li>
+                    </ul>
+                </li>
             </ul>
 
             <ul id="menu-content" class="menu-content collapse out">
@@ -543,24 +446,25 @@
     <!-- /.container -->
 <!--</nav>-->
 @elseif(Auth::user()->role_id == config('constants.usuarioValidacion'))
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+<!--<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">-->
+    <div class="nav-side-menu">
+        
+        <div class="brand" >
+            <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{{url('/')}}">{{$business_name}} </a>
+            </button>-->
+            <a  class= "brandA" href="{{url('/')}}">{{$business_name}} </a>
         </div>
+        <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-left">
+        <div class="menu-list">
+            <ul id="menu-content" class="menu-content collapse out">
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Datos Maestros <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a data-toggle="collapse" data-target="#datosMaestrosVal" class="collapsed">Datos Maestros <b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="datosMaestrosVal">
                         <li><a href="{{url('usuarioValidacion/especieMarinas')}}">Especies Marinas</a></li>
                         <li><a href="{{url('usuarioValidacion/puertos')}}">Puertos</a></li>
                         <li><a href="{{url('usuarioValidacion/dpas')}}">Dpa</a></li>
@@ -577,8 +481,8 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Permisos/Certificados<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a data-toggle="collapse" data-target="#permisosVal" class="collapsed">Permisos/Certificados<b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="permisosVal">
                         <li><a href="{{url('usuarioValidacion/certificadoMatriculas')}}">C. de Matricula</a></li>
                         <li><a href="{{url('usuarioValidacion/permisoPescas')}}">P. de Pesca</a></li>
                         <li><a href="{{url('usuarioValidacion/permisoPatrones')}}">P. de Patron</a></li>
@@ -590,33 +494,25 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Nota de Ingreso<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a data-toggle="collapse" data-target="#notasIngVal" class="collapsed">Nota de Ingreso<b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="notasIngVal">
                         <li><a href="{{url('usuarioValidacion/notasIngresos')}}">Listar</a></li>
                         <!--<li><a href="{{url('usuarioPesca/desembarques/new')}}">Nuevo</a></li>-->
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Lotes<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a data-toggle="collapse" data-target="#lotesVal" class="collapsed">Lotes<b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="lotesVal">
                         <li><a href="{{url('usuarioValidacion/lotesFabricas')}}">Listar Lotes hacia Fabrica</a></li>
                         <li><a href="{{url('usuarioValidacion/lotesTerminales')}}">Listar Lotes hacia Terminal</a></li>
                         <!--<li><a href="{{url('usuarioIntermediario/transporteTerminales/new')}}">Nuevo</a></li>-->
                     </ul>
                 </li>
                 
-                <!--<li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Configuración  <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{url('admin/config/exchange_rate')}}">Tipo de cambio</a></li>
-                        <li><a href="{{url('admin/config/about')}}">Acerca de</a></li>
-                        <li><a href="{{url('admin/config/system')}}">Sistema</a></li>
-                    </ul>
-                </li>-->
 
             </ul>
 
-            <ul class="nav navbar-nav navbar-right">
+            <ul id="menu-content" class="menu-content collapse out">
                 <li><a href="{{url('usuarioValidacion/')}}">{{ Auth::user()->name }}</a></li>
                 <li><a href="{{url('auth/logout')}}">Salir</a></li>
           </ul>
@@ -624,5 +520,5 @@
         <!-- /.navbar-collapse -->
     </div>
     <!-- /.container -->
-</nav>
+<!--</nav>-->
 @endif
