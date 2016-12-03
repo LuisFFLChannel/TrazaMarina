@@ -21,8 +21,8 @@ class CreateEspecieMarinaTable extends Migration
             $table->float('tamanoMax');
             $table->timestamp('inicioVeda');
             $table->timestamp('finVeda');
-            $table->float('pescaPromedio');
-            $table->float('factorHielo');
+            $table->double('pescaPromedio');
+            $table->double('factorHielo');
             $table->string('imagen'); 
             $table->boolean('activo');
             $table->softDeletes();

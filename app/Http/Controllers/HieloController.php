@@ -87,7 +87,7 @@ class HieloController extends Controller
     public function ajaxHistorialHielo($idEspecie,$idPuerto,$idEmbarcacion)
     {
 
-        $pescad = Pescador::where("idEspecie","=",$idEspecie)->where("idPuerto","=",$idPuerto)->where("idEmbarcacion","=",$idEmbarcacion)->get()->toArray() ;
+        $pescad = Pescador::where("especie_id","=",$idEspecie)->where("puerto_id","=",$idPuerto)->where("embarcacion_id","=",$idEmbarcacion)->get()->desc()->toArray() ;
 
 
 
