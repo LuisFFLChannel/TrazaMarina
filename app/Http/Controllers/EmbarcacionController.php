@@ -79,15 +79,15 @@ class EmbarcacionController extends Controller
         $embarcacion                    =   new Embarcacion;
         $embarcacion->nombre            =   $input['nombre'];
         $embarcacion->nMatricula        =   $input['nMatricula'];
-        $embarcacion->nombreDueno       =   $input['nombreDueno'];
-        $embarcacion->apellidoDueno     =   $input['apellidoDueno'];
+        $embarcacion->patron_id         =   $input['patron_id'];
         $embarcacion->capacidad         =   $input['capacidad'];
         $embarcacion->estara            =   $input['estara'];
         $embarcacion->manga             =   $input['manga'];
         $embarcacion->puntual           =   $input['puntual'];
         $embarcacion->activo            =   true;
         //Control de subida de imagen por hacer
-        $embarcacion->imagen        =   $this->file_service->upload($request->file('imagen'),'embarcacion');
+        if($request->file('imagen')!=null)
+            $embarcacion->imagen        =   $this->file_service->upload($request->file('imagen'),'embarcacion');
 
         $embarcacion->save();
         

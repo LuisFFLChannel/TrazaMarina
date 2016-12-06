@@ -32,7 +32,6 @@ class UpdateEspecieRequest extends Request
             'tamanoMax'             =>  'required|numeric',
             'inicioVeda'            =>  'required|date',
             'finVeda'               =>  'required|date',
-            'pescaPromedio'         =>  'required|numeric',
             'factorHielo'         =>  'required|numeric',
             'imagen'                =>  'image'
         ];

@@ -69,6 +69,7 @@ class PermisoPatronController extends Controller
         $input = $request->all();
 
         $permisoPatron                        =   new PermisoPatron;
+        $permisoPatron->codigo                =   $input['codigo'];
         $permisoPatron->nombres               =   $input['nombres'];
         $permisoPatron->apellidos             =   $input['apellidos'];
         $permisoPatron->dni                   =   $input['dni'];
@@ -133,7 +134,7 @@ class PermisoPatronController extends Controller
         $input = $request->all();
 
         $permisoPatron = PermisoPatron::find($id);
-
+        $permisoPatron->codigo                =   $input['codigo'];
         $permisoPatron->nombres               =   $input['nombres'];
         $permisoPatron->apellidos             =   $input['apellidos'];
         $permisoPatron->dni                   =   $input['dni'];

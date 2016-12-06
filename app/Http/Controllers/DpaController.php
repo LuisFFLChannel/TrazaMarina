@@ -82,7 +82,8 @@ class DpaController extends Controller
         $dpa->activo            =   true;
 
         //Control de subida de imagen por hacer
-        $dpa->imagen        =   $this->file_service->upload($request->file('imagen'),'dpa');
+        if($request->file('imagen')!=null)
+            $dpa->imagen        =   $this->file_service->upload($request->file('imagen'),'dpa');
 
         $dpa->save();
         if (Auth::user()->role_id == 4){

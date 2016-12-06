@@ -105,6 +105,7 @@ class TransporteTerminalController extends Controller
         $input = $request->all();
 
         $certificado                                =   new TransporteTerminal;
+        $certificado->codigo                        =   $input['codigo'];
         $certificado->terminal_id                    =   $input['terminal_id'];
         $certificado->frigorifico_id                =   $input['frigorifico_id'];
         $certificado->transportista_id              =   $input['transportista_id'];
@@ -212,7 +213,7 @@ class TransporteTerminalController extends Controller
         $input = $request->all();
 
         $certificado = TransporteTerminal::find($id);
-
+        $certificado->codigo                        =   $input['codigo'];
         $certificado->terminal_id                    =   $input['terminal_id'];
         $certificado->frigorifico_id                =   $input['frigorifico_id'];
         $certificado->transportista_id              =   $input['transportista_id'];

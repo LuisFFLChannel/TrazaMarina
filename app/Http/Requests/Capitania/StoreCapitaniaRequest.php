@@ -30,7 +30,7 @@ class StoreCapitaniaRequest extends Request
             'direccion'             =>  'required|max:150',
             'longitud'           =>  'required|numeric',
             'latitud'           =>  'required|numeric',
-            'imagen'                =>  'required|image'
+            'imagen'                =>  'image'
         
         ];
     }

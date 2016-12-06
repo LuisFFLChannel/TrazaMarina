@@ -14,9 +14,9 @@ class CreateCertficadoArriboTable extends Migration
     {
         Schema::create('certificadoArribo', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre');
+            $table->string('codigo');
+            //$table->string('nombre');
             $table->string('nMatricula');
-            $table->double('toneladas');
             $table->timestamp('fechaArribo');
             $table->boolean('asignado');
             $table->boolean('activo');

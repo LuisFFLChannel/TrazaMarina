@@ -49,7 +49,7 @@
     <!-- /.container -->
 <!--</nav>-->
 @elseif(Auth::user()->role_id == config('constants.admin'))
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<!--<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">-->
     <div class="nav-side-menu">
         
         <div class="brand" >
@@ -66,8 +66,8 @@
         <div class="menu-list">
             <ul id="menu-content" class="menu-content collapse out">
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Trabajadores <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a data-toggle="collapse" data-target="#trabajadoresAdm" class="collapsed">Trabajadores <b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="trabajadoresAdm">
                         <li><a href="{{url('admin/user/new')}}">Nuevo</a></li>
                         <li class="divider"></li>
                         <!--<li><a href="{{url('admin/promoter')}}">Promotores de ventas</a></li>
@@ -80,71 +80,71 @@
                 </li>
                 
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Clientes <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a data-toggle="collapse" data-target="#clientesAdm" class="collapsed">Clientes <b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="clientesAdm">
                         <li><a href="{{url('admin/client')}}">Listar</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Esp. Marinas <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a data-toggle="collapse" data-target="#especiesAdm" class="collapsed">Esp. Marinas <b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="especiesAdm">
                         <li><a href="{{url('admin/especieMarinas')}}">Listar</a></li>
                         <li><a href="{{url('admin/especieMarinas/new')}}">Nuevo</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Puertos <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a data-toggle="collapse" data-target="#puertosAdm" class="collapsed">Puertos <b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="puertosAdm">
                         <li><a href="{{url('admin/puertos')}}">Listar</a></li>
                         <li><a href="{{url('admin/puertos/new')}}">Nuevo</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dpa <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a data-toggle="collapse" data-target="#dpaAdm" class="collapsed">Dpa <b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="dpaAdm">
                         <li><a href="{{url('admin/dpas')}}">Listar</a></li>
                         <li><a href="{{url('admin/dpas/new')}}">Nuevo</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Capitanias <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a data-toggle="collapse" data-target="#capitaniasAdm" class="collapsed">Capitanias <b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="capitaniasAdm">
                         <li><a href="{{url('admin/capitanias')}}">Listar</a></li>
                         <li><a href="{{url('admin/capitanias/new')}}">Nuevo</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Terminales <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a data-toggle="collapse" data-target="#terminalesAdm" class="collapsed">Terminales <b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="terminalesAdm">
                         <li><a href="{{url('admin/terminales')}}">Listar</a></li>
                         <li><a href="{{url('admin/terminales/new')}}">Nuevo</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Fabricas <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a data-toggle="collapse" data-target="#puertosAdm" class="collapsed">Fabricas <b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="puertosAdm">
                         <li><a href="{{url('admin/fabricas')}}">Listar</a></li>
                         <li><a href="{{url('admin/fabricas/new')}}">Nuevo</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pescadores <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a data-toggle="collapse" data-target="#pescadoresAdm" class="collapsed">Pescadores <b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="pescadoresAdm">
                         <li><a href="{{url('admin/pescadores')}}">Listar</a></li>
                         <li><a href="{{url('admin/pescadores/new')}}">Nuevo</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Embarcaciones <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a data-toggle="collapse" data-target="#embarcacionesAdm" class="collapsed">Embarcaciones <b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="embarcacionesAdm">
                         <li><a href="{{url('admin/embarcaciones')}}">Listar</a></li>
                         <li><a href="{{url('admin/embarcaciones/new')}}">Nuevo</a></li>
                     </ul>
                 </li>
                 <li>
                     
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Transportistas <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a data-toggle="collapse" data-target="#transportistasAdm" class="collapsed">Transportistas <b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="transportistasAdm">
                         <li><a href="{{url('admin/transportistas')}}">Listar</a></li>
                         <li><a href="{{url('admin/transportistas/new')}}">Nuevo</a></li>
                     </ul>
@@ -152,8 +152,8 @@
                  
                 <li>
                     
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Frigoríficos <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a data-toggle="collapse" data-target="#frigorificosAdm" class="collapsed">Frigoríficos <b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="frigorificosAdm">
                         <li><a href="{{url('admin/frigorificos')}}">Listar</a></li>
                         <li><a href="{{url('admin/frigorificos/new')}}">Nuevo</a></li>
                     </ul>
@@ -167,24 +167,21 @@
                     </ul>
                 </li>-->
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Configuración  <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a data-toggle="collapse" data-target="#configAdm" class="collapsed">Configuración  <b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="configAdm">
                         <li><a href="{{url('admin/config/about')}}">Acerca de</a></li>
                         <li><a href="{{url('admin/config/system')}}">Sistema</a></li>
                     </ul>
                 </li>
 
-            </ul>
-
-            <ul class="nav navbar-nav navbar-right">
                 <li><a href="{{url('admin/')}}">{{ Auth::user()->name }}</a></li>
                 <li><a href="{{url('auth/logout')}}">Salir</a></li>
-          </ul>
+            </ul>
         </div>
         <!-- /.navbar-collapse -->
     </div>
     <!-- /.container -->
-</nav>
+<!--</nav>-->
 @elseif(Auth::user()->role_id == config('constants.usuarioPesca'))
 <!--<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">-->
     <div class="nav-side-menu">
@@ -305,12 +302,12 @@
                         <li><a href="{{url('usuarioPesca/cantidadHielo')}}">Calcular Hielo Necesario</a></li>
                     </ul>
                 </li>
-            </ul>
+            
 
-            <ul id="menu-content" class="menu-content collapse out">
+            
                 <li><a href="{{url('usuarioPesca/')}}">{{ Auth::user()->name }}</a></li>
                 <li><a href="{{url('auth/logout')}}">Salir</a></li>
-          </ul>
+            </ul>
         </div>
         
     </div>
@@ -422,11 +419,10 @@
                 </li>
                 
 
-            </ul>
-            <ul id="menu-content" class="menu-content collapse out">
+            
                 <li><a href="{{url('usuarioIntermediario/')}}">{{ Auth::user()->name }}</a></li>
                 <li><a href="{{url('auth/logout')}}">Salir</a></li>
-          </ul>
+            </ul>
         </div>
         <!-- /.navbar-collapse -->
     </div>
@@ -496,13 +492,9 @@
                     </ul>
                 </li>
                 
-
-            </ul>
-
-            <ul id="menu-content" class="menu-content collapse out">
                 <li><a href="{{url('usuarioValidacion/')}}">{{ Auth::user()->name }}</a></li>
                 <li><a href="{{url('auth/logout')}}">Salir</a></li>
-          </ul>
+            </ul>
         </div>
         <!-- /.navbar-collapse -->
     </div>

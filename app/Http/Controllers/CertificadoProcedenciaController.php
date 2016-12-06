@@ -104,6 +104,7 @@ class CertificadoProcedenciaController extends Controller
         $input = $request->all();
 
         $certificado                                =   new CertificadoProcedencia;
+        $certificado->codigo                    =   $input['codigo'];
         $certificado->fabrica_id                    =   $input['fabrica_id'];
         $certificado->frigorifico_id                =   $input['frigorifico_id'];
         $certificado->transportista_id              =   $input['transportista_id'];
@@ -208,7 +209,7 @@ class CertificadoProcedenciaController extends Controller
         $input = $request->all();
 
         $certificado = CertificadoProcedencia::find($id);
-
+        $certificado->codigo                        =   $input['codigo'];
         $certificado->fabrica_id                    =   $input['fabrica_id'];
         $certificado->frigorifico_id                =   $input['frigorifico_id'];
         $certificado->transportista_id              =   $input['transportista_id'];

@@ -73,6 +73,8 @@ class FrigorificoController extends Controller
         $frigorifico->nombre            =   $input['nombre'];
         $frigorifico->placa             =   $input['placa'];
         $frigorifico->capacidad         =   $input['capacidad'];
+        if($request->file('imagen')!=null)
+            $frigorifico->imagen        =   $this->file_service->upload($request->file('imagen'),'frigorifico');
         $frigorifico->activo            =   true;
 
         $frigorifico->save();
@@ -137,7 +139,8 @@ class FrigorificoController extends Controller
         $frigorifico->nombre           =   $input['nombre'];
         $frigorifico->placa             =   $input['placa'];
         $frigorifico->capacidad         =   $input['capacidad'];
-
+        if($request->file('imagen')!=null)
+            $frigorifico->imagen        =   $this->file_service->upload($request->file('imagen'),'frigorifico');
         $frigorifico->save();
         if (Auth::user()->role_id == 4){
             return redirect()->route('admin.frigorificos');

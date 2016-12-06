@@ -95,7 +95,8 @@ class PuertosController extends Controller
         $puerto->activo            =   true;
 
         //Control de subida de imagen por hacer
-        $puerto->imagen        =   $this->file_service->upload($request->file('imagen'),'puerto');
+        if($request->file('imagen')!=null)
+            $puerto->imagen        =   $this->file_service->upload($request->file('imagen'),'puerto');
 
         $puerto->save();
         

@@ -94,12 +94,13 @@ class EspeciesMarinasController extends Controller
         $especie->tamanoMax         =   $input['tamanoMax'];
         $especie->inicioVeda        =   new Carbon($input['inicioVeda']);
         $especie->finVeda           =   new Carbon($input['finVeda']);
-        $especie->pescaPromedio     =   $input['pescaPromedio'];
+        //$especie->pescaPromedio     =   $input['pescaPromedio'];
         $especie->factorHielo     =   $input['factorHielo'];
         $especie->activo            =   true;
 
         //Control de subida de imagen por hacer
-        $especie->imagen        =   $this->file_service->upload($request->file('imagen'),'especie');
+        if($request->file('imagen')!=null)
+            $especie->imagen        =   $this->file_service->upload($request->file('imagen'),'especie');
 
         $especie->save();
         
@@ -173,7 +174,7 @@ class EspeciesMarinasController extends Controller
         $especie->tamanoMax         =   $input['tamanoMax'];
         $especie->inicioVeda        =   new Carbon($input['inicioVeda']);
         $especie->finVeda           =   new Carbon($input['finVeda']);
-        $especie->pescaPromedio     =   $input['pescaPromedio'];
+        //$especie->pescaPromedio     =   $input['pescaPromedio'];
         $especie->factorHielo     =   $input['factorHielo'];
         if($request->file('imagen')!=null)
             $especie->imagen        =   $this->file_service->upload($request->file('imagen'),'especie');

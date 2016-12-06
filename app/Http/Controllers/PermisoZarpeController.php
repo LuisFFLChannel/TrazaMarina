@@ -100,7 +100,8 @@ class PermisoZarpeController extends Controller
         $input = $request->all();
 
         $permisoPatron                          =   new PermisoZarpe;
-        $permisoPatron->nombre                  =   $input['nombre'];
+        $permisoPatron->codigo                  =   $input['codigo'];
+        $permisoPatron->nombreEmbarcacion       =   $input['nombreEmbarcacion'];
         $permisoPatron->nMatricula              =   $input['nMatricula'];
         $permisoPatron->coordenadaX             =   $input['latitud'];
         $permisoPatron->coordenadaY             =   $input['longitud'];
@@ -227,7 +228,8 @@ class PermisoZarpeController extends Controller
 
         $permisoPatron = PermisoZarpe::find($id);
 
-        $permisoPatron->nombre                  =   $input['nombre'];
+        $permisoPatron->codigo                  =   $input['codigo'];
+        $permisoPatron->nombreEmbarcacion       =   $input['nombreEmbarcacion'];
         $permisoPatron->nMatricula              =   $input['nMatricula'];
         $permisoPatron->coordenadaX             =   $input['latitud'];
         $permisoPatron->coordenadaY             =   $input['longitud'];

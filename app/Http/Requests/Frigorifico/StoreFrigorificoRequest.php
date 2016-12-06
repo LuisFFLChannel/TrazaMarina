@@ -27,6 +27,7 @@ class StoreFrigorificoRequest extends Request
             'nombre'            =>  'required|max:100',
             'placa'             =>  'required|max:50|unique:frigorifico',
             'capacidad'          =>  'required|numeric'
+            'imagen'          =>  'image'
         ];
     }
 }

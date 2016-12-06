@@ -25,6 +25,7 @@ class UpdatePermisoMarineroRequest extends Request
     {
         return [
             //
+            'codigo'            =>  'required|max:50',
             'nombres'           =>  'required|max:100',
             'apellidos'        =>  'required|max:100',
             'dni'                   =>  'required|integer|unique:permisoMarinero,dni,'.$this->input('id'),

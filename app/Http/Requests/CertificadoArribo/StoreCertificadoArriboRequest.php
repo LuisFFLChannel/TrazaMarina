@@ -27,7 +27,6 @@ class StoreCertificadoArriboRequest extends Request
             //
             'nombre'           =>  'required|max:100',
             'nMatricula'            =>  'required|max:50|unique:certificadoArribo',
-            'toneladas'         =>  'required|numeric',
             'fechaArribo'         =>  'required'
         ];
     }

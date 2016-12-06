@@ -15,6 +15,7 @@ class CreatePermisoMarineroTable extends Migration
         //
         Schema::create('permisoMarinero', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('codigo');
             $table->string('nombres');
             $table->string('apellidos');
             $table->integer('dni')->unique();

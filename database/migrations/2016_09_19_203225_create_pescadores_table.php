@@ -20,9 +20,11 @@ class CreatePescadoresTable extends Migration
             $table->integer('dni')->unique();
             $table->integer('telefono');
             $table->string('correo');
+            $table->string('ubigeo');
             $table->timestamp('cumpleanos');
             $table->integer('permiso_marinero_id')->unsigned()->unique()->nullable();
             $table->integer('permiso_patron_id')->unsigned()->unique()->nullable();
+            $table->boolean('armador');
             $table->boolean('activo');
             $table->softDeletes();
             $table->timestamps();

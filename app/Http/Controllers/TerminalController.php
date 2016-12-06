@@ -81,7 +81,8 @@ class TerminalController extends Controller
         $terminal->activo            =   true;
 
         //Control de subida de imagen por hacer
-        $terminal->imagen        =   $this->file_service->upload($request->file('imagen'),'terminal');
+        if($request->file('imagen')!=null)
+            $terminal->imagen        =   $this->file_service->upload($request->file('imagen'),'terminal');
 
         $terminal->save();
 

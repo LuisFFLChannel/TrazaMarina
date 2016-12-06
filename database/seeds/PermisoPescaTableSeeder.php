@@ -13,15 +13,15 @@ class PermisoPescaTableSeeder extends Seeder
     public function run()
     {
         //
-        PermisoPesca::insert([  'nombre' => 'Permiso Pesca Nro 1', 
+        PermisoPesca::insert([  'nombre' => 'Permiso Pesca Nro 1', 'codigo' => 'PE-45239FGHE-12031990', 'nombreEmbarcacion' => 'Embarcacion 1',
                         'nMatricula' => 'MATR345FSS', 'fechaVigencia'=>Carbon::create(2019,5,1)->toDateString(), 'asignado' => 1, 'activo' => 1]);
-        PermisoPesca::insert([  'nombre' => 'Permiso Pesca Nro 2', 
+        PermisoPesca::insert([  'nombre' => 'Permiso Pesca Nro 2', 'codigo' => 'PE-45240FGHE-12031990', 'nombreEmbarcacion' => 'Embarcacion 2',
                         'nMatricula' => 'MR34YT5FS2', 'fechaVigencia'=>Carbon::create(2018,5,1)->toDateString(), 'asignado' => 1, 'activo' => 1]);
-        PermisoPesca::insert([  'nombre' => 'Permiso Pesca Nro 3',
+        PermisoPesca::insert([  'nombre' => 'Permiso Pesca Nro 3', 'codigo' => 'PE-45241FGHE-12031990', 'nombreEmbarcacion' => 'Embarcacion 3',
                         'nMatricula' => 'NDFFATEDS8', 'fechaVigencia'=>Carbon::create(2016,5,1)->toDateString(), 'asignado' => 1, 'activo' => 1]);
-        PermisoPesca::insert([  'nombre' => 'Permiso Pesca Nro 4',
+        PermisoPesca::insert([  'nombre' => 'Permiso Pesca Nro 4', 'codigo' => 'PE-45242FGHE-12031990', 'nombreEmbarcacion' => 'Embarcacion 4',
                         'nMatricula' => 'RF562FS345', 'fechaVigencia'=>Carbon::create(2020,5,1)->toDateString(), 'asignado' => 0, 'activo' => 1]);
-        PermisoPesca::insert([  'nombre' => 'Permiso Pesca Nro 5',
+        PermisoPesca::insert([  'nombre' => 'Permiso Pesca Nro 5', 'codigo' => 'PE-45243FGHE-12031990', 'nombreEmbarcacion' => 'Embarcacion 5',
                         'nMatricula' => 'MDR3434DD3', 'fechaVigencia'=>Carbon::create(2020,5,1)->toDateString(), 'asignado' => 0, 'activo' => 1]);
     }
 

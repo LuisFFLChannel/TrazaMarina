@@ -63,6 +63,8 @@
         </div><!-- /.modal-dialog -->
       </div><!-- /.modal -->
     {!!Form::close()!!}
+    </div>
+
   </div>
 </div>
 @stop

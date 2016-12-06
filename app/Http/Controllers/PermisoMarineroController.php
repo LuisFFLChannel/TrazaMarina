@@ -70,6 +70,7 @@ class PermisoMarineroController extends Controller
         $input = $request->all();
 
         $permisoMarinero                        =   new PermisoMarinero;
+        $permisoMarinero->codigo                =   $input['codigo'];
         $permisoMarinero->nombres               =   $input['nombres'];
         $permisoMarinero->apellidos             =   $input['apellidos'];
         $permisoMarinero->dni                   =   $input['dni'];
@@ -134,7 +135,7 @@ class PermisoMarineroController extends Controller
         $input = $request->all();
 
         $permisoMarinero = PermisoMarinero::find($id);
-
+        $permisoMarinero->codigo                =   $input['codigo'];
         $permisoMarinero->nombres               =   $input['nombres'];
         $permisoMarinero->apellidos             =   $input['apellidos'];
         $permisoMarinero->dni                   =   $input['dni'];

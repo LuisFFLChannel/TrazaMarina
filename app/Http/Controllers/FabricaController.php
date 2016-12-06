@@ -81,7 +81,8 @@ class FabricaController extends Controller
         $fabrica->activo            =   true;
 
         //Control de subida de imagen por hacer
-        $fabrica->imagen        =   $this->file_service->upload($request->file('imagen'),'fabrica');
+        if($request->file('imagen')!=null)
+            $fabrica->imagen        =   $this->file_service->upload($request->file('imagen'),'fabrica');
 
         $fabrica->save();
         

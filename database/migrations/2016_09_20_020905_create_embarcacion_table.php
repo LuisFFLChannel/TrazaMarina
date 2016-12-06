@@ -17,8 +17,10 @@ class CreateEmbarcacionTable extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->string('nMatricula');
-            $table->string('nombreDueno');
-            $table->string('apellidoDueno');
+            //$table->string('nombreDueno');
+            //$table->integer('dniDueno');
+            //$table->string('apellidoDueno');
+            $table->integer('armador_id')->unsigned();
             $table->float('capacidad');
             $table->float('estara');
             $table->float('manga');

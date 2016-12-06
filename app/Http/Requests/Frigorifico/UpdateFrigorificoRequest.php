@@ -27,6 +27,7 @@ class UpdateFrigorificoRequest extends Request
             'nombre'            =>  'required|max:100',
             'placa'             =>  'required|max:50|unique:frigorifico,placa,'.$this->input('id'),
             'capacidad'          =>  'required|numeric'
+            'imagen'          =>  'image'
         ];
     }
 }

@@ -15,6 +15,7 @@ class CreatePermisoPatronTable extends Migration
         //
         Schema::create('permisoPatron', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('codigo');
             $table->string('nombres');
             $table->string('apellidos');
             $table->integer('dni')->unique();

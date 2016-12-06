@@ -15,9 +15,13 @@ class CreateCertificadoMatriculaTable extends Migration
         //
         Schema::create('certificadoMatricula', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('codigo');
+            $table->string('libro');
+            $table->string('folio');
             $table->string('nombreDueno');
             $table->string('apellidosDueno');
             $table->integer('dniDueno')->unique();
+            $table->string('nombreEmbarcacion');
             $table->string('nMatricula')->unique();
             $table->boolean('asignado');
             $table->boolean('activo');

@@ -79,7 +79,9 @@ class PescadoresController extends Controller
         $pescador->dni               =   $input['dni'];
         $pescador->telefono          =   $input['telefono'];
         $pescador->correo            =   $input['correo'];
+        $pescador->ubigeo            =   $input['ubigeo'];
         $pescador->cumpleanos        =   new Carbon($input['cumpleanos']);
+        $pescador->armador           =   $input['armador'];
         $pescador->activo            =   true;
 
         $pescador->save();
@@ -145,7 +147,9 @@ class PescadoresController extends Controller
         $pescador->dni               =   $input['dni'];
         $pescador->telefono          =   $input['telefono'];
         $pescador->correo            =   $input['correo'];
+        $pescador->ubigeo            =   $input['ubigeo'];
         $pescador->cumpleanos        =   new Carbon($input['cumpleanos']);
+        $pescador->armador           =   $input['armador'];
 
         $pescador->save();
         if (Auth::user()->role_id == 4){

@@ -25,6 +25,7 @@ class UpdatePermisoPatronRequest extends Request
     {
         return [
             //
+            'codigo'            =>  'required|max:50',
             'nombres'           =>  'required|max:100',
             'apellidos'        =>  'required|max:100',
             'dni'                   =>  'required|integer|unique:permisoPatron,dni,'.$this->input('id'),

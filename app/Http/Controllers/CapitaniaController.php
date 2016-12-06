@@ -84,7 +84,8 @@ class CapitaniaController extends Controller
         $capitania->activo            =   true;
 
         //Control de subida de imagen por hacer
-        $capitania->imagen        =   $this->file_service->upload($request->file('imagen'),'capitania');
+        if($request->file('imagen')!=null)
+            $capitania->imagen        =   $this->file_service->upload($request->file('imagen'),'capitania');
 
         $capitania->save();
         

@@ -30,6 +30,12 @@
             {!!Form::input('number','capacidad', null ,['class'=>'form-control','id'=>'capacidad', 'min'=>0,'required'])!!}
           </div>
         </div>
+        <div class="form-group">
+          <label for="inputEmail3" class="col-sm-2 control-label">Imagen</label>
+          <div class="col-sm-10">
+            {!!Form::input('file','imagen', null ,['class'=>'form-control','id'=>'inputEmail3'])!!}
+          </div>
+        </div>
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
           <a class="btn btn-info" href="" title="submit" data-toggle="modal" data-target="#submitModal" >Guardar</a>

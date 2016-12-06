@@ -27,13 +27,12 @@ class StoreEmbarcacionRequest extends Request
             //
             'nombre'                =>  'required|max:100',
             'nMatricula'            =>  'required|max:50|unique:embarcacion',
-            'nombreDueno'           =>  'required|max:100',
-            'apellidoDueno'         =>  'required|max:100',
+            'armador_id'            =>  'required',
             'capacidad'             =>  'required|numeric|min:0',
             'estara'                =>  'required|numeric|min:0',
             'manga'                 =>  'required|numeric|min:0',
             'puntual'               =>  'required|numeric|min:0',
-            'imagen'                =>  'required|image'
+            'imagen'                =>  'image'
         ];
     }
 }

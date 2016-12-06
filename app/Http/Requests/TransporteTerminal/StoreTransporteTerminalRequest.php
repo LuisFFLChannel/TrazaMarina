@@ -24,13 +24,13 @@ class StoreTransporteTerminalRequest extends Request
     public function rules()
     {
         $rules = [
-            
-            'terminal_id'                =>  'required|integer',
-            'frigorifico_id'                        =>  'required|integer',
-            'transportista_id'                     =>  'required|integer',
-            'fechaDictada'                  =>  'required',
-            'notas_id'                   =>  'required',
-            'toneladas'                     =>  'required'
+            'codigo'                =>  'required|max:50',   
+            'terminal_id'           =>  'required|integer',
+            'frigorifico_id'        =>  'required|integer',
+            'transportista_id'      =>  'required|integer',
+            'fechaDictada'          =>  'required',
+            'notas_id'              =>  'required',
+            'toneladas'             =>  'required'
         ];
         $notas = $this->request->get('notas_id');
         //dd($especies = $this->request->get('tallas'));

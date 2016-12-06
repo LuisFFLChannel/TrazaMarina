@@ -15,6 +15,7 @@ class CreateTransporteTerminalTable extends Migration
         //
         Schema::create('transporteTerminal', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('codigo');
             $table->timestamp('fechaSalida');
             $table->integer('terminal_id')->unsigned();
             $table->integer('frigorifico_id')->unsigned();

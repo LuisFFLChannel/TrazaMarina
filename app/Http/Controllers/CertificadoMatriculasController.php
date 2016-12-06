@@ -71,9 +71,13 @@ class CertificadoMatriculasController extends Controller
         $input = $request->all();
 
         $certificadoMatricula                        =   new CertificadoMatricula;
+        $certificadoMatricula->codigo               =   $input['codigo'];
+        $certificadoMatricula->libro                =   $input['libro'];
+        $certificadoMatricula->folio                 =   $input['folio'];
         $certificadoMatricula->nombredueno           =   $input['nombreDueno'];
         $certificadoMatricula->apellidosDueno        =   $input['apellidosDueno'];
         $certificadoMatricula->dniDueno              =   $input['dniDueno'];
+        $certificadoMatricula->nombreEmbarcacion     =   $input['nombreEmbarcacion'];
         $certificadoMatricula->nMatricula            =   $input['nMatricula'];
         $certificadoMatricula->asignado              =   false;
         $certificadoMatricula->activo                =   true;
@@ -135,10 +139,13 @@ class CertificadoMatriculasController extends Controller
         $input = $request->all();
 
         $certificadoMatricula = CertificadoMatricula::find($id);
-
+        $certificadoMatricula->codigo               =   $input['codigo'];
+        $certificadoMatricula->libro                =   $input['libro'];
+        $certificadoMatricula->folio                 =   $input['folio'];
         $certificadoMatricula->nombredueno           =   $input['nombreDueno'];
         $certificadoMatricula->apellidosDueno        =   $input['apellidosDueno'];
         $certificadoMatricula->dniDueno              =   $input['dniDueno'];
+        $certificadoMatricula->nombreEmbarcacion     =   $input['nombreEmbarcacion'];
         $certificadoMatricula->nMatricula            =   $input['nMatricula'];
         //Control de subida de imagen por hacer
 
