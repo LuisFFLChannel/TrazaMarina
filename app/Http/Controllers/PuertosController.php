@@ -92,6 +92,9 @@ class PuertosController extends Controller
         $puerto->direccion         =   $input['direccion'];
         $puerto->coordenadaX       =   $input['latitud'];
         $puerto->coordenadaY       =   $input['longitud'];
+        $puerto->contacto       =   $input['contacto'];
+        $puerto->categoria_id       =   $input['categoria_id'];
+        $puerto->categoria_id       =   $input['categoria_id'];
         $puerto->activo            =   true;
 
         //Control de subida de imagen por hacer
@@ -160,6 +163,9 @@ class PuertosController extends Controller
         $puerto->direccion         =   $input['direccion'];
         $puerto->coordenadaX       =   $input['latitud'];
         $puerto->coordenadaY       =   $input['longitud'];
+        $puerto->contacto       =   $input['contacto'];
+        $puerto->categoria_id       =   $input['categoria_id'];
+        $puerto->categoria_id       =   $input['categoria_id'];
         if($request->file('imagen')!=null)
             $puerto->imagen        =   $this->file_service->upload($request->file('imagen'),'puerto');
 

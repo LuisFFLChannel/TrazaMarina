@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePuertoTable extends Migration
+class CreateCategoriaPuertoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,10 @@ class CreatePuertoTable extends Migration
     public function up()
     {
         //
-         Schema::create('puerto', function (Blueprint $table) {
+        Schema::create('categoriaPuerto', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
-            $table->string('direccion');
-            $table->double('coordenadaX',15,8);
-            $table->double('coordenadaY',15,8);
-            $table->string('contacto');
-            $table->string('direccion');
-            $table->string('categoria_id')->unsigned();
-            $table->string('capitania_id')->unsigned();
-            $table->string('imagen'); 
+            $table->string('descripcion');
             $table->boolean('activo');
             $table->softDeletes();
             $table->timestamps();
@@ -38,6 +31,5 @@ class CreatePuertoTable extends Migration
     public function down()
     {
         //
-         Schema::drop('puerto');
     }
 }

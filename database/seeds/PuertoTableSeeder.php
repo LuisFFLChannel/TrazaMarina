@@ -13,10 +13,13 @@ class PuertoTableSeeder extends Seeder
     {
         //
         Puerto::insert([  'nombre' => 'Paita','direccion' => 'Jr. Ferrocarril 127 Paita, Paita', 'coordenadaX' => -5.085784, 'coordenadaY'=>-81.108180,
+                        'categoria_id' => 2, 'capitania_id' => 1,
                         'imagen' => 'images/puerto.jpg', 'activo' => 1]);
         Puerto::insert([  'nombre' => 'Paita','direccion' => 'Manco Capac 255, Callao', 'coordenadaX' => -12.054767, 'coordenadaY'=>-77.149829,
+                        'categoria_id' => 2, 'capitania_id' => 1,
                         'imagen' => 'images/puerto.jpg', 'activo' => 1]);
         Puerto::insert([  'nombre' => 'Puerto 1','direccion' => 'Av Ejemplo', 'coordenadaX' => -7.085784, 'coordenadaY'=>-73.108180,
+                        'categoria_id' => 2, 'capitania_id' => 1,
                         'imagen' => 'images/puerto.jpg', 'activo' => 1]);
     }
 }

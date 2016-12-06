@@ -22,4 +22,10 @@ class Puerto extends Model
     public function desembarque(){
         return $this->hasMany('App\Models\Desembarque');
     }
+    public function categoria(){
+        return $this->belongsTo('App\Models\Categoria','categoria_id');
+    }
+    public function capitania(){
+        return $this->belongsTo('App\Models\Capitania','capitania_id');
+    }
 }
