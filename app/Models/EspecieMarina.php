@@ -13,4 +13,7 @@ class EspecieMarina extends Model
     public function notaIngreso(){
         return $this->hasMany('App\Models\NotaIngreso');
     }
+    public function tipoPesca(){
+        return $this->belongsTo('App\Models\TipoPesca','tipoPesca_id');
+    }
 }

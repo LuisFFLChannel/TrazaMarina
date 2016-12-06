@@ -9,4 +9,8 @@ class TipoPesca extends Model
     //
     protected $table = 'tipoPesca';
 	protected $dates = ['deleted_at'];
+
+	public function especies(){
+        return $this->hasMany('App\Models\EspecieMarina','tipoPesca_id','id');
+    }
 }
