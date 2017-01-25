@@ -23,6 +23,20 @@ class DatabaseSeeder extends Seeder
         $this->call(PerfilUsuarioTableSeeder::class);
         $this->call(TestUsuarioTableSeeder::class);
 
+        $this->call(TipoPescaSeeder::class);
+        $this->call(CategoriaPuertoSeeder::class);
+        $this->call(CapitaniaTableSeeder::class);
+        $this->call(FabricaTableSeeder::class);
+        $this->call(TerminalTableSeeder::class);
+        $this->call(PuertoTableSeeder::class);
+        $this->call(EspecieMarinaTableSeeder::class);
+        $this->call(PermisoMarineroTableSeeder::class);
+        $this->call(PermisoPatronTableSeeder::class);
+        $this->call(PermisoPescaTableSeeder::class);
+        $this->call(CertificadoMatriculaTableSeeder::class);
+        $this->call(EmbarcacionTableSeeder::class);
+        $this->call(EspecieMarinaTableSeeder::class);
+
         Model::reguard();
     }
 }

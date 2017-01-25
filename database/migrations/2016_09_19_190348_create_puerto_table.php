@@ -20,9 +20,8 @@ class CreatePuertoTable extends Migration
             $table->double('coordenadaX',15,8);
             $table->double('coordenadaY',15,8);
             $table->string('contacto');
-            $table->string('direccion');
-            $table->string('categoria_id')->unsigned();
-            $table->string('capitania_id')->unsigned();
+            $table->integer('categoria_id')->unsigned();
+            $table->integer('capitania_id')->unsigned();
             $table->string('imagen'); 
             $table->boolean('activo');
             $table->softDeletes();
