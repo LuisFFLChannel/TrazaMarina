@@ -418,7 +418,7 @@ Route::group(['middleware' => ['auth', 'usuarioPesca']], function () {
     Route::get('usuarioPesca/puertos/new', 'PuertosController@create');
     Route::post('usuarioPesca/puertos/new', 'PuertosController@store');
     Route::get('usuarioPesca/puertos/{id}/edit', 'PuertosController@edit');
-    Route::post('admin/puertos/{id}/edit', 'PuertosController@update');
+    Route::post('usuarioPesca/puertos/{id}/edit', 'PuertosController@update');
     Route::get('admin/puertos/{id}/delete', 'PuertosController@destroy');
 
     Route::get('usuarioPesca/capitanias', ['uses'=>'CapitaniaController@index','as'=>'usuarioPesca.capitanias']);

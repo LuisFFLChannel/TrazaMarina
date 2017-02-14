@@ -61,9 +61,15 @@
             </div>
           </div>
         <div class="form-group">
-          <label for="inputEmail3" class="col-sm-2 control-label">Promedio de Pesca (Kg)</label>
+            <label class="col-sm-2 control-label">Tipo Pesca</label>
+            <div class="col-sm-10">
+                {!! Form::select('tipoPesca_id', $tipoPesca_lista->toArray(), null, ['class' => 'form-control','required', 'id'=>'tipoPesca_id']) !!}
+            </div>
+        </div>
+        <div class="form-group">
+          <label for="inputEmail3" class="col-sm-2 control-label">Factor Hielo</label>
           <div class="col-sm-10">
-            {!!Form::input('text','pescaPromedio', null ,['class'=>'form-control','id'=>'inputEmai3', 'maxlength'=>'100','required'])!!}
+            {!!Form::input('number','factorHielo', null ,['class'=>'form-control','id'=>'inputEmai3', 'min' =>0,'required'])!!}
           </div>
         </div>
         <div class="form-group">
@@ -78,7 +84,7 @@
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
           <a class="btn btn-info" href="" title="submit" data-toggle="modal" data-target="#submitModal" >Guardar</a>
-          <a href="{{action('EspeciesMarinasController@index')}}"><button type="button" class="btn btn-info">Cancelar</button></a>
+          <a href="{{URL::previous()}}"><button type="button" class="btn btn-info">Cancelar</button></a>
         </div>
       </div>
 

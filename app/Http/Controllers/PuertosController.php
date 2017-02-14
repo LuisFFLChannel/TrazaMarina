@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Puerto\StorePuertoRequest;
 use App\Http\Requests\Puerto\UpdatePuertoRequest;
 use App\Models\Puerto;
+use App\Models\CategoriaPuerto;
+use App\Models\Capitania;
 use App\Services\FileService;
 use App\User;
 use Carbon\Carbon;
@@ -67,11 +69,17 @@ class PuertosController extends Controller
     public function create()
     {
         //
+        $categoriaPuerto_lista = CategoriaPuerto::all()->lists('nombre','id');
+        $capitania_lista = Capitania::all()->lists('nombre','id');
+        $arreglo = [
+        'categoriaPuerto_lista'   =>$categoriaPuerto_lista,
+        'capitania_lista'   =>$capitania_lista];
+
         if (Auth::user()->role_id == 4){
-            return view('internal.admin.nuevoPuerto');
+            return view('internal.admin.nuevoPuerto',$arreglo);
         }
         elseif  (Auth::user()->role_id == 5){
-            return view('internal.usuarioPesca.nuevoPuerto');
+            return view('internal.usuarioPesca.nuevoPuerto',$arreglo);
         }
         
     }
@@ -93,8 +101,8 @@ class PuertosController extends Controller
         $puerto->coordenadaX       =   $input['latitud'];
         $puerto->coordenadaY       =   $input['longitud'];
         $puerto->contacto       =   $input['contacto'];
-        $puerto->categoria_id       =   $input['categoria_id'];
-        $puerto->categoria_id       =   $input['categoria_id'];
+        $puerto->categoria_id       =   $input['categoriaPuerto_id'];
+        $puerto->capitania_id       =   $input['capitania_id'];
         $puerto->activo            =   true;
 
         //Control de subida de imagen por hacer
@@ -133,14 +141,22 @@ class PuertosController extends Controller
     {
         //
         $puerto = Puerto::find($id);
+
         if ($puerto ==null){
             return response()->view('errors.503', [], 404);
         }
+        $categoriaPuerto_lista = CategoriaPuerto::all()->lists('nombre','id');
+        $capitania_lista = Capitania::all()->lists('nombre','id');
+        $arreglo = [
+        'categoriaPuerto_lista'   =>$categoriaPuerto_lista,
+        'capitania_lista'   =>$capitania_lista,
+        'puerto'    =>  $puerto];
+
         if (Auth::user()->role_id == 4){
-            return view('internal.admin.editarPuerto', compact('puerto'));
+            return view('internal.admin.editarPuerto', $arreglo);
         }
         elseif  (Auth::user()->role_id == 5){
-            return view('internal.usuarioPesca.editarPuerto', compact('puerto'));
+            return view('internal.usuarioPesca.editarPuerto', $arreglo);
         }
 
     }
@@ -156,7 +172,7 @@ class PuertosController extends Controller
     {
         //
          $input = $request->all();
-
+        
         $puerto = Puerto::find($id);
 
         $puerto->nombre            =   $input['nombre'];
@@ -164,8 +180,8 @@ class PuertosController extends Controller
         $puerto->coordenadaX       =   $input['latitud'];
         $puerto->coordenadaY       =   $input['longitud'];
         $puerto->contacto       =   $input['contacto'];
-        $puerto->categoria_id       =   $input['categoria_id'];
-        $puerto->categoria_id       =   $input['categoria_id'];
+        $puerto->categoria_id       =   $input['categoriaPuerto_id'];
+        $puerto->capitania_id       =   $input['capitania_id'];
         if($request->file('imagen')!=null)
             $puerto->imagen        =   $this->file_service->upload($request->file('imagen'),'puerto');
 

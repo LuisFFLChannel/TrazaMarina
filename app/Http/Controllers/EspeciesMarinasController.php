@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\EspecieMarina\StoreEspecieRequest;
 use App\Http\Requests\EspecieMarina\UpdateEspecieRequest;
 use App\Models\EspecieMarina;
+use App\Models\TipoPesca;
 use App\Services\FileService;
 use App\User;
 use Carbon\Carbon;
@@ -65,12 +66,15 @@ class EspeciesMarinasController extends Controller
     public function create()
     {
         //
+        $tipoPesca_lista = TipoPesca::all()->lists('nombre','id');
+        $arreglo = [
+        'tipoPesca_lista'   =>$tipoPesca_lista];
 
         if (Auth::user()->role_id == 4){
-            return view('internal.admin.nuevaEspecieMarina');
+            return view('internal.admin.nuevaEspecieMarina',$arreglo);
         }
         elseif  (Auth::user()->role_id == 5){
-            return view('internal.usuarioPesca.nuevaEspecieMarina');  
+            return view('internal.usuarioPesca.nuevaEspecieMarina',$arreglo);  
         }
         
     }
@@ -94,7 +98,7 @@ class EspeciesMarinasController extends Controller
         $especie->tamanoMax         =   $input['tamanoMax'];
         $especie->inicioVeda        =   new Carbon($input['inicioVeda']);
         $especie->finVeda           =   new Carbon($input['finVeda']);
-        $especie->tipoPesca         =   $input['tipoPesca'];
+        $especie->tipoPesca_id         =   $input['tipoPesca_id'];
         //$especie->pescaPromedio     =   $input['pescaPromedio'];
         $especie->factorHielo     =   $input['factorHielo'];
         $especie->activo            =   true;
@@ -136,16 +140,20 @@ class EspeciesMarinasController extends Controller
         //
 
         $especie = EspecieMarina::find($idEspecie);
+        $tipoPesca_lista = TipoPesca::all()->lists('nombre','id');
+        $arreglo = [
+        'especie'       =>  $especie,
+        'tipoPesca_lista'   =>$tipoPesca_lista];
 
         if ($especie==null){
             return response()->view('errors.503', [], 404);
         }
 
         if (Auth::user()->role_id == 4){
-            return view('internal.admin.editarEspecieMarina', compact('especie'));
+            return view('internal.admin.editarEspecieMarina', $arreglo);
         }
         elseif  (Auth::user()->role_id == 5){
-            return view('internal.usuarioPesca.editarEspecieMarina', compact('especie'));
+            return view('internal.usuarioPesca.editarEspecieMarina', $arreglo);
         }
 
         
@@ -175,7 +183,7 @@ class EspeciesMarinasController extends Controller
         $especie->tamanoMax         =   $input['tamanoMax'];
         $especie->inicioVeda        =   new Carbon($input['inicioVeda']);
         $especie->finVeda           =   new Carbon($input['finVeda']);
-        $especie->tipoPesca         =   $input['tipoPesca'];
+        $especie->tipoPesca_id         =   $input['tipoPesca_id'];
         //$especie->pescaPromedio     =   $input['pescaPromedio'];
         $especie->factorHielo     =   $input['factorHielo'];
         if($request->file('imagen')!=null)

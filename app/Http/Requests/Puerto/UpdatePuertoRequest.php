@@ -28,9 +28,9 @@ class UpdatePuertoRequest extends Request
             'direccion'             =>  'required|max:150',
             'longitud'           =>  'required|numeric',
             'latitud'           =>  'required|numeric',
-            'contacto'                =>  'required|max:100',
-            'categoria_id'                =>  'required',
-            'capitania_id'                =>  'required',
+             'contacto'               =>  'required|max:100',
+            'categoriaPuerto_id'        =>  'required',
+            'capitania_id'             =>  'required',
             'imagen'                =>  'image'
         ];
     }

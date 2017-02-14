@@ -61,10 +61,10 @@
             </div>
           </div>
         <div class="form-group">
-          <label for="inputEmail3" class="col-sm-2 control-label">Promedio de Pesca (Kg)</label>
-          <div class="col-sm-10">
-            {!!Form::input('number','pescaPromedio', null ,['class'=>'form-control','id'=>'inputEmai3', 'min' =>0,'required'])!!}
-          </div>
+            <label class="col-sm-2 control-label">Tipo Pesca</label>
+            <div class="col-sm-10">
+                {!! Form::select('tipoPesca_id', $tipoPesca_lista->toArray(), null, ['class' => 'form-control','required', 'id'=>'tipoPesca_id']) !!}
+            </div>
         </div>
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-2 control-label">Factor Hielo</label>

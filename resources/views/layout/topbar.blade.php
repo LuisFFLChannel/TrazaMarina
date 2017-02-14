@@ -69,7 +69,7 @@
                     <a data-toggle="collapse" data-target="#trabajadoresAdm" class="collapsed">Trabajadores <b class="caret"></b></a>
                     <ul class="sub-menu collapse" id="trabajadoresAdm">
                         <li><a href="{{url('admin/user/new')}}">Nuevo</a></li>
-                        <li class="divider"></li>
+                       
                         <!--<li><a href="{{url('admin/promoter')}}">Promotores de ventas</a></li>
                         <li><a href="{{url('admin/salesman')}}">Vendedores</a></li>-->
                         <li><a href="{{url('admin/admin')}}">Administradores</a></li>
