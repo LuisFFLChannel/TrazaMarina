@@ -18,8 +18,8 @@
     <div class="col-sm-8">
         <table class="table table-bordered table-striped">
           <tr>
-              <th >Numeroe</th>
-              <th >{{$desembarque->id}}</th>   
+              <th >Numero</th>
+              <th >{{$desembarque->codigo}}</th>   
           </tr>  
           <tr>
               <th>Puerto desembarque</th>
@@ -59,7 +59,7 @@
             <table class="table table-bordered table-striped">
               <tr>
                   <th >Codigo</th>
-                  <th >{{$desembarque->certificadoArribo->id}}</th>   
+                  <th >{{$desembarque->certificadoArribo->codigo}}</th>   
               </tr> 
               <tr>
                   <th>Nombre</th>

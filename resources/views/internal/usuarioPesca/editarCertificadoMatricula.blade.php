@@ -14,26 +14,50 @@
       {!!Form::open(array('url' => 'usuarioPesca/certificadoMatriculas/'.$certificadoMatricula->id.'/edit','files'=>true,'id'=>'form','class'=>'form-horizontal'))!!}
         {!!Form::hidden('id', $certificadoMatricula->id)!!}
         <div class="form-group">
+          <label for="codigo" class="col-sm-3 control-label">Numero del Documento</label>
+          <div class="col-sm-9">
+            {!!Form::input('text','codigo', $certificadoMatricula->codigo ,['class'=>'form-control','id'=>'codigo', 'maxlength'=>'50','required'])!!}
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="folio" class="col-sm-3 control-label">Folio</label>
+          <div class="col-sm-9">
+            {!!Form::input('text','folio', $certificadoMatricula->folio ,['class'=>'form-control','id'=>'folio', 'maxlength'=>'10','required'])!!}
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="libro" class="col-sm-3 control-label">Libro</label>
+          <div class="col-sm-9">
+            {!!Form::input('text','libro', $certificadoMatricula->libro ,['class'=>'form-control','id'=>'libro', 'maxlength'=>'10','required'])!!}
+          </div>
+        </div>
+        <div class="form-group">
           <label for="inputEmail3" class="col-sm-3 control-label">Nombres del Dueño</label>
-          <div class="col-sm-7">
+          <div class="col-sm-9">
             {!!Form::input('text','nombreDueno', $certificadoMatricula->nombreDueno ,['class'=>'form-control','id'=>'inputEmai3', 'maxlength'=>'100','required'])!!}
           </div>
         </div>
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-3 control-label">Apellidos del Dueño</label>
-          <div class="col-sm-7">
+          <div class="col-sm-9">
             {!!Form::input('text','apellidosDueno', $certificadoMatricula->apellidosDueno ,['class'=>'form-control','id'=>'inputEmai3', 'maxlength'=>'100','required'])!!}
           </div>
         </div>
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-3 control-label">DNI del Dueño</label>
-          <div class="col-sm-7">
+          <div class="col-sm-9">
             {!!Form::input('text','dniDueno', $certificadoMatricula->dniDueno ,['class'=>'form-control','id'=>'inputEmai3','maxlength'=>'10','min' >0,'required'])!!}
           </div>
         </div>
         <div class="form-group">
+          <label for="inputEmail3" class="col-sm-3 control-label">Nombre de Embarcacion</label>
+          <div class="col-sm-9">
+            {!!Form::input('text','nombreEmbarcacion', $certificadoMatricula->nombreEmbarcacion ,['class'=>'form-control','id'=>'inputEmai3', 'maxlength'=>'100','required'])!!}
+          </div>
+        </div>
+        <div class="form-group">
           <label for="inputEmail3" class="col-sm-3 control-label">Numero de Matricula</label>
-          <div class="col-sm-7">
+          <div class="col-sm-9">
             {!!Form::input('text','nMatricula', $certificadoMatricula->nMatricula ,['class'=>'form-control','id'=>'inputEmai3', 'maxlength'=>'50','required'])!!}
           </div>
         </div>

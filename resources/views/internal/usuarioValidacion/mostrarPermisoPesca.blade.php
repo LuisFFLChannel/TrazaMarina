@@ -20,12 +20,8 @@
             <table class="table table-bordered table-striped">
               <tr>
                   <th >Codigo</th>
-                  <th >{{$embarcacion->permisoPesca->id}}</th>   
+                  <th >{{$embarcacion->permisoPesca->codigo}}</th>   
               </tr>  
-              <tr>
-                  <th>Nombre Dueño</th>
-                  <th >{{$embarcacion->permisoPesca->nombre}}</th>   
-              </tr> 
                <tr>
                   <th>Numero de Matricula</th>
                   <th >{{$embarcacion->permisoPesca->nMatricula}}</th>   

@@ -14,6 +14,12 @@
       {!!Form::open(array('url' => 'usuarioPesca/permisoPatrones/'.$permisoPatron->id.'/edit','files'=>true,'id'=>'form','class'=>'form-horizontal'))!!}
         {!!Form::hidden('id', $permisoPatron->id)!!}
         <div class="form-group">
+          <label for="inputEmail3" class="col-sm-3 control-label">Codigo</label>
+          <div class="col-sm-9">
+            {!!Form::input('text','codigo', $permisoPatron->codigo ,['class'=>'form-control','id'=>'inputEmai3', 'maxlength'=>'50','required'])!!}
+          </div>
+        </div>
+        <div class="form-group">
           <label for="inputEmail3" class="col-sm-3 control-label">Nombre</label>
           <div class="col-sm-9">
             {!!Form::input('text','nombres', $permisoPatron->nombres ,['class'=>'form-control','id'=>'inputEmai3', 'maxlength'=>'100','required'])!!}

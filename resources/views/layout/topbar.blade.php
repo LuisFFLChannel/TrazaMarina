@@ -86,6 +86,20 @@
                     </ul>
                 </li>
                 <li>
+                    <a data-toggle="collapse" data-target="#tipoPescaAdm" class="collapsed">Tipo de Pesca <b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="tipoPescaAdm">
+                        <li><a href="{{url('admin/tipoPescas')}}">Listar</a></li>
+                        <li><a href="{{url('admin/tipoPescas/new')}}">Nuevo</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a data-toggle="collapse" data-target="#categoriaPuertoAdm" class="collapsed">Categoria de Puerto <b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="categoriaPuertoAdm">
+                        <li><a href="{{url('admin/categoriaPuertos')}}">Listar</a></li>
+                        <li><a href="{{url('admin/categoriaPuertos/new')}}">Nuevo</a></li>
+                    </ul>
+                </li>
+                <li>
                     <a data-toggle="collapse" data-target="#especiesAdm" class="collapsed">Esp. Marinas <b class="caret"></b></a>
                     <ul class="sub-menu collapse" id="especiesAdm">
                         <li><a href="{{url('admin/especieMarinas')}}">Listar</a></li>
@@ -98,14 +112,14 @@
                         <li><a href="{{url('admin/puertos')}}">Listar</a></li>
                         <li><a href="{{url('admin/puertos/new')}}">Nuevo</a></li>
                     </ul>
-                </li>
+                </li><!--
                 <li>
                     <a data-toggle="collapse" data-target="#dpaAdm" class="collapsed">Dpa <b class="caret"></b></a>
                     <ul class="sub-menu collapse" id="dpaAdm">
                         <li><a href="{{url('admin/dpas')}}">Listar</a></li>
                         <li><a href="{{url('admin/dpas/new')}}">Nuevo</a></li>
                     </ul>
-                </li>
+                </li>-->
                 <li>
                     <a data-toggle="collapse" data-target="#capitaniasAdm" class="collapsed">Capitanias <b class="caret"></b></a>
                     <ul class="sub-menu collapse" id="capitaniasAdm">
@@ -170,7 +184,7 @@
                     <a data-toggle="collapse" data-target="#configAdm" class="collapsed">Configuración  <b class="caret"></b></a>
                     <ul class="sub-menu collapse" id="configAdm">
                         <li><a href="{{url('admin/config/about')}}">Acerca de</a></li>
-                        <li><a href="{{url('admin/config/system')}}">Sistema</a></li>
+                        
                     </ul>
                 </li>
 
@@ -199,6 +213,20 @@
         <div class="menu-list">
             <ul id="menu-content" class="menu-content collapse out">
                 <li>
+                    <a data-toggle="collapse" data-target="#tipoPescaPes" class="collapsed">Tipo de Pesca <b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="tipoPescaPes">
+                        <li><a href="{{url('usuarioPesca/tipoPescas')}}">Listar</a></li>
+                        <li><a href="{{url('usuarioPesca/tipoPescas/new')}}">Nuevo</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a data-toggle="collapse" data-target="#categoriaPuertoPes" class="collapsed">Categoria de Puerto <b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="categoriaPuertoPes">
+                        <li><a href="{{url('usuarioPesca/categoriaPuertos')}}">Listar</a></li>
+                        <li><a href="{{url('usuarioPesca/categoriaPuertos/new')}}">Nuevo</a></li>
+                    </ul>
+                </li>
+                <li>
                     <a data-toggle="collapse" data-target="#especiesPes" class="collapsed">Esp. Marinas <b class="caret"></b></a>
                     <ul class="sub-menu collapse" id="especiesPes">
                         <li><a href="{{url('usuarioPesca/especieMarinas')}}">Listar</a></li>
@@ -211,14 +239,14 @@
                         <li><a href="{{url('usuarioPesca/puertos')}}">Listar</a></li>
                         <li><a href="{{url('usuarioPesca/puertos/new')}}">Nuevo</a></li>
                     </ul>
-                </li>
+                </li><!--
                 <li>
                     <a data-toggle="collapse" data-target="#dpasPes" class="collapsed">Dpa <b class="caret"></b></a>
                     <ul class="sub-menu collapse" id="dpasPes">
                         <li><a href="{{url('usuarioPesca/dpas')}}">Listar</a></li>
                         <li><a href="{{url('usuarioPesca/dpas/new')}}">Nuevo</a></li>
                     </ul>
-                </li>
+                </li>-->
                 <li>
                     <a data-toggle="collapse" data-target="#capitaniasPes" class="collapsed">Capitanias <b class="caret"></b></a>
                     <ul class="sub-menu collapse" id="capitaniasPes">
@@ -333,9 +361,11 @@
                 <li>
                     <a data-toggle="collapse" data-target="#datosMaestrosInt" class="collapsed">Datos Maestros <b class="caret"></b></a>
                     <ul class="sub-menu collapse" id="datosMaestrosInt">
+                        <li><a href="{{url('usuarioIntermediario/tipoPescas')}}">Tipo Pesca</a></li>
+                        <li><a href="{{url('usuarioIntermediario/categoriaPuertos')}}">Categoria Puerto</a></li>
                         <li><a href="{{url('usuarioIntermediario/especieMarinas')}}">Especies Marinas</a></li>
                         <li><a href="{{url('usuarioIntermediario/puertos')}}">Puertos</a></li>
-                        <li><a href="{{url('usuarioIntermediario/dpas')}}">Dpa</a></li>
+                        <!--<li><a href="{{url('usuarioIntermediario/dpas')}}">Dpa</a></li>-->
                         <li><a href="{{url('usuarioIntermediario/capitanias')}}">Capitanias</a></li>
                         <li><a href="{{url('usuarioIntermediario/embarcaciones')}}">Embarcaciones</a></li>
                         <li><a href="{{url('usuarioIntermediario/pescadores')}}">Pescadores</a></li>
@@ -448,9 +478,11 @@
                 <li>
                     <a data-toggle="collapse" data-target="#datosMaestrosVal" class="collapsed">Datos Maestros <b class="caret"></b></a>
                     <ul class="sub-menu collapse" id="datosMaestrosVal">
+                        <li><a href="{{url('usuarioValidacion/tipoPescas')}}">Tipo Pesca</a></li>
+                        <li><a href="{{url('usuarioValidacion/categoriaPuertos')}}">Categoria Puerto</a></li>
                         <li><a href="{{url('usuarioValidacion/especieMarinas')}}">Especies Marinas</a></li>
                         <li><a href="{{url('usuarioValidacion/puertos')}}">Puertos</a></li>
-                        <li><a href="{{url('usuarioValidacion/dpas')}}">Dpa</a></li>
+                        <!--<li><a href="{{url('usuarioValidacion/dpas')}}">Dpa</a></li>-->
                         <li><a href="{{url('usuarioValidacion/capitanias')}}">Capitanias</a></li>
                         <li><a href="{{url('usuarioValidacion/embarcaciones')}}">Embarcaciones</a></li>
                         <li><a href="{{url('usuarioValidacion/pescadores')}}">Pescadores</a></li>

@@ -15,6 +15,7 @@
         <th class="text-center">Nombre</th>
         <th class="text-center">Direccion</th>   
         <th class="text-center">Coordenadas (Latitud , Longitud) </th>
+        <th class="text-center">Mostrar Mapa </th>
         <!--<th>Imagen</th>-->
         <th class="text-center">Detalle</th>
         <th class="text-center">Editar</th>
@@ -26,6 +27,9 @@
       <td class="text-center">{{$capitania->nombre}}</td>
       <td class="text-center">{{$capitania->direccion}}</td>
       <td class="text-center">( {{$capitania->coordenadaX}} , {{$capitania->coordenadaY}} )</td>
+      <td class="text-center">
+          <a class="btn btn-info" href="{{url('admin/mapas/'.$capitania->id.'/mostarMapaCapitania')}}" title="Mostrar Mapa" ><i class="glyphicon glyphicon-map-marker"></i></a>
+        </td>
       <!--<td>{!! Html::image($capitania->imagen, null, array('class'=>'gift_img')) !!}</td>-->
       <td class="text-center">
             <a class="btn btn-info" href="detalles" title="Detalles" data-toggle="modal" data-target="#edit{{$capitania->id}}"><i class="glyphicon glyphicon-plus"></i></a>

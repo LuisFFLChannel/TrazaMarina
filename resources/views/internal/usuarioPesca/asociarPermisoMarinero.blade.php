@@ -55,7 +55,7 @@
             <table class="table table-bordered table-striped">
               <tr>
                   <th >Codigo</th>
-                  <th >{{$pescador->permisoMarinero->id}}</th>   
+                  <th >{{$pescador->permisoMarinero->codigo}}</th>   
               </tr>  
               <tr>
                   <th>Nombres</th>

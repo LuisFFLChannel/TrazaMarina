@@ -5,15 +5,14 @@
 @stop
 
 @section('title')
-    Permisos de Matricula
+    Permisos de Pesca
 @stop
 
 @section('content')
 
 <table class="table table-bordered table-striped">
     <tr>
-        <th class="text-center">N° Documennto</th>
-        <th class="text-center">Nombre</th>   
+        <th class="text-center">N° Documento</th>  
         <th class="text-center">N° de Matricula</th>
         <th class="text-center">Barco</th>
         <!--<th>Imagen</th>-->
@@ -22,8 +21,7 @@
     
     @foreach($permisoPescas as $permisoPesca)
     <tr>
-      <td class="text-center">{{$permisoPesca->id}}</td>
-      <td class="text-center">{{$permisoPesca->nombre}}</td>
+      <td class="text-center">{{$permisoPesca->codigo}}</td>
       <td class="text-center">{{$permisoPesca->nMatricula}}</td>
       @if($permisoPesca->embarcacion!=null)
         <td class="text-center">{{$permisoPesca->embarcacion->nMatricula}} - {{$permisoPesca->embarcacion->nombre}}</td>
@@ -46,8 +44,7 @@
                     <div class="row">
                       <div class="col-sm-1"></div>
                       <div class="col-sm-8">
-                          <h5 class="text-left">N° Documento: {{$permisoPesca->id}}</h5>
-                          <h5 class="text-left">Nombre: {{$permisoPesca->nombre}}</h5>
+                          <h5 class="text-left">N° Documento: {{$permisoPesca->codigo}}</h5>
                           <h5 class="text-left">Numero de Matricula: {{$permisoPesca->nMatricula}} </h5>
                           <h5 class="text-left">Fecha Vigencia: {{date_format(date_create($permisoPesca->fechaVigencia),"d/m/Y")}} </h5>
                           @if($permisoPesca->embarcacion!=null)

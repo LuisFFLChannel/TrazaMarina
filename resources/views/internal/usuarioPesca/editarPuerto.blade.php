@@ -38,6 +38,24 @@
           </div>
         </div>
         <div class="form-group">
+          <label for="inputEmail3" class="col-sm-2 control-label">Contacto</label>
+          <div class="col-sm-10">
+            {!!Form::input('text','contacto', $puerto->contacto ,['class'=>'form-control','id'=>'contacto', 'maxlength'=>'100','required'])!!}
+          </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Categoria Puerto</label>
+            <div class="col-sm-10">
+                {!! Form::select('categoriaPuerto_id', $categoriaPuerto_lista->toArray(), $puerto->categoriaPuerto_id, ['class' => 'form-control','required', 'id'=>'categoriaPuerto_id']) !!}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Capitania</label>
+            <div class="col-sm-10">
+                {!! Form::select('capitania_id', $capitania_lista->toArray(), $puerto->capitania_id, ['class' => 'form-control','required', 'id'=>'capitania_id']) !!}
+            </div>
+        </div>
+        <div class="form-group">
           <label for="inputEmail3" class="col-sm-2 control-label">Imagen</label>
           <div class="col-sm-10">
             {!!Form::input('file','imagen', null ,['class'=>'form-control','id'=>'inputEmail3'])!!}

@@ -48,6 +48,9 @@
                           <h5 class="text-left">Direccion: {{$puerto->direccion}} </h5>                              
                           <h5 class="text-left">Latitud: {{$puerto->coordenadaX}}</h5> 
                           <h5 class="text-left">Longitud: {{$puerto->coordenadaY}}</h5> 
+                          <h5 class="text-left">Contacto: {{$puerto->contacto}}</h5> 
+                          <h5 class="text-left">Categoria: {{$puerto->categoria->nombre}}</h5> 
+                          <h5 class="text-left">Capitania: {{$puerto->capitania->nombre}}</h5> 
                           <h5 class="text-left">Mapa: </h5>
                           
                           <hr>

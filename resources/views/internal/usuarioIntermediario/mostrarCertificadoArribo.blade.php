@@ -20,7 +20,7 @@
             <table class="table table-bordered table-striped">
               <tr>
                   <th >Codigo</th>
-                  <th >{{$desembarque->certificadoArribo->id}}</th>   
+                  <th >{{$desembarque->certificadoArribo->codigo}}</th>   
               </tr> 
               <tr>
                   <th>Nombre</th>

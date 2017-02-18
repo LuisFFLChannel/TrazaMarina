@@ -31,6 +31,9 @@ class TipoPescaController extends Controller
         if (Auth::user()->role_id == 4){
             return view('internal.admin.tipoPescas', compact('tipoPescas'));
         }
+        elseif  (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.tipoPescas', compact('tipoPescas'));
+        }
         elseif  (Auth::user()->role_id == 6){
             return view('internal.usuarioIntermediario.tipoPescas', compact('tipoPescas'));
         }
@@ -50,8 +53,8 @@ class TipoPescaController extends Controller
         if (Auth::user()->role_id == 4){
             return view('internal.admin.nuevoTipoPesca');
         }
-        elseif  (Auth::user()->role_id == 6){
-            return view('internal.usuarioIntermediario.nuevoTipoPesca');
+        elseif  (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.nuevoTipoPesca');
         }
     }
 
@@ -78,8 +81,8 @@ class TipoPescaController extends Controller
         if (Auth::user()->role_id == 4){
             return redirect()->route('admin.tipoPescas');
         }
-        elseif  (Auth::user()->role_id == 6){
-            return redirect()->route('usuarioIntermediario.tipoPescas');
+        elseif  (Auth::user()->role_id == 5){
+            return redirect()->route('usuarioPesca.tipoPescas');
         }
     }
 
@@ -110,8 +113,8 @@ class TipoPescaController extends Controller
         if (Auth::user()->role_id == 4){
             return view('internal.admin.editarTipoPesca', compact('tipoPesca'));
         }
-        elseif  (Auth::user()->role_id == 6){
-            return view('internal.usuarioIntermediario.editarTipoPesca', compact('tipoPesca'));
+        elseif  (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.editarTipoPesca', compact('tipoPesca'));
         }
     }
 
@@ -139,8 +142,8 @@ class TipoPescaController extends Controller
         if (Auth::user()->role_id == 4){
             return redirect()->route('admin.tipoPescas');
         }
-        elseif  (Auth::user()->role_id == 6){
-            return redirect()->route('usuarioIntermediario.tipoPescas');
+        elseif  (Auth::user()->role_id == 5){
+            return redirect()->route('usuarioPesca.tipoPescas');
         }
     }
 
@@ -159,8 +162,8 @@ class TipoPescaController extends Controller
             if (Auth::user()->role_id == 4){
                 return redirect()->route('admin.tipoPescas');
             }
-            elseif  (Auth::user()->role_id == 6){
-                return redirect()->route('usuarioIntermediario.tipoPescas');
+            elseif  (Auth::user()->role_id == 5){
+                return redirect()->route('usuarioPesca.tipoPescas');
             }
             } 
         catch(\Exception $e){

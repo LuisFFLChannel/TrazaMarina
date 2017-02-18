@@ -12,7 +12,7 @@
 
 <table class="table table-bordered table-striped">
     <tr>
-        <th class="text-center">N° Documennto</th>
+        <th class="text-center">N° Documento</th>
         <th class="text-center">Dueño</th>   
         <th class="text-center">N° de Matricula</th>
         <th class="text-center">Barco</th>
@@ -22,7 +22,7 @@
     
     @foreach($certificadoMatriculas as $certificadoMatricula)
     <tr>
-      <td class="text-center">{{$certificadoMatricula->id}}</td>
+      <td class="text-center">{{$certificadoMatricula->codigo}}</td>
       <td class="text-center">{{$certificadoMatricula->nombreDueno}} {{$certificadoMatricula->apellidosDueno}}</td>
       <td class="text-center">{{$certificadoMatricula->nMatricula}}</td>
       @if($certificadoMatricula->embarcacion!=null)
@@ -46,7 +46,9 @@
                     <div class="row">
                       <div class="col-sm-1"></div>
                       <div class="col-sm-8">
-                          <h5 class="text-left">N° Documento: {{$certificadoMatricula->id}}</h5>
+                          <h5 class="text-left">N° Documento: {{$certificadoMatricula->codigo}}</h5>
+                          <h5 class="text-left">Folio: {{$certificadoMatricula->folio}}</h5>
+                          <h5 class="text-left">Libro: {{$certificadoMatricula->libro}}</h5>
                           <h5 class="text-left">Nombre Dueño: {{$certificadoMatricula->nombreDueno}} {{$certificadoMatricula->apellidosDueno}}</h5>
                           <h5 class="text-left">DNI Dueño: {{$certificadoMatricula->dniDueno}}</h5>
                           <h5 class="text-left">Numero de Matricula: {{$certificadoMatricula->nMatricula}} </h5>

@@ -12,7 +12,7 @@
 
 <table class="table table-bordered table-striped">
     <tr>
-        <th class="text-center">N° Documennto</th>
+        <th class="text-center">N° Documento</th>
         <th class="text-center">Fecha Vigencia</th>   
         <th class="text-center">N° de Marinero</th>
         <th class="text-center">Marinero</th>
@@ -22,7 +22,7 @@
     
     @foreach($permisoMarineros as $permisoMarinero)
     <tr>
-      <td class="text-center">{{$permisoMarinero->id}}</td>
+      <td class="text-center">{{$permisoMarinero->codigo}}</td>
       <td class="text-center">{{$permisoMarinero->fechaVigencia}}</td>
       <td class="text-center">{{$permisoMarinero->numeroMarinero}}</td>
       @if($permisoMarinero->pescador!=null)
@@ -46,7 +46,7 @@
                     <div class="row">
                       <div class="col-sm-1"></div>
                       <div class="col-sm-8">
-                          <h5 class="text-left">N° Documento: {{$permisoMarinero->id}}</h5>
+                          <h5 class="text-left">N° Documento: {{$permisoMarinero->codigo}}</h5>
                           <h5 class="text-left">Nombres y Apellidos (en Documento): {{$permisoMarinero->nombres}} - {{$permisoMarinero->apellidos}}</h5>
                           <h5 class="text-left">DNI (en Documento): {{$permisoMarinero->dni}}</h5>
                           <h5 class="text-left">Numero de Marinero: {{$permisoMarinero->numeroMarinero}} </h5>

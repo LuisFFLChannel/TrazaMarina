@@ -1,69 +1,31 @@
-@extends('layout.usuarioPesca')
+@extends('layout.admin')
 
 @section('style')
 
 @stop
 
 @section('title')
-	Nuevo Certificado de Matricula
+	Nueva Categoria Puerto
 @stop
 
 @section('content')
-
 <div class="row">
   <div class="col-sm-8">
-    {!!Form::open(array('url' => 'usuarioPesca/certificadoMatriculas/new','files'=>true,'id'=>'form','class'=>'form-horizontal'))!!}
+    {!!Form::open(array('url' => 'admin/categoriaPuertos/new','files'=>true,'id'=>'form','class'=>'form-horizontal'))!!}
       <div class="form-group">
-          <label for="codigo" class="col-sm-3 control-label">Numero del Documento</label>
-          <div class="col-sm-9">
-            {!!Form::input('text','codigo', null ,['class'=>'form-control','id'=>'codigo', 'maxlength'=>'50','required'])!!}
+          <label for="inputEmail3" class="col-sm-2 control-label">Nombre</label>
+          <div class="col-sm-10">
+            {!!Form::input('text','nombre', null ,['class'=>'form-control','id'=>'nombre', 'maxlength'=>'100','required'])!!}
           </div>
         </div>
         <div class="form-group">
-          <label for="folio" class="col-sm-3 control-label">Folio</label>
-          <div class="col-sm-9">
-            {!!Form::input('text','folio', null ,['class'=>'form-control','id'=>'folio', 'maxlength'=>'10','required'])!!}
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="libro" class="col-sm-3 control-label">Libro</label>
-          <div class="col-sm-9">
-            {!!Form::input('text','libro', null ,['class'=>'form-control','id'=>'libro', 'maxlength'=>'10','required'])!!}
+          <label for="inputEmail3" class="col-sm-2 control-label">Descripcion</label>
+          <div class="col-sm-10">
+            {!!Form::input('text','descripcion', null ,['class'=>'form-control','id'=>'descripcion', 'maxlength'=>'150','required'])!!}
           </div>
         </div>
       <div class="form-group">
-          <label for="inputEmail3" class="col-sm-3 control-label">Nombres del Dueño</label>
-          <div class="col-sm-9">
-            {!!Form::input('text','nombreDueno', null ,['class'=>'form-control','id'=>'inputEmai3', 'maxlength'=>'100','required'])!!}
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="inputEmail3" class="col-sm-3 control-label">Apellidos del Dueño</label>
-          <div class="col-sm-9">
-            {!!Form::input('text','apellidosDueno', null ,['class'=>'form-control','id'=>'inputEmai3', 'maxlength'=>'100','required'])!!}
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="inputEmail3" class="col-sm-3 control-label">DNI del Dueño</label>
-          <div class="col-sm-9">
-            {!!Form::input('text','dniDueno', null ,['class'=>'form-control','id'=>'inputEmai3','maxlength'=>'10','min' >0,'required'])!!}
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="inputEmail3" class="col-sm-3 control-label">Nombre de la Embaracion</label>
-          <div class="col-sm-9">
-            {!!Form::input('text','nombreEmbarcacion', null ,['class'=>'form-control','id'=>'inputEmai3', 'maxlength'=>'100','required'])!!}
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="inputEmail3" class="col-sm-3 control-label">Numero de Matricula</label>
-          <div class="col-sm-9">
-            {!!Form::input('text','nMatricula', null ,['class'=>'form-control','id'=>'inputEmai3', 'maxlength'=>'50','required'])!!}
-          </div>
-        </div>
-       
-      <div class="form-group">
-        <div class="col-sm-offset-3 col-sm-9">
+        <div class="col-sm-offset-2 col-sm-10">
           <a class="btn btn-info" href="" title="submit" data-toggle="modal" data-target="#submitModal" >Guardar</a>
           <a href="{{URL::previous()}}"><button type="button" class="btn btn-info">Cancelar</button></a>
         </div>
@@ -75,7 +37,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title">¿Estas seguro que desea crear el certificado de Matricula?</h4>
+              <h4 class="modal-title">¿Estas seguro que desea crear la categoria?</h4>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-info" data-dismiss="modal">No</button>

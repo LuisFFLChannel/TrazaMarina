@@ -32,6 +32,9 @@ class CategoriaPuertoController extends Controller
         if (Auth::user()->role_id == 4){
             return view('internal.admin.categoriaPuertos', compact('categoriaPuertos'));
         }
+        elseif  (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.categoriaPuertos', compact('categoriaPuertos'));
+        }
         elseif  (Auth::user()->role_id == 6){
             return view('internal.usuarioIntermediario.categoriaPuertos', compact('categoriaPuertos'));
         }
@@ -51,8 +54,8 @@ class CategoriaPuertoController extends Controller
         if (Auth::user()->role_id == 4){
             return view('internal.admin.nuevoCategoriaPuerto');
         }
-        elseif  (Auth::user()->role_id == 6){
-            return view('internal.usuarioIntermediario.nuevoCategoriaPuerto');
+        elseif  (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.nuevoCategoriaPuerto');
         }
     }
 
@@ -79,8 +82,8 @@ class CategoriaPuertoController extends Controller
         if (Auth::user()->role_id == 4){
             return redirect()->route('admin.categoriaPuertos');
         }
-        elseif  (Auth::user()->role_id == 6){
-            return redirect()->route('usuarioIntermediario.categoriaPuertos');
+        elseif  (Auth::user()->role_id == 5){
+            return redirect()->route('usuarioPesca.categoriaPuertos');
         }
     }
 
@@ -111,8 +114,8 @@ class CategoriaPuertoController extends Controller
         if (Auth::user()->role_id == 4){
             return view('internal.admin.editarCategoriaPuerto', compact('categoriaPuerto'));
         }
-        elseif  (Auth::user()->role_id == 6){
-            return view('internal.usuarioIntermediario.editarCategoriaPuerto', compact('categoriaPuerto'));
+        elseif  (Auth::user()->role_id == 5){
+            return view('internal.usuarioPesca.editarCategoriaPuerto', compact('categoriaPuerto'));
         }
     }
 
@@ -140,8 +143,8 @@ class CategoriaPuertoController extends Controller
         if (Auth::user()->role_id == 4){
             return redirect()->route('admin.categoriaPuertos');
         }
-        elseif  (Auth::user()->role_id == 6){
-            return redirect()->route('usuarioIntermediario.categoriaPuertos');
+        elseif  (Auth::user()->role_id == 5){
+            return redirect()->route('usuarioPesca.categoriaPuertos');
         }
     }
 
@@ -160,8 +163,8 @@ class CategoriaPuertoController extends Controller
             if (Auth::user()->role_id == 4){
                 return redirect()->route('admin.categoriaPuertos');
             }
-            elseif  (Auth::user()->role_id == 6){
-                return redirect()->route('usuarioIntermediario.categoriaPuertos');
+            elseif  (Auth::user()->role_id == 5){
+                return redirect()->route('usuarioPesca.categoriaPuertos');
             }
             } 
         catch(\Exception $e){

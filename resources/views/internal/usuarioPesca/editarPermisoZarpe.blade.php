@@ -16,9 +16,15 @@
     {!!Form::open(array('url' => 'usuarioPesca/permisoZarpes/'.$permisoZarpe->id.'/edit','files'=>true,'id'=>'form','class'=>'form-horizontal'))!!}
       {!!Form::hidden('id', $permisoZarpe->id)!!}
       <div class="form-group">
+          <label for="inputEmail3" class="col-sm-3 control-label">Codigo</label>
+          <div class="col-sm-9">
+            {!!Form::input('text','codigo', $permisoZarpe->codigo ,['class'=>'form-control','id'=>'inputEmai3', 'maxlength'=>'100','required'])!!}
+          </div>
+        </div>
+      <div class="form-group">
           <label for="inputEmail3" class="col-sm-3 control-label">Nombres</label>
           <div class="col-sm-9">
-            {!!Form::input('text','nombre', $permisoZarpe->nombre ,['class'=>'form-control','id'=>'inputEmai3', 'maxlength'=>'100','required'])!!}
+            {!!Form::input('text','nombreEmbarcacion', $permisoZarpe->nombreEmbarcacion ,['class'=>'form-control','id'=>'inputEmai3', 'maxlength'=>'100','required'])!!}
           </div>
         </div>
         <div class="form-group">

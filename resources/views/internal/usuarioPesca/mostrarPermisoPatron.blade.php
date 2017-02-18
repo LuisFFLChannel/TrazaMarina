@@ -20,7 +20,7 @@
             <table class="table table-bordered table-striped">
               <tr>
                   <th >Codigo</th>
-                  <th >{{$pescador->permisoPatron->id}}</th>   
+                  <th >{{$pescador->permisoPatron->codigo}}</th>   
               </tr>  
               <tr>
                   <th>Nombres</th>

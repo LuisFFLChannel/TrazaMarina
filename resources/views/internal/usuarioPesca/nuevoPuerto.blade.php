@@ -37,6 +37,25 @@
             {!!Form::input('number','longitud', null ,['class'=>'form-control','id'=>'longitud', 'required'])!!}
           </div>
         </div>
+        <div class="form-group">
+          <label for="inputEmail3" class="col-sm-2 control-label">Contacto</label>
+          <div class="col-sm-10">
+            {!!Form::input('text','contacto', null ,['class'=>'form-control','id'=>'contacto', 'maxlength'=>'100','required'])!!}
+          </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Categoria Puerto</label>
+            <div class="col-sm-10">
+                {!! Form::select('categoriaPuerto_id', $categoriaPuerto_lista->toArray(), null, ['class' => 'form-control','required', 'id'=>'categoriaPuerto_id']) !!}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Capitania</label>
+            <div class="col-sm-10">
+                {!! Form::select('capitania_id', $capitania_lista->toArray(), null, ['class' => 'form-control','required', 'id'=>'capitania_id']) !!}
+            </div>
+        </div>
 
 
         <div class="form-group">

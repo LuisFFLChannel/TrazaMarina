@@ -63,7 +63,7 @@
             <table class="table table-bordered table-striped">
               <tr>
                   <th >Codigo</th>
-                  <th >{{$embarcacion->certificadoMatricula->id}}</th>   
+                  <th >{{$embarcacion->certificadoMatricula->codigo}}</th>   
               </tr>  
               <tr>
                   <th>Nombre Dueño</th>

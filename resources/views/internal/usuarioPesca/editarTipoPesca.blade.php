@@ -5,39 +5,23 @@
 @stop
 
 @section('title')
-	Editar Permiso de Pesca
+	Editar Tipo de Pesca
 @stop
 
 @section('content')
   <div class="row">
     <div class="col-sm-8">
-      {!!Form::open(array('url' => 'usuarioPesca/permisoPescas/'.$permisoPesca->id.'/edit','files'=>true,'id'=>'form','class'=>'form-horizontal'))!!}
-        {!!Form::hidden('id', $permisoPesca->id)!!}
+      {!!Form::open(array('url' => 'usuarioPesca/tipoPescas/'.$tipoPesca->id.'/edit','files'=>true,'id'=>'form','class'=>'form-horizontal'))!!}
         <div class="form-group">
-          <label for="codigo" class="col-sm-3 control-label">Numero de Permiso de Pesca</label>
-          <div class="col-sm-9">
-            {!!Form::input('text','codigo', $permisoPesca->codigo ,['class'=>'form-control','id'=>'codigo', 'maxlength'=>'50','required'])!!}
+          <label for="inputEmail3" class="col-sm-2 control-label">Nombre</label>
+          <div class="col-sm-10">
+            {!!Form::input('text','nombre', $tipoPesca->nombre ,['class'=>'form-control','id'=>'nombre', 'maxlength'=>'100','required'])!!}
           </div>
         </div>
         <div class="form-group">
-          <label for="nombre" class="col-sm-3 control-label">Nombre de Embarcacion</label>
-          <div class="col-sm-9">
-            {!!Form::input('text','nombreEmbarcacion', $permisoPesca->nombreEmbarcacion ,['class'=>'form-control','id'=>'nombre', 'maxlength'=>'100','required'])!!}
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="inputEmail3" class="col-sm-3 control-label">Numero de Matricula</label>
-          <div class="col-sm-9">
-            {!!Form::input('text','nMatricula', $permisoPesca->nMatricula ,['class'=>'form-control','id'=>'inputEmai3', 'maxlength'=>'50','required'])!!}
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="inputcumpleanos" class="col-sm-3 control-label">Fecha Vigencia</label>
-          <div class="col-sm-9">
-            {!!Form::input('date','fechaVigencia', explode(" ",$permisoPesca->fechaVigencia)[0] ,['class'=>'form-control','id'=>'fechaVigencia','required'])!!}
-            <div class="col-sm-9" id="firefox" style="visibility: hidden">
-                Formato Año(D/M/Y)
-            </div> 
+          <label for="inputEmail3" class="col-sm-2 control-label">Descripcion</label>
+          <div class="col-sm-10">
+            {!!Form::input('text','descripcion', $tipoPesca->descripcion ,['class'=>'form-control','id'=>'descripcion', 'maxlength'=>'150','required'])!!}
           </div>
         </div>
         <div class="form-group">
@@ -53,7 +37,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">¿Estas seguro que desea editar el Permiso de Pesca</h4>
+                <h4 class="modal-title">¿Estas seguro que desea editar la categoria</h4>
               </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-info" data-dismiss="modal">No</button>

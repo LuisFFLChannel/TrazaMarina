@@ -306,6 +306,19 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::post('admin/promoter/{id}/edit', 'AdminController@updatePromoter');
     Route::get('admin/promoter/{id}/delete', 'AdminController@destroyPromoter');
 
+    Route::get('admin/tipoPescas', ['uses'=>'TipoPescaController@index','as'=>'admin.tipoPescas']);
+    Route::get('admin/tipoPescas/new', 'TipoPescaController@create');
+    Route::post('admin/tipoPescas/new', 'TipoPescaController@store');
+    Route::get('admin/tipoPescas/{id}/edit', 'TipoPescaController@edit');
+    Route::post('admin/tipoPescas/{id}/edit', 'TipoPescaController@update');
+    Route::get('admin/tipoPescas/{id}/delete', 'TipoPescaController@destroy');
+
+    Route::get('admin/categoriaPuertos', ['uses'=>'CategoriaPuertoController@index','as'=>'admin.categoriaPuertos']);
+    Route::get('admin/categoriaPuertos/new', 'CategoriaPuertoController@create');
+    Route::post('admin/categoriaPuertos/new', 'CategoriaPuertoController@store');
+    Route::get('admin/categoriaPuertos/{id}/edit', 'CategoriaPuertoController@edit');
+    Route::post('admin/categoriaPuertos/{id}/edit', 'CategoriaPuertoController@update');
+    Route::get('admin/categoriaPuertos/{id}/delete', 'CategoriaPuertoController@destroy');
 
 
     Route::get('admin/especieMarinas', ['uses'=>'EspeciesMarinasController@index','as'=>'admin.especieMarinas']);
@@ -329,12 +342,12 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::post('admin/capitanias/{id}/edit', 'CapitaniaController@update');
     Route::get('admin/capitanias/{id}/delete', 'CapitaniaController@destroy');
 
-    Route::get('admin/dpas', ['uses'=>'DpaController@index','as'=>'admin.dpas']);
+    /*Route::get('admin/dpas', ['uses'=>'DpaController@index','as'=>'admin.dpas']);
     Route::get('admin/dpas/new', 'DpaController@create');
     Route::post('admin/dpas/new', 'DpaController@store');
     Route::get('admin/dpas/{id}/edit', 'DpaController@edit');
     Route::post('admin/dpas/{id}/edit', 'DpaController@update');
-    Route::get('admin/dpas/{id}/delete', 'DpaController@destroy');
+    Route::get('admin/dpas/{id}/delete', 'DpaController@destroy');*/
 
     Route::get('admin/terminales', ['uses'=>'TerminalController@index','as'=>'admin.terminales']);
     Route::get('admin/terminales/new', 'TerminalController@create');
@@ -407,6 +420,20 @@ Route::group(['middleware' => ['auth', 'usuarioPesca']], function () {
     Route::get('usuarioPesca/password', 'AdminController@passwordUsuarioPesca');
     Route::post('usuarioPesca/password', 'AdminController@passwordUpdateUsuarioPesca');
 
+    Route::get('usuarioPesca/tipoPescas', ['uses'=>'TipoPescaController@index','as'=>'usuarioPesca.tipoPescas']);
+    Route::get('usuarioPesca/tipoPescas/new', 'TipoPescaController@create');
+    Route::post('usuarioPesca/tipoPescas/new', 'TipoPescaController@store');
+    Route::get('usuarioPesca/tipoPescas/{id}/edit', 'TipoPescaController@edit');
+    Route::post('usuarioPesca/tipoPescas/{id}/edit', 'TipoPescaController@update');
+    Route::get('usuarioPesca/tipoPescas/{id}/delete', 'TipoPescaController@destroy');
+
+    Route::get('usuarioPesca/categoriaPuertos', ['uses'=>'CategoriaPuertoController@index','as'=>'usuarioPesca.categoriaPuertos']);
+    Route::get('usuarioPesca/categoriaPuertos/new', 'CategoriaPuertoController@create');
+    Route::post('usuarioPesca/categoriaPuertos/new', 'CategoriaPuertoController@store');
+    Route::get('usuarioPesca/categoriaPuertos/{id}/edit', 'CategoriaPuertoController@edit');
+    Route::post('usuarioPesca/categoriaPuertos/{id}/edit', 'CategoriaPuertoController@update');
+    Route::get('usuarioPesca/categoriaPuertos/{id}/delete', 'CategoriaPuertoController@destroy');
+
     Route::get('usuarioPesca/especieMarinas', ['uses'=>'EspeciesMarinasController@index','as'=>'usuarioPesca.especieMarinas']);
     Route::get('usuarioPesca/especieMarinas/new', 'EspeciesMarinasController@create');
     Route::post('usuarioPesca/especieMarinas/new', 'EspeciesMarinasController@store');
@@ -428,12 +455,12 @@ Route::group(['middleware' => ['auth', 'usuarioPesca']], function () {
     Route::post('usuarioPesca/capitanias/{id}/edit', 'CapitaniaController@update');
     Route::get('usuarioPesca/capitanias/{id}/delete', 'CapitaniaController@destroy');
 
-    Route::get('usuarioPesca/dpas', ['uses'=>'DpaController@index','as'=>'usuarioPesca.dpas']);
+    /*Route::get('usuarioPesca/dpas', ['uses'=>'DpaController@index','as'=>'usuarioPesca.dpas']);
     Route::get('usuarioPesca/dpas/new', 'DpaController@create');
     Route::post('usuarioPesca/dpas/new', 'DpaController@store');
     Route::get('usuarioPesca/dpas/{id}/edit', 'DpaController@edit');
     Route::post('usuarioPesca/dpas/{id}/edit', 'DpaController@update');
-    Route::get('usuarioPesca/dpas/{id}/delete', 'DpaController@destroy');
+    Route::get('usuarioPesca/dpas/{id}/delete', 'DpaController@destroy');*/
 
 
     Route::get('usuarioPesca/pescadores', ['uses'=>'PescadoresController@index','as'=>'usuarioPesca.pescadores']);
@@ -540,7 +567,7 @@ Route::group(['middleware' => ['auth', 'usuarioPesca']], function () {
     Route::post('usuarioPesca/verificarHielo', 'HieloController@actualizarHielo');
 
     Route::get('usuarioPesca/mapas/{id}/mostarMapaCapitania', 'CapitaniaController@mostrarMapa');
-    Route::get('usuarioPesca/mapas/{id}/mostarMapaDpa', 'DpaController@mostrarMapa');
+    //Route::get('usuarioPesca/mapas/{id}/mostarMapaDpa', 'DpaController@mostrarMapa');
     Route::get('usuarioPesca/mapas/{id}/mostarMapaPuerto', 'PuertosController@mostrarMapa');
     Route::get('usuarioPesca/mapas/{id}/mostarMapaTerminal', 'TerminalController@mostrarMapa');
     Route::get('usuarioPesca/mapas/{id}/mostarMapaFabrica', 'FabricaController@mostrarMapa');
@@ -557,10 +584,12 @@ Route::group(['middleware' => ['auth', 'usuarioIntermediario']], function () {
     Route::get('usuarioIntermediario/especieMarinas', ['uses'=>'EspeciesMarinasController@index','as'=>'usuarioIntermediario.especieMarinas']);
     Route::get('usuarioIntermediario/puertos', ['uses'=>'PuertosController@index','as'=>'usuarioIntermediario.puertos']);
     Route::get('usuarioIntermediario/capitanias', ['uses'=>'CapitaniaController@index','as'=>'usuarioIntermediario.capitanias']);
-    Route::get('usuarioIntermediario/dpas', ['uses'=>'DpaController@index','as'=>'usuarioIntermediario.dpas']);
+    Route::get('usuarioIntermediario/tipoPescas', ['uses'=>'TipoPescaController@index','as'=>'usuarioIntermediario.tipoPescas']);
+    Route::get('usuarioIntermediario/categoriaPuertos', ['uses'=>'CategoriaPuertoController@index','as'=>'usuarioIntermediario.categoriaPuertos']);
+    //Route::get('usuarioIntermediario/dpas', ['uses'=>'DpaController@index','as'=>'usuarioIntermediario.dpas']);
 
     Route::get('usuarioIntermediario/mapas/{id}/mostarMapaCapitania', 'CapitaniaController@mostrarMapa');
-    Route::get('usuarioIntermediario/mapas/{id}/mostarMapaDpa', 'DpaController@mostrarMapa');
+    //Route::get('usuarioIntermediario/mapas/{id}/mostarMapaDpa', 'DpaController@mostrarMapa');
     Route::get('usuarioIntermediario/mapas/{id}/mostarMapaPuerto', 'PuertosController@mostrarMapa');
     Route::get('usuarioIntermediario/mapas/{id}/mostarMapaTerminal', 'TerminalController@mostrarMapa');
     Route::get('usuarioIntermediario/mapas/{id}/mostarMapaFabrica', 'FabricaController@mostrarMapa');
@@ -672,10 +701,12 @@ Route::group(['middleware' => ['auth', 'usuarioValidacion']], function () {
 
     Route::get('usuarioValidacion/puertos', ['uses'=>'PuertosController@index','as'=>'usuarioValidacion.puertos']);
     Route::get('usuarioValidacion/capitanias', ['uses'=>'CapitaniaController@index','as'=>'usuarioValidacion.capitanias']);
-    Route::get('usuarioValidacion/dpas', ['uses'=>'DpaController@index','as'=>'usuarioValidacion.dpas']);
+     Route::get('usuarioValidacion/tipoPescas', ['uses'=>'TipoPescaController@index','as'=>'usuarioIntermediario.tipoPescas']);
+    Route::get('usuarioValidacion/categoriaPuertos', ['uses'=>'CategoriaPuertoController@index','as'=>'usuarioIntermediario.categoriaPuertos']);
+    //Route::get('usuarioValidacion/dpas', ['uses'=>'DpaController@index','as'=>'usuarioValidacion.dpas']);
 
     Route::get('usuarioValidacion/mapas/{id}/mostarMapaCapitania', 'CapitaniaController@mostrarMapa');
-    Route::get('usuarioValidacion/mapas/{id}/mostarMapaDpa', 'DpaController@mostrarMapa');
+    //Route::get('usuarioValidacion/mapas/{id}/mostarMapaDpa', 'DpaController@mostrarMapa');
     Route::get('usuarioValidacion/mapas/{id}/mostarMapaPuerto', 'PuertosController@mostrarMapa');
     Route::get('usuarioValidacion/mapas/{id}/mostarMapaTerminal', 'TerminalController@mostrarMapa');
     Route::get('usuarioValidacion/mapas/{id}/mostarMapaFabrica', 'FabricaController@mostrarMapa');

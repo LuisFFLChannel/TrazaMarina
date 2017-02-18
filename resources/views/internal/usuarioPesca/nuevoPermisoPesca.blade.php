@@ -14,9 +14,15 @@
   <div class="col-sm-8">
     {!!Form::open(array('url' => 'usuarioPesca/permisoPescas/new','files'=>true,'id'=>'form','class'=>'form-horizontal'))!!}
       <div class="form-group">
-          <label for="inputEmail3" class="col-sm-3 control-label">Nombres</label>
+          <label for="codigo" class="col-sm-3 control-label">Numero de Permiso de Pesca</label>
           <div class="col-sm-9">
-            {!!Form::input('text','nombre', null ,['class'=>'form-control','id'=>'inputEmai3', 'maxlength'=>'100','required'])!!}
+            {!!Form::input('text','codigo', null ,['class'=>'form-control','id'=>'codigo', 'maxlength'=>'50','required'])!!}
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="nombre" class="col-sm-3 control-label">Nombre de Embarcacion</label>
+          <div class="col-sm-9">
+            {!!Form::input('text','nombreEmbarcacion', null ,['class'=>'form-control','id'=>'nombre', 'maxlength'=>'100','required'])!!}
           </div>
         </div>
         <div class="form-group">
