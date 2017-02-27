@@ -105,6 +105,7 @@ class PermisoZarpeController extends Controller
         $permisoPatron->nMatricula              =   $input['nMatricula'];
         $permisoPatron->coordenadaX             =   $input['latitud'];
         $permisoPatron->coordenadaY             =   $input['longitud'];
+        $permisoPatron->zonapesca             =   $input['zonapesca'];
         $permisoPatron->fechaZarpe              =   new Carbon($input['fechaZarpe']);
         $permisoPatron->fechaArribo             =   new Carbon($input['fechaArribo']);
         $permisoPatron->puerto_id               =   $input['puerto_id'];
@@ -233,6 +234,7 @@ class PermisoZarpeController extends Controller
         $permisoPatron->nMatricula              =   $input['nMatricula'];
         $permisoPatron->coordenadaX             =   $input['latitud'];
         $permisoPatron->coordenadaY             =   $input['longitud'];
+        $permisoPatron->zonapesca             =   $input['zonapesca'];
         $permisoPatron->fechaZarpe              =   new Carbon($input['fechaZarpe']);
         $permisoPatron->fechaArribo             =   new Carbon($input['fechaArribo']);
         $permisoPatron->puerto_id               =   $input['puerto_id'];

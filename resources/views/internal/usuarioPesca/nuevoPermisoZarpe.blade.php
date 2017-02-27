@@ -15,6 +15,12 @@
   <div class="col-sm-8">
     {!!Form::open(array('url' => 'usuarioPesca/permisoZarpes/new','files'=>true,'id'=>'form','class'=>'form-horizontal'))!!}
       <div class="form-group">
+          <label for="inputEmail3" class="col-sm-3 control-label">Codigo</label>
+          <div class="col-sm-9">
+            {!!Form::input('text','codigo', null ,['class'=>'form-control','id'=>'inputEmai3', 'maxlength'=>'50','required'])!!}
+          </div>
+        </div>
+      <div class="form-group">
           <label for="inputEmail3" class="col-sm-3 control-label">Nombre Embarcacion</label>
           <div class="col-sm-9">
             {!!Form::input('text','nombreEmbarcacion', null ,['class'=>'form-control','id'=>'inputEmai3', 'maxlength'=>'100','required'])!!}
@@ -36,6 +42,12 @@
           <label for="tamanoMax" class="col-sm-3 control-label">Longitud</label>
           <div class="col-sm-9">
             {!!Form::input('number','longitud', null ,['class'=>'form-control','id'=>'longitud', 'required'])!!}
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="zonapesca" class="col-sm-3 control-label">Zona Pesca</label>
+          <div class="col-sm-9">
+            {!!Form::input('text','zonapesca', null ,['class'=>'form-control','id'=>'zonapesca', 'maxlength'=>'150','required'])!!}
           </div>
         </div>
         <div class="form-group">

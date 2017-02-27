@@ -30,6 +30,7 @@ class StorePermisoZarpeRequest extends Request
                 'nMatricula'            =>  'required|max:50',
                 'longitud'              =>  'required|numeric',
                 'latitud'               =>  'required|numeric',
+                'zonaPesca'             =>  'required|max:150',
                 'fechaZarpe'            =>  'required',
                 'fechaArribo'           =>  'required',
                 'puerto_id'             =>  'required|integer',

@@ -46,6 +46,12 @@
           </div>
         </div>
         <div class="form-group">
+          <label for="zonapesca" class="col-sm-3 control-label">Zona Pesca</label>
+          <div class="col-sm-9">
+            {!!Form::input('text','zonapesca', $permisoZarpe->zonapesca ,['class'=>'form-control','id'=>'zonapesca', 'maxlength'=>'150','required'])!!}
+          </div>
+        </div>
+        <div class="form-group">
           <label for="inputcumpleanos" class="col-sm-3 control-label">Fecha Zarpe</label>
           <div class="col-sm-9">
             {!!Form::input('date','fechaZarpe', explode(" ",$permisoZarpe->fechaZarpe)[0]  ,['class'=>'form-control','id'=>'fechaZarpe','required'])!!}
