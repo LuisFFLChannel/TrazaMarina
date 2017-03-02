@@ -26,8 +26,7 @@ class StorePermisoZarpeRequest extends Request
         $rules = [
             //
                 'codigo'                =>  'required|max:50',
-                'nombreEmbarcacion'     =>  'required|max:100',
-                'nMatricula'            =>  'required|max:50',
+                'embarcacion_id'                     =>  'required|integer',
                 'longitud'              =>  'required|numeric',
                 'latitud'               =>  'required|numeric',
                 'zonaPesca'             =>  'required|max:150',

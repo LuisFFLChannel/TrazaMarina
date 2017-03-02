@@ -16,8 +16,9 @@ class CreatePermisoZarpeTable extends Migration
         Schema::create('permisoZarpe', function (Blueprint $table) {
             $table->increments('id');
             $table->string('codigo');
-            $table->string('nombreEmbarcacion');
-            $table->string('nMatricula');
+            //$table->string('nombreEmbarcacion');
+            //$table->string('nMatricula');
+            $table->integer('embarcacion_id')->unsigned();
             $table->double('coordenadaX',15,8);
             $table->double('coordenadaY',15,8);
             $table->string('zonaPesca');

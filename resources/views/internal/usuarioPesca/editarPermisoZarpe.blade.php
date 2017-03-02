@@ -22,18 +22,11 @@
           </div>
         </div>
       <div class="form-group">
-          <label for="inputEmail3" class="col-sm-3 control-label">Nombres</label>
-          <div class="col-sm-9">
-            {!!Form::input('text','nombreEmbarcacion', $permisoZarpe->nombreEmbarcacion ,['class'=>'form-control','id'=>'inputEmai3', 'maxlength'=>'100','required'])!!}
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="inputEmail3" class="col-sm-3 control-label">Numero de Matricula</label>
-          <div class="col-sm-9">
-            {!!Form::input('text','nMatricula', $permisoZarpe->nMatricula ,['class'=>'form-control','id'=>'inputEmai3', 'maxlength'=>'50','required'])!!}
-          </div>
-        </div>
-        <div class="form-group">
+            <label class="col-sm-3 control-label">Capitania</label>
+            <div class="col-sm-9">
+                {!! Form::select('embarcacion_id', $embarcaciones_lista->toArray(), $permisoZarpe->embarcacion_id, ['class' => 'form-control','required', 'id'=>'embarcacion_id']) !!}
+            </div>
+        </div>        <div class="form-group">
           <label for="tamanoMin" class="col-sm-3 control-label">Latitud</label>
           <div class="col-sm-9">
             {!!Form::input('number','latitud', $permisoZarpe->coordenadaX ,['class'=>'form-control','id'=>'latitud','required'])!!}
@@ -48,7 +41,7 @@
         <div class="form-group">
           <label for="zonapesca" class="col-sm-3 control-label">Zona Pesca</label>
           <div class="col-sm-9">
-            {!!Form::input('text','zonapesca', $permisoZarpe->zonapesca ,['class'=>'form-control','id'=>'zonapesca', 'maxlength'=>'150','required'])!!}
+            {!!Form::input('text','zonaPesca', $permisoZarpe->zonaPesca ,['class'=>'form-control','id'=>'zonaPesca', 'maxlength'=>'150','required'])!!}
           </div>
         </div>
         <div class="form-group">

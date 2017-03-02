@@ -23,4 +23,7 @@ class Embarcacion extends Model
     public function desembarque(){
         return $this->hasMany('App\Models\Desembarque');
     }
+    public function permisoZarpe(){
+        return $this->hasMany('App\Models\PermisoZarpe');//->where('permisoZarpe_id',$this->id)->where('tipo',1);
+    }
 }

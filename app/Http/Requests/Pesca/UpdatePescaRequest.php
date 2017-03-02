@@ -25,7 +25,7 @@ class UpdatePescaRequest extends Request
     {
         return [
             
-            'embarcacion_id'                =>  'required|integer',
+            'embarcacion_id'                     =>  'required|integer',
             'longitud'                      =>  'required|numeric',
             'latitud'                       =>  'required|numeric',
             'fechaZarpe'                    =>  'required',

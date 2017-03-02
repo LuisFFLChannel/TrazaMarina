@@ -46,6 +46,9 @@ class PermisoZarpe extends Model
     	return $this->belongsToMany('App\Models\Pescador','permisoZarpe_pescadores','permisoZarpe_id','pescadores_id')->wherePivot('tipo', 1);//->where('permisoZarpe_id',$this->id)->where('tipo',1);
     }
     public function pesca(){
-        return $this->hasOne('App\Models\Pesca');
+        return $this->hasOne('App\Models\Pesca','permisoZarpe_id');
+    }
+    public function embarcacion(){
+        return $this->belongsTo('App\Models\Embarcacion');
     }
 }

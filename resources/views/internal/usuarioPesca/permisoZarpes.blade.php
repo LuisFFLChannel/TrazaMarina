@@ -13,8 +13,7 @@
 <table class="table table-bordered table-striped">
     <tr>
         <th class="text-center">N° Documennto</th>
-        <th class="text-center">Nombre</th>   
-        <th class="text-center">N° de Matricula</th>
+        <th class="text-center">Nombre Embarcacion</th>  
         <th class="text-center">Fecha Zarpe</th>
         <!--<th>Imagen</th>-->
         <th class="text-center">Detalle</th>
@@ -25,8 +24,7 @@
     @foreach($permisoZarpes as $permisoZarpe)
     <tr>
       <td class="text-center">{{$permisoZarpe->codigo}}</td>
-      <td class="text-center">{{$permisoZarpe->nombre}}</td>
-      <td class="text-center">{{$permisoZarpe->nMatricula}}</td>
+      <td class="text-center">{{$permisoZarpe->embarcacion->nMatricula}} - {{$permisoZarpe->embarcacion->nombre}}</td>
       <td class="text-center">{{date_format(date_create($permisoZarpe->Zarpe),"d/m/Y")}} </td>
          
       
@@ -45,8 +43,8 @@
                       <div class="col-sm-1"></div>
                       <div class="col-sm-8">
                           <h5 class="text-left">N° Documento: {{$permisoZarpe->codigo}}</h5>
-                          <h5 class="text-left">Nombre: {{$permisoZarpe->nombre}}</h5>
-                          <h5 class="text-left">Numero de Matricula: {{$permisoZarpe->nMatricula}} </h5>
+                          <h5 class="text-left">Nombre Embarcacion: {{$permisoZarpe->embarcacion->nombre}}</h5>
+                          <h5 class="text-left">Numero de Matricula: {{$permisoZarpe->embarcacion->nMatricula}} </h5>
                           <h5 class="text-left">Fecha Zarpe: {{date_format(date_create($permisoZarpe->fechaZarpe),"d/m/Y")}} </h5>
                           <h5 class="text-left">Fecha Arribo: {{date_format(date_create($permisoZarpe->fechaArribo),"d/m/Y")}} </h5>
                           <h5 class="text-left">Capitania Asociada: {{$permisoZarpe->capitania->id}} - {{$permisoZarpe->capitania->nombre}} </h5>
