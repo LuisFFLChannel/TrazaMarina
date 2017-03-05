@@ -37,10 +37,10 @@
               <th>Longitud de Pesca</th>
               <th >{{$pesca->coordenadaY}}</th>   
           </tr> 
-           <tr>
+            <tr>
               <th>Permiso Zarpe</th>
-              <th >{{$pesca->permisoZarpe->id}} - {{$pesca->permisoZarpe->nombre}}</th>   
-          </tr> 
+              <th >{{$pesca->permisoZarpe->codigo}}</th>   
+          </tr>  
            <tr>
               <th>Fecha Zarpe</th>
               <th >{{date_format(date_create($pesca->fechaZarpe),"d/m/Y") }}</th>   
@@ -59,12 +59,7 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <label class="col-sm-3 control-label">Dpa</label>
-            <div class="col-sm-9">
-                {!! Form::select('dpa_id', $dpas_lista->toArray(), $desembarque->dpa_id, ['class' => 'form-control','required', 'id'=>'dpa_id']) !!}
-            </div>
-        </div>
+        
 
         <div class="form-group">
           <label for="inputcumpleanos" class="col-sm-3 control-label">Fecha Arribo</label>

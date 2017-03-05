@@ -526,11 +526,11 @@ Route::group(['middleware' => ['auth', 'usuarioPesca']], function () {
     Route::post('usuarioPesca/permisoPatrones/{id}/edit', 'PermisoPatronController@update');
     Route::get('usuarioPesca/permisoPatrones/{id}/delete', 'PermisoPatronController@destroy');
 
-    Route::get('usuarioPesca/pescas', ['uses'=>'PescaController@index','as'=>'usuarioPesca.pescas']);
+    /*Route::get('usuarioPesca/pescas', ['uses'=>'PescaController@index','as'=>'usuarioPesca.pescas']);
     Route::get('usuarioPesca/pescas/new', 'PescaController@create');
     Route::post('usuarioPesca/pescas/new', 'PescaController@store');
     Route::get('usuarioPesca/pescas/{id}/edit', 'PescaController@edit');
-    Route::post('usuarioPesca/pescas/{id}/edit', 'PescaController@update');
+    Route::post('usuarioPesca/pescas/{id}/edit', 'PescaController@update');*/
     Route::get('usuarioPesca/pescas/{id}/showDesembarque', 'PescaController@showDesembarque');
     //Route::get('usuarioPesca/pescasNoArribadas', 'PescaController@indexNoArribadas');
     //Route::get('usuarioPesca/pescasArribadas', 'PescaController@indexArribadas');

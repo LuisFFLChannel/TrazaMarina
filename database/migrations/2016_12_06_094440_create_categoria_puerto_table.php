@@ -31,5 +31,6 @@ class CreateCategoriaPuertoTable extends Migration
     public function down()
     {
         //
+        Schema::drop('categoriaPuerto');
     }
 }

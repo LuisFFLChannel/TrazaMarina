@@ -16,9 +16,9 @@ class Desembarque extends Model
     public function puerto(){
         return $this->belongsTo('App\Models\Puerto');
     }
-    public function dpa(){
+    /*public function dpa(){
         return $this->belongsTo('App\Models\Dpa');
-    }
+    }*/
     public function pesca(){
         return $this->belongsTo('App\Models\Pesca','pesca_id');
     }

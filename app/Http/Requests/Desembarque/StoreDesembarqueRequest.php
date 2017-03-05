@@ -26,24 +26,32 @@ class StoreDesembarqueRequest extends Request
         $rules = [
             
             'embarcacion_id'                =>  'required|integer',
-            'dpa_id'                        =>  'required|integer',
+            //'dpa_id'                        =>  'required|integer',
             'fechaLlegada'                  =>  'required',
             'puerto_id'                     =>  'required|integer',
             'especies_id'                   =>  'required',
             'toneladas'                     =>  'required',
             'tallas'                =>  'required',
+            'huboPesca'             =>  'required',
+            'especies_id'           =>  'required_if:huboPesca,1',
+            'toneladas'           =>  'required_if:huboPesca,1',
+            'tallas'           =>  'required_if:huboPesca,1',
         ];
         $especies = $this->request->get('especies_id');
-        //dd($especies = $this->request->get('tallas'));
-        if($especies)
-        foreach($especies as $key=>$val){
-            $rules['especies_id.'.$key]              = 'required|integer';
-            $rules['toneladas.'.$key]               = 'required|numeric|min:0';
+        //dd($this->request->get('huboPesca'));
+        if($especies){
             
-            $rules['tallas.'.$key]           = 'required|numeric|min:0';
-            
-            
+
+            foreach($especies as $key=>$val){
+                $rules['especies_id.'.$key]              = 'required_if:huboPesca,1|integer';
+                $rules['toneladas.'.$key]               = 'required_if:huboPesca,1|numeric|min:0';
+                
+                $rules['tallas.'.$key]           = 'required_if:huboPesca,1|numeric|min:0';
+                
+                
+            }
         }
+        
         return $rules;
     }
     public function messages(){
@@ -53,9 +61,9 @@ class StoreDesembarqueRequest extends Request
         if($especies)
         foreach($especies as $key=>$val)
         {
-            $messages['especies_id.'.$key.'.required'] = 'Se deben completar los campos de filas y columnas de la nota de ingreso '.($key+1);
-            $messages['toneladas.'.$key.'.required'] = 'Se deben completar los campos de filas y columnas de la nota de ingreso '.($key+1);
-            $messages['tallas.'.$key.'.required'] = 'Se deben completar los campos de filas y columnas de la nota de ingreso '.($key+1);
+            $messages['especies_id.'.$key.'.required_if:'.$this->request->get('huboPesca').',1'] = 'Se deben completar los campos de filas y columnas de la nota de ingreso '.($key+1);
+            $messages['toneladas.'.$key.'.required_if:'.$this->request->get('huboPesca').',1'] = 'Se deben completar los campos de filas y columnas de la nota de ingreso '.($key+1);
+            $messages['tallas.'.$key.'.required_if:'.$this->request->get('huboPesca').',1'] = 'Se deben completar los campos de filas y columnas de la nota de ingreso '.($key+1);
         }
         return $messages;
     }

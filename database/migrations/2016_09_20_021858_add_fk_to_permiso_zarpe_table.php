@@ -29,7 +29,7 @@ class AddFkToPermisoZarpeTable extends Migration
     {
         //
         Schema::table('permisoZarpe', function (Blueprint $table) {
-            $table->dropForeign('embarcacion_id_foreign');
+            $table->dropForeign('permisoZarpe_embarcacion_id_foreign');
             $table->dropForeign('permisoZarpe_puerto_id_foreign');
             $table->dropForeign('permisoZarpe_capitania_id_foreign');
         });

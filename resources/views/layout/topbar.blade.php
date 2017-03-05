@@ -282,13 +282,7 @@
                         <li><a href="{{url('usuarioPesca/permisoPescas/new')}}">Nuevo</a></li>
                     </ul>
                 </li>
-                <li>
-                    <a data-toggle="collapse" data-target="#permisosZarpePes" class="collapsed">P. Zarpe<b class="caret"></b></a>
-                    <ul class="sub-menu collapse" id="permisosZarpePes">
-                        <li><a href="{{url('usuarioPesca/permisoZarpes')}}">Listar</a></li>
-                        <li><a href="{{url('usuarioPesca/permisoZarpes/new')}}">Nuevo</a></li>
-                    </ul>
-                </li>
+                
                 <li>
                     <a data-toggle="collapse" data-target="#permisosMarineroPes" class="collapsed">P. Marinero<b class="caret"></b></a>
                     <ul class="sub-menu collapse" id="permisosMarineroPes">
@@ -304,12 +298,19 @@
                     </ul>
                 </li>
                 <li>
+                    <a data-toggle="collapse" data-target="#permisosZarpePes" class="collapsed">P. Zarpe<b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="permisosZarpePes">
+                        <li><a href="{{url('usuarioPesca/permisoZarpes')}}">Listar</a></li>
+                        <li><a href="{{url('usuarioPesca/permisoZarpes/new')}}">Nuevo</a></li>
+                    </ul>
+                </li>
+                <!--<li>
                     <a data-toggle="collapse" data-target="#pescasPes" class="collapsed">Pescas<b class="caret"></b></a>
                     <ul class="sub-menu collapse" id="pescasPes">
                         <li><a href="{{url('usuarioPesca/pescas')}}">Listar</a></li>
                         <li><a href="{{url('usuarioPesca/pescas/new')}}">Nuevo</a></li>
                     </ul>
-                </li>
+                </li>-->
                 <li>
                     <a data-toggle="collapse" data-target="#desembarquesPes" class="collapsed">Desembarques<b class="caret"></b></a>
                     <ul class="sub-menu collapse" id="desembarquesPes">

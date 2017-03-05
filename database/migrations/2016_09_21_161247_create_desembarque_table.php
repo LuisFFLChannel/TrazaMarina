@@ -20,7 +20,7 @@ class CreateDesembarqueTable extends Migration
             $table->integer('embarcacion_id')->unsigned();
             $table->integer('pesca_id')->unsigned();
             $table->integer('puerto_id')->unsigned();
-            $table->integer('dpa_id')->unsigned();
+            //$table->integer('dpa_id')->unsigned();
             $table->integer('certificado_arribo_id')->unsigned()->unique()->nullable();
             $table->boolean('huboPesca');
             $table->boolean('activo');

@@ -168,6 +168,32 @@ class PermisoZarpeController extends Controller
             }
 
         }
+
+        foreach($patrones_data ['patrones_id'] as $key1=>$value1){
+            $pats_data = [
+                'patrones_id' => $value1
+            ];
+            
+            foreach ($pescas as $pes ) {
+                //dd($pes->embarcacion->nombre);
+                /*if ($pes->embarcacion->id == $input['embarcacion_id']){
+                    return redirect()->back()->withInput()->withErrors(['errors' => 'La Embarcacion seleccionada se encuentra en alta mar en estos momentos']);
+                }*/
+                $pescadoresTotales = $pes->permisoZarpe->pescadores;
+                
+                    foreach ($pescadoresTotales as $auxPescadorTotal ) {
+                        //dd($auxPescadorActual->id);
+                        if ($pats_data['patrones_id'] == $auxPescadorTotal->id){
+                            return redirect()->back()->withInput()->withErrors(['errors' => 'El patrón se encuentran en alta mar en estos momentos. Revise el Permiso Zarpe']);
+                        }
+                    }
+                
+            }
+
+        }
+
+
+
         
          $embarcacion = Embarcacion::find($input['embarcacion_id']);
         //dd($embarcacion->certificado_matricula_id);
@@ -202,7 +228,7 @@ class PermisoZarpeController extends Controller
         $pesca                              =   new Pesca;
         $pesca->embarcacion_id              =   $permisoPatron->embarcacion_id; 
         $pesca->coordenadaX                 =   $permisoPatron->coordenadaX;
-        $pesca->coordenadaY                 =   $permisoPatron->coordenadaX;
+        $pesca->coordenadaY                 =   $permisoPatron->coordenadaY;
         $pesca->fechaZarpe                  =   $permisoPatron->fechaZarpe; 
         $pesca->puerto_id                   =   $permisoPatron->puerto_id;
         $pesca->permisoZarpe_id             =   $permisoPatron->id;  
@@ -364,6 +390,31 @@ class PermisoZarpeController extends Controller
                 
             }
         }
+
+        foreach($patrones_data ['patrones_id'] as $key1=>$value1){
+            $pats_data = [
+                'patrones_id' => $value1
+            ];
+            
+            foreach ($pescas as $pes ) {
+                //dd($pes->embarcacion->nombre);
+                /*if ($pes->embarcacion->id == $input['embarcacion_id']){
+                    return redirect()->back()->withInput()->withErrors(['errors' => 'La Embarcacion seleccionada se encuentra en alta mar en estos momentos']);
+                }*/
+                $pescadoresTotales = $pes->permisoZarpe->pescadores;
+                
+                    foreach ($pescadoresTotales as $auxPescadorTotal ) {
+                        //dd($auxPescadorActual->id);
+                        if ($pats_data['patrones_id'] == $auxPescadorTotal->id){
+                            return redirect()->back()->withInput()->withErrors(['errors' => 'El patrón se encuentran en alta mar en estos momentos. Revise el Permiso Zarpe']);
+                        }
+                    }
+                
+            }
+
+        }
+
+
          $embarcacion = Embarcacion::find($input['embarcacion_id']);
         //dd($embarcacion->certificado_matricula_id);
         if ($embarcacion->certificado_matricula_id == null or $embarcacion->certificado_matricula_id == 0 ){
@@ -398,7 +449,7 @@ class PermisoZarpeController extends Controller
 
         $pesca->embarcacion_id              =   $permisoPatron->embarcacion_id; 
         $pesca->coordenadaX                 =   $permisoPatron->coordenadaX;
-        $pesca->coordenadaY                 =   $permisoPatron->coordenadaX;
+        $pesca->coordenadaY                 =   $permisoPatron->coordenadaY;
         $pesca->fechaZarpe                  =   $permisoPatron->fechaZarpe; 
         $pesca->puerto_id                   =   $permisoPatron->puerto_id;
         $pesca->permisoZarpe_id             =   $permisoPatron->id;  

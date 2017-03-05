@@ -12,22 +12,33 @@
 
 <table class="table table-bordered table-striped">
     <tr>
-        <th class="text-center">N° Documennto</th>
-        <th class="text-center">Nombre Embarcacion</th>  
+        <th class="text-center">N° Documento</th>
+        <th class="text-center">Nombre Embarcacion</th> 
+        <th class="text-center">Puerto Zarpe</th>   
         <th class="text-center">Fecha Zarpe</th>
+        <th class="text-center">¿Está en alta mar?</th>
         <!--<th>Imagen</th>-->
+        <th class="text-center">Mapa</th>
         <th class="text-center">Detalle</th>
         <th class="text-center">Editar</th>
-        <th class="text-center">Eliminar</th>
+        <th class="text-center">Desembarque</th>
+        <!--<th class="text-center">Eliminar</th>-->
     </tr>
     
     @foreach($permisoZarpes as $permisoZarpe)
     <tr>
       <td class="text-center">{{$permisoZarpe->codigo}}</td>
       <td class="text-center">{{$permisoZarpe->embarcacion->nMatricula}} - {{$permisoZarpe->embarcacion->nombre}}</td>
+      <td class="text-center">{{$permisoZarpe->puerto->nombre}}</td>
       <td class="text-center">{{date_format(date_create($permisoZarpe->Zarpe),"d/m/Y")}} </td>
-         
-      
+      @if($permisoZarpe->pesca->arribo == false)
+          <td class="text-center"> Si </td>
+      @else
+          <td class="text-center"> No </td>
+      @endif    
+      <td class="text-center">
+          <a class="btn btn-info" href="{{url('usuarioPesca/mapas/'.$permisoZarpe->pesca->id.'/mostarMapaPesca')}}" title="Mostrar Mapa" ><i class="glyphicon glyphicon-map-marker"></i></a>
+        </td>
       <!--<td>{!! Html::image($permisoZarpe->imagen, null, array('class'=>'gift_img')) !!}</td>-->
       <td class="text-center">
             <a class="btn btn-info" href="detalles" title="Detalles" data-toggle="modal" data-target="#edit{{$permisoZarpe->id}}"><i class="glyphicon glyphicon-plus"></i></a>
@@ -74,11 +85,19 @@
         <a class="btn btn-info" href="{{url('usuarioPesca/permisoZarpes/'.$permisoZarpe->id.'/edit')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
       </td> 
       <td class="text-center">
+        @if($permisoZarpe->pesca->arribo == false)
+            <a class="btn btn-info" href="{{url('usuarioPesca/pescas/'.$permisoZarpe->pesca->id.'/addDesembarque')}}" title="Agregar Desembarque" ><i class="glyphicon glyphicon-pencil"></i></a>
+        @else
+            <a class="btn btn-info" href="{{url('usuarioPesca/pescas/'.$permisoZarpe->pesca->id.'/showDesembarque')}}" title="Ver Desembarque" ><i class="glyphicon glyphicon-plus"></i></a>
+        @endif 
+      </td>
+   <!--   <td class="text-center">
         <a class="btn btn-info" title="Eliminar" data-toggle="modal" data-target="#deleteModal{{$permisoZarpe->id}}" ><i class="glyphicon glyphicon-remove"></i></a>
       </td>
     </tr>
 
-    <!-- MODAL -->
+
+    
     <div class="modal fade"  id="deleteModal{{$permisoZarpe->id}}">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -93,9 +112,9 @@
               <button type="button" class="btn btn-info" data-dismiss="modal">No</button>
               <a class="btn btn-info" href="{{url('usuarioPesca/permisoZarpes/'.$permisoZarpe->id.'/delete')}}" title="Delete" >Sí</a>
           </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+        </div>
+      </div>
+    </div>-->
    
     @endforeach
     

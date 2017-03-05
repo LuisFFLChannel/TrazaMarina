@@ -18,7 +18,7 @@
     <div class="col-sm-8">
         <table class="table table-bordered table-striped">
           <tr>
-              <th >Numero</th>
+              <th >Numero de la Pesca</th>
               <th >{{$pesca->id}}</th>   
           </tr>  
           <tr>
@@ -39,7 +39,7 @@
           </tr> 
            <tr>
               <th>Permiso Zarpe</th>
-              <th >{{$pesca->permisoZarpe->id}} - {{$pesca->permisoZarpe->nombre}}</th>   
+              <th >{{$pesca->permisoZarpe->codigo}}</th>   
           </tr> 
            <tr>
               <th>Fecha Zarpe</th>
@@ -61,12 +61,7 @@
                 {!! Form::select('embarcacion_id', $embarcaciones_lista->toArray(), null, ['class' => 'form-control','required', 'id'=>'embarcacion_id']) !!}
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-sm-3 control-label">Dpa</label>
-            <div class="col-sm-9">
-                {!! Form::select('dpa_id', $dpas_lista->toArray(), null, ['class' => 'form-control','required', 'id'=>'dpa_id']) !!}
-            </div>
-        </div>
+             
 
         <div class="form-group">
           <label for="inputcumpleanos" class="col-sm-3 control-label">Fecha Arribo</label>
@@ -83,48 +78,67 @@
                 {!! Form::select('puerto_id', $puertos_lista->toArray(), null, ['class' => 'form-control','required', 'id'=>'puerto_id']) !!}
             </div>
         </div>
-        <br>
-      <legend>Agregar Notas de Ingreso:</legend>
-        <div class="form-group">
-            <label class="col-sm-3 control-label">Especie Marina</label>
+         
+          <div class="form-group">
+            <label class="col-sm-3 control-label">¿Se realizó la pesca?</label>
             <div class="col-sm-9">
-                {!! Form::select('especie_id', $especies_lista->toArray(), null, ['class' => 'form-control','required', 'id'=>'especie_id']) !!}
-            </div>
-        </div>
-        <div class="form-group">
-          <label  class="col-md-3 control-label">Toneladas</label>
-          <div class="col-md-9">
-              {!! Form::number('toneladas_inde','', array('class' => 'form-control','id' => 'toneladas_inde','maxlength' => 50,'min' => '0')) !!}
-          </div>
-        </div>
-        <div class="form-group">
-          <label  class="col-md-3 control-label">Talla Promedio</label>
-          <div class="col-md-9">
-              {!! Form::number('promedios_inde','', array('class' => 'form-control','id' => 'promedios_inde','maxlength' => 50,'min' => '0')) !!}
-          </div>
-        </div>
-        <div class="form-group">
-            
-            <div class="col-sm-offset-3 col-sm-9">
-                <a id="AgregarEspecie" class="btn btn-info">Agregar</a>
-            </div>
-        </div>
-        <br>
-        <div class="form-group"> 
-          <div class="col-sm-offset-2 col-sm-10">
-              <table id="tabla-notas" class="table table-bordered table-striped ">
-                  <tr>
-                      <th>Codigo</th>
-                      <th>Nombre</th>
-                      <th>Toneladas</th>
-                      <th>Talla Promedios</th>
-                      <th>Accion</th>
-                  </tr>
-              </table>
-            </div>
-        </div>
+               
+              <div class="col-sm-5"> Si
+                  {!!Form::radio('huboPesca', 1,true,['onChange'=>'changeSeleccion(this)'])!!}
+              </div>
+               <div class="col-sm-5"> No
+                  {!!Form::radio('huboPesca', 0,null,['onChange'=>'changeSeleccion(this)'])!!}
+              </div>
 
+        
+                
+            </div>
+        </div>
         <br>
+       <div id="ocultar" class="form-group" style="display:none">
+
+        <legend  >Agregar Notas de Ingreso:</legend>
+          <div class="form-group">
+
+              <label class="col-sm-3 control-label">Especie Marina</label>
+              <div class="col-sm-9">
+                  {!! Form::select('especie_id', $especies_lista->toArray(), null, ['class' => 'form-control', 'id'=>'especie_id']) !!}
+              </div>
+          </div>
+          <div class="form-group">
+            <label  class="col-md-3 control-label">Toneladas</label>
+            <div class="col-md-9">
+                {!! Form::number('toneladas_inde','', array('class' => 'form-control','id' => 'toneladas_inde','maxlength' => 50,'min' => '0')) !!}
+            </div>
+          </div>
+          <div class="form-group">
+            <label  class="col-md-3 control-label">Talla Promedio</label>
+            <div class="col-md-9">
+                {!! Form::number('promedios_inde','', array('class' => 'form-control','id' => 'promedios_inde','maxlength' => 50,'min' => '0')) !!}
+            </div>
+          </div>
+          <div class="form-group">
+              
+              <div class="col-sm-offset-3 col-sm-9">
+                  <a id="AgregarEspecie" class="btn btn-info">Agregar</a>
+              </div>
+          </div>
+          <br>
+          <div class="form-group"> 
+            <div class="col-sm-offset-2 col-sm-10">
+                <table id="tabla-notas" class="table table-bordered table-striped ">
+                    <tr>
+                        <th>Codigo</th>
+                        <th>Nombre</th>
+                        <th>Toneladas</th>
+                        <th>Talla Promedios</th>
+                        <th>Accion</th>
+                    </tr>
+                </table>
+              </div>
+          </div>
+      </div>
+      <br>
 
 
       <div class="form-group">
@@ -133,7 +147,7 @@
           <a href="{{URL::previous()}}"><button type="button" class="btn btn-info">Cancelar</button></a>
         </div>
       </div>
-
+    
       <!-- MODAL -->
       <div class="modal fade"  id="submitModal">
         <div class="modal-dialog">
@@ -149,6 +163,7 @@
           </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
       </div><!-- /.modal -->
+
     {!!Form::close()!!}
   </div>
 </div>
@@ -276,5 +291,54 @@ function deleteFunctionEspecie(btn){
 
                 
     } 
+
+/*function hide () {
+
+    var chboxs = document.getElementById("huboPesca");
+    var vis = "none";
+    
+        if(chboxs.checked){
+
+              document.getElementById("ocultar").style.display = "block";
+        }
+        else{
+          document.getElementById("ocultar").style.display = "none";
+        }
+    
+    
+
+
+}*/
+$('document').ready(function () {
+    changeSeleccionJQ($('input[name="huboPesca"]:checked'));
+});
+
+function changeSeleccionJQ(element){
+  //console.log(element.val());
+
+
+  if(element.val() == 1){
+    document.getElementById("ocultar").style.display = "block";
+
+
+  }else{
+    document.getElementById("ocultar").style.display = "none";
+  }
+}
+
+function changeSeleccion(element){
+  //console.log(element.val());
+
+
+  if(element.value == 1){
+    document.getElementById("ocultar").style.display = "block";
+
+
+  }else{
+    document.getElementById("ocultar").style.display = "none";
+  }
+}
+
+
 </script>
 @stop

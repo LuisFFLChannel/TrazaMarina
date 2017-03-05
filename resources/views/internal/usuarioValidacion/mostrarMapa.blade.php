@@ -16,7 +16,7 @@
 @elseif ($valorEscogido==5)
     Mapa de Terminal: {{$terminal->id}} - {{$terminal->nombre}}
 @elseif ($valorEscogido==6)
-    Mapa de Pesca: Número {{$pesca->id}}
+    Mapa del Permiso Zarpe: {{$pesca->permisoZarpe->codigo}}
 @endif
 
 @stop
@@ -156,17 +156,17 @@
                     <th >{!! Html::image($terminal->imagen, null, array('class'=>'cat_img')) !!}</th>   
                 </tr>
                 @elseif ($valorEscogido==6)
-                <tr>
+                 <tr>
                     <th >Codigo</th>
-                    <th >{{$pesca->id}}</th>   
+                    <th >{{$pesca->permisoZarpe->codigo}}</th>   
                 </tr> 
                 <tr>
                     <th>Embarcación</th>
-                    <th >{{$pesca->embarcacion->id}} {{$pesca->embarcacion->nombre}}</th>   
+                    <th >{{$pesca->embarcacion->id}} - {{$pesca->embarcacion->nombre}}</th>   
                 </tr>  
                  <tr>
                     <th>Puerto</th>
-                    <th >{{$pesca->puerto->id}} {{$pesca->puerto->nombre}}</th>   
+                    <th >{{$pesca->puerto->id}} - {{$pesca->puerto->nombre}}</th>   
                 </tr> 
                 <tr>
                     <th>Latitud</th>
@@ -176,10 +176,6 @@
                     <th>Longitud</th>
                     <th >{{$pesca->coordenadaY}}</th>   
                 </tr> 
-                <tr>
-                    <th>Numero de Permiso Zarpe</th>
-                    <th >{{$pesca->permisoZarpe->id}}</th>   
-                </tr>
                 <tr>
                     <th>Fecha Zarpe</th>
                     <th >{{date_format(date_create($pesca->fechaZarpe),"d/m/Y") }}</th>   

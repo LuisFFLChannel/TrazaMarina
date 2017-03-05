@@ -61,13 +61,13 @@ class DesembarqueController extends Controller
         //
         $embarcaciones_lista = Embarcacion::all()->lists('nombre','id');
         $puertos_lista = Puerto::all()->lists('nombre','id');
-        $dpas_lista = Dpa::all()->lists('nombre','id');
+       // $dpas_lista = Dpa::all()->lists('nombre','id');
         $especies_lista = EspecieMarina::all()->lists('nombre','id');
         $pesca = Pesca::find($id);
        
       
         $arreglo = [
-        'dpas_lista'   =>$dpas_lista,
+       // 'dpas_lista'   =>$dpas_lista,
         'embarcaciones_lista'   =>$embarcaciones_lista,
         'puertos_lista'      =>$puertos_lista,
         'especies_lista'        =>$especies_lista,
@@ -119,49 +119,59 @@ class DesembarqueController extends Controller
             return redirect()->back()->withInput()->withErrors(['errors' => 'La fecha de Arribo sucede antes que la fecha de Zarpe']);
         }   
 
-        $especies_data = [
-            'especies_id'     => $request->input('especies_id'),
-            'toneladas'     => $request->input('toneladas'),
-            'tallas'     => $request->input('tallas'),
-        ];
-        
-        foreach($especies_data ['especies_id'] as $key1=>$value1){
-            $pes_data = [
-                'especies_id' => $value1
+        if ($input['huboPesca']==1){
+            $especies_data = [
+                'especies_id'     => $request->input('especies_id'),
+                'toneladas'     => $request->input('toneladas'),
+                'tallas'     => $request->input('tallas'),
             ];
-            foreach($especies_data ['especies_id'] as $key2=>$value2){
-                $pes2_data = [
-                    'especies_id' => $value2
+            
+            foreach($especies_data ['especies_id'] as $key1=>$value1){
+                $pes_data = [
+                    'especies_id' => $value1
                 ];
-                if ($key1!= $key2 and $pes_data['especies_id']==$pes2_data['especies_id']){
-                     return redirect()->back()->withInput()->withErrors(['errors' => 'Se esta Repitiendo Especies Marinas en la creación de Notas de Ingreso']);
+                foreach($especies_data ['especies_id'] as $key2=>$value2){
+                    $pes2_data = [
+                        'especies_id' => $value2
+                    ];
+                    if ($key1!= $key2 and $pes_data['especies_id']==$pes2_data['especies_id']){
+                         return redirect()->back()->withInput()->withErrors(['errors' => 'Se esta Repitiendo Especies Marinas en la creación de Notas de Ingreso']);
+                    }
                 }
             }
+
         }
+
+        
         
 
         $desembarque ->puerto_id                   =   $input['puerto_id'];
-        $desembarque ->dpa_id                      =   $input['dpa_id']; 
+        //$desembarque ->dpa_id                      =   $input['dpa_id']; 
         $desembarque ->pesca_id                    =   $id; 
         $desembarque ->activo                      =   true;
+        $desembarque ->huboPesca                   =    $input['huboPesca'];
         $desembarque ->save();
         $pesca->arribo                      =   true;
         $pesca->save();
 
-        foreach($especies_data ['especies_id'] as $key=>$value){
-            $pes_data = [
-                'especies_id' => $value,
-                'toneladas'   => $especies_data['toneladas'][$key],
-                'tallas'   => $especies_data['tallas'][$key],
-            ];
-            $var = $this->storeNotaIngreso($pes_data , $desembarque);
+        if ($input['huboPesca']==1){
+            foreach($especies_data ['especies_id'] as $key=>$value){
+                $pes_data = [
+                    'especies_id' => $value,
+                    'toneladas'   => $especies_data['toneladas'][$key],
+                    'tallas'   => $especies_data['tallas'][$key],
+                ];
+                $var = $this->storeNotaIngreso($pes_data , $desembarque);
+            }
+
         }
+        
 
         if (Auth::user()->role_id == 4){
-            return redirect()->route('admin.pescas');
+            return redirect()->route('admin.permisoZarpes');
         }
         elseif  (Auth::user()->role_id == 5){
-            return redirect()->route('usuarioPesca.pescas');
+            return redirect()->route('usuarioPesca.permisoZarpes');
         }
 
     }
@@ -188,7 +198,7 @@ class DesembarqueController extends Controller
         //
         $embarcaciones_lista = Embarcacion::all()->lists('nombre','id');
         $puertos_lista = Puerto::all()->lists('nombre','id');
-        $dpas_lista = Dpa::all()->lists('nombre','id');
+        //$dpas_lista = Dpa::all()->lists('nombre','id');
         $desembarque = Desembarque::find($id);
         if ($desembarque ==null){
             return response()->view('errors.503', [], 404);
@@ -198,7 +208,7 @@ class DesembarqueController extends Controller
         
       
         $arreglo = [
-        'dpas_lista'   =>$dpas_lista,
+        //'dpas_lista'   =>$dpas_lista,
         'embarcaciones_lista'   =>$embarcaciones_lista,
         'puertos_lista'      =>$puertos_lista,
         'pesca' =>$pesca,
@@ -260,7 +270,7 @@ class DesembarqueController extends Controller
         }
 
         $desembarque ->puerto_id                   =   $input['puerto_id'];
-        $desembarque ->dpa_id                      =   $input['dpa_id']; 
+       // $desembarque ->dpa_id                      =   $input['dpa_id']; 
         
         $desembarque ->save();
 
