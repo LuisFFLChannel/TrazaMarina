@@ -36,6 +36,10 @@
           <tr>
               <th >Pesca</th>
               <th >{{$notaIngreso->desembarque->pesca->id}}</th>  
+          </tr>
+          <tr>
+              <th >Permiso Zarpe</th>
+              <th >{{$notaIngreso->desembarque->pesca->permisoZarpe->codigo}}</th>  
           </tr> 
           <tr>
               <th >Desembarque</th>

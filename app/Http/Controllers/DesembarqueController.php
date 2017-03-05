@@ -106,7 +106,7 @@ class DesembarqueController extends Controller
         //
         $input = $request->all();
         $pesca = Pesca::find($id);
-        //dd($pesca);
+        //
 
         $desembarque                               =   new Desembarque;
         $desembarque ->embarcacion_id              =   $input['embarcacion_id'];
@@ -118,13 +118,13 @@ class DesembarqueController extends Controller
         if($val->gt($val2)==false){
             return redirect()->back()->withInput()->withErrors(['errors' => 'La fecha de Arribo sucede antes que la fecha de Zarpe']);
         }   
-
-        if ($input['huboPesca']==1){
-            $especies_data = [
+        $especies_data = [
                 'especies_id'     => $request->input('especies_id'),
                 'toneladas'     => $request->input('toneladas'),
                 'tallas'     => $request->input('tallas'),
             ];
+            
+        if ($input['huboPesca']==1){
             
             foreach($especies_data ['especies_id'] as $key1=>$value1){
                 $pes_data = [
@@ -236,12 +236,13 @@ class DesembarqueController extends Controller
         //
         $input = $request->all();
         $desembarque= Desembarque::find($id);
-       
+        //dd($desembarque);
 
         $desembarque ->embarcacion_id              =   $input['embarcacion_id'];
         $val = Carbon::parse($desembarque->fechaLlegada);
         $desembarque ->fechaLlegada                =   new Carbon($input['fechaLlegada']);
-
+        $desembarque ->puerto_id                   =   $input['puerto_id'];
+        $desembarque ->huboPesca                   =    $input['huboPesca'];
         $val2 = Carbon::parse($desembarque->pesca->fechaLlegaZarpe);
 
       
@@ -254,22 +255,24 @@ class DesembarqueController extends Controller
             'toneladas'     => $request->input('toneladas'),
             'tallas'     => $request->input('tallas'),
         ];
-
-        foreach($especies_data ['especies_id'] as $key1=>$value1){
-            $pes_data = [
-                'especies_id' => $value1
-            ];
-            foreach($especies_data ['especies_id'] as $key2=>$value2){
-                $pes2_data = [
-                    'especies_id' => $value2
+        if ($desembarque ->huboPesca==1 ){
+            foreach($especies_data ['especies_id'] as $key1=>$value1){
+                $pes_data = [
+                    'especies_id' => $value1
                 ];
-                if ($key1!= $key2 and $pes_data['especies_id']==$pes2_data['especies_id']){
-                     return redirect()->back()->withInput()->withErrors(['errors' => 'Se esta Repitiendo Especies Marinas en la creación de Notas de Ingreso']);
+                foreach($especies_data ['especies_id'] as $key2=>$value2){
+                    $pes2_data = [
+                        'especies_id' => $value2
+                    ];
+                    if ($key1!= $key2 and $pes_data['especies_id']==$pes2_data['especies_id']){
+                         return redirect()->back()->withInput()->withErrors(['errors' => 'Se esta Repitiendo Especies Marinas en la creación de Notas de Ingreso']);
+                    }
                 }
             }
         }
+        
 
-        $desembarque ->puerto_id                   =   $input['puerto_id'];
+
        // $desembarque ->dpa_id                      =   $input['dpa_id']; 
         
         $desembarque ->save();
@@ -281,16 +284,18 @@ class DesembarqueController extends Controller
             DB::table('notaIngreso')->where("desembarque_id",'=',$desembarque->id)->delete();
             //$auxPes->delete();
         }
+        if ($desembarque ->huboPesca==1 ){
+            foreach($especies_data ['especies_id'] as $key=>$value){
+                $pes_data = [
+                    'especies_id' => $value,
+                    'toneladas'   => $especies_data['toneladas'][$key],
+                    'tallas'   => $especies_data['tallas'][$key],
+                ];
+                $var = $this->storeNotaIngreso($pes_data , $desembarque);
+            }
 
-        foreach($especies_data ['especies_id'] as $key=>$value){
-            $pes_data = [
-                'especies_id' => $value,
-                'toneladas'   => $especies_data['toneladas'][$key],
-                'tallas'   => $especies_data['tallas'][$key],
-            ];
-            $var = $this->storeNotaIngreso($pes_data , $desembarque);
         }
-      
+              
         if (Auth::user()->role_id == 4){
             return redirect()->route('admin.desembarques');
         }

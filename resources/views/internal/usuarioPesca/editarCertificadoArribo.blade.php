@@ -14,21 +14,15 @@
       {!!Form::open(array('url' => 'usuarioPesca/certificadoArribos/'.$certificadoArribo->id.'/edit','files'=>true,'id'=>'form','class'=>'form-horizontal'))!!}
         {!!Form::hidden('id', $certificadoArribo->id)!!}
         <div class="form-group">
-          <label for="inputEmail3" class="col-sm-3 control-label">Nombre</label>
+          <label for="inputEmail3" class="col-sm-3 control-label">Codigo</label>
           <div class="col-sm-9">
-            {!!Form::input('text','nombre', $certificadoArribo->nombre ,['class'=>'form-control','id'=>'inputEmai3', 'maxlength'=>'100','required'])!!}
+            {!!Form::input('text','codigo', $certificadoArribo->codigo ,['class'=>'form-control','id'=>'inputEmai3', 'maxlength'=>'100','required'])!!}
           </div>
         </div>
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-3 control-label">Numero de Matricula</label>
           <div class="col-sm-9">
             {!!Form::input('text','nMatricula', $certificadoArribo->nMatricula ,['class'=>'form-control','id'=>'inputEmai3', 'maxlength'=>'50','required'])!!}
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="tamanoMax" class="col-sm-3 control-label">Toneladas</label>
-          <div class="col-sm-9">
-            {!!Form::input('number','toneladas', $certificadoArribo->toneladas ,['class'=>'form-control','id'=>'toneladas', 'required'])!!}
           </div>
         </div>
         <div class="form-group">

@@ -76,59 +76,83 @@
                 {!! Form::select('puerto_id', $puertos_lista->toArray(), $desembarque->puerto_id, ['class' => 'form-control','required', 'id'=>'puerto_id']) !!}
             </div>
         </div>
-
-        <legend>Agregar Notas de Ingreso:</legend>
         <div class="form-group">
-            <label class="col-sm-3 control-label">Especie Marina</label>
-            <div class="col-sm-9">
-                {!! Form::select('especie_id', $especies_lista->toArray(), null, ['class' => 'form-control','required', 'id'=>'especie_id']) !!}
+              <label class="col-sm-3 control-label">¿Se realizó la pesca?</label>
+              <div class="col-sm-9">
+                 
+                 @if($desembarque->huboPesca==1)
+                  <div class="col-sm-5"> Si
+                      {!!Form::radio('huboPesca', 1,true,['onChange'=>'changeSeleccion(this)'])!!}
+                  </div>
+                   <div class="col-sm-5"> No
+                      {!!Form::radio('huboPesca', 0,null,['onChange'=>'changeSeleccion(this)'])!!}
+                  </div>
+                  @else
+                  <div class="col-sm-5"> Si
+                      {!!Form::radio('huboPesca', 1,null,['onChange'=>'changeSeleccion(this)'])!!}
+                  </div>
+                   <div class="col-sm-5"> No
+                      {!!Form::radio('huboPesca', 0,true,['onChange'=>'changeSeleccion(this)'])!!}
+                  </div>
+                  @endif 
+          
+                  
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-          <label  class="col-md-3 control-label">Toneladas</label>
-          <div class="col-md-9">
-              {!! Form::number('toneladas_inde','', array('class' => 'form-control','id' => 'toneladas_inde','maxlength' => 50,'min' => '0')) !!}
-          </div>
-        </div>
-        <div class="form-group">
-          <label  class="col-md-3 control-label">Talla Promedio</label>
-          <div class="col-md-9">
-              {!! Form::number('promedios_inde','', array('class' => 'form-control','id' => 'promedios_inde','maxlength' => 50,'min' => '0')) !!}
-          </div>
-        </div>
-        <div class="form-group">
+        <div id="ocultar" class="form-group" style="display:none">
+            <legend>Agregar Notas de Ingreso:</legend>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Especie Marina</label>
+                <div class="col-sm-9">
+                    {!! Form::select('especie_id', $especies_lista->toArray(), null, ['class' => 'form-control', 'id'=>'especie_id']) !!}
+                </div>
+            </div>
+            <div class="form-group">
+              <label  class="col-md-3 control-label">Toneladas</label>
+              <div class="col-md-9">
+                  {!! Form::number('toneladas_inde','', array('class' => 'form-control','id' => 'toneladas_inde','maxlength' => 50,'min' => '0')) !!}
+              </div>
+            </div>
+            <div class="form-group">
+              <label  class="col-md-3 control-label">Talla Promedio</label>
+              <div class="col-md-9">
+                  {!! Form::number('promedios_inde','', array('class' => 'form-control','id' => 'promedios_inde','maxlength' => 50,'min' => '0')) !!}
+              </div>
+            </div>
             
-            <div class="col-sm-offset-3 col-sm-9">
-                <a id="AgregarEspecie" class="btn btn-info">Agregar</a>
+            <div class="form-group">
+                
+                <div class="col-sm-offset-3 col-sm-9">
+                    <a id="AgregarEspecie" class="btn btn-info">Agregar</a>
+                </div>
             </div>
-        </div>
-        <br>
-        <div class="form-group"> 
-          <div class="col-sm-offset-2 col-sm-10">
-              <table id="tabla-notas" class="table table-bordered table-striped ">
-                  <tr>
-                      <th>Codigo</th>
-                      <th>Nombre</th>
-                      <th>Toneladas</th>
-                      <th>Talla Promedios</th>
-                      <th>Accion</th>
-                  </tr>
-                  @foreach($desembarque->notaIngreso as $nota)
-                    <tr>
-                        <td><input name="especies_id[]" type="number" value="{{$nota->especieMarina->id}}" style = "border:none"></td>
-                        <td><input name="nombres[]" type="text" value="{{$nota->especieMarina->nombre}}" style = "border:none"></td>
-                        <td><input name="toneladas[]" type="number" value="{{$nota->toneladas}}" style = "border:none"></td>
-                        <td><input name="tallas[]" type="number" value="{{$nota->tallaPromedio}}" style = "border:none"></td>
-                        <td>
-                          <a class="btn btn-info"   title="Eliminar"    onclick="deleteFunctionEspecie(this)"><i class="glyphicon glyphicon-remove"></i></a>
-                         
-                        </td>
-                    </tr> 
-                   @endforeach  
-              </table>
+            <br>
+            <div class="form-group"> 
+              <div class="col-sm-offset-2 col-sm-10">
+                  <table id="tabla-notas" class="table table-bordered table-striped ">
+                      <tr>
+                          <th>Codigo</th>
+                          <th>Nombre</th>
+                          <th>Toneladas</th>
+                          <th>Talla Promedios</th>
+                          <th>Accion</th>
+                      </tr>
+                      @foreach($desembarque->notaIngreso as $nota)
+                        <tr>
+                            <td><input name="especies_id[]" type="number" readonly="readonly" value="{{$nota->especieMarina->id}}" style = "border:none"></td>
+                            <td><input name="nombres[]" type="text" readonly="readonly" value="{{$nota->especieMarina->nombre}}" style = "border:none"></td>
+                            <td><input name="toneladas[]" type="number" value="{{$nota->toneladas}}" style = "border:none"></td>
+                            <td><input name="tallas[]" type="number" value="{{$nota->tallaPromedio}}" style = "border:none"></td>
+                            <td>
+                              <a class="btn btn-info"   title="Eliminar"    onclick="deleteFunctionEspecie(this)"><i class="glyphicon glyphicon-remove"></i></a>
+                             
+                            </td>
+                        </tr> 
+                       @endforeach  
+                  </table>
+                </div>
             </div>
-        </div>
-
+          </div>
         <br>
 
       <div class="form-group">
@@ -280,5 +304,35 @@ function deleteFunctionEspecie(btn){
 
                 
     } 
+
+$('document').ready(function () {
+    changeSeleccionJQ($('input[name="huboPesca"]:checked'));
+});
+
+function changeSeleccionJQ(element){
+  //console.log(element.val());
+
+
+    if(element.val() == 1){
+      document.getElementById("ocultar").style.display = "block";
+
+
+    }else{
+      document.getElementById("ocultar").style.display = "none";
+    }
+  }
+
+  function changeSeleccion(element){
+    //console.log(element.val());
+
+
+    if(element.value == 1){
+      document.getElementById("ocultar").style.display = "block";
+
+
+    }else{
+      document.getElementById("ocultar").style.display = "none";
+    }
+}
 </script>
 @stop

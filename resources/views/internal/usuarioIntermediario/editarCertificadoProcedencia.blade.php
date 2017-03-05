@@ -15,6 +15,12 @@
   <div class="col-sm-10">
     {!!Form::open(array('url' => 'usuarioIntermediario/certificadoProcedencias/'.$certificadoProcedencia->id.'/edit','files'=>true,'id'=>'form','class'=>'form-horizontal'))!!}
         <div class="form-group">
+          <label for="inputEmail3" class="col-sm-3 control-label">Codigo</label>
+          <div class="col-sm-9">
+            {!!Form::input('text','codigo', $certificadoProcedencia->codigo ,['class'=>'form-control','id'=>'inputEmai3', 'maxlength'=>'50','required'])!!}
+          </div>
+        </div>
+        <div class="form-group">
             <label class="col-sm-3 control-label">Fábrica</label>
             <div class="col-sm-9">
                 {!! Form::select('fabrica_id', $fabricas_lista->toArray(), $certificadoProcedencia->fabrica_id, ['class' => 'form-control','required', 'id'=>'fabrica_id']) !!}
@@ -72,8 +78,8 @@
                         <td><input name="especies[]"  type="text" value="{{$nota->nota->especieMarina->nombre}}" style = "border:none;width:120px;background:transparent" readonly></td>
                         <td><input name="desembarques[]" type="text" value="{{$nota->nota->desembarque->id}}" style = "border:none;width:15px;background:transparent" readonly></td>
                         <td><input name="pescas[]" type="text" value="{{$nota->nota->desembarque->pesca->id}}" style = "border:none;width:15px;background:transparent" readonly></td>
-                        <td><input name="embarcaciones[]" type="text" value="{{$nota->nota->desembarque->embarcacion->id}}" style = "border:none;width:120p;background:transparent" readonly></td>
-                        <td><input name="puertos[]" type="text" value="{{$nota->nota->desembarque->puerto->id}}" style = "border:none;width:120px;background:transparent" readonly></td>
+                        <td><input name="embarcaciones[]" type="text" value="{{$nota->nota->desembarque->embarcacion->nombre}}" style = "border:none;width:120p;background:transparent" readonly></td>
+                        <td><input name="puertos[]" type="text" value="{{$nota->nota->desembarque->puerto->nombre}}" style = "border:none;width:120px;background:transparent" readonly></td>
                         <td><input name="toneladas[]" type="number" value="{{$nota->toneladas}}" style = "border:none;width:60px;background:transparent"></td>
                         <td>
                           <a class="btn btn-info"   title="Eliminar"    onclick="deleteFunctionPesca(this)"><i class="glyphicon glyphicon-remove"></i></a>

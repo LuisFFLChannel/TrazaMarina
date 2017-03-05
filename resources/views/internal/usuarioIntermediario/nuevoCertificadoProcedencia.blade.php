@@ -15,6 +15,12 @@
   <div class="col-sm-10">
     {!!Form::open(array('url' => 'usuarioIntermediario/certificadoProcedencias/new','files'=>true,'id'=>'form','class'=>'form-horizontal'))!!}
         <div class="form-group">
+          <label for="inputEmail3" class="col-sm-3 control-label">Codigo</label>
+          <div class="col-sm-9">
+            {!!Form::input('text','codigo', null ,['class'=>'form-control','id'=>'inputEmai3', 'maxlength'=>'50','required'])!!}
+          </div>
+        </div>
+        <div class="form-group">
             <label class="col-sm-3 control-label">Fábrica</label>
             <div class="col-sm-9">
                 {!! Form::select('fabrica_id', $fabricas_lista->toArray(), null, ['class' => 'form-control','required', 'id'=>'fabrica_id']) !!}

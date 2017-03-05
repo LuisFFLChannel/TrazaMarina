@@ -25,7 +25,7 @@ class StoreCertificadoArriboRequest extends Request
     {
         return [
             //
-            'nombre'           =>  'required|max:100',
+            'codigo'           =>  'required|max:100',
             'nMatricula'            =>  'required|max:50|unique:certificadoArribo',
             'fechaArribo'         =>  'required'
         ];

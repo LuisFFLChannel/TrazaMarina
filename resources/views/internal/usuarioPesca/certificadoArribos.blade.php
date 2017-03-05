@@ -12,8 +12,7 @@
 
 <table class="table table-bordered table-striped">
     <tr>
-        <th class="text-center">N° Documennto</th>
-        <th class="text-center">Nombre</th>   
+        <th class="text-center">N° Documento</th>   
         <th class="text-center">N° de Matricula</th>
         <th class="text-center">Desembarque</th>
         <!--<th>Imagen</th>-->
@@ -24,8 +23,7 @@
     
     @foreach($certificadoArribos as $certificadoArribo)
     <tr>
-      <td class="text-center">{{$certificadoArribo->id}}</td>
-      <td class="text-center">{{$certificadoArribo->nombre}}</td>
+      <td class="text-center">{{$certificadoArribo->codigo}}</td>
       <td class="text-center">{{$certificadoArribo->nMatricula}}</td>
       @if($certificadoArribo->desembarque!=null)
         <td class="text-center">{{$certificadoArribo->desembarque->id}}</td>
@@ -48,9 +46,7 @@
                     <div class="row">
                       <div class="col-sm-1"></div>
                       <div class="col-sm-8">
-                          <h5 class="text-left">N° Documento: {{$certificadoArribo->id}}</h5>
-                          <h5 class="text-left">Nombre: {{$certificadoArribo->nombre}}</h5>
-                          <h5 class="text-left">Toneladas Extraidas: {{$certificadoArribo->toneladas}}</h5>
+                          <h5 class="text-left">N° Documento: {{$certificadoArribo->codigo}}</h5>
                           <h5 class="text-left">Numero de Matricula: {{$certificadoArribo->nMatricula}} </h5>
                           <h5 class="text-left">Fecha de Arribo: {{date_format(date_create($certificadoArribo->fechaArribo),"d/m/Y")}} </h5>
                           @if($certificadoArribo->desembarque!=null)

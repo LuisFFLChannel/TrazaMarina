@@ -12,21 +12,31 @@
 
 <table class="table table-bordered table-striped">
     <tr>
-        <th class="text-center">N° Documennto</th>
-        <th class="text-center">Nombre</th>   
-        <th class="text-center">N° de Matricula</th>
+        <th class="text-center">N° Documento</th>
+        <th class="text-center">Nombre Embarcacion</th> 
+        <th class="text-center">Puerto Zarpe</th>   
         <th class="text-center">Fecha Zarpe</th>
+        <th class="text-center">¿Está en alta mar?</th>
+        <!--<th>Imagen</th>-->
+        <th class="text-center">Mapa</th>
         <!--<th>Imagen</th>-->
         <th class="text-center">Detalle</th>
     </tr>
     
     @foreach($permisoZarpes as $permisoZarpe)
     <tr>
-      <td class="text-center">{{$permisoZarpe->id}}</td>
-      <td class="text-center">{{$permisoZarpe->nombre}}</td>
-      <td class="text-center">{{$permisoZarpe->nMatricula}}</td>
+      <td class="text-center">{{$permisoZarpe->codigo}}</td>
+      <td class="text-center">{{$permisoZarpe->embarcacion->nMatricula}} - {{$permisoZarpe->embarcacion->nombre}}</td>
+      <td class="text-center">{{$permisoZarpe->puerto->nombre}}</td>
       <td class="text-center">{{date_format(date_create($permisoZarpe->Zarpe),"d/m/Y")}} </td>
-         
+      @if($permisoZarpe->pesca->arribo == false)
+          <td class="text-center"> Si </td>
+      @else
+          <td class="text-center"> No </td>
+      @endif    
+      <td class="text-center">
+          <a class="btn btn-info" href="{{url('usuarioIntermediario/mapas/'.$permisoZarpe->pesca->id.'/mostarMapaPesca')}}" title="Mostrar Mapa" ><i class="glyphicon glyphicon-map-marker"></i></a>
+        </td>
       
       <!--<td>{!! Html::image($permisoZarpe->imagen, null, array('class'=>'gift_img')) !!}</td>-->
       <td class="text-center">
@@ -42,9 +52,9 @@
                     <div class="row">
                       <div class="col-sm-1"></div>
                       <div class="col-sm-8">
-                          <h5 class="text-left">N° Documento: {{$permisoZarpe->id}}</h5>
-                          <h5 class="text-left">Nombre: {{$permisoZarpe->nombre}}</h5>
-                          <h5 class="text-left">Numero de Matricula: {{$permisoZarpe->nMatricula}} </h5>
+                          <h5 class="text-left">N° Documento: {{$permisoZarpe->codigo}}</h5>
+                          <h5 class="text-left">Nombre Embarcacion: {{$permisoZarpe->embarcacion->nombre}}</h5>
+                          <h5 class="text-left">Numero de Matricula: {{$permisoZarpe->embarcacion->nMatricula}} </h5>
                           <h5 class="text-left">Fecha Zarpe: {{date_format(date_create($permisoZarpe->fechaZarpe),"d/m/Y")}} </h5>
                           <h5 class="text-left">Fecha Arribo: {{date_format(date_create($permisoZarpe->fechaArribo),"d/m/Y")}} </h5>
                           <h5 class="text-left">Capitania Asociada: {{$permisoZarpe->capitania->id}} - {{$permisoZarpe->capitania->nombre}} </h5>
@@ -60,7 +70,7 @@
                               @foreach($permisoZarpe->marineros as $pes)
                                   <h6 class="text-center">DNI - Nombre: {{$pes->dni}} - {{$pes->apellidos}}, {{$pes->nombres}}</h5> 
                               @endforeach                    
-                          @endif 
+                          @endif
                     </div>
                   </div>
                   <div class="modal-footer">

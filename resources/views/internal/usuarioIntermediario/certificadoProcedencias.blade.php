@@ -12,7 +12,7 @@
 
 <table class="table table-bordered table-striped">
     <tr>
-        <th class="text-center">N° Documennto</th>
+        <th class="text-center">N° Documento</th>
         <th class="text-center">Fabrica</th>   
         <th class="text-center">Transportista</th>
         <th class="text-center">Frigorifico</th>
@@ -24,7 +24,7 @@
     
     @foreach($certificadoProcedencias as $certificadoProcedencia)
     <tr>
-      <td class="text-center">{{$certificadoProcedencia->id}}</td>
+      <td class="text-center">{{$certificadoProcedencia->codigo}}</td>
       <td class="text-center">{{$certificadoProcedencia->fabrica->nombre}}</td>
       <td class="text-center">{{$certificadoProcedencia->transportista->nombres}} {{$certificadoProcedencia->transportista->nombres}}</td>
       <td class="text-center">{{$certificadoProcedencia->frigorifico->placa}} - {{$certificadoProcedencia->frigorifico->nombre}}</td>
@@ -44,7 +44,7 @@
                     <div class="row">
                       <div class="col-sm-1"></div>
                       <div class="col-sm-8">
-                          <h5 class="text-left">N° Documento: {{$certificadoProcedencia->id}}</h5>
+                          <h5 class="text-left">N° Documento: {{$certificadoProcedencia->codigo}}</h5>
                           <h5 class="text-left">Transportista: {{$certificadoProcedencia->transportista->nombres}} {{$certificadoProcedencia->transportista->apellidos}}</h5>
                           <h5 class="text-left">Fabrica: {{$certificadoProcedencia->fabrica->nombre}}</h5>
                           <h5 class="text-left">Frigorifico: {{$certificadoProcedencia->frigorifico->placa}} - {{$certificadoProcedencia->frigorifico->nombre}} </h5>

@@ -16,6 +16,7 @@
         <th class="text-center">Especie Marina</th>
         <th class="text-center">Desembarque</th>
         <th class="text-center">Pesca</th>  
+        <th class="text-center">Permiso Zarpe</th>
         <th class="text-center">Toneladas</th>
         
         <!--<th>Imagen</th>-->
@@ -32,6 +33,7 @@
       <td class="text-center">{{$notaIngreso->especieMarina->nombre}}</td>
       <td class="text-center">{{$notaIngreso->desembarque->id}}</td>
       <td class="text-center">{{$notaIngreso->desembarque->pesca->id}}</td>
+      <td class="text-center">{{$notaIngreso->desembarque->pesca->permisoZarpe->codigo}}</td>
       <td class="text-center">{{$notaIngreso->toneladas}}</td>
   
       

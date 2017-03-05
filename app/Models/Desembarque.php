@@ -23,7 +23,7 @@ class Desembarque extends Model
         return $this->belongsTo('App\Models\Pesca','pesca_id');
     }
     public function certificadoArribo(){
-        return $this->belongsTo('App\Models\CertificadoArribo');
+        return $this->belongsTo('App\Models\CertificadoArribo','certificado_arribo_id');
     }
     public function notaIngreso(){
         return $this->hasMany('App\Models\NotaIngreso');

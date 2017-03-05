@@ -18,16 +18,12 @@
     <div class="col-sm-8">
         <table class="table table-bordered table-striped">
           <tr>
-              <th >Numero</th>
-              <th >{{$desembarque->codigo}}</th>   
+              <th  >Numero</th>
+              <th >{{$desembarque->id}}</th>   
           </tr>  
           <tr>
               <th>Puerto desembarque</th>
               <th >{{$desembarque->puerto->nombre}}</th>   
-          </tr> 
-          <tr>
-              <th >Dpa</th>
-              <th >{{$desembarque->dpa->nombre}}</th>   
           </tr> 
           <tr>
               <th>Embarcacion</th>
@@ -45,12 +41,21 @@
               <th>Fecha Zarpe</th>
               <th >{{date_format(date_create($desembarque->pesca->fechaZarpe),"d/m/Y")}}</th>   
           </tr> 
+           <tr>
+              <th>¿Hubo Pesca?</th>
+              @if($desembarque->huboPesca==1)
+                <th >Si</th> 
+              @else
+
+                <th >No</th>   
+              @endif
+          </tr> 
         </table>
     </div>
 </div>
 <h3> Información del Certificado Arribo </h3>
 <br>
-@if($desembarque->certificadoMatricula!=null)
+@if($desembarque->certificadoArribo!=null)
     <div class="row">
         <div class="col-sm-2">
       
@@ -60,19 +65,11 @@
               <tr>
                   <th >Codigo</th>
                   <th >{{$desembarque->certificadoArribo->codigo}}</th>   
-              </tr> 
-              <tr>
-                  <th>Nombre</th>
-                  <th >{{$desembarque->certificadoArribo->nombre}}</th>   
               </tr>  
                <tr>
                   <th>Numero de Matricula</th>
                   <th >{{$desembarque->certificadoArribo->nMatricula}}</th>   
-              </tr> 
-              <tr>
-                  <th>Toneladas</th>
-                  <th >{{$desembarque->certificadoArribo->toneladas}}</th>   
-              </tr> 
+              </tr>  
               <tr>
                   <th>Fecha Arribo</th>
                   <th >{{date_format(date_create($desembarque->certificadoArribo->fechaArribo),"d/m/Y") }}</th>   
@@ -104,7 +101,7 @@
               @foreach($certificadoArribos as $certificadoArribo)
                 <tr>
                   <td>{{$certificadoArribo->id}}</td>
-                  <td>{{$certificadoArribo->nombre}}</td>
+                  <td>{{$certificadoArribo->codigo}}</td>
                   <td>{{date_format(date_create($certificadoArribo->fechaArribo),"d/m/Y")}}</td>
                   <td> {!! Form::radio('certificadoArribo', $certificadoArribo->id ,   (Input::old('certificadoArribo') == $certificadoArribo->id ), array('id'=>'true', 'class'=>'radio  certificadoArribo_id'         ,'required'   ))  !!} </td>
                 </tr>

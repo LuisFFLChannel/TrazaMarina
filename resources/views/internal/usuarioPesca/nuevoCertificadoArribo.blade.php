@@ -14,21 +14,15 @@
   <div class="col-sm-8">
     {!!Form::open(array('url' => 'usuarioPesca/certificadoArribos/new','files'=>true,'id'=>'form','class'=>'form-horizontal'))!!}
       <div class="form-group">
-          <label for="inputEmail3" class="col-sm-3 control-label">Nombre</label>
+          <label for="inputEmail3" class="col-sm-3 control-label">Codigo</label>
           <div class="col-sm-9">
-            {!!Form::input('text','nombre', null ,['class'=>'form-control','id'=>'inputEmai3', 'maxlength'=>'100','required'])!!}
+            {!!Form::input('text','codigo', null ,['class'=>'form-control','id'=>'inputEmai3', 'maxlength'=>'100','required'])!!}
           </div>
         </div>
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-3 control-label">Numero de Matricula</label>
           <div class="col-sm-9">
             {!!Form::input('text','nMatricula', null ,['class'=>'form-control','id'=>'inputEmai3', 'maxlength'=>'50','required'])!!}
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="tamanoMax" class="col-sm-3 control-label">Toneladas</label>
-          <div class="col-sm-9">
-            {!!Form::input('number','toneladas', null ,['class'=>'form-control','id'=>'toneladas', 'required'])!!}
           </div>
         </div>
         <div class="form-group">

@@ -22,17 +22,9 @@
                   <th >Codigo</th>
                   <th >{{$desembarque->certificadoArribo->codigo}}</th>   
               </tr> 
-              <tr>
-                  <th>Nombre</th>
-                  <th >{{$desembarque->certificadoArribo->nombre}}</th>   
-              </tr>  
                <tr>
                   <th>Numero de Matricula</th>
                   <th >{{$desembarque->certificadoArribo->nMatricula}}</th>   
-              </tr> 
-              <tr>
-                  <th>Toneladas</th>
-                  <th >{{$desembarque->certificadoArribo->toneladas}}</th>   
               </tr> 
               <tr>
                   <th>Fecha Arribo</th>

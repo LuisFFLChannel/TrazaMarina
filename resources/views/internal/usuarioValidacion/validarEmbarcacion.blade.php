@@ -79,7 +79,7 @@
                   <th class="text-center">Estado</th>
               </tr> 
               <tr>
-                  <td class="text-center">{{$embarcacion->nombreDueno}}</td>
+                  <td class="text-center">{{$embarcacion->armador->nombres}}</td>
                   <td class="text-center">{{$embarcacion->certificadoMatricula->nombreDueno}}</td>
                   @if(strcmp($embarcacion->nombreDueno,$embarcacion->certificadoMatricula->nombreDueno)==0)
                       <td class="text-center">Iguales</td>
@@ -103,7 +103,7 @@
                   <th class="text-center">Estado</th>
               </tr> 
               <tr>
-                  <td class="text-center">{{$embarcacion->apellidoDueno}}</td>
+                  <td class="text-center">{{$embarcacion->armador->apellidos}}</td>
                   <td class="text-center">{{$embarcacion->certificadoMatricula->apellidosDueno}}</td>
                    @if(strcmp($embarcacion->apellidoDueno,$embarcacion->certificadoMatricula->apellidosDueno)==0)
                       <td class="text-center">Iguales</td>

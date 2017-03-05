@@ -27,7 +27,7 @@
           </tr> 
           <tr>
               <th>Embarcacion</th>
-              <th >{{$notaIngreso->desembarque->embarcacion->nMatricula}} - {{$notaIngreso->desembarque->embarcacion->nombre}}</th> >    
+              <th >{{$notaIngreso->desembarque->embarcacion->nMatricula}} - {{$notaIngreso->desembarque->embarcacion->nombre}}</th>    
           </tr>
           <tr>
               <th>Puerto desembarque</th>
@@ -37,6 +37,10 @@
               <th >Pesca</th>
               <th >{{$notaIngreso->desembarque->pesca->id}}</th>  
           </tr> 
+          <tr>
+              <th >Permiso Zarpe</th>
+              <th >{{$notaIngreso->desembarque->pesca->permisoZarpe->codigo}}</th>  
+          </tr>
           <tr>
               <th >Desembarque</th>
               <th >{{$notaIngreso->desembarque->id}}</th>  

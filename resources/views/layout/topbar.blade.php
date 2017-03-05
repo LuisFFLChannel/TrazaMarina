@@ -325,12 +325,13 @@
                         <li><a href="{{url('usuarioPesca/certificadoArribos/new')}}">Nuevo</a></li>
                     </ul>
                 </li>
+                <!--
                 <li>
                     <a data-toggle="collapse" data-target="#calHielo" class="collapsed">Calculo Hielo<b class="caret"></b></a>
                     <ul class="sub-menu collapse" id="calHielo">
                         <li><a href="{{url('usuarioPesca/cantidadHielo')}}">Calcular Hielo Necesario</a></li>
                     </ul>
-                </li>
+                </li>-->
             
 
             
@@ -370,7 +371,7 @@
                         <li><a href="{{url('usuarioIntermediario/capitanias')}}">Capitanias</a></li>
                         <li><a href="{{url('usuarioIntermediario/embarcaciones')}}">Embarcaciones</a></li>
                         <li><a href="{{url('usuarioIntermediario/pescadores')}}">Pescadores</a></li>
-                        <li><a href="{{url('usuarioIntermediario/pescas')}}">Pescas</a></li>
+                        <!--<li><a href="{{url('usuarioIntermediario/pescas')}}">Pescas</a></li>-->
                         <li><a href="{{url('usuarioIntermediario/desembarques')}}">Desembarques</a></li>
                     </ul>
                 </li>
@@ -492,7 +493,7 @@
                         <li><a href="{{url('usuarioValidacion/transportistas')}}">Transportistas</a></li>
                         <li><a href="{{url('usuarioValidacion/frigorificos')}}">Frigorificos</a></li>
                         <li><a href="{{url('usuarioValidacion/empresarioComercializadores')}}">Emp. Comercializadores</a></li>
-                        <li><a href="{{url('usuarioValidacion/pescas')}}">Pescas</a></li>
+                        <!--<li><a href="{{url('usuarioValidacion/pescas')}}">Pescas</a></li>-->
                         <li><a href="{{url('usuarioValidacion/desembarques')}}">Desembarques</a></li>
                     </ul>
                 </li>

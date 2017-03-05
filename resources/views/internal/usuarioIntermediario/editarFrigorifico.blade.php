@@ -26,7 +26,7 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="capacidad" class="col-sm-2 control-label">Capacidad (Kg)</label>
+          <label for="capacidad" class="col-sm-2 control-label">Capacidad (Toneladas)</label>
           <div class="col-sm-10">
             {!!Form::input('number','capacidad', $frigorifico->capacidad ,['class'=>'form-control','id'=>'capacidad', 'min' >0,'required'])!!}
           </div>

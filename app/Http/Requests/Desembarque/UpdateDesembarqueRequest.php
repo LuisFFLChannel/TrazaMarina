@@ -33,6 +33,9 @@ class UpdateDesembarqueRequest extends Request
             'toneladas'                     =>  'required',
             'tallas'                =>  'required',
             'huboPesca'             =>  'required',
+            'especies_id'           =>  'required_if:huboPesca,1',
+            'toneladas'           =>  'required_if:huboPesca,1',
+            'tallas'           =>  'required_if:huboPesca,1',
         ];
                 $especies = $this->request->get('especies_id');
         

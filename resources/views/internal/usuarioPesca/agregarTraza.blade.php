@@ -24,7 +24,7 @@
           </tr> 
           <tr>
               <th>Embarcacion</th>
-              <th >{{$notaIngreso->desembarque->embarcacion->nMatricula}}</th> 
+              <th >{{$notaIngreso->desembarque->embarcacion->nMatricula}} - {{$notaIngreso->desembarque->embarcacion->nombre}} </th> 
               <th >{{$codEmb}}</th>    
           </tr>
           <tr>

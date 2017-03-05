@@ -20,6 +20,9 @@ class Embarcacion extends Model
     public function pesca(){
         return $this->hasMany('App\Models\Pesca');
     }
+    public function armador(){
+        return $this->belongsTo('App\Models\Pescador')->where('id',$this->armador_id);
+    }
     public function desembarque(){
         return $this->hasMany('App\Models\Desembarque');
     }

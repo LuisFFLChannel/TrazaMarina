@@ -639,8 +639,8 @@ Route::group(['middleware' => ['auth', 'usuarioIntermediario']], function () {
     Route::get('usuarioIntermediario/permisoPatrones', ['uses'=>'PermisoPatronController@index','as'=>'usuarioIntermediario.permisoPatrones']);
     Route::get('usuarioIntermediario/certificadoArribos', ['uses'=>'CertificadoArriboController@index','as'=>'usuarioIntermediario.certificadoArribos']);
 
-    Route::get('usuarioIntermediario/pescas', ['uses'=>'PescaController@index','as'=>'usuarioIntermediario.pescas']);
-    Route::get('usuarioIntermediario/pescas/{id}/showDesembarque', 'PescaController@showDesembarque');
+    //Route::get('usuarioIntermediario/pescas', ['uses'=>'PescaController@index','as'=>'usuarioIntermediario.pescas']);
+    //Route::get('usuarioIntermediario/pescas/{id}/showDesembarque', 'PescaController@showDesembarque');
     //Route::get('usuarioPesca/pescasNoArribadas', 'PescaController@indexNoArribadas');
     //Route::get('usuarioPesca/pescasArribadas', 'PescaController@indexArribadas');
 
@@ -736,9 +736,9 @@ Route::group(['middleware' => ['auth', 'usuarioValidacion']], function () {
     Route::get('usuarioValidacion/permisoPatrones', ['uses'=>'PermisoPatronController@index','as'=>'usuarioValidacion.permisoPatrones']);
     Route::get('usuarioValidacion/certificadoArribos', ['uses'=>'CertificadoArriboController@index','as'=>'usuarioValidacion.certificadoArribos']);
 
-    Route::get('usuarioValidacion/pescas', ['uses'=>'PescaController@index','as'=>'usuarioValidacion.pescas']);
-    Route::get('usuarioValidacion/pescas/{id}/showDesembarque', 'PescaController@showDesembarque');
-    Route::get('usuarioValidacion/pescas/{id}/validarPesca', 'PescaController@validarPesca');
+    //Route::get('usuarioValidacion/pescas', ['uses'=>'PescaController@index','as'=>'usuarioValidacion.pescas']);
+    //Route::get('usuarioValidacion/pescas/{id}/showDesembarque', 'PescaController@showDesembarque');
+    //Route::get('usuarioValidacion/pescas/{id}/validarPesca', 'PescaController@validarPesca');
     //Route::get('usuarioPesca/pescasNoArribadas', 'PescaController@indexNoArribadas');
     //Route::get('usuarioPesca/pescasArribadas', 'PescaController@indexArribadas');
 

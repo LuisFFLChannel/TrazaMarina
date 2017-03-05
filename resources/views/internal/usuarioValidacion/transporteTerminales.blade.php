@@ -12,7 +12,7 @@
 
 <table class="table table-bordered table-striped">
     <tr>
-        <th class="text-center">N° Documennto</th>
+        <th class="text-center">N° Documento</th>
         <th class="text-center">Fabrica</th>   
         <th class="text-center">Transportista</th>
         <th class="text-center">Frigorifico</th>
@@ -22,7 +22,7 @@
     
     @foreach($transporteTerminales as $transporteTerminal)
     <tr>
-      <td class="text-center">{{$transporteTerminal->id}}</td>
+      <td class="text-center">{{$transporteTerminal->codigo}}</td>
       <td class="text-center">{{$transporteTerminal->terminal->nombre}}</td>
       <td class="text-center">{{$transporteTerminal->transportista->nombres}} {{$transporteTerminal->transportista->nombres}}</td>
       <td class="text-center">{{$transporteTerminal->frigorifico->placa}} - {{$transporteTerminal->frigorifico->nombre}}</td>
@@ -42,7 +42,7 @@
                     <div class="row">
                       <div class="col-sm-1"></div>
                       <div class="col-sm-8">
-                          <h5 class="text-left">N° Documento: {{$transporteTerminal->id}}</h5>
+                          <h5 class="text-left">N° Documento: {{$transporteTerminal->codigo}}</h5>
                           <h5 class="text-left">Transportista: {{$transporteTerminal->transportista->nombres}} {{$transporteTerminal->transportista->apellidos}}</h5>
                           <h5 class="text-left">Terminal: {{$transporteTerminal->terminal->nombre}}</h5>
                           <h5 class="text-left">Frigorifico: {{$transporteTerminal->frigorifico->placa}} - {{$transporteTerminal->frigorifico->nombre}} </h5>

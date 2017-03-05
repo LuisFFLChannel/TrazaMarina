@@ -31,7 +31,7 @@
       
       <td class="text-center">{{$lote->nota->id}}</td>
       <td class="text-center">{{$lote->nota->especieMarina->nombre}}</td>
-      <td class="text-center">{{$lote->transporte_id}}</td>
+      <td class="text-center">{{$lote->certificadoTerminal->codigo}}</td>
       <td class="text-center">{{$lote->toneladas}}</td>
       <td class="text-center">{{$lote->certificadoTerminal->terminal->nombre}}</td>
       
@@ -55,7 +55,8 @@
                           
                           <h5 class="text-left">N° de Nota de Ingreso: {{$lote->nota->id}} </h5>
                           <h5 class="text-left">Especie Marina: {{$lote->nota->especieMarina->id}} - {{$lote->nota->especieMarina->nombre}}</h5> 
-                          <h5 class="text-left">Codigo Cert. a Terminal: {{$lote->transporte_id}}</h5>
+                          <h5 class="text-left">ID Cert. a Terminal: {{$lote->transporte_id}}</h5>
+                          <h5 class="text-left">Codigo Cert. a Terminal: {{$lote->certificadoTerminal->codigo}}</h5>
                           <h5 class="text-left">Toneladas del Lote: {{$lote->toneladas}}</h5>
                           <h5 class="text-left">Terminal: {{$lote->certificadoTerminal->terminal->nombre}}</h5>
                           <h5 class="text-left">Transportista: {{$lote->certificadoTerminal->transportista->nombres}} {{$lote->certificadoTerminal->transportista->apellidos}}</h5>

@@ -58,7 +58,7 @@
               </tr> 
                @foreach($lista_Fabrica as $lote)
                   <tr>
-                    <td class="text-center">{{$lote->certificado_id}}</td>
+                    <td class="text-center">{{$lote->certificado->codigo}}</td>
                     <td class="text-center">{{$lote->toneladas}}</td>
                     <td class="text-center">{{$lote->certificado->fabrica->nombre}}</td>
                     <td class="text-center">{{$lote->certificado->transportista->nombres}} {{$lote->certificado->transportista->apellidos}}</td>
@@ -91,7 +91,7 @@
               </tr> 
                @foreach($lista_Terminal as $lote)
                   <tr>
-                    <td class="text-center">{{$lote->transporte_id}}</td>
+                    <td class="text-center">{{$lote->certificadoTerminal->codigo}}</td>
                     <td class="text-center">{{$lote->toneladas}}</td>
                     <td class="text-center">{{$lote->certificadoTerminal->terminal->nombre}}</td>
                     <td class="text-center">{{$lote->certificadoTerminal->transportista->nombres}} {{$lote->certificadoTerminal->transportista->apellidos}}</td>

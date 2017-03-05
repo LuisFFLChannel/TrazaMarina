@@ -26,10 +26,6 @@
               <th >{{$desembarque->puerto->nombre}}</th>   
           </tr> 
           <tr>
-              <th >Dpa</th>
-              <th >{{$desembarque->dpa->nombre}}</th>   
-          </tr> 
-          <tr>
               <th>Embarcacion</th>
               <th >{{$desembarque->embarcacion->nMatricula}} - {{$desembarque->embarcacion->nombre}}</th>   
           </tr> 
@@ -44,6 +40,15 @@
            <tr>
               <th>Fecha Zarpe</th>
               <th >{{date_format(date_create($desembarque->pesca->fechaZarpe),"d/m/Y")}}</th>   
+          </tr> 
+           <tr>
+              <th>¿Hubo Pesca?</th>
+              @if($desembarque->huboPesca==1)
+                <th >Si</th> 
+              @else
+
+                <th >No</th>   
+              @endif
           </tr> 
         </table>
     </div>

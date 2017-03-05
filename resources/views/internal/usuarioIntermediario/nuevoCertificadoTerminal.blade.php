@@ -15,6 +15,12 @@
   <div class="col-sm-10">
     {!!Form::open(array('url' => 'usuarioIntermediario/certificadoTerminales/new','files'=>true,'id'=>'form','class'=>'form-horizontal'))!!}
         <div class="form-group">
+          <label for="inputEmail3" class="col-sm-3 control-label">Codigo</label>
+          <div class="col-sm-9">
+            {!!Form::input('text','codigo', null ,['class'=>'form-control','id'=>'inputEmai3', 'maxlength'=>'50','required'])!!}
+          </div>
+        </div>
+        <div class="form-group">
           <label for="inputEmail3" class="col-sm-3 control-label">Numero de Matricula</label>
           <div class="col-sm-9">
             {!!Form::input('text','nMatricula', null ,['class'=>'form-control','id'=>'inputEmai3', 'maxlength'=>'50','required'])!!}

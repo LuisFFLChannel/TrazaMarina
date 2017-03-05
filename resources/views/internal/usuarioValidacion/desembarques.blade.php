@@ -15,7 +15,7 @@
         <th class="text-center">Numero</th>
         <th class="text-center">Embarcacion</th>
         <th class="text-center">Puerto Arribo</th>   
-        <!--<th class="text-center">DPA</th>-->
+        <th class="text-center">Permiso Zarpe</th>
         <th class="text-center">Pesca</th>
         <!--<th>Imagen</th>-->
         <th class="text-center">Detalle</th>
@@ -30,7 +30,7 @@
       <td class="text-center">{{$desembarque->id}}</td>
       <td class="text-center">{{$desembarque->embarcacion->nMatricula}} - {{$desembarque->embarcacion->nombre}}</td>
       <td class="text-center">{{$desembarque->puerto->nombre}}</td>
-      <!--<td class="text-center">{{$desembarque->dpa->nombre}}</td>-->
+      <td class="text-center">{{$desembarque->pesca->permisoZarpe->codigo}}</td>
       <td class="text-center">{{$desembarque->pesca->id}}</td>
   
       
@@ -50,13 +50,18 @@
                           <h5 class="text-left">Numero: {{$desembarque->id}} </h5>
                           <h5 class="text-left">Embarcacion: {{$desembarque->embarcacion->nMatricula}} - {{$desembarque->embarcacion->nombre}}</h5> 
                           <h5 class="text-left">Puerto de Arribo: {{$desembarque->puerto->nombre}}</h5>                                
-                          <!--<h5 class="text-left">Dpa: {{$desembarque->dpa->nombre}}</h5> -->
+
                           <h5 class="text-left">Fecha de Arribo: {{date_format(date_create($desembarque->fechaLlegada),"d/m/Y") }}</h5> 
                           <h5 class="text-left">Numero de Pesca: {{$desembarque->pesca->id}}</h5> 
+                          @if($desembarque->huboPesca==1)
+                            <h5 class="text-left">¿Hubo Pesca?: Si</h5> 
+                          @else
+                            <h5 class="text-left">¿Hubo Pesca?: No</h5>
+                          @endif  
                           <h5 class="text-left">Fecha Zarpe: {{date_format(date_create($desembarque->pesca->fechaZarpe),"d/m/Y")}}</h5> 
                           <h5 class="text-left">Puerto Zarpe: {{$desembarque->pesca->puerto->nombre}}</h5> 
                           @if($desembarque->certificadoArribo!=null)
-                            <h5 class="text-left">Certificado Arribo: {{$desembarque->certificadoArribo->nombre}}</h5> 
+                            <h5 class="text-left">Certificado Arribo: {{$desembarque->certificadoArribo->codigo}}</h5> 
                           @else
                             <h5 class="text-left">Certificado Arribo: No Esta asociado aun</h5>
                           @endif  

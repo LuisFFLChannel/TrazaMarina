@@ -71,7 +71,7 @@ class CertificadoArriboController extends Controller
         $input = $request->all();
 
         $certificadoArribo                        =   new CertificadoArribo;
-        $certificadoArribo->nombre                =   $input['nombre'];
+        $certificadoArribo->codigo                =   $input['codigo'];
         $certificadoArribo->nMatricula            =   $input['nMatricula'];
         $certificadoArribo->fechaArribo           =   new Carbon($input['fechaArribo']);
         $certificadoArribo->asignado              =   false;
@@ -135,7 +135,7 @@ class CertificadoArriboController extends Controller
 
         $certificadoArribo = CertificadoArribo::find($id);
 
-        $certificadoArribo->nombre                =   $input['nombre'];
+        $certificadoArribo->codigo                =   $input['codigo'];
         $certificadoArribo->nMatricula            =   $input['nMatricula'];
         $certificadoArribo->fechaArribo           =   new Carbon($input['fechaArribo']);
         //Control de subida de imagen por hacer
