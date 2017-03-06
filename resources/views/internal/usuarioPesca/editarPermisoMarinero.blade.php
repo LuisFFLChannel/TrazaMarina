@@ -33,7 +33,7 @@
         </div>
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-3 control-label">DNI</label>
-          <div class="col-sm-9s">
+          <div class="col-sm-9">
             {!!Form::input('number','dni', $permisoMarinero->dni ,['class'=>'form-control','id'=>'dni','max'=>'99999999', 'min'=>'10000000','required'])!!}
           </div>
         </div>

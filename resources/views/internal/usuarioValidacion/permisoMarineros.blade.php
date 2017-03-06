@@ -5,7 +5,7 @@
 @stop
 
 @section('title')
-    Permisos de Matricula
+    Permisos de Marinero
 @stop
 
 @section('content')

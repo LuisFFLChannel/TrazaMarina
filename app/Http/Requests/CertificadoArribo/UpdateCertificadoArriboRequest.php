@@ -26,7 +26,7 @@ class UpdateCertificadoArriboRequest extends Request
         return [
             //
             'codigo'           =>  'required|max:100',
-            'nMatricula'            =>  'required|max:50|unique:certificadoArribo,nMatricula,'.$this->input('id'),
+            'nMatricula'            =>  'required|max:50|unique:certificadoArribo,nMatricula,'.$this->id,
             'fechaArribo'         =>  'required'
         ];
     }

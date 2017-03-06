@@ -27,7 +27,7 @@ class StoreEmpresarioComercializadorRequest extends Request
             //
             'nombres'           =>  'required|max:100',
             'apellidos'         =>  'required|max:100',
-            'dni'               =>  'required|integer|unique:pescadores',
+            'dni'               =>  'required|integer|unique:empresarioComercializador',
             'telefono'          =>  'required|integer',
             'correo'            =>  'required|email|max:100',
             'nombreEmpresa'     =>  'required|max:100',

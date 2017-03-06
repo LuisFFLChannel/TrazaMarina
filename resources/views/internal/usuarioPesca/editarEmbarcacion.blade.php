@@ -25,17 +25,11 @@
             {!!Form::input('text','nMatricula', $embarcacion->nMatricula ,['class'=>'form-control','id'=>'inputEmai3', 'maxlength'=>'50','required'])!!}
           </div>
         </div>
-        <div class="form-group">
-          <label for="inputEmail3" class="col-sm-2 control-label">Nombres del Dueño</label>
-          <div class="col-sm-10">
-            {!!Form::input('text','nombreDueno', $embarcacion->nombreDueno ,['class'=>'form-control','id'=>'inputEmai3', 'maxlength'=>'100','required'])!!}
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="inputEmail3" class="col-sm-2 control-label">Apellidos del Dueño</label>
-          <div class="col-sm-10">
-            {!!Form::input('text','apellidoDueno', $embarcacion->apellidoDueno ,['class'=>'form-control','id'=>'inputEmai3', 'maxlength'=>'100','required'])!!}
-          </div>
+       <div class="form-group">
+            <label class="col-sm-2 control-label">Armador</label>
+            <div class="col-sm-10">
+                {!! Form::select('armador_id', $armadores_lista->toArray(), $embarcacion->armador_id, ['class' => 'form-control','required', 'id'=>'armador_id']) !!}
+            </div>
         </div>
         <div class="form-group">
           <label for="capacidad" class="col-sm-2 control-label">Capacidad (Kg)</label>

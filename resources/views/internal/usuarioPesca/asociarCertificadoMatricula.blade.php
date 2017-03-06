@@ -27,11 +27,11 @@
           </tr> 
           <tr>
               <th >Nombres Dueno</th>
-              <th >{{$embarcacion->nombreDueno}}</th>   
+              <th >{{$embarcacion->armador->nombres}}</th>   
           </tr> 
           <tr>
               <th>Apellidos Dueno</th>
-              <th >{{$embarcacion->apellidoDueno}}</th>   
+              <th >{{$embarcacion->armador->apellidos}}</th>   
           </tr> 
           <tr>
               <th>Capacidad</th>
@@ -66,9 +66,9 @@
                   <th >{{$embarcacion->certificadoMatricula->codigo}}</th>   
               </tr>  
               <tr>
-                  <th>Nombre Dueño</th>
-                  <th >{{$embarcacion->certificadoMatricula->nombreDueno}}</th>   
-              </tr> 
+                  <th>Nombre Embarcacion</th>
+                  <th >{{$embarcacion->permisoPesca->nombreEmbarcacion}}</th>   
+              </tr>
               <tr>
                   <th >Apellidos Dueno</th>
                   <th >{{$embarcacion->certificadoMatricula->apellidosDueno}}</th>   

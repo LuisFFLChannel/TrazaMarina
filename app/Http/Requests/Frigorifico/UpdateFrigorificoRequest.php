@@ -25,7 +25,7 @@ class UpdateFrigorificoRequest extends Request
     {
         return [
             'nombre'            =>  'required|max:100',
-            'placa'             =>  'required|max:50|unique:frigorifico,placa,'.$this->input('id'),
+            'placa'             =>  'required|max:50|unique:frigorifico,placa,'.$this->id,
             'capacidad'          =>  'required|numeric',
             'imagen'          =>  'image'
         ];

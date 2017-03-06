@@ -45,7 +45,7 @@
                       <div class="col-sm-8">
                           <h5 class="text-left">Nombre: {{$embarcacion->nombre}} </h5>
                           <h5 class="text-left">N° Matricula: {{$embarcacion->nMatricula}} </h5>                              
-                          <h5 class="text-left">Dueño: {{$embarcacion->nombreDueno}} {{$embarcacion->apellidoDueno}}</h5> 
+                          <h5 class="text-left">Dueño: {{$embarcacion->armador->nombres}} {{$embarcacion->armador->apellidos}}</h5> 
                           <h5 class="text-left">Capacidad: {{$embarcacion->capacidad}}</h5> 
                           <h5 class="text-left">Estara: {{$embarcacion->estara}}</h5> 
                           <h5 class="text-left">Manga: {{$embarcacion->manga}}</h5> 

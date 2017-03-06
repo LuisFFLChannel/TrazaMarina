@@ -1,4 +1,4 @@
-@extends('layout.usuarioPesca')
+@extends('layout.admin')
 
 @section('style')
 
@@ -32,7 +32,7 @@
           <tr>
               <th>Apellidos Dueno</th>
               <th >{{$embarcacion->armador->apellidos}}</th>   
-          </tr> 
+          </tr>  
           <tr>
               <th>Capacidad</th>
               <th >{{$embarcacion->capacidad}}</th>   
@@ -67,7 +67,7 @@
               </tr>  
               <tr>
                   <th>Nombre Embarcacion</th>
-                  <th >{{$embarcacion->permisoPesca->nombreEmbarcacion}}</th>   
+                  <th >{{$embarcacion->permisoPesca->nombreEmbarcacion}}</th>     
               </tr> 
                <tr>
                   <th>Numero de Matricula</th>
@@ -87,14 +87,14 @@
 <br>
 <div class="row">
   <div class="col-sm-8">
-    {!!Form::open(array('url' => 'usuarioPesca/embarcaciones/'.$embarcacion->id.'/editPermiso','files'=>true,'id'=>'form','class'=>'form-horizontal'))!!}
+    {!!Form::open(array('url' => 'admin/embarcaciones/'.$embarcacion->id.'/editPermiso','files'=>true,'id'=>'form','class'=>'form-horizontal'))!!}
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
           <table id="example" class="table table-bordered display" >
             <thead>
                 <tr>
                   <th>Codigo</th>
-                  <th>Nombre</th>
+                  <th>Embarcacion</th>
                   <th>Vigencia</th>
                   <th>Seleccionar</th>
                 </tr>

@@ -28,8 +28,8 @@ class UpdatePermisoMarineroRequest extends Request
             'codigo'            =>  'required|max:50',
             'nombres'           =>  'required|max:100',
             'apellidos'        =>  'required|max:100',
-            'dni'                   =>  'required|integer|unique:permisoMarinero,dni,'.$this->input('id'),
-            'numeroMarinero'        =>  'required|max:50|unique:permisoMarinero,numeroMarineo,'.$this->input('id'),
+            'dni'                   =>  'required|integer|unique:permisoMarinero,dni,'.$this->id,
+            'numeroMarinero'        =>  'required|max:50|unique:permisoMarinero,numeroMarineo,'.$this->id,
             'fechaVigencia'         =>   'required'
         ];
     }

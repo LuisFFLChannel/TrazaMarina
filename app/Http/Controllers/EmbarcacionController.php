@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Embarcacion\StoreEmbarcacionRequest;
 use App\Http\Requests\Embarcacion\UpdateEmbarcacionRequest;
 use App\Models\Embarcacion;
+use App\Models\Pescador;
 use App\Services\FileService;
 use App\User;
 use Carbon\Carbon;
@@ -57,11 +58,16 @@ class EmbarcacionController extends Controller
     public function create()
     {
         //
+        $armadores_lista = Pescador::select('id', DB::raw('CONCAT(nombres, " ",apellidos) AS nombreCompleto'))->lists('nombreCompleto','id');
+       
+        $arreglo = [
+        'armadores_lista'   =>$armadores_lista];
+
         if (Auth::user()->role_id == 4){
-            return view('internal.admin.nuevoEmbarcacion');
+            return view('internal.admin.nuevoEmbarcacion',$arreglo);
         }
         elseif  (Auth::user()->role_id == 5){
-            return view('internal.usuarioPesca.nuevoEmbarcacion');
+            return view('internal.usuarioPesca.nuevoEmbarcacion',$arreglo);
         }
     }
 
@@ -79,7 +85,7 @@ class EmbarcacionController extends Controller
         $embarcacion                    =   new Embarcacion;
         $embarcacion->nombre            =   $input['nombre'];
         $embarcacion->nMatricula        =   $input['nMatricula'];
-        $embarcacion->patron_id         =   $input['patron_id'];
+        $embarcacion->armador_id         =   $input['armador_id'];
         $embarcacion->capacidad         =   $input['capacidad'];
         $embarcacion->estara            =   $input['estara'];
         $embarcacion->manga             =   $input['manga'];
@@ -121,14 +127,18 @@ class EmbarcacionController extends Controller
     {
         //
         $embarcacion = Embarcacion::find($id);
+        $armadores_lista = Pescador::select('id', DB::raw('CONCAT(nombres, " ",apellidos) AS nombreCompleto'))->lists('nombreCompleto','id');
+        $arreglo = [
+        'embarcacion'   =>$embarcacion,
+        'armadores_lista'   =>$armadores_lista];
         if ($embarcacion ==null){
             return response()->view('errors.503', [], 404);
         }
         if (Auth::user()->role_id == 4){
-            return view('internal.admin.editarEmbarcacion', compact('embarcacion'));
+            return view('internal.admin.editarEmbarcacion', $arreglo);
         }
         elseif  (Auth::user()->role_id == 5){
-            return view('internal.usuarioPesca.editarEmbarcacion', compact('embarcacion'));
+            return view('internal.usuarioPesca.editarEmbarcacion', $arreglo);
         }
         
     }
@@ -149,8 +159,7 @@ class EmbarcacionController extends Controller
 
         $embarcacion->nombre            =   $input['nombre'];
         $embarcacion->nMatricula        =   $input['nMatricula'];
-        $embarcacion->nombreDueno       =   $input['nombreDueno'];
-        $embarcacion->apellidoDueno     =   $input['apellidoDueno'];
+        $embarcacion->armador_id         =   $input['armador_id'];
         $embarcacion->capacidad         =   $input['capacidad'];
         $embarcacion->estara            =   $input['estara'];
         $embarcacion->manga             =   $input['manga'];

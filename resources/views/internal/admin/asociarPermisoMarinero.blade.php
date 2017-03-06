@@ -1,15 +1,15 @@
-@extends('layout.usuarioPesca')
+@extends('layout.admin')
 
 @section('style')
 
 @stop
 
 @section('title')
-	Asociar Permiso Pesca a Embarcacion
+	Asociar Permiso Marinero a Pescador
 @stop
 
 @section('content')
-<h3> Información de la Embarcacion </h3>
+<h3> Información de Pescador </h3>
 <br>
 <div class="row">
     <div class="col-sm-2">
@@ -18,43 +18,35 @@
     <div class="col-sm-8">
         <table class="table table-bordered table-striped">
           <tr>
-              <th >Nombre</th>
-              <th >{{$embarcacion->nombre}}</th>   
+              <th >Nombres</th>
+              <th >{{$pescador->nombres}}</th>   
           </tr>  
           <tr>
-              <th>Numero Matricula</th>
-              <th >{{$embarcacion->nMatricula}}</th>   
+              <th>Apellidos</th>
+              <th >{{$pescador->apellidos}}</th>   
           </tr> 
           <tr>
-              <th >Nombres Dueno</th>
-              <th >{{$embarcacion->armador->nombres}}</th>   
+              <th >DNI</th>
+              <th >{{$pescador->dni}}</th>   
           </tr> 
           <tr>
-              <th>Apellidos Dueno</th>
-              <th >{{$embarcacion->armador->apellidos}}</th>   
+              <th>Telefono</th>
+              <th >{{$pescador->telefono}}</th>   
           </tr> 
           <tr>
-              <th>Capacidad</th>
-              <th >{{$embarcacion->capacidad}}</th>   
+              <th>Correo</th>
+              <th >{{$pescador->correo}}</th>   
           </tr> 
            <tr>
-              <th>Estara</th>
-              <th >{{$embarcacion->estara}}</th>   
-          </tr> 
-           <tr>
-              <th>Manga</th>
-              <th >{{$embarcacion->manga}}</th>   
-          </tr> 
-           <tr>
-              <th>Puntual</th>
-              <th >{{$embarcacion->puntual}}</th>   
+              <th>Cumpleaños</th>
+              <th >{{ explode(" ",$pescador->cumpleanos)[0]}}</th>   
           </tr> 
         </table>
     </div>
 </div>
-<h3> Información del Permiso Pesca Actual </h3>
+<h3> Información del Permiso Marinero Actual </h3>
 <br>
-@if($embarcacion->permisoPesca!=null)
+@if($pescador->permisoMarinero!=null)
     <div class="row">
         <div class="col-sm-2">
       
@@ -63,19 +55,27 @@
             <table class="table table-bordered table-striped">
               <tr>
                   <th >Codigo</th>
-                  <th >{{$embarcacion->permisoPesca->codigo}}</th>   
+                  <th >{{$pescador->permisoMarinero->codigo}}</th>   
               </tr>  
               <tr>
-                  <th>Nombre Embarcacion</th>
-                  <th >{{$embarcacion->permisoPesca->nombreEmbarcacion}}</th>   
+                  <th>Nombres</th>
+                  <th >{{$pescador->permisoMarinero->nombres}}</th>   
               </tr> 
+              <tr>
+                  <th>Apellidos</th>
+                  <th >{{$pescador->permisoMarinero->apellidos}}</th>   
+              </tr> 
+              <tr>
+                  <th>DNI</th>
+                  <th >{{$pescador->permisoMarinero->dni}}</th>   
+              </tr>
                <tr>
-                  <th>Numero de Matricula</th>
-                  <th >{{$embarcacion->permisoPesca->nMatricula}}</th>   
+                  <th>Numero de Marinero</th>
+                  <th >{{$pescador->permisoMarinero->numeroMarinero}}</th>   
               </tr> 
               <tr>
                   <th>Fecha de Vigencia</th>
-                  <th>{{date_format(date_create($embarcacion->permisoPesca->fechaVigencia),"d/m/Y")}}</th>   
+                  <th>{{date_format(date_create($pescador->permisoMarinero->fechaVigencia),"d/m/Y")}}</th>   
               </tr> 
             </table>
         </div>
@@ -87,25 +87,25 @@
 <br>
 <div class="row">
   <div class="col-sm-8">
-    {!!Form::open(array('url' => 'usuarioPesca/embarcaciones/'.$embarcacion->id.'/editPermiso','files'=>true,'id'=>'form','class'=>'form-horizontal'))!!}
+    {!!Form::open(array('url' => 'admin/pescadores/'.$pescador->id.'/editPermisoMarinero','files'=>true,'id'=>'form','class'=>'form-horizontal'))!!}
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
           <table id="example" class="table table-bordered display" >
             <thead>
                 <tr>
                   <th>Codigo</th>
-                  <th>Nombre</th>
+                  <th>Numero Marinero</th>
                   <th>Vigencia</th>
                   <th>Seleccionar</th>
                 </tr>
              </thead>
             <tbody>
-              @foreach($permisoPescas as $permisoPesca)
+              @foreach($permisoMarineros as $permisoMarinero)
                 <tr>
-                  <td>{{$permisoPesca->id}}</td>
-                  <td>{{$permisoPesca->nombreEmbarcacion}}</td>
-                  <td>{{$permisoPesca->fechaVigencia}}</td>
-                  <td> {!! Form::radio('permisoPesca', $permisoPesca->id ,   (Input::old('permisoPesca') == $permisoPesca->id ), array('id'=>'true', 'class'=>'radio  permisoPesca_id'         ,'required'   ))  !!} </td>
+                  <td>{{$permisoMarinero->id}}</td>
+                  <td>{{$permisoMarinero->numeroMarinero}}</td>
+                  <td>{{ date_format(date_create($permisoMarinero->fechaVigencia),"d/m/Y")}}</td>
+                  <td> {!! Form::radio('permisoMarinero', $permisoMarinero->id ,   (Input::old('permisoMarinero') == $permisoMarinero->id ), array('id'=>'true', 'class'=>'radio  permisoMarinero_id'         ,'required'   ))  !!} </td>
                 </tr>
 
                 @endforeach
@@ -113,7 +113,7 @@
           </table>
         </div>
       </div>
-      @if(!$permisoPescas->isEmpty())
+      @if(!$permisoMarineros->isEmpty())
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10">
             <a class="btn btn-info" href="" title="submit" data-toggle="modal" data-target="#submitModal" >Guardar</a>
@@ -134,7 +134,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title">¿Estas seguro que desea asociar este Permiso de Pesca?</h4>
+              <h4 class="modal-title">¿Estas seguro que desea asociar este Permiso de Marinero?</h4>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-info" data-dismiss="modal">No</button>

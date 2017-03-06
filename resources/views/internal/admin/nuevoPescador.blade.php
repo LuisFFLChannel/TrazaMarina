@@ -27,7 +27,7 @@
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-2 control-label">DNI</label>
           <div class="col-sm-10">
-            {!!Form::input('number','dni', null ,['class'=>'form-control','id'=>'dni','max'=>'99999999' 'min'=>'10000000','required'])!!}
+            {!!Form::input('number','dni', null ,['class'=>'form-control','id'=>'dni','max'=>'99999999', 'min'=>'10000000','required'])!!}
           </div>
         </div>
         <div class="form-group">
@@ -43,6 +43,12 @@
           </div>
         </div>
         <div class="form-group">
+          <label for="ubigeo" class="col-sm-2 control-label">Direccion</label>
+          <div class="col-sm-10">
+            {!!Form::input('text','ubigeo', null ,['class'=>'form-control','id'=>'ubigeo', 'maxlength'=>'150','required'])!!}
+          </div>
+        </div>
+        <div class="form-group">
           <label for="inputcumpleanos" class="col-sm-2 control-label">Cumpleaños</label>
           <div class="col-sm-10">
             {!!Form::input('date','cumpleanos', null ,['class'=>'form-control','id'=>'cumpleanos','required'])!!}
@@ -50,6 +56,18 @@
                 Formato Año(D/M/Y)
             </div> 
           </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">Armador</label>
+            <div class="col-sm-9">
+               
+              <div class="col-sm-5"> Si
+                  {!!Form::radio('armador', 1,true)!!}
+              </div>
+               <div class="col-sm-5"> No
+                  {!!Form::radio('armador', 0,null)!!}
+              </div>      
+            </div>
         </div>
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">

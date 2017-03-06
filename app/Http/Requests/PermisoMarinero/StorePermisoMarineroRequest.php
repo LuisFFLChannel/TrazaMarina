@@ -28,7 +28,7 @@ class StorePermisoMarineroRequest extends Request
             'codigo'            =>  'required|max:50',
             'nombres'           =>  'required|max:100',
             'apellidos'        =>  'required|max:100',
-            'dni'                   =>  'required|integer',
+            'dni'                   =>  'required|integer|unique:permisoMarinero',
             'numeroMarinero'        =>  'required|max:50|unique:permisoMarinero',
             'fechaVigencia'         =>   'required'
         ];
