@@ -135,8 +135,8 @@
                     </ul>
                 </li>
                 <li>
-                    <a data-toggle="collapse" data-target="#puertosAdm" class="collapsed">Fabricas <b class="caret"></b></a>
-                    <ul class="sub-menu collapse" id="puertosAdm">
+                    <a data-toggle="collapse" data-target="#fabricasAdm" class="collapsed">Fabricas <b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="fabricasAdm">
                         <li><a href="{{url('admin/fabricas')}}">Listar</a></li>
                         <li><a href="{{url('admin/fabricas/new')}}">Nuevo</a></li>
                     </ul>

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class CertificadoMatricula extends Model
 {
     //
-    protected $table = 'certificadomatricula';
+    protected $table = 'certificadoMatricula';
 	protected $dates = ['deleted_at'];
 
 	public function embarcacion() {
