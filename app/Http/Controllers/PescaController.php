@@ -31,7 +31,7 @@ class PescaController extends Controller
         //
          $pescas = Pesca::paginate(10);
        ;
-        $pescas->setPath('pesca');
+        $pescas->setPath('pescas');
         if (Auth::user()->role_id == 4){
             return view('internal.admin.pescas', compact('pescas'));
         }

@@ -27,7 +27,7 @@ class CertificadoArriboController extends Controller
     {
         //
         $certificadoArribos = CertificadoArribo::paginate(10);
-        $certificadoArribos->setPath('certificadoArribo');
+        $certificadoArribos->setPath('certificadoArribos');
         if (Auth::user()->role_id == 4){
             return view('internal.admin.certificadoArribos', compact('certificadoArribos'));
         }

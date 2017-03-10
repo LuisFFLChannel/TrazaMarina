@@ -26,7 +26,7 @@ class TipoPescaController extends Controller
     {
         //
         $tipoPescas = TipoPesca::paginate(10);
-        $tipoPescas->setPath('tipoPesca');
+        $tipoPescas->setPath('tipoPescas');
 
         if (Auth::user()->role_id == 4){
             return view('internal.admin.tipoPescas', compact('tipoPescas'));

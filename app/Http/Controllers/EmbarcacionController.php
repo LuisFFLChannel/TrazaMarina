@@ -34,7 +34,7 @@ class EmbarcacionController extends Controller
     {
         //
         $embarcaciones = Embarcacion::paginate(10);
-        $embarcaciones->setPath('embarcacion');
+        $embarcaciones->setPath('embarcaciones');
         if (Auth::user()->role_id == 4){
             return view('internal.admin.embarcaciones', compact('embarcaciones'));
         }

@@ -33,7 +33,7 @@ class PuertosController extends Controller
     {
         //
         $puertos = Puerto::paginate(10);
-        $puertos->setPath('puerto');
+        $puertos->setPath('puertos');
 
         if (Auth::user()->role_id == 4){
             return view('internal.admin.puertos', compact('puertos'));

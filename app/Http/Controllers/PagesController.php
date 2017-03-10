@@ -184,18 +184,8 @@ class PagesController extends Controller
     {
 
         $client = User::find(Auth::user()->id);
-        $clientes = Preference::where('idUser', '=' , Auth::user()->id)->get();
-
-
-        $clientPreferences = [];
-
-        foreach($clientes as $cliente){
-            $preferencias = Event::where(['category_id'=>$cliente->idCategories,"cancelled"=>"0"])->get(); // puede haber varios eventos del mismo tipo
-            foreach($preferencias as $preference){
-                array_push($clientPreferences, $preference);
-            }
-        }
-        return view('internal.client.home',compact('clientPreferences','client'));
+        
+        return view('internal.client.home',compact('client'));
     }
 
     public function salesmanHome()

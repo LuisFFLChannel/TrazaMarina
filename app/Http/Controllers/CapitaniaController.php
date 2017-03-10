@@ -32,7 +32,7 @@ class CapitaniaController extends Controller
         //
 
         $capitanias = Capitania::paginate(10);
-        $capitanias->setPath('capitania');
+        $capitanias->setPath('capitanias');
         if (Auth::user()->role_id == 4){
             return view('internal.admin.capitanias', compact('capitanias'));
         }

@@ -27,7 +27,7 @@ class CategoriaPuertoController extends Controller
     {
         //
         $categoriaPuertos = CategoriaPuerto::paginate(10);
-        $categoriaPuertos->setPath('categoriaPuerto');
+        $categoriaPuertos->setPath('categoriaPuertos');
 
         if (Auth::user()->role_id == 4){
             return view('internal.admin.categoriaPuertos', compact('categoriaPuertos'));

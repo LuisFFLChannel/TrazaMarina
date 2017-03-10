@@ -33,7 +33,7 @@ class CertificadoProcedenciaController extends Controller
         //
         $certificadoProcedencias = CertificadoProcedencia::paginate(10);
        
-        $certificadoProcedencias->setPath('certificadoProcedencia');
+        $certificadoProcedencias->setPath('certificadoProcedencias');
         if (Auth::user()->role_id == 4){
             return view('internal.admin.CertificadoProcedencias', compact('certificadoProcedencias'));
         }

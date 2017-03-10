@@ -30,7 +30,7 @@ class PermisoPescaController extends Controller
     {
         //
         $permisoPescas = PermisoPesca::paginate(10);
-        $permisoPescas->setPath('permisoPesca');
+        $permisoPescas->setPath('permisoPescas');
         if (Auth::user()->role_id == 4){
             return view('internal.admin.permisoPescas', compact('permisoPescas'));
         }

@@ -34,7 +34,7 @@ class TransporteTerminalController extends Controller
         //
         $transporteTerminales = TransporteTerminal::paginate(10);
        
-        $transporteTerminales->setPath('transporteTerminal');
+        $transporteTerminales->setPath('transporteTerminales');
         if (Auth::user()->role_id == 4){
             return view('internal.admin.transporteTerminales', compact('transporteTerminales'));
         }

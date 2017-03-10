@@ -30,7 +30,7 @@ class PermisoMarineroController extends Controller
     {
         //
         $permisoMarineros = PermisoMarinero::paginate(10);
-        $permisoMarineros->setPath('permisoMarinero');
+        $permisoMarineros->setPath('permisoMarineros');
         if (Auth::user()->role_id == 4){
             return view('internal.admin.permisoMarineros', compact('permisoMarineros'));
         }

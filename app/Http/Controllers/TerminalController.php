@@ -31,7 +31,7 @@ class TerminalController extends Controller
     {
         //
         $terminales = Terminal::paginate(10);
-        $terminales->setPath('terminal');
+        $terminales->setPath('terminales');
 
         if (Auth::user()->role_id == 4){
             return view('internal.admin.terminales', compact('terminales'));

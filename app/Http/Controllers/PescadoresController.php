@@ -29,7 +29,7 @@ class PescadoresController extends Controller
     {
         //
         $pescadores = Pescador::paginate(10);
-        $pescadores->setPath('pescador');
+        $pescadores->setPath('pescadores');
         if (Auth::user()->role_id == 4){
             return view('internal.admin.pescadores', compact('pescadores'));
         }

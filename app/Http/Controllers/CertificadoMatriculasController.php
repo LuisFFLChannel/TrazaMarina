@@ -31,7 +31,7 @@ class CertificadoMatriculasController extends Controller
     {
         //
         $certificadoMatriculas = CertificadoMatricula::paginate(10);
-        $certificadoMatriculas->setPath('certificadoMatricula');
+        $certificadoMatriculas->setPath('certificadoMatriculas');
         if (Auth::user()->role_id == 4){
             return view('internal.admin.certificadoMatriculas', compact('certificadoMatriculas'));
         }

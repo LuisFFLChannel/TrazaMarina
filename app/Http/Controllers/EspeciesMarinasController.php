@@ -32,7 +32,7 @@ class EspeciesMarinasController extends Controller
     {
         //
         $especies = EspecieMarina::paginate(10);
-        $especies->setPath('especies');
+        $especies->setPath('especieMarinas');
 
         if (Auth::user()->role_id == 4){
             return view('internal.admin.especieMarinas', compact('especies'));

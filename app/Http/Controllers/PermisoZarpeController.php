@@ -38,7 +38,7 @@ class PermisoZarpeController extends Controller
         //
         $permisoZarpes = PermisoZarpe::paginate(10);
 
-        $permisoZarpes->setPath('permisoZarpe');
+        $permisoZarpes->setPath('permisoZarpes');
         if (Auth::user()->role_id == 4){
             return view('internal.admin.PermisoZarpes', compact('permisoZarpes'));
         }

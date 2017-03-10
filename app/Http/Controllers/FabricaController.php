@@ -31,7 +31,7 @@ class FabricaController extends Controller
     {
         //
         $fabricas = Fabrica::paginate(10);
-        $fabricas->setPath('fabrica');
+        $fabricas->setPath('fabricas');
 
         if (Auth::user()->role_id == 4){
             return view('internal.admin.fabricas', compact('fabricas'));

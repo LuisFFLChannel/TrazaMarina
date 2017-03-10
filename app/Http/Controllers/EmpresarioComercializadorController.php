@@ -28,7 +28,7 @@ class EmpresarioComercializadorController extends Controller
     {
         //
         $empresarios = EmpresarioComercializador::paginate(10);
-        $empresarios->setPath('empresario');
+        $empresarios->setPath('empresarioComercializadores');
         if (Auth::user()->role_id == 4){
             return view('internal.admin.empresarioComercializadores', compact('empresarios'));
         }

@@ -30,7 +30,7 @@ class PermisoPatronController extends Controller
     {
         //
         $permisoPatrones = PermisoPatron::paginate(10);
-        $permisoPatrones->setPath('permisoPatron');
+        $permisoPatrones->setPath('permisoPatrones');
         if (Auth::user()->role_id == 4){
             return view('internal.admin.permisoPatrones', compact('permisoPatrones'));
         }

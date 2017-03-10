@@ -32,7 +32,7 @@ class NotaIngresoController extends Controller
         //
         $notaIngresos = NotaIngreso::paginate(10);
        
-        $notaIngresos->setPath('notaIngreso');
+        $notaIngresos->setPath('notasIngresos');
         if (Auth::user()->role_id == 4){
             return view('internal.admin.notasIngresos', compact('notaIngresos'));
         }

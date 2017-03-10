@@ -31,7 +31,7 @@ class DpaController extends Controller
     {
         //
         $dpas = Dpa::paginate(10);
-        $dpas->setPath('dpa');
+        $dpas->setPath('dpas');
         if (Auth::user()->role_id == 4){
             return view('internal.admin.dpas', compact('dpas'));
         }
