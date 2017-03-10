@@ -33,6 +33,7 @@ class UpdateCertificadoMatriculaRequest extends Request
             'dniDueno'              =>  'required|integer',
             'nombreEmbarcacion'     =>  'required|max:100',
             'nMatricula'            =>  'required|max:50|unique:certificadoMatricula,nMatricula,'.$this->id,
+            'pdf'                   =>  'mimes:pdf'
         ];
     }
 }

@@ -13,4 +13,11 @@ class FileService {
         $file->move($upload_path, $file_path);
         return $upload_path.'/'.$file_path;
 	}
+	public function uploadpdf($file,$type){
+		$upload_path = Config::get('paths.upload_pdf');
+		$extension = $file->getClientOriginalExtension();
+		$file_path = $type.'_'.microtime().'.'.$extension;
+        $file->move($upload_path, $file_path);
+        return $upload_path.'/'.$file_path;
+	}
 }

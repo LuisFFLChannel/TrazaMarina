@@ -41,6 +41,13 @@
           </div>
         </div>
         <div class="form-group">
+          <label for="inputEmail3" class="col-sm-3 control-label">PDF del Documento (Opcional) </label>
+          <div class="col-sm-9">
+            {!!Form::input('file','pdf', $permisoPesca->pdf ,['class'=>'form-control','id'=>'inputEmail3'])!!}
+            {{$permisoPesca->pdf}}
+          </div>
+        </div>
+        <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10">
             <a class="btn btn-info" href="" title="submit" data-toggle="modal" data-target="#submitModal" >Guardar</a>
             <a href="{{URL::previous()}}"><button type="button" class="btn btn-info">Cancelar</button></a>

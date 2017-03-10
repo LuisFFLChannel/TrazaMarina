@@ -26,13 +26,13 @@
         </div>
 
         <div class="form-group">
-          <label for="tamanoMin" class="col-sm-2 control-label">Latitud</label>
+          <label for="tamanoMin" class="col-sm-2 control-label">Latitud (Grados Decimales a,a)</label>
           <div class="col-sm-10">
             {!!Form::input('text','latitud', null ,['class'=>'form-control','id'=>'latitud', 'maxlength'=>'100','min' >0,'required'])!!}
           </div>
         </div>
         <div class="form-group">
-          <label for="tamanoMax" class="col-sm-2 control-label">Longitud</label>
+          <label for="tamanoMax" class="col-sm-2 control-label">Longitud (Grados Decimales a,a)</label>
           <div class="col-sm-10">
             {!!Form::input('text','longitud', null ,['class'=>'form-control','id'=>'longitud', 'maxlength'=>'100','min' >0,'required'])!!}
           </div>

@@ -28,7 +28,8 @@ class UpdatePermisoPescaRequest extends Request
             'codigo'                =>  'required|max:50',
             'nombreEmbarcacion'     =>  'required|max:100',
             'nMatricula'            =>  'required|max:50|unique:permisoPesca,nMatricula,'.$this->id,
-            'fechaVigencia'         =>   'required'
+            'fechaVigencia'         =>   'required',
+            'pdf'                   =>  'mimes:pdf'
         ];
     }
 }

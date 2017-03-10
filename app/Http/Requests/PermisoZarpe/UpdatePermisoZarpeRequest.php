@@ -35,7 +35,8 @@ class UpdatePermisoZarpeRequest extends Request
                 'puerto_id'             =>  'required|integer',
                 'capitania_id'          =>  'required|integer',
                 'pescadores_id'         =>  'required',
-                'patrones_id'           =>  'required'
+                'patrones_id'           =>  'required',
+                'pdf'                   =>  'mimes:pdf'
         ];
         $pescadores = $this->request->get('pescadores_id');
         //dd($pescadores);

@@ -27,13 +27,13 @@
             </div>
         </div>
         <div class="form-group">
-          <label for="tamanoMin" class="col-sm-3 control-label">Latitud</label>
+          <label for="tamanoMin" class="col-sm-3 control-label">Latitud (Grados Decimales a,a)</label>
           <div class="col-sm-9">
             {!!Form::input('number','latitud', null ,['class'=>'form-control','id'=>'latitud','required'])!!}
           </div>
         </div>
         <div class="form-group">
-          <label for="tamanoMax" class="col-sm-3 control-label">Longitud</label>
+          <label for="tamanoMax" class="col-sm-3 control-label">Longitud (Grados Decimales a,a)</label>
           <div class="col-sm-9">
             {!!Form::input('number','longitud', null ,['class'=>'form-control','id'=>'longitud', 'required'])!!}
           </div>
@@ -73,6 +73,12 @@
             <div class="col-sm-9">
                 {!! Form::select('puerto_id', $puertos_lista->toArray(), null, ['class' => 'form-control','required', 'id'=>'puerto_id']) !!}
             </div>
+        </div>
+        <div class="form-group">
+          <label for="inputEmail3" class="col-sm-3 control-label">PDF del Documento (Opcional) </label>
+          <div class="col-sm-9">
+            {!!Form::input('file','pdf', null ,['class'=>'form-control','id'=>'inputEmail3'])!!}
+          </div>
         </div>
         <br>
         <div class="form-group">

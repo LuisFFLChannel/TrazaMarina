@@ -32,7 +32,8 @@ class StoreCertificadoMatriculaRequest extends Request
             'apellidosDueno'        =>  'required|max:100',
             'dniDueno'              =>  'required|integer',
             'nombreEmbarcacion'     =>  'required|max:100',
-            'nMatricula'            =>  'required|max:50|unique:certificadoMatricula'
+            'nMatricula'            =>  'required|max:50|unique:certificadoMatricula',
+            'pdf'                   =>  'mimes:pdf'
         ];
     }
 }

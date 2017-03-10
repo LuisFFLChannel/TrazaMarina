@@ -18,6 +18,7 @@
         <th class="text-center">Barco</th>
         <!--<th>Imagen</th>-->
         <th class="text-center">Detalle</th>
+        <th class="text-center">Ver PDF</th>
         <th class="text-center">Editar</th>
         <th class="text-center">Eliminar</th>
     </tr>
@@ -69,6 +70,9 @@
               </div>
             </div>
           </td>
+      <td class="text-center">
+        <a class="btn btn-info" href="{{url('usuarioPesca/certificadoMatriculas/'.$certificadoMatricula->id.'/showPDF')}}" title="Editar" ><i class="glyphicon glyphicon-download-alt"></i></a>
+      </td> 
       <td class="text-center">
         <a class="btn btn-info" href="{{url('usuarioPesca/certificadoMatriculas/'.$certificadoMatricula->id.'/edit')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
       </td> 

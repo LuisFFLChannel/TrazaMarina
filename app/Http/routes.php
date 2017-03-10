@@ -504,6 +504,7 @@ Route::group(['middleware' => ['auth', 'usuarioPesca']], function () {
     Route::post('usuarioPesca/certificadoMatriculas/{id}/edit', 'CertificadoMatriculasController@update');
     Route::get('usuarioPesca/certificadoMatriculas/{id}/delete', 'CertificadoMatriculasController@destroy');
 
+
     Route::get('usuarioPesca/permisoZarpes', ['uses'=>'PermisoZarpeController@index','as'=>'usuarioPesca.permisoZarpes']);
     Route::get('usuarioPesca/permisoZarpes/new', 'PermisoZarpeController@create');
     Route::post('usuarioPesca/permisoZarpes/new', 'PermisoZarpeController@store');
@@ -572,6 +573,14 @@ Route::group(['middleware' => ['auth', 'usuarioPesca']], function () {
     Route::get('usuarioPesca/mapas/{id}/mostarMapaTerminal', 'TerminalController@mostrarMapa');
     Route::get('usuarioPesca/mapas/{id}/mostarMapaFabrica', 'FabricaController@mostrarMapa');
     Route::get('usuarioPesca/mapas/{id}/mostarMapaPesca', 'PescaController@mostrarMapa');
+
+
+    //pdfs
+    Route::get('usuarioPesca/certificadoMatriculas/{id}/showPDF', 'CertificadoMatriculasController@pdf');
+    Route::get('usuarioPesca/permisoPescas/{id}/showPDF', 'PermisoPescaController@pdf');
+    Route::get('usuarioPesca/permisoMarineros/{id}/showPDF', 'PermisoMarineroController@pdf');
+    Route::get('usuarioPesca/permisoPatrones/{id}/showPDF', 'PermisoPatronController@pdf');
+    Route::get('usuarioPesca/permisoZarpes/{id}/showPDF', 'PermisoZarpeController@pdf');
 
 })  ;
 Route::group(['middleware' => ['auth', 'usuarioIntermediario']], function () {
@@ -684,7 +693,13 @@ Route::group(['middleware' => ['auth', 'usuarioIntermediario']], function () {
     Route::get('usuarioIntermediario/lotesFabricas/{idNota}/{idCertificado}/mostrarTrazabilidad', 'CertificadoProcedenciaController@mostrarTrazabilidad');
     Route::get('usuarioIntermediario/lotesTerminales/{idNota}/{idTransporte}/mostrarTrazabilidad', 'TransporteTerminalController@mostrarTrazabilidad');
 
-
+   
+    //pdfs
+    Route::get('usuarioIntermediario/certificadoMatriculas/{id}/showPDF', 'CertificadoMatriculasController@pdf');
+    Route::get('usuarioIntermediario/permisoPescas/{id}/showPDF', 'PermisoPescaController@pdf');
+    Route::get('usuarioIntermediario/permisoMarineros/{id}/showPDF', 'PermisoMarineroController@pdf');
+    Route::get('usuarioIntermediario/permisoPatrones/{id}/showPDF', 'PermisoPatronController@pdf');
+    Route::get('usuarioIntermediario/permisoZarpes/{id}/showPDF', 'PermisoZarpeController@pdf');
 
 
 })  ;
@@ -766,6 +781,11 @@ Route::group(['middleware' => ['auth', 'usuarioValidacion']], function () {
     Route::get('usuarioValidacion/lotesFabricas/{idNota}/{idCertificado}/mostrarTrazabilidad', 'CertificadoProcedenciaController@mostrarTrazabilidad');
     Route::get('usuarioValidacion/lotesTerminales/{idNota}/{idTransporte}/mostrarTrazabilidad', 'TransporteTerminalController@mostrarTrazabilidad');
 
+    Route::get('usuarioValidacion/certificadoMatriculas/{id}/showPDF', 'CertificadoMatriculasController@pdf');
+    Route::get('usuarioValidacion/permisoPescas/{id}/showPDF', 'PermisoPescaController@pdf');
+    Route::get('usuarioValidacion/permisoMarineros/{id}/showPDF', 'PermisoMarineroController@pdf');
+    Route::get('usuarioValidacion/permisoPatrones/{id}/showPDF', 'PermisoPatronController@pdf');
+    Route::get('usuarioValidacion/permisoZarpes/{id}/showPDF', 'PermisoZarpeController@pdf');
 })  ;
 
 

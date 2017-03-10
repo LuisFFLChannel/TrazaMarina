@@ -23,6 +23,7 @@ class CreateCertificadoMatriculaTable extends Migration
             $table->integer('dniDueno')->unique();
             $table->string('nombreEmbarcacion');
             $table->string('nMatricula')->unique();
+            $table->string('pdf'); 
             $table->boolean('asignado');
             $table->boolean('activo');
             $table->softDeletes();

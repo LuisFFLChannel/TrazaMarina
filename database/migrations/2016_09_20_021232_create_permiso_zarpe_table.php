@@ -26,6 +26,7 @@ class CreatePermisoZarpeTable extends Migration
             $table->timestamp('fechaArribo');
             $table->integer('puerto_id')->unsigned();
             $table->integer('capitania_id')->unsigned();
+            $table->string('pdf'); 
             $table->boolean('asignado');
             $table->boolean('activo');
             $table->softDeletes();

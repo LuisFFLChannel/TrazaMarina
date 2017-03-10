@@ -12,6 +12,7 @@ use App\Models\PermisoPatron;
 use App\User;
 use Carbon\Carbon;
 use Auth;
+use App\Services\FileService;
 //use App\Usuario;
 use Session;
 
@@ -22,6 +23,9 @@ class PermisoPatronController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(){
+        $this->file_service = new FileService();
+    }
     public function index()
     {
         //
@@ -78,6 +82,8 @@ class PermisoPatronController extends Controller
         $permisoPatron->asignado              =   false;
         $permisoPatron->activo                =   true;
         //Control de subida de imagen por hacer
+        if($request->file('pdf')!=null)
+            $permisoPatron->pdf        =   $this->file_service->uploadpdf($request->file('pdf'),'permisoPatron');
 
         $permisoPatron->save();
         
@@ -141,6 +147,8 @@ class PermisoPatronController extends Controller
         $permisoPatron->numeroPatron          =   $input['numeroPatron'];
         $permisoPatron->fechaVigencia         =   new Carbon($input['fechaVigencia']);
         //Control de subida de imagen por hacer
+        if($request->file('pdf')!=null)
+            $permisoPatron->pdf        =   $this->file_service->uploadpdf($request->file('pdf'),'permisoPatron');
 
         $permisoPatron->save();
         if (Auth::user()->role_id == 4){
@@ -175,4 +183,40 @@ class PermisoPatronController extends Controller
              return redirect()->back()->withInput()->withErrors(['errors' => 'NO SE PUEDE ELIMINAR DEBIDO A QUE ESTA SIENDO USADA EN TRANSACCIONES']);
         }
     }
+    public function pdf($id)
+    {
+        //
+            $certificado = PermisoPatron::find($id);
+            if ($certificado->pdf == null){
+                 return redirect()->back()->withInput()->withErrors(['errors' => 'No tiene asociado ningun pdf']);
+            }
+
+
+            try{
+
+                $myfile = fopen($certificado->pdf, "r");
+
+                $fileSize = filesize($certificado->pdf);
+                header("HTTP/1.1 200 OK");
+                header("Pragma: public");
+                header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+
+                header("Cache-Control: private", false);
+
+                header("Content-type: application/pdf");
+                header("Content-Disposition: attachment; filename=\"".$certificado->pdf."\""); 
+
+                header("Content-Transfer-Encoding: binary");
+                header("Content-Length: " . $fileSize);
+
+                echo fread($myfile, $fileSize);
+
+            } 
+            catch(\Exception $e){
+               // catch code
+                 return redirect()->back()->withInput()->withErrors(['errors' => 'El archivo está mal direccionado']);
+            }
+
+    }
+
 }

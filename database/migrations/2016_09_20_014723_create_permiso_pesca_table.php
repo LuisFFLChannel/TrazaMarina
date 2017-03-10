@@ -20,6 +20,7 @@ class CreatePermisoPescaTable extends Migration
             $table->string('nombreEmbarcacion');
             $table->string('nMatricula');
             $table->timestamp('fechaVigencia');
+            $table->string('pdf'); 
             $table->boolean('asignado');
             $table->boolean('activo');
             $table->softDeletes();

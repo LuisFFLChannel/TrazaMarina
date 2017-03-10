@@ -21,6 +21,7 @@ class CreatePermisoMarineroTable extends Migration
             $table->integer('dni')->unique();
             $table->string('numeroMarinero')->unique();
             $table->timestamp('fechaVigencia');
+            $table->string('pdf'); 
             $table->boolean('asignado');
             $table->boolean('activo');
             $table->softDeletes();

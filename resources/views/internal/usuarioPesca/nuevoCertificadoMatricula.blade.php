@@ -61,6 +61,12 @@
             {!!Form::input('text','nMatricula', null ,['class'=>'form-control','id'=>'inputEmai3', 'maxlength'=>'50','required'])!!}
           </div>
         </div>
+        <div class="form-group">
+          <label for="inputEmail3" class="col-sm-3 control-label">PDF del Documento (Opcional) </label>
+          <div class="col-sm-9">
+            {!!Form::input('file','pdf', null ,['class'=>'form-control','id'=>'inputEmail3'])!!}
+          </div>
+        </div>
        
       <div class="form-group">
         <div class="col-sm-offset-3 col-sm-9">

@@ -27,13 +27,13 @@
                 {!! Form::select('embarcacion_id', $embarcaciones_lista->toArray(), $permisoZarpe->embarcacion_id, ['class' => 'form-control','required', 'id'=>'embarcacion_id']) !!}
             </div>
         </div>        <div class="form-group">
-          <label for="tamanoMin" class="col-sm-3 control-label">Latitud</label>
+          <label for="tamanoMin" class="col-sm-3 control-label">Latitud (Grados Decimales a,a)</label>
           <div class="col-sm-9">
             {!!Form::input('number','latitud', $permisoZarpe->coordenadaX ,['class'=>'form-control','id'=>'latitud','required'])!!}
           </div>
         </div>
         <div class="form-group">
-          <label for="tamanoMax" class="col-sm-3 control-label">Longitud</label>
+          <label for="tamanoMax" class="col-sm-3 control-label">Longitud (Grados Decimales a,a)</label>
           <div class="col-sm-9">
             {!!Form::input('number','longitud', $permisoZarpe->coordenadaY,['class'=>'form-control','id'=>'longitud', 'required'])!!}
           </div>
@@ -73,6 +73,13 @@
             <div class="col-sm-9">
                 {!! Form::select('puerto_id', $puertos_lista->toArray(), $permisoZarpe->puerto_id, ['class' => 'form-control','required', 'id'=>'puerto_id']) !!}
             </div>
+        </div>
+        <div class="form-group">
+          <label for="inputEmail3" class="col-sm-3 control-label">PDF del Documento (Opcional) </label>
+          <div class="col-sm-9">
+            {!!Form::input('file','pdf', $permisoZarpe->pdf ,['class'=>'form-control','id'=>'inputEmail3'])!!}
+            {{$permisoZarpe->pdf}}
+          </div>
         </div>
          <br>
         <div class="form-group">

@@ -30,7 +30,8 @@ class StorePermisoPatronRequest extends Request
             'apellidos'        =>  'required|max:100',
             'dni'                   =>  'required|integer|unique:permisoPatron',
             'numeroPatron'          =>  'required|max:50|unique:permisoPatron',
-            'fechaVigencia'         =>   'required'
+            'fechaVigencia'         =>   'required',
+            'pdf'                   =>  'mimes:pdf'
         ];
     }
 }

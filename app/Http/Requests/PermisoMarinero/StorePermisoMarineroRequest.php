@@ -30,7 +30,8 @@ class StorePermisoMarineroRequest extends Request
             'apellidos'        =>  'required|max:100',
             'dni'                   =>  'required|integer|unique:permisoMarinero',
             'numeroMarinero'        =>  'required|max:50|unique:permisoMarinero',
-            'fechaVigencia'         =>   'required'
+            'fechaVigencia'         =>   'required',
+            'pdf'                   =>  'mimes:pdf'
         ];
     }
 }

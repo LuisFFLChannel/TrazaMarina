@@ -52,6 +52,12 @@
             </div> 
           </div>
         </div>
+        <div class="form-group">
+          <label for="inputEmail3" class="col-sm-3 control-label">PDF del Documento (Opcional) </label>
+          <div class="col-sm-9">
+            {!!Form::input('file','pdf', null ,['class'=>'form-control','id'=>'inputEmail3'])!!}
+          </div>
+        </div>
       <div class="form-group">
         <div class="col-sm-offset-3 col-sm-9">
           <a class="btn btn-info" href="" title="submit" data-toggle="modal" data-target="#submitModal" >Guardar</a>

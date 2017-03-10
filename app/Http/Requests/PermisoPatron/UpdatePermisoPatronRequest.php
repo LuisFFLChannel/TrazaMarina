@@ -30,7 +30,8 @@ class UpdatePermisoPatronRequest extends Request
             'apellidos'        =>  'required|max:100',
             'dni'                   =>  'required|integer|unique:permisoPatron,dni,'.$this->id,
             'numeroPatron'          =>  'required|max:50|unique:permisoPatron,numeroPatron,'.$this->id,
-            'fechaVigencia'         =>   'required'
+            'fechaVigencia'         =>   'required',
+            'pdf'                   =>  'mimes:pdf'
         ];
     }
 }
