@@ -61,56 +61,25 @@ Route::group(['middleware' => ['auth', 'client']], function () {
     Route::get('client/photo', 'ClientController@photoEdit');
     Route::post('client/photo', 'ClientController@photoUpdate');
     Route::get('client/home', 'PagesController@clientHome');
-    Route::get('client/event_record', 'EventController@showClientRecord');
-    Route::get('client/event_record/feedback', 'EventController@feedback');
-    //Estos 2 inician en el detalle del evento
-    Route::get('client/event/{id}/buy', 'TicketController@createClient');
-    Route::post('client/event/store', ['uses'=>'TicketController@store','as'=>'ticket.store.client']);
-    Route::get('client/event/successBuy', ['uses'=>'TicketController@showSuccess','as'=>'ticket.success.client']);
-    Route::post('client/event/successMail', ['uses'=>'TicketController@mailSuccess','as'=>'ticket.success.client.mail']);
-    Route::get('client/{id}/reservanueva', ['as' => 'booking.create' , 'uses' => 'BookingController@create']);
-    //Fin
+
     Route::get('client/reservaexitosa', 'BookingController@store');
     Route::get('client/mail/{code}', 'BookingController@sendConfirmationMail');
 });
 
-Route::group(['middleware' => ['auth', 'salesman']], function () {
-    Route::get('salesman', ['uses'=>'PagesController@salesmanHome','as'=>'salesman.home']);
-    Route::get('salesman/cash_count', 'BusinessController@cashCount');
-    Route::post('salesman/cash_count', 'BusinessController@updateCash');
-    //Route::post('salesman/cash_count', 'BusinessController@updateCashCount');
+Route::group(['middleware' => ['auth', 'clientMaster']], function () {
+    Route::get('clientMaster/', ['uses'=>'ClientController@profileMaster','as'=>'clientMaster.home']);
+    Route::get('clientMaster/edit', 'ClientController@editClientMaster');
+    Route::post('clientMaster/update', 'ClientController@updateClientMaster');
+    Route::get('clientMaster/password', 'ClientController@passwordClientMaster');
+    Route::post('clientMaster/password', 'ClientController@passwordUpdateClientMaster');
+    Route::get('clientMaster/photo', 'ClientController@photoEditClientMaster');
+    Route::post('clientMaster/photo', 'ClientController@photoUpdateClientMaster');
+    Route::get('clientMaster/home', 'PagesController@clientMasterHome');
 
-
-    Route::get('salesman/password', 'BusinessController@passwordSalesman');
-    Route::post('salesman/password', 'BusinessController@passwordUpdateSalesman');
-
-
-
-    Route::get('salesman/exchange_gift', 'GiftController@createExchange');
-    Route::post('salesman/exchange_gift', 'GiftController@createExchangePost');
-
-
-    Route::get('salesman/event/pay_booking', ['as' => 'booking.search', 'uses' =>'BookingController@searchBooking']);
-    Route::post('salesman/event/pay_booking', ['as' => 'booking.show', 'uses' =>'BookingController@showPayBooking']);
-    Route::post('salesman/event/pay_booking/store', ['as' => 'booking.store', 'uses' =>'BookingController@storePayBooking']);
-
-    Route::get('salesman/giveaway', ['uses'=>'TicketController@giveaway','as'=>'ticket.giveaway']);
-    Route::post('salesman/giveaway', ['uses'=>'TicketController@giveawayShow','as'=>'ticket.giveaway.show']);
-    Route::post('salesman/giveaway/confirm', ['uses'=>'TicketController@giveawayConfirm','as'=>'ticket.giveaway.confirm']);
-
-    //Este inicia en el detalle del evento
-    Route::get('salesman/event/{id}/buy', 'TicketController@createSalesman');
-    Route::post('salesman/event/store', ['uses'=>'TicketController@store','as'=>'ticket.store']);
-    Route::get('salesman/event/successBuy', ['uses'=>'TicketController@showSuccessSalesman','as'=>'ticket.success.salesman']);
-    Route::post('salesman/event/successMail', ['uses'=>'TicketController@mailSuccess','as'=>'ticket.success.salesman.mail']);
-
-    Route::get('salesman/devolutions/', 'DevolutionController@index');
-    Route::get('salesman/devolutions/new/{ticket_id}', 'DevolutionController@create');
-    Route::post('salesman/devolutions/new/{ticket_id}', 'DevolutionController@store');
-    Route::get('salesman/devolutions/{devolution_id}', 'DevolutionController@show');
-    Route::post('salesman/ticket/repay', 'TicketController@repay');
-
+    Route::get('clientMaster/reservaexitosa', 'BookingController@store');
+    Route::get('clientMaster/mail/{code}', 'BookingController@sendConfirmationMail');
 });
+
 
 //Rutas generales para peticiones ajax, pueden ser usadas por varios usuarios, por eso lo saque
 Route::get('getClient', ['uses'=>'TicketController@getClient','as'=>'ajax.getClient']);
@@ -125,123 +94,13 @@ Route::get('localSeats', ['uses'=>'LocalController@getLocalSeatArray','as'=>'aja
 Route::get('zoneSeatArray', ['uses'=>'LocalController@getZoneSeatArray','as'=>'ajax.getZoneSeatArray']);
 Route::get('zoneSeatIds', ['uses'=>'LocalController@getZoneSeatsIds','as'=>'ajax.getZoneSeatsIds']);
 
-Route::group(['middleware' => ['auth', 'promoter']], function () {
-    Route::get('promoter/', ['as'=>'promoter.home','uses'=>'PagesController@promoterHome']);
-    Route::get('promoter/politics', 'PoliticController@index');
-    Route::get('promoter/politics', 'PoliticController@politicsPromotor');
 
-    Route::get('promoter/transfer_payments/', 'PaymentController@index');
-    //Route::get('promoter/transfer_payments/{payment_id}', 'PaymentController@show');
-    Route::get('promoter/transfer_payments/{event_id}/create', 'PaymentController@create');
-    Route::post('promoter/transfer_payments/{event_id}/create', 'PaymentController@store');
-
-    Route::get('promoter/event/record', ['as'=>'promoter.record','uses'=>'EventController@showPromoterRecord']);
-    Route::get('promoter/event/recordPayment', 'PaymentController@index');
-    Route::get('promoter/event/create', 'EventController@create');
-    Route::post('promoter/event/create', ['as' => 'events.store', 'uses' =>'EventController@store']);
-    Route::get('promoter/event/{event_id}', ['as' => 'events.show', 'uses' =>'EventController@show']);
-    Route::post('promoter/event/{event_id}/edit', ['as' => 'events.update', 'uses' =>'EventController@update']);
-    Route::get('promoter/event/{event_id}/edit', ['as' => 'events.edit', 'uses' =>'EventController@edit']);
-    Route::post('promoter/event/{event_id}/delete', ['as' => 'events.delete', 'uses' =>'EventController@destroy']);
-    Route::get('promoter/event/{event_id}/cancel', 'EventController@cancel');
-    Route::post('promoter/event/{event_id}/cancel', 'EventController@cancelStorage');
-
-    Route::get('promoter/presentation/cancelled', 'PresentationController@index');
-    Route::get('promoter/presentation/cancelled/{cancelled_id}/modules', 'PresentationController@modules');
-    Route::post('promoter/presentation/cancelled/{cancelled_id}/modules', 'PresentationController@modulesStorage');
-    Route::get('promoter/presentation/{presentation_id}/cancel', 'PresentationController@cancel');
-    Route::post('promoter/presentation/{presentation_id}/cancel', 'PresentationController@cancelStorage');
-    Route::get('promoter/presentation/cancelled/{id}/edit', 'PresentationController@editCancelled');
-    Route::post('promoter/presentation/cancelled/{id}/edit', 'PresentationController@cancelUpdate');
-
-    Route::get('promoter/{category_id}/subcategories', 'EventController@subcategoriesToAjax');
-    Route::get('getLocal/{id}',['as'=>'ajax.getLocal','uses'=>'EventController@getLocal']);
-
-    //Route::get('promoter/promotion', 'PromoController@index');
-    Route::get('promoter/promotion', 'PromoController@promotion');
-    Route::get('promoter/promotion/new', ['as'=>'promo.create','uses'=>'PromoController@create']);
-    Route::post('promoter/promotion/new', ['as'=>'promo.store','uses'=>'PromoController@store']);
-    Route::get('promoter/promotion/new/{event_id}', 'PromoController@ajax');
-    Route::get('promoter/promotion/{id}/edit', ['as'=>'promo.edit','uses'=>'PromoController@edit']);
-    Route::post('promoter/promotion/{id}/edit',  'PromoController@update');
-    Route::get('promoter/promotion/{id}/delete',  'PromoController@destroy');
-
-    Route::get('promoter/password', 'PromoController@passwordPromoter');
-    Route::post('promoter/password', 'PromoController@passwordUpdatePromoter');
-
-
-    Route::get('promoter/organizers', 'OrganizerController@index');
-    Route::get('promoter/organizer/create', 'OrganizerController@create');
-    Route::post('promoter/organizer/create', 'OrganizerController@store');
-    Route::get('promoter/organizer/{id}/edit', 'OrganizerController@edit');
-    Route::post('promoter/organizer/{id}/edit', 'OrganizerController@update'); // faltan
-    Route::get('promoter/organizer/{id}/delete', 'OrganizerController@destroy');
-
-    Route::get('promoter/highlights', ['as'=>'promoter.highlights.index','uses'=>'EventController@getHighlights']);
-    Route::get('promoter/highlights/create', 'EventController@createHighlight');
-    Route::post('promoter/highlights/create', 'EventController@storeHighlight');
-    Route::post('promoter/highlights/{id}/editDate', 'EventController@editDate');
-});
 
 Route::group(['middleware' => ['auth', 'admin']], function () {
 
     Route::get('admin/', ['uses'=>'PagesController@adminHome','as'=>'admin.home']);
 
-    Route::get('admin/politics', 'PoliticController@politics');
-    Route::get('admin/politics/new', 'PoliticController@create');
-    Route::post('admin/politics/new', 'PoliticController@store');
-    Route::get('admin/politics/{id}/edit', 'PoliticController@edit');
-    Route::post('admin/politics/{id}/edit', 'PoliticController@update');
-
-    Route::get('admin/local', 'LocalController@index');
-    Route::get('admin/local/new', 'LocalController@create');
-    Route::post('admin/local/new', 'LocalController@store');
-    Route::get('admin/local/{id}/edit', 'LocalController@edit');
-    Route::post('admin/local/{id}/edit', 'LocalController@update');
-    Route::get('admin/local/{id}/delete', 'LocalController@destroy');
-
-    Route::get('admin/exchange_gift', 'GiftController@createExchangeAdmin');
-    Route::post('admin/exchange_gift', 'GiftController@createExchangeAdminPost');
-
-
-    Route::get('admin/gifts', ['uses'=>'GiftController@index','as'=>'admin.gifts']);
-    Route::get('admin/gifts/new', 'GiftController@create');
-    Route::post('admin/gifts/new', 'GiftController@store');
-    Route::get('admin/gifts/{id}/edit', 'GiftController@edit');
-    Route::post('admin/gifts/{id}/edit', 'GiftController@update');
-    Route::get('admin/gifts/{id}/delete', 'GiftController@destroy');
-
-    Route::get('admin/category', ['as' => 'admin.categories.index', 'uses' =>'CategoryController@index']);
-    Route::get('admin/category/new', 'CategoryController@create');
-    Route::post('admin/category/new', ['as' => 'categories.store', 'uses' =>'CategoryController@store']);
-    Route::get('admin/category/{id}/edit', ['as' => 'categories.edit', 'uses' =>'CategoryController@edit']);
-    Route::post('admin/category/{id}/edit', ['as' => 'categories.update', 'uses' =>'CategoryController@update']);
-    Route::post('admin/category/{id}/delete', ['as' => 'categories.delete', 'uses' =>'CategoryController@destroy']);
-    Route::get('admin/category/{id}/subcategories', ['as' => 'subcategories.index', 'uses' =>'CategoryController@indexSubAdmin']);
-
-
-    Route::get('admin/ticket_return', 'TicketController@indexReturn');
-    Route::get('admin/ticket_return/new', 'TicketController@createReturn');
-    Route::get('admin/{id}/attendance', 'BusinessController@attendance');
-    Route::post('admin/{id}/attendanceSubmit', 'BusinessController@attendanceSubmit');
-
-
-    Route::get('admin/attendance/{id}/detail', 'BusinessController@attendanceDetail');
-  Route::post('admin/{id}/Update/attendanceSubmit', 'BusinessController@attendanceUpdate');
-
-
-
-    Route::get('admin/devolutions/', 'DevolutionController@index');
-    Route::get('admin/devolutions/new', 'DevolutionController@create');
-    Route::post('admin/devolutions/new', 'DevolutionController@store');
-    Route::get('admin/devolutions/{devolution_id}', 'DevolutionController@show');
-
-    Route::get('admin/ticket/{devolution_id}/tojson', 'TicketController@getTicketToJson');
-
-    Route::get('admin/attendance', 'BusinessController@attendance');
-
-    Route::get('admin/config/exchange_rate', 'BusinessController@exchangeRate');
-    Route::post('admin/config/exchange_rate', 'BusinessController@storeExchangeRate');
+    
     Route::get('admin/config/about', 'BusinessController@about');
     Route::post('admin/config/about', ['uses'=>'BusinessController@aboutUpdate','as'=>'config.about.update']);
     Route::get('admin/config/system', 'BusinessController@system');
@@ -255,7 +114,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('admin/report/assignment', 'ReportController@showAssigment');
     Route::post('admin/report/assignment', 'ReportController@assigmentExcel');
 
-    Route::get('admin/modules', 'ModuleController@index');
+    /*Route::get('admin/modules', 'ModuleController@index');
     Route::get('admin/modules/new', 'ModuleController@create');
     Route::post('admin/modules/new', 'ModuleController@store');
     Route::get('admin/modules/{id}/edit', 'ModuleController@edit');
@@ -263,7 +122,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('admin/modules/{id}/delete', 'ModuleController@destroy');
     Route::get('admin/modules/assigment', 'ModuleController@showAssigment');
     Route::post('admin/modules/assigment', 'ModuleController@newAssigment');
-    Route::get('admin/modules/assigment/{id}/delete', 'ModuleController@destroyAssigment');
+    Route::get('admin/modules/assigment/{id}/delete', 'ModuleController@destroyAssigment');*/
 
     Route::get('admin/password', 'AdminController@passwordAdmin');
     Route::post('admin/password', 'AdminController@passwordUpdateAdmin');
@@ -271,6 +130,13 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 
     Route::get('admin/client', 'ClientController@index');
     Route::post('admin/client/desactive', 'ClientController@desactive');
+
+    Route::get('admin/clientMaster', 'ClientController@indexMaster');
+    Route::post('admin/clientMaster/desactive', 'ClientController@desactiveMaster');
+    Route::get('admin/clientMaster/new', 'ClientController@newClientMaster');
+    Route::post('admin/clientMaster/new', 'ClientController@storeClientMaster');
+
+
 
     Route::get('admin/salesman', ['as'=>'admin.salesman','uses'=>'AdminController@salesman']);
     Route::get('admin/salesman/{id}/edit', 'AdminController@editSalesman');

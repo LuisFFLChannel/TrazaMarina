@@ -26,6 +26,11 @@ class AdminController extends Controller
     {
         return view('internal.admin.client');
     }
+    /*public function clientMaster()
+    {
+        return view('internal.admin.clientMaster');
+    }*/
+
     public function salesman()
     {
 

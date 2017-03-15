@@ -187,6 +187,13 @@ class PagesController extends Controller
         
         return view('internal.client.home',compact('client'));
     }
+    public function clientMasterHome()
+    {
+
+        $client = User::find(Auth::user()->id);
+        
+        return view('internal.clientMaster.home',compact('client'));
+    }
 
     public function salesmanHome()
     {

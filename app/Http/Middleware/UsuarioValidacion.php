@@ -19,6 +19,9 @@ class UsuarioValidacion
             $request->session()->flash('message', 'No estas autorizado para entrar aqui');
             $request->session()->flash('alert-class', 'alert-danger');
             switch (\Auth::user()->role_id) {
+                 case '8':
+                    return '/clientMaster/home';
+                    break;
                 case '6':
                     return redirect('/usuarioIntermediario');
                     break;

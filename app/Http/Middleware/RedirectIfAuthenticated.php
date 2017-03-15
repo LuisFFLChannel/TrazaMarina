@@ -36,6 +36,9 @@ class RedirectIfAuthenticated
     {
         if ($this->auth->check()) {
             switch (\Auth::user()->role_id) {
+                 case '8':
+                    return '/clientMaster/home';
+                    break;
                 case '7':
                     return redirect('/usuarioValidacion');
                     break;

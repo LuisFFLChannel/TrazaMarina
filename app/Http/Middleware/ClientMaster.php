@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class Client
+class ClientMaster
 {
     /**
      * Handle an incoming request.
@@ -15,12 +15,12 @@ class Client
      */
     public function handle($request, Closure $next)
     {
-        if (\Auth::user()->role_id != '1') {
+        if (\Auth::user()->role_id != '8') {
             $request->session()->flash('message', 'You are not authorized!.');
             $request->session()->flash('alert-class', 'alert-danger');
             switch (\Auth::user()->role_id) {
-                 case '8':
-                    return '/clientMaster/home';
+                 case '1':
+                    return '/client/home';
                     break;
                 case '7':
                     return redirect('/usuarioValidacion');

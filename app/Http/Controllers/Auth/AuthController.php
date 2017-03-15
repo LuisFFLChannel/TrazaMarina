@@ -134,6 +134,9 @@ class AuthController extends Controller
     public function redirectPath()
     {
         switch (\Auth::user()->role_id) {
+            case '8':
+            return '/clientMaster/home';
+            break;
             case '7':
             return '/usuarioValidacion';
             break;
