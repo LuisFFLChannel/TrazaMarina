@@ -52,7 +52,7 @@ class EspeciesMarinasController extends Controller
     {
         //
         $especies = EspecieMarina::paginate(5);
-        $especies->setPath('especies');
+        $especies->setPath('especiesMarinas');
 
         return view('external.especieMarinas', compact('especies'));
    

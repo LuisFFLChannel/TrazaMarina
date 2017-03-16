@@ -53,7 +53,7 @@ class PuertosController extends Controller
     {
         //
         $puertos = Puerto::paginate(5);
-        $puertos->setPath('puerto');
+        $puertos->setPath('puertos');
 
         return view('external.puertos', compact('puertos'));
    

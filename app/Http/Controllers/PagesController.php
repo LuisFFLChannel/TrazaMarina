@@ -24,9 +24,8 @@ class PagesController extends Controller
 {
     public function home()
     {
-        /*$destacados = Highlight::where('active','1')->get();
-        $upcoming   = Event::where('selling_date','>',strtotime(Carbon::now()))->where('publication_date','>',strtotime(Carbon::now()))->get();*/
-        return view('external.home'/*,array('destacados'=>$destacados,'upcoming'=>$upcoming)*/);
+        
+        return view('external.home');
     }
 
     public function about()
@@ -110,73 +109,13 @@ class PagesController extends Controller
 
     public function calendar(request $request)
     {
-        $date_at = strtotime(date("Y-m-d"));
-        $events = Event::where(["publication_date"=>$date_at,"cancelled"=>"0"])->get();
-
-        $auxEvent = [];
-        foreach ($events as $event) {
-             if (count($event->presentations)>0)
-                array_push($auxEvent,$event);
-         } 
-         $events = $auxEvent;
-
-        $presentations = Presentation::where("cancelled","0")
-                                    ->whereBetween("starts_at",[$date_at,$date_at+86400])
-                                    ->get();
-
-        $eventsDate = Event::where("cancelled","0")->where("selling_date",'<=', $date_at)->get();
-        $eventInformation = [];
-        foreach($eventsDate as $eventDate){
-                    $presentationsDate = Presentation::where("cancelled","0")
-                                    ->whereBetween("starts_at",[$date_at,$date_at+86400])
-                                    ->where("event_id",$eventDate->id)
-                                    ->get();
-                    $presentationInformation = [];
-                    if (count($presentationsDate)!=0){
-                        foreach ($presentationsDate as $pre){
-                            array_push($presentationInformation, array($pre->starts_at));
-                        }
-                        array_push($eventInformation, array($eventDate->image, $eventDate->id, $eventDate->name, $eventDate->place->name, $eventDate->place->address, $eventDate->category->name, $presentationInformation));
-
-                    }
-
-
-        }
-
-        return view('external.calendar',["events"=>$events,"date_at"=>$date_at,"presentations"=>$presentations],compact('eventInformation'));
+        
     }
 
     public function eventsForDate(Request $request)
     {
 
-        $input = $request->all();
-        $date_at = strtotime($input['date_at']);
-
-        $presentations = Presentation::where("cancelled","0")
-                                    ->whereBetween("starts_at",[$date_at,$date_at+86400])
-                                    ->get();
-
-        $eventsDate = Event::where("cancelled","0")->where("selling_date",'<=', $date_at)->get();
-        $eventInformation = [];
-        foreach($eventsDate as $eventDate){
-                    $presentationsDate = Presentation::where("cancelled","0")
-                                    ->whereBetween("starts_at",[$date_at,$date_at+86400])
-                                    ->where("event_id",$eventDate->id)
-                                    ->get();
-                    $presentationInformation = [];
-                    if (count($presentationsDate)!=0){
-                        foreach ($presentationsDate as $pre){
-                            array_push($presentationInformation, array($pre->starts_at));
-                        }
-                        array_push($eventInformation, array($eventDate->image, $eventDate->id, $eventDate->name, $eventDate->place->name, $eventDate->place->address, $eventDate->category->name, $presentationInformation));
-
-                    }
-
-
-        }
-
-        $events = Event::where(["publication_date"=>$date_at,"cancelled"=>"0"])->get();
-        return view('external.calendar',["events"=>$events,"date_at"=>$date_at,"presentations"=>$presentations],compact('eventInformation'));
+        
     }
 
 
@@ -195,20 +134,6 @@ class PagesController extends Controller
         return view('internal.clientMaster.home',compact('client'));
     }
 
-    public function salesmanHome()
-    {
-        return view('internal.salesman.home');
-    }
-
-    public function promoterHome()
-    {
-        $userId = Auth::user()->id;
-        $events = Event::where("promoter_id",$userId)
-        ->whereHas('presentations', function($query){
-            $query->where('starts_at','>=', time());
-        })->paginate(10);
-        return view('internal.promoter.home',["events"=>$events]);
-    }
 
     public function adminHome()
     {

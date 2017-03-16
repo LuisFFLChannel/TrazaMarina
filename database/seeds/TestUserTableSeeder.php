@@ -17,7 +17,7 @@ class TestUserTableSeeder extends Seeder
                         'email' => 'cliente@mail.com', 'phone' => '944133643', 'points'=>0, 'birthday'=>Carbon::create(1991,1,8)->toDateString(), 
                         'iniDate'=>Carbon::today(), 'role_id'=>1, 'password' => bcrypt('cliente')]);
 
-        User::insert([  'name' => 'Admin','lastname' => 'ApellidoA', 'di_type'=> config('constants.international'), 'di' => '64222267', 'address'=>'Av. Admin #532 San Borja',
+        User::insert([  'name' => 'Admin','lastname' => 'ApellidoA', 'di_type'=> config('constants.national'), 'di' => '64222267', 'address'=>'Av. Admin #532 San Borja',
                         'email' => 'admin@mail.com', 'phone' => '944133643', 'birthday'=>Carbon::create(1994,1,24)->toDateString(), 
                         'iniDate'=>Carbon::today(), 'role_id'=>4, 'password' => bcrypt('admin')]);
     
@@ -32,6 +32,9 @@ class TestUserTableSeeder extends Seeder
         User::insert([  'name' => 'UserValida','lastname' => 'ApellidoVal', 'di_type'=> config('constants.national'), 'di' => '12453899', 'address'=>'Av. Ejemplo',
                         'email' => 'validor@mail.com', 'phone' => '977133700', 'birthday'=>Carbon::create(1990,2,14)->toDateString(), 
                         'iniDate'=>Carbon::today(), 'role_id'=>7, 'password' => bcrypt('validor')]);
+        User::insert([  'name' => 'Cliente Maestro','lastname' => 'ApellidoCM', 'di_type'=> config('constants.national'), 'di' => '45328966', 'address'=>'Av. Cliente Maestro #532 San Borja',
+                        'email' => 'clientemaestro@mail.com', 'phone' => '944133643', 'points'=>0, 'birthday'=>Carbon::create(1990,9,11)->toDateString(), 
+                        'iniDate'=>Carbon::today(), 'role_id'=>8, 'password' => bcrypt('clientemaestro')]);
 
 
     }

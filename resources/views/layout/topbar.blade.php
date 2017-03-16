@@ -48,6 +48,31 @@
     </div>
     <!-- /.container -->
 <!--</nav>-->
+@elseif(Auth::user()->role_id == config('constants.clientMaster'))
+<!--<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">-->
+    <div class="nav-side-menu">
+        
+        <div class="brand" >
+            <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>-->
+            <a  class= "brandA" href="{{url('/')}}">{{$business_name}} </a>
+        </div>
+        <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+        <div class="menu-list">
+            <ul id="menu-content" class="menu-content collapse out">
+                <li> {!! Html::image(Auth::user()->image,  null, array( "width"=>45, 'height' => 45)) !!} </li>
+                <li><a href="{{url('clientMaster')}}">{{\Auth::user()->name}}</a></li>
+                <li><a href="{{url('auth/logout')}}">Salir</a></li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+<!--</nav>-->
 @elseif(Auth::user()->role_id == config('constants.admin'))
 <!--<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">-->
     <div class="nav-side-menu">
@@ -83,6 +108,13 @@
                     <a data-toggle="collapse" data-target="#clientesAdm" class="collapsed">Clientes <b class="caret"></b></a>
                     <ul class="sub-menu collapse" id="clientesAdm">
                         <li><a href="{{url('admin/client')}}">Listar</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a data-toggle="collapse" data-target="#clientesMaestrosAdm" class="collapsed">Clientes Maestros<b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="clientesMaestrosAdm">
+                        <li><a href="{{url('admin/clientMaster/new')}}">Nuevo</a></li>
+                        <li><a href="{{url('admin/clientMaster')}}">Listar</a></li>
                     </ul>
                 </li>
                 <li>

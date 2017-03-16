@@ -34,19 +34,7 @@ Route::post('auth/register', 'ClientController@store');
 
 Route::get('/', 'PagesController@home');
 Route::get('about', 'PagesController@about');
-Route::get('modules', 'ModuleController@indexExternal');
-Route::get('calendar', 'PagesController@calendar');
-Route::post('calendar', 'PagesController@eventsForDate');
-//Route::post('calendar', 'PagesController@findcalendar');
-Route::get('gifts', 'GiftController@indexExternal');
-Route::get('category', 'CategoryController@indexExternal');
-Route::get('category/{id}/subcategory', 'CategoryController@indexSub');
-Route::get('category/{id}/subcategory/{id2}', 'CategoryController@showSub');
-Route::get('event', 'EventController@indexExternal');
-Route::get('event/successBuy', 'TicketController@showSuccess');
-Route::get('event/{id}', ['as' => 'event.external.show' , 'uses' =>'EventController@showExternal']);
-Route::post('event/{id}', 'EventController@showExternalPost');
-Route::get('event/delete/{id}/comment', 'EventController@destroyComment');
+
 
 Route::post('codigoTrazabilidad', 'PagesController@buscarCodigo');
 Route::get('especiesMarinas', 'EspeciesMarinasController@indexExternal');
@@ -62,12 +50,11 @@ Route::group(['middleware' => ['auth', 'client']], function () {
     Route::post('client/photo', 'ClientController@photoUpdate');
     Route::get('client/home', 'PagesController@clientHome');
 
-    Route::get('client/reservaexitosa', 'BookingController@store');
     Route::get('client/mail/{code}', 'BookingController@sendConfirmationMail');
 });
 
 Route::group(['middleware' => ['auth', 'clientMaster']], function () {
-    Route::get('clientMaster/', ['uses'=>'ClientController@profileMaster','as'=>'clientMaster.home']);
+    Route::get('clientMaster/',['uses'=>'ClientController@profileMaster','as'=>'clientMaster.home']);
     Route::get('clientMaster/edit', 'ClientController@editClientMaster');
     Route::post('clientMaster/update', 'ClientController@updateClientMaster');
     Route::get('clientMaster/password', 'ClientController@passwordClientMaster');
@@ -76,23 +63,11 @@ Route::group(['middleware' => ['auth', 'clientMaster']], function () {
     Route::post('clientMaster/photo', 'ClientController@photoUpdateClientMaster');
     Route::get('clientMaster/home', 'PagesController@clientMasterHome');
 
-    Route::get('clientMaster/reservaexitosa', 'BookingController@store');
     Route::get('clientMaster/mail/{code}', 'BookingController@sendConfirmationMail');
 });
 
 
-//Rutas generales para peticiones ajax, pueden ser usadas por varios usuarios, por eso lo saque
-Route::get('getClient', ['uses'=>'TicketController@getClient','as'=>'ajax.getClient']);
-Route::get('getPrice', ['uses'=>'TicketController@getPrice','as'=>'ajax.getPrice']);
-Route::get('getAvailable', ['uses'=>'TicketController@getAvailable','as'=>'ajax.getAvailable']);
-Route::get('getSlots', ['uses'=>'TicketController@getSlots','as'=>'ajax.getSlots']);
-Route::get('getZone', ['uses'=>'TicketController@getZone','as'=>'ajax.getZone']);
-Route::get('getTakenSlots', ['uses'=>'TicketController@getTakenSlots','as'=>'ajax.getTakenSlots']);
-Route::get('getPromo', ['uses'=>'TicketController@getPromo','as'=>'ajax.getPromo']);
-Route::get('getReserves', ['uses'=>'BookingController@getReservesByDni','as'=>'ajax.getReserves']);
-Route::get('localSeats', ['uses'=>'LocalController@getLocalSeatArray','as'=>'ajax.getSeatsArray']);
-Route::get('zoneSeatArray', ['uses'=>'LocalController@getZoneSeatArray','as'=>'ajax.getZoneSeatArray']);
-Route::get('zoneSeatIds', ['uses'=>'LocalController@getZoneSeatsIds','as'=>'ajax.getZoneSeatsIds']);
+
 
 
 
@@ -133,7 +108,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 
     Route::get('admin/clientMaster', 'ClientController@indexMaster');
     Route::post('admin/clientMaster/desactive', 'ClientController@desactiveMaster');
-    Route::get('admin/clientMaster/new', 'ClientController@newClientMaster');
+    Route::get('admin/clientMaster/new', 'ClientController@createClientMaster');
     Route::post('admin/clientMaster/new', 'ClientController@storeClientMaster');
 
 

@@ -5,6 +5,9 @@ use App\Http\Requests;
 use App\Http\Requests\Client\StoreClientRequest;
 use App\Http\Requests\Client\PasswordClientRequest;
 use App\Http\Requests\Client\UpdateClientRequest;
+use App\Http\Requests\Client\StoreClientMasterRequest;
+use App\Http\Requests\Client\PasswordClientMasterRequest;
+use App\Http\Requests\Client\UpdateClientMasterRequest;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Role;
@@ -80,6 +83,11 @@ class ClientController extends Controller
     public function create()
     {
         //
+    }
+    public function createClientMaster()
+    {
+        //
+        return view('internal.admin.client.newClientMaster');
     }
     /**
      * Store a newly created resource in storage.
@@ -250,6 +258,7 @@ class ClientController extends Controller
     public function profileMaster()
     {
         $id = Auth::user()->id;
+
         $client = User::findOrFail($id);
         $birthday = strtotime($client->birthday);
         return view('internal.clientMaster.profile', ['client' => $client,'birthday'=>$birthday]);
@@ -317,7 +326,7 @@ class ClientController extends Controller
             Session::flash('message', 'Contraseña incorrecta!');
             Session::flash('alert-class','alert-danger');
         }
-        return redirect('client');
+        return redirect('clientMaster');
     }
     /**
      * Show the form for editing the specified resource.

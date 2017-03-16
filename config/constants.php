@@ -23,6 +23,7 @@ return [
 	'usuarioPesca'    		=> 5,
 	'usuarioIntermediario'	=> 6,
 	'usuarioValidacion' 	=> 7,
+	'clientMaster' 	=> 8,
 
    	//Status de los asientos 
    	'seat_available' => 1,
