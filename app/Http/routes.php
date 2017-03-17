@@ -35,8 +35,11 @@ Route::post('auth/register', 'ClientController@store');
 Route::get('/', 'PagesController@home');
 Route::get('about', 'PagesController@about');
 
+    
+    
 
 Route::post('codigoTrazabilidad', 'PagesController@buscarCodigo');
+
 Route::get('especiesMarinas', 'EspeciesMarinasController@indexExternal');
 Route::get('puertos', 'PuertosController@indexExternal');
 
@@ -64,6 +67,14 @@ Route::group(['middleware' => ['auth', 'clientMaster']], function () {
     Route::get('clientMaster/home', 'PagesController@clientMasterHome');
 
     Route::get('clientMaster/mail/{code}', 'BookingController@sendConfirmationMail');
+
+     Route::get('clientMaster/codigoTrazabilidad/documentos/{codigo}/{idProducto}', 'PagesController@buscarDocumentos');
+
+    Route::get('clientMaster/codigoTrazabilidad/documentos/certificadoMatriculas/{id}/showPDF', 'CertificadoMatriculasController@Clientepdf');
+    Route::get('clientMaster/codigoTrazabilidad/documentos/permisoPescas/{id}/showPDF', 'PermisoPescaController@Clientepdf');
+    Route::get('clientMaster/codigoTrazabilidad/documentos/permisoMarineros/{id}/showPDF', 'PermisoMarineroController@Clientepdf');
+    Route::get('clientMaster/codigoTrazabilidad/documentos/permisoPatrones/{id}/showPDF', 'PermisoPatronController@Clientepdf');
+    Route::get('clientMaster/codigoTrazabilidad/documentos/permisoZarpes/{id}/showPDF', 'PermisoZarpeController@Clientepdf');
 });
 
 
@@ -253,6 +264,16 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('admin/mapas/{id}/mostarMapaTerminal', 'TerminalController@mostrarMapa');
     Route::get('admin/mapas/{id}/mostarMapaFabrica', 'FabricaController@mostrarMapa');
 
+
+    Route::get('admin/codigoTrazabilidad/documentos/{codigo}/{idProducto}', 'PagesController@buscarDocumentos');
+
+    Route::get('admin/codigoTrazabilidad/documentos/certificadoMatriculas/{id}/showPDF', 'CertificadoMatriculasController@Clientepdf');
+    Route::get('admin/codigoTrazabilidad/documentos/permisoPescas/{id}/showPDF', 'PermisoPescaController@Clientepdf');
+    Route::get('admin/codigoTrazabilidad/documentos/permisoMarineros/{id}/showPDF', 'PermisoMarineroController@Clientepdf');
+    Route::get('admin/codigoTrazabilidad/documentos/permisoPatrones/{id}/showPDF', 'PermisoPatronController@Clientepdf');
+    Route::get('admin/codigoTrazabilidad/documentos/permisoZarpes/{id}/showPDF', 'PermisoZarpeController@Clientepdf');
+
+
 })  ;
 Route::group(['middleware' => ['auth', 'usuarioPesca']], function () {
 
@@ -423,6 +444,15 @@ Route::group(['middleware' => ['auth', 'usuarioPesca']], function () {
     Route::get('usuarioPesca/permisoPatrones/{id}/showPDF', 'PermisoPatronController@pdf');
     Route::get('usuarioPesca/permisoZarpes/{id}/showPDF', 'PermisoZarpeController@pdf');
 
+     Route::get('usuarioPesca/codigoTrazabilidad/documentos/{codigo}/{idProducto}', 'PagesController@buscarDocumentos');
+
+    Route::get('usuarioPesca/codigoTrazabilidad/documentos/certificadoMatriculas/{id}/showPDF', 'CertificadoMatriculasController@Clientepdf');
+    Route::get('usuarioPesca/codigoTrazabilidad/documentos/permisoPescas/{id}/showPDF', 'PermisoPescaController@Clientepdf');
+    Route::get('usuarioPesca/codigoTrazabilidad/documentos/permisoMarineros/{id}/showPDF', 'PermisoMarineroController@Clientepdf');
+    Route::get('usuarioPesca/codigoTrazabilidad/documentos/permisoPatrones/{id}/showPDF', 'PermisoPatronController@Clientepdf');
+    Route::get('usuarioPesca/codigoTrazabilidad/documentos/permisoZarpes/{id}/showPDF', 'PermisoZarpeController@Clientepdf');
+
+
 })  ;
 Route::group(['middleware' => ['auth', 'usuarioIntermediario']], function () {
 
@@ -542,6 +572,14 @@ Route::group(['middleware' => ['auth', 'usuarioIntermediario']], function () {
     Route::get('usuarioIntermediario/permisoPatrones/{id}/showPDF', 'PermisoPatronController@pdf');
     Route::get('usuarioIntermediario/permisoZarpes/{id}/showPDF', 'PermisoZarpeController@pdf');
 
+     Route::get('usuarioIntermediario/codigoTrazabilidad/documentos/{codigo}/{idProducto}', 'PagesController@buscarDocumentos');
+
+    Route::get('usuarioIntermediario/codigoTrazabilidad/documentos/certificadoMatriculas/{id}/showPDF', 'CertificadoMatriculasController@Clientepdf');
+    Route::get('usuarioIntermediario/codigoTrazabilidad/documentos/permisoPescas/{id}/showPDF', 'PermisoPescaController@Clientepdf');
+    Route::get('usuarioIntermediario/codigoTrazabilidad/documentos/permisoMarineros/{id}/showPDF', 'PermisoMarineroController@Clientepdf');
+    Route::get('usuarioIntermediario/codigoTrazabilidad/documentos/permisoPatrones/{id}/showPDF', 'PermisoPatronController@Clientepdf');
+    Route::get('usuarioIntermediario/codigoTrazabilidad/documentos/permisoZarpes/{id}/showPDF', 'PermisoZarpeController@Clientepdf');
+
 
 })  ;
 Route::group(['middleware' => ['auth', 'usuarioValidacion']], function () {
@@ -627,6 +665,14 @@ Route::group(['middleware' => ['auth', 'usuarioValidacion']], function () {
     Route::get('usuarioValidacion/permisoMarineros/{id}/showPDF', 'PermisoMarineroController@pdf');
     Route::get('usuarioValidacion/permisoPatrones/{id}/showPDF', 'PermisoPatronController@pdf');
     Route::get('usuarioValidacion/permisoZarpes/{id}/showPDF', 'PermisoZarpeController@pdf');
+
+     Route::get('usuarioValidacion/codigoTrazabilidad/documentos/{codigo}/{idProducto}', 'PagesController@buscarDocumentos');
+
+    Route::get('usuarioValidacion/codigoTrazabilidad/documentos/certificadoMatriculas/{id}/showPDF', 'CertificadoMatriculasController@Clientepdf');
+    Route::get('usuarioValidacion/codigoTrazabilidad/documentos/permisoPescas/{id}/showPDF', 'PermisoPescaController@Clientepdf');
+    Route::get('usuarioValidacion/codigoTrazabilidad/documentos/permisoMarineros/{id}/showPDF', 'PermisoMarineroController@Clientepdf');
+    Route::get('usuarioValidacion/codigoTrazabilidad/documentos/permisoPatrones/{id}/showPDF', 'PermisoPatronController@Clientepdf');
+    Route::get('usuarioValidacion/codigoTrazabilidad/documentos/permisoZarpes/{id}/showPDF', 'PermisoZarpeController@Clientepdf');
 })  ;
 
 

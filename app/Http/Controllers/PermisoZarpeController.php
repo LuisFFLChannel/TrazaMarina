@@ -40,16 +40,16 @@ class PermisoZarpeController extends Controller
 
         $permisoZarpes->setPath('permisoZarpes');
         if (Auth::user()->role_id == 4){
-            return view('internal.admin.PermisoZarpes', compact('permisoZarpes'));
+            return view('internal.admin.permisoZarpes', compact('permisoZarpes'));
         }
         elseif  (Auth::user()->role_id == 5){
-            return view('internal.usuarioPesca.PermisoZarpes', compact('permisoZarpes'));
+            return view('internal.usuarioPesca.permisoZarpes', compact('permisoZarpes'));
         }
         elseif  (Auth::user()->role_id == 6){
-            return view('internal.usuarioIntermediario.PermisoZarpes', compact('permisoZarpes'));
+            return view('internal.usuarioIntermediario.permisoZarpes', compact('permisoZarpes'));
         }
         elseif  (Auth::user()->role_id == 7){
-            return view('internal.usuarioValidacion.PermisoZarpes', compact('permisoZarpes'));
+            return view('internal.usuarioValidacion.permisoZarpes', compact('permisoZarpes'));
         }
     }
 
@@ -516,6 +516,41 @@ class PermisoZarpeController extends Controller
         }
     }
     public function pdf($id)
+    {
+        //
+            $certificado = PermisoZarpe::find($id);
+            if ($certificado->pdf == null){
+                 return redirect()->back()->withInput()->withErrors(['errors' => 'No tiene asociado ningun pdf']);
+            }
+
+
+            try{
+
+                $myfile = fopen($certificado->pdf, "r");
+
+                $fileSize = filesize($certificado->pdf);
+                header("HTTP/1.1 200 OK");
+                header("Pragma: public");
+                header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+
+                header("Cache-Control: private", false);
+
+                header("Content-type: application/pdf");
+                header("Content-Disposition: attachment; filename=\"".$certificado->pdf."\""); 
+
+                header("Content-Transfer-Encoding: binary");
+                header("Content-Length: " . $fileSize);
+
+                echo fread($myfile, $fileSize);
+
+            } 
+            catch(\Exception $e){
+               // catch code
+                 return redirect()->back()->withInput()->withErrors(['errors' => 'El archivo está mal direccionado']);
+            }
+
+    }
+    public function Clientepdf($id)
     {
         //
             $certificado = PermisoZarpe::find($id);

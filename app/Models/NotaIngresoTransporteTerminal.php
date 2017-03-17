@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class NotaIngresoTransporteTerminal extends Model
 {
     //
-    protected $table = 'notaingreso_transporteterminal';
+    protected $table = 'notaIngreso_transporteTerminal';
 	protected $dates = ['deleted_at'];
 
     public function nota(){

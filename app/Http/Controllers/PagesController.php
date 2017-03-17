@@ -42,6 +42,13 @@ class PagesController extends Controller
     public function buscarCodigo(request $request)
     {
         $input = $request->all();
+        $usuario = null;
+
+        if (Auth::user()!= null){
+            $usuario = User::find(Auth::user()->id);
+
+        }
+
         $tipoProducto = 0;
         $codigoTrazabilidad = "";
         $embarcacion = null;
@@ -101,12 +108,84 @@ class PagesController extends Controller
             'pesca'   =>  $pesca,
             'embarcacion'   =>  $embarcacion,
             'puertoZ'   =>  $puertoZ,
-            'puertoA'   =>  $puertoA
+            'puertoA'   =>  $puertoA,
+            'usuario'   =>  $usuario
         ];
          
         return view('external.producto', $arreglo);
     }
+    
+     public function buscarDocumentos($codigo,$idProducto)
+    {
+        
+        
+        $tipoProducto = $idProducto;
+        $usuario = null;
 
+        if (Auth::user()!= null){
+            $usuario = User::find(Auth::user()->id);
+
+        }
+        $codigoTrazabilidad =$codigo;
+        $certificadoProcedencia = null;
+        $certificadoTerminal = null;
+        $certificadoMatricula = null;
+        $permisoPesca = null;
+        $permisoZarpe = null;
+        $certificadoArribo = null;
+        //dd($auxData);
+        
+
+        if ($tipoProducto == 3){
+            
+            $auxData = NotaIngreso::where('codigoTraza', 'like', '%' . $codigoTrazabilidad . '%')->get()->first();
+            $codigoTrazabilidad = $auxData->codigoTraza;
+            $certificadoArribo = $auxData->desembarque->certificadoArribo;
+            $permisoZarpe = $auxData->desembarque->pesca->permisoZarpe;
+            $permisoPesca = $auxData->desembarque->embarcacion->permisoPesca;
+            $certificadoMatricula = $auxData->desembarque->embarcacion->certificadoMatricula;
+
+        }
+        else if ($tipoProducto == 2){
+            $auxData = NotaIngresoTransporteTerminal::where('codigoTraza', 'like', '%' . $codigoTrazabilidad . '%')->get()->first();
+
+
+            $codigoTrazabilidad = $auxData->codigoTraza;
+            $certificadoArribo = $auxData->nota->desembarque->certificadoArribo;
+            $permisoZarpe = $auxData->nota->desembarque->pesca->permisoZarpe;
+            $permisoPesca = $auxData->nota->desembarque->embarcacion->permisoPesca;
+            $certificadoMatricula = $auxData->nota->desembarque->embarcacion->certificadoMatricula;
+            $certificadoTerminal = $auxData->certificadoTerminal;
+        }
+        else{
+            $auxData = NotaIngresoCertificadoProcedencia::where('codigoTraza', 'like', '%' . $codigoTrazabilidad . '%')->get()->first();
+            
+            $codigoTrazabilidad = $auxData->codigoTraza;
+            $certificadoArribo = $auxData->nota->desembarque->certificadoArribo;
+            $permisoZarpe = $auxData->nota->desembarque->pesca->permisoZarpe;
+            $permisoPesca = $auxData->nota->desembarque->embarcacion->permisoPesca;
+            $certificadoMatricula = $auxData->nota->desembarque->embarcacion->certificadoMatricula;
+            $certificadoProcedencia = $auxData->certificado;
+
+        }
+    
+        $arreglo = [
+            'producto' => $auxData,
+            'codigoTrazabilidad'  => $codigoTrazabilidad,
+            'certificadoMatricula'  => $certificadoMatricula,
+            'certificadoArribo' =>$certificadoArribo,
+            'certificadoProcedencia' =>$certificadoProcedencia,
+            'certificadoTerminal'   => $certificadoTerminal,
+            'permisoPesca'  =>  $permisoPesca,
+            'permisoZarpe'  =>  $permisoZarpe,
+            'tipoProducto'  => $tipoProducto,
+            'usuario'   =>  $usuario
+        ];
+
+
+        return view('external.productoDocumento', $arreglo);
+
+    }
     public function calendar(request $request)
     {
         

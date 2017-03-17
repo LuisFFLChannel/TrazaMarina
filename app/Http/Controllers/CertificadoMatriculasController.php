@@ -196,7 +196,9 @@ class CertificadoMatriculasController extends Controller
     {
         //
             $certificadoMatricula = CertificadoMatricula::find($id);
+
             if ($certificadoMatricula->pdf == null){
+
                  return redirect()->back()->withInput()->withErrors(['errors' => 'No tiene asociado ningun pdf']);
             }
 
@@ -229,6 +231,48 @@ class CertificadoMatriculasController extends Controller
 
 
     
+        
+    }
+    public function Clientepdf($id)
+    {
+        //
+            $certificadoMatricula = CertificadoMatricula::find($id);
+
+            if ($certificadoMatricula->pdf == null){
+                
+                 return redirect()->back()->withInput()->withErrors(['errors' => 'No tiene asociado ningun pdf']);
+
+            }else{
+                try{
+
+                    $myfile = fopen($certificadoMatricula->pdf, "r");
+
+                    $fileSize = filesize($certificadoMatricula->pdf);
+                    header("HTTP/1.1 200 OK");
+                    header("Pragma: public");
+                    header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+
+                    header("Cache-Control: private", false);
+
+                    header("Content-type: application/pdf");
+                    header("Content-Disposition: attachment; filename=\"".$certificadoMatricula->pdf."\""); 
+
+                    header("Content-Transfer-Encoding: binary");
+                    header("Content-Length: " . $fileSize);
+
+                    echo fread($myfile, $fileSize);
+
+                } 
+                catch(\Exception $e){
+                   // catch code
+                     return redirect()->back()->withInput()->withErrors(['errors' => 'El archivo está mal direccionado']);
+                }
+
+
+            }
+
+
+            
         
     }
 }

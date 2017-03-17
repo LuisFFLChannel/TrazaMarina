@@ -173,4 +173,81 @@ class CertificadoArriboController extends Controller
              return redirect()->back()->withInput()->withErrors(['errors' => 'NO SE PUEDE ELIMINAR DEBIDO A QUE ESTA SIENDO USADA EN TRANSACCIONES']);
         }
     }
+     public function pdf($id)
+    {
+        //
+            $certificadoArribo = CertificadoArribo::find($id);
+
+            if ($certificadoArribo->pdf == null){
+                 return redirect()->back()->withInput()->withErrors(['errors' => 'No tiene asociado ningun pdf']);
+            }
+
+
+            try{
+
+                $myfile = fopen($certificadoArribo->pdf, "r");
+
+                $fileSize = filesize($certificadoArribo->pdf);
+                header("HTTP/1.1 200 OK");
+                header("Pragma: public");
+                header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+
+                header("Cache-Control: private", false);
+
+                header("Content-type: application/pdf");
+                header("Content-Disposition: attachment; filename=\"".$certificadoArribo->pdf."\""); 
+
+                header("Content-Transfer-Encoding: binary");
+                header("Content-Length: " . $fileSize);
+
+                echo fread($myfile, $fileSize);
+
+            } 
+            catch(\Exception $e){
+               // catch code
+                 return redirect()->back()->withInput()->withErrors(['errors' => 'El archivo está mal direccionado']);
+            }    
+    }
+    public function Clientepdf($id)
+    {
+        //
+             $certificadoArribo = CertificadoArribo::find($id);
+
+            if ($certificadoArribo->pdf == null){
+                
+                 return redirect()->back()->withInput()->withErrors(['errors' => 'No tiene asociado ningun pdf']);
+
+            }else{
+                try{
+
+                    $myfile = fopen($certificadoArribo->pdf, "r");
+
+                    $fileSize = filesize($certificadoArribo->pdf);
+                    header("HTTP/1.1 200 OK");
+                    header("Pragma: public");
+                    header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+
+                    header("Cache-Control: private", false);
+
+                    header("Content-type: application/pdf");
+                    header("Content-Disposition: attachment; filename=\"".$certificadoArribo->pdf."\""); 
+
+                    header("Content-Transfer-Encoding: binary");
+                    header("Content-Length: " . $fileSize);
+
+                    echo fread($myfile, $fileSize);
+
+                } 
+                catch(\Exception $e){
+                   // catch code
+                     return redirect()->back()->withInput()->withErrors(['errors' => 'El archivo está mal direccionado']);
+                }
+
+
+            }
+
+
+            
+        
+    }
 }

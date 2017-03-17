@@ -8,9 +8,12 @@
 @stop
 
 @section('content')
-<script  type="text/javascript" async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoElgDQ21cdBJtVLgvpFB8ywDLqhn4cKI&callback=myMap"></script> 
-
-    <h3> Codigo: {{$codigoTrazabilidad}} </h3>
+<script  type="text/javascript" async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoElgDQ21cdBJtVLgvpFB8ywDLqhn4cKI&callback=myMaps"></script> 
+    
+    {!! Form::hidden('auxData', $producto, ['aux'=>'auxData'])!!}
+    {!! Form::hidden('codigo', $codigoTrazabilidad, ['cod'=>'codigo'])!!}
+    {!! Form::hidden('tipoProducto', $tipoProducto, ['tipo'=>'tipoProducto'])!!}
+    <h4> Codigo: {{$codigoTrazabilidad}} </h4>
     <br>
     <div class="row" id ="boxProducto">
         
@@ -160,11 +163,25 @@
         </div>
         <div class="col-sm-7">
          
-               <a href="{{URL::previous()}}"> <button  type="button" class="btn btn-info">Regresar</button></a>
+               
+                @if ($usuario!= null && $usuario->role_id != config('constants.client'))
+                    @if ($usuario!= null && $usuario->role_id == config('constants.admin'))
+                      <a href="{{url('admin/codigoTrazabilidad/documentos/'.$codigoTrazabilidad.'/'.$tipoProducto.' ')}}" title="Documentos" ><button  type="button" class="btn btn-info">Documentos</button></a>
+                    @elseif ($usuario!= null && $usuario->role_id == config('constants.usuarioPesca')) 
+                      <a href="{{url('usuarioPesca/codigoTrazabilidad/documentos/'.$codigoTrazabilidad.'/'.$tipoProducto.' ')}}" title="Documentos" ><button  type="button" class="btn btn-info">Documentos</button></a>
+                    @elseif ($usuario!= null && $usuario->role_id == config('constants.usuarioIntermediario')) 
+                      <a href="{{url('usuarioIntermediario/codigoTrazabilidad/documentos/'.$codigoTrazabilidad.'/'.$tipoProducto.' ')}}" title="Documentos" ><button  type="button" class="btn btn-info">Documentos</button></a>
+                    @elseif ($usuario!= null && $usuario->role_id == config('constants.usuarioValidacion'))
+                      <a href="{{url('usuarioValidacion/codigoTrazabilidad/documentos/'.$codigoTrazabilidad.'/'.$tipoProducto.' ')}}" title="Documentos" ><button  type="button" class="btn btn-info">Documentos</button></a>
+                    @elseif ($usuario!= null && $usuario->role_id == config('constants.clientMaster'))
+                      <a href="{{url('clientMaster/codigoTrazabilidad/documentos/'.$codigoTrazabilidad.'/'.$tipoProducto.' ')}}" title="Documentos" ><button  type="button" class="btn btn-info">Documentos</button></a>
+                    @endif
+                @endif
+                <a href="{{URL('/')}}"> <button  type="button" class="btn btn-info">Regresar</button></a>
           
         </div>
     </div>
-        
+      
 
 @stop
 
@@ -178,7 +195,7 @@
     });*/
 </script>
 <script type="text/javascript">
-  function myMap() {
+  function myMaps() {
     //var element = document.createElement("map");
     //element.appendChild(document.createTextNode('The man who mistook his wife for a hat'));
     //document.getElementById('modeloModal').appendChild(element);
@@ -255,7 +272,7 @@
   #map { height: 250px; width: 250px }
   #map2 { height: 250px; width: 250px }
   #map3 { height: 250px; width: 250px }
-  #map4 { height: 250px; width: 250px }
+ 
   #boxProducto {border-style: solid; border-color: black; border-width:1px}
 </style>
 @stop

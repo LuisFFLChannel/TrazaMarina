@@ -45,7 +45,7 @@
             
             <button id="botonLoggin" class="btn">Iniciar sesión</button>
             <a id="botonLoggin" href="{{url('/auth/register')}}" class="btn" data-target="#info" data-whatever="@mdo" style="width:100%">Registrarse</a>
-            <a id="botonLoggin" href="{{URL::previous()}}" class="btn" role="button" data-target="#info" data-whatever="@mdo" style="width:100%">Regresar</a>
+            <a id="botonLoggin" href="{{URL('/')}}" class="btn" role="button" data-target="#info" data-whatever="@mdo" style="width:100%">Regresar</a>
         </div>
 
 
