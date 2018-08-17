@@ -54,7 +54,7 @@
               <tr>
                   <td class="text-center">{{date_format(date_create($desembarque->fechaLlegada),"d/m/Y")}}</td>
                   <td class="text-center">{{date_format(date_create($desembarque->certificadoArribo->fechaArribo),"d/m/Y")}}</td>
-                  @if($desembarque->fechaLlegada == $desembarque->certificadoArribo->fechaArribo)
+                  @if(date_format(date_create($desembarque->fechaLlegada),"d/m/Y") ==date_format(date_create($desembarque->certificadoArribo->fechaArribo),"d/m/Y"))
                       <td class="text-center">Iguales</td>
                   @else
                       <td class="text-center" style="color:red;">Diferentes</td>
@@ -113,7 +113,7 @@
               <tr>
                   <td class="text-center">{{date_format(date_create($desembarque->fechaLlegada),"d/m/Y")}}</td>
                   <td class="text-center">{{date_format(date_create($desembarque->pesca->permisoZarpe->fechaLlegada),"d/m/Y")}}</td>
-                  @if($desembarque->fechaLlegada == $desembarque->pesca->permisoZarpe->fechaLlegada)
+                  @if(date_format(date_create($desembarque->fechaLlegada),"d/m/Y") == date_format(date_create($desembarque->pesca->permisoZarpe->fechaLlegada),"d/m/Y"))
                       <td class="text-center">Iguales</td>
                   @else
                       <td class="text-center" style="color:red;">Diferentes</td>

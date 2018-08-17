@@ -41,8 +41,8 @@
           <div class="col-sm-offset-2 col-sm-10">
               <table id="tabla-hielo" class="table table-bordered table-striped">
                   <tr>
+                    <th>Año</th>
                       <th>Mes</th>
-                      <th>Año</th>
                       <th>Toneladas Promedio</th>
                       <th>Cantidad de hielo</th>
                   </tr>
@@ -53,8 +53,8 @@
 
     <div class="form-group">
         <div class="col-sm-offset-3 col-sm-9">
-          <a class="btn btn-info" href="" title="submit" data-toggle="modal" data-target="#submitModal" >Guardar</a>
-          <a href="{{URL::previous()}}"><button type="button" class="btn btn-info">Cancelar</button></a>
+          <!-- <a class="btn btn-info" href="" title="submit" data-toggle="modal" data-target="#submitModal" >Guardar</a> -->
+          <a href="{{URL::previous()}}"><button type="button" class="btn btn-info">Regresar</button></a>
         </div>
       </div>
 
@@ -81,8 +81,7 @@
 @section('javascript')
 <script>
 
-$("#AgregarEspecie").on("click",function(){
-      console.log("logre");
+$("#BuscarHielo").on("click",function(){
       //if(document.getElementById('toneladas_inde').length==0 || document.getElementById('promedios_inde').length==0) return;
       especie_id = $("#especie_id").val();
       puerto_id = $("#puerto_id").val();
@@ -90,16 +89,18 @@ $("#AgregarEspecie").on("click",function(){
       url_base = "{{ url('/') }}";
       $.getJSON(url_base+"/getHistorialHielo/"+especie_id+"/"+puerto_id+"/"+embarcacion_id, function(data)
       {
-        
-          $.each( data, function( id) {
+        $(document).ready(function() {
+                $("#tabla-hielo").find("tr:gt(0)").remove();
+                });
+          $.each( data['arreglo_historial'], function( id) {
             
             var tableRef = document.getElementById('tabla-hielo').getElementsByTagName('tbody')[0];
-            document.getElementById('tabla-hielo').clear();
+            
                         // Insert a row in the table at the last row
             var newRow   = tableRef.insertRow(tableRef.rows.length);
 
                         // Insert a cell in the row at index 0
-            var newCell  = newRow.insertCell(0);
+            var newCell1  = newRow.insertCell(0);
             var newCell2 = newRow.insertCell(1);
             var newCell3 = newRow.insertCell(2);
             var newCell4 = newRow.insertCell(3);
@@ -107,7 +108,48 @@ $("#AgregarEspecie").on("click",function(){
             // Append values to cells
             var x = document.createElement("INPUT");
             x.setAttribute("type", "text");
-            x.setAttribute("value", data[id].mes);
+            switch (data['arreglo_historial'][id].mes){
+                case 1: 
+                    x.setAttribute("value", 'Enero');
+                    break;
+                case 2: 
+                    x.setAttribute("value", 'Febrero');
+                    break;
+                case 3: 
+                    x.setAttribute("value", 'Marzo');
+                    break;
+                case 4: 
+                    x.setAttribute("value", 'Abril');
+                    break;
+                case 5: 
+                    x.setAttribute("value", 'Mayo');
+                    break;
+                case 6: 
+                    x.setAttribute("value", 'Junio');
+                    break;
+                case 7: 
+                    x.setAttribute("value", 'Julio');
+                    break;
+                case 8: 
+                    x.setAttribute("value", 'Agosto');
+                    break;
+                case 9: 
+                    x.setAttribute("value", 'Setiembre');
+                    break;
+                case 10: 
+                    x.setAttribute("value", 'Octubre');
+                    break;
+                case 11: 
+                    x.setAttribute("value", 'Noviembre');
+                    break;
+                case 12: 
+                    x.setAttribute("value", 'Diciembre');
+                    break;
+                default:
+                    x.setAttribute("value", data['arreglo_historial'][id].mes);
+                    break;
+
+            }     
             x.setAttribute("name", "meses[]");
             x.style.border = 'none';
             x.style.background = 'transparent';
@@ -115,7 +157,7 @@ $("#AgregarEspecie").on("click",function(){
             x.required = true;
             var newText2 = document.createElement("INPUT");
             newText2.setAttribute("type", "text");
-            newText2.setAttribute("value", ""+data[id].anho);
+            newText2.setAttribute("value", ""+data['arreglo_historial'][id].anho);
             newText2.setAttribute("name", "anhos[]");
             newText2.style.border = 'none';
             newText2.style.background = 'transparent';
@@ -124,7 +166,7 @@ $("#AgregarEspecie").on("click",function(){
 
             var newText3 = document.createElement("INPUT");
             newText3.setAttribute("type", "text");
-            newText3.setAttribute("value", ""+data[id].toneladaPromedio);
+            newText3.setAttribute("value", ""+data['arreglo_historial'][id].toneladasPromedio);
             newText3.setAttribute("name", "toneladas[]");
             newText3.style.border = 'none';
             newText3.style.background = 'transparent';
@@ -133,7 +175,7 @@ $("#AgregarEspecie").on("click",function(){
 
             var newText4 = document.createElement("INPUT");
             newText4.setAttribute("type", "text");
-            newText4.setAttribute("value", ""+data[id].hieloPromedio);
+            newText4.setAttribute("value", ""+data['arreglo_historial'][id].hieloPromedio);
             newText4.setAttribute("name", "hielos[]");
             newText4.style.border = 'none';
             newText4.style.background = 'transparent';
@@ -142,8 +184,8 @@ $("#AgregarEspecie").on("click",function(){
 
             // buttons
 
-            newCell.appendChild(x);
-            newCell2.appendChild(newText2);
+            newCell2.appendChild(x);
+            newCell1.appendChild(newText2);
             newCell3.appendChild(newText3);
             newCell4.appendChild(newText4);
             

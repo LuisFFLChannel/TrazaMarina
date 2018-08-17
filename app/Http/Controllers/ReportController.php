@@ -16,6 +16,9 @@ use App\Role;
 use Excel;
 use Carbon\Carbon;
 use DB;
+use Input;
+use Response;
+use App\Models\NotaIngreso;
 
 class ReportController extends Controller
 {
@@ -1296,6 +1299,178 @@ class ReportController extends Controller
 
 
         return view('internal.admin.reports.assignment',compact('assiInformation'),$array);
+    }
+
+    public function serieAdition($i, $j){
+        $auxMes = '';
+        switch ($j) {
+            case 1:
+                $auxMes = 'Ene '.$i;
+                break;
+            case 2:
+                $auxMes = 'Feb '.$i;
+                break;
+            case 3:
+                $auxMes = 'Mar '.$i;
+                break;
+            case 4:
+                $auxMes = 'Abr '.$i;
+                break;
+            case 5:
+                $auxMes = 'May '.$i;
+                break;
+            case 6:
+                $auxMes = 'Jun '.$i;
+                break;
+            case 7:
+                $auxMes = 'Jul '.$i;
+                break;
+            case 8:
+                $auxMes = 'Ago '.$i;
+                break;
+            case 9:
+                $auxMes = 'Set '.$i;
+                break;
+            case 10:
+                $auxMes = 'Oct '.$i;
+                break;
+            case 11:
+                $auxMes = 'Nov '.$i;
+                break;
+            case 12:
+                $auxMes = 'Dic '.$i;
+                break;
+        }
+        return $auxMes;
+    }
+
+    public function showReportPostEspecies(Request $request){
+        // if (Input::isJson())
+        // {
+            // $request = Input::all();
+            $res = json_decode(Input::get('dates'));
+            $input = $request->all();
+            if ($res[0]->antes == null && $res[0]->despues == null){
+                $notaIngresos = DB::table('notaIngreso')->join('especieMarina', 'notaIngreso.especie_id', '=', 'especieMarina.id')->join('desembarque', 'desembarque.id', '=', 'notaIngreso.desembarque_id')->select(DB::raw('count(*) as cantidad_notas, SUM(notaIngreso.toneladas) as toneladas , notaIngreso.especie_id as id, especieMarina.nombre as nombre, MONTH(desembarque.fechaLlegada) as mes, YEAR(desembarque.fechaLlegada) as anho'))->groupBy('notaIngreso.especie_id', DB::raw("MONTH(desembarque.fechaLlegada)"))->get();
+            } else if ($res[0]->antes == null){
+                $to = date($res[0]->despues);
+                $notaIngresos = DB::table('notaIngreso')->join('especieMarina', 'notaIngreso.especie_id', '=', 'especieMarina.id')->join('desembarque', 'desembarque.id', '=', 'notaIngreso.desembarque_id')->select(DB::raw('count(*) as cantidad_notas, SUM(notaIngreso.toneladas) as toneladas , notaIngreso.especie_id as id, especieMarina.nombre as nombre, MONTH(desembarque.fechaLlegada) as mes, YEAR(desembarque.fechaLlegada) as anho'))->where('desembarque.fechaLlegada', '<=', $to)->groupBy('notaIngreso.especie_id', DB::raw("MONTH(desembarque.fechaLlegada)"))->get();
+            } else if ($res[0]->despues == null){
+                $from = date($res[0]->antes);
+                $notaIngresos = DB::table('notaIngreso')->join('especieMarina', 'notaIngreso.especie_id', '=', 'especieMarina.id')->join('desembarque', 'desembarque.id', '=', 'notaIngreso.desembarque_id')->select(DB::raw('count(*) as cantidad_notas, SUM(notaIngreso.toneladas) as toneladas , notaIngreso.especie_id as id, especieMarina.nombre as nombre, MONTH(desembarque.fechaLlegada) as mes, YEAR(desembarque.fechaLlegada) as anho'))->where('desembarque.fechaLlegada', '>=', $from)->groupBy('notaIngreso.especie_id', DB::raw("MONTH(desembarque.fechaLlegada)"))->get();
+            } else {
+                $from = date($res[0]->antes);
+                $to = date($res[0]->despues);
+                $notaIngresos = DB::table('notaIngreso')->join('especieMarina', 'notaIngreso.especie_id', '=', 'especieMarina.id')->join('desembarque', 'desembarque.id', '=', 'notaIngreso.desembarque_id')->select(DB::raw('count(*) as cantidad_notas, SUM(notaIngreso.toneladas) as toneladas , notaIngreso.especie_id as id, especieMarina.nombre as nombre, MONTH(desembarque.fechaLlegada) as mes, YEAR(desembarque.fechaLlegada) as anho'))->whereBetween('desembarque.fechaLlegada', [$from, $to])->groupBy('notaIngreso.especie_id', DB::raw("MONTH(desembarque.fechaLlegada)"))->get();
+            }
+            $max_anho = 0;
+            $min_anho = 9999;
+            $max_mes = 0;
+            $min_mes = 13;
+            foreach ($notaIngresos as $notaIngreso){
+                if ($max_anho < $notaIngreso->anho){
+                    $max_anho = $notaIngreso->anho;
+                    $max_mes = $notaIngreso->mes;
+                }
+                if ($max_anho == $notaIngreso->anho){
+                    if ($max_mes < $notaIngreso->mes){
+                        $max_mes = $notaIngreso->mes;
+                    }
+                }
+                if ($notaIngreso->anho < $min_anho){
+                    $min_anho = $notaIngreso->anho;
+                    $min_mes = $notaIngreso->mes;
+                }
+                if ($min_anho == $notaIngreso->anho){
+                    if ($min_mes > $notaIngreso->mes){
+                        $min_mes = $notaIngreso->mes;
+                    }
+                }
+               
+                // array_push($assiInformation,array($module->name,$salesman->name,$salesman->lastname, $moduleAssigment->dateAssigments, $moduleAssigment->dateMoveAssigments,$role->description ));
+            }
+            $serieMeses = [];
+            $auxFecha = [];
+            for ($i=$min_anho; $i < $max_anho +1; $i++) { 
+                if ($min_anho == $max_anho){
+                    for ($j=$min_mes; $j < $max_mes +1 ; $j++) { 
+                        $serieMes = $this->serieAdition($i,$j);
+                        array_push($serieMeses, $serieMes);
+                        $data['mes'] = $j;
+                        $data['anho'] = $i;
+                        array_push($auxFecha, $data);
+                    }
+                } else if ($i == $min_anho){
+                    for ($j=$min_mes; $j < 13 ; $j++) { 
+                        $serieMes = $this->serieAdition($i,$j);
+                        array_push($serieMeses, $serieMes); 
+                        $data['mes'] = $j;
+                        $data['anho'] = $i;
+                        array_push($auxFecha, $data);
+                    }
+                } else if ($i == $max_anho){
+                    for ($j=1; $j < $max_mes + 1 ; $j++) { 
+                        $serieMes = $this->serieAdition($i,$j); 
+                        array_push($serieMeses, $serieMes); 
+                        $data['mes'] = $j;
+                        $data['anho'] = $i;
+                        array_push($auxFecha, $data);
+                    }
+                } else {
+                    for ($j=1; $j < 13 ; $j++) { 
+                        $serieMes = $this->serieAdition($i,$j); 
+                        array_push($serieMeses, $serieMes);     
+                        $data['mes'] = $j;
+                        $data['anho'] = $i;
+                        array_push($auxFecha, $data);
+                    }
+                }
+            }
+            $dataSerie = [];
+            foreach ($notaIngresos as $notaIngreso){
+                $mismoNombre = false;
+                $posicion = 0;
+                for ($i=0; $i < sizeof($dataSerie) ; $i++) { 
+                    if ( $dataSerie[$i]['id'] == $notaIngreso->id){
+                        $mismoNombre = true;
+                        $posicion = $i;
+                        break;
+                    }
+                }
+                if ($mismoNombre){
+                    for ($i=0; $i < sizeof($auxFecha) ; $i++) { 
+                        if ($notaIngreso->mes == $auxFecha[$i]['mes'] && $notaIngreso->anho == $auxFecha[$i]['anho'] ){
+                            $dataSerie[$posicion]['data'][$i] = $notaIngreso->toneladas;
+                            break;
+                        } 
+                    }
+                } else {
+                    $data = [];
+                    for ($i=0; $i < sizeof($auxFecha) ; $i++) { 
+                        if ($notaIngreso->mes == $auxFecha[$i]['mes'] && $notaIngreso->anho == $auxFecha[$i]['anho'] ){
+                            array_push($data, $notaIngreso->toneladas);
+                        } else {
+                            array_push($data, 0);
+                        }
+                    }
+                    $auxDataSerie['id'] = $notaIngreso->id;
+                    $auxDataSerie['name'] = $notaIngreso->nombre;
+                    $auxDataSerie['data'] = $data;
+                    array_push($dataSerie, $auxDataSerie);
+                }
+
+            }
+            $reporte['categories'] = $serieMeses;
+            $reporte['series'] = $dataSerie;
+            return Response::json($reporte);
+
+        // }
+        // else return "not json";
+
+    }
+
+    public function showReportGetEspecies(){
+        return view('internal.admin.reports.especiesReportes');
     }
 
     /**

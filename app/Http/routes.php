@@ -99,6 +99,8 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     //Route::get('admin/report/sales/download','ReportController@actionExcel');
     Route::get('admin/report/assignment', 'ReportController@showAssigment');
     Route::post('admin/report/assignment', 'ReportController@assigmentExcel');
+    Route::get('admin/report/especies', 'ReportController@showReportGetEspecies');
+    Route::post('admin/report/especies', 'ReportController@showReportPostEspecies');
 
     /*Route::get('admin/modules', 'ModuleController@index');
     Route::get('admin/modules/new', 'ModuleController@create');

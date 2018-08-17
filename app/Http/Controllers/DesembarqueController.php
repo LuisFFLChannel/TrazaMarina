@@ -238,14 +238,12 @@ class DesembarqueController extends Controller
         $desembarque= Desembarque::find($id);
         //dd($desembarque);
 
-        $desembarque ->embarcacion_id              =   $input['embarcacion_id'];
-        $val = Carbon::parse($desembarque->fechaLlegada);
+        $desembarque ->embarcacion_id              =   $input['embarcacion_id'];  
         $desembarque ->fechaLlegada                =   new Carbon($input['fechaLlegada']);
+        $val = Carbon::parse($desembarque->fechaLlegada);
         $desembarque ->puerto_id                   =   $input['puerto_id'];
         $desembarque ->huboPesca                   =    $input['huboPesca'];
-        $val2 = Carbon::parse($desembarque->pesca->fechaLlegaZarpe);
-
-      
+        $val2 = Carbon::parse($desembarque->pesca->fechaZarpe);
         if($val->gt($val2)==false){
             return redirect()->back()->withInput()->withErrors(['errors' => 'La fecha de Arribo sucede antes que la fecha de Zarpe']);
         }   

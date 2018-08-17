@@ -29,7 +29,7 @@
       <td class="text-center">{{$permisoZarpe->codigo}}</td>
       <td class="text-center">{{$permisoZarpe->embarcacion->nMatricula}} - {{$permisoZarpe->embarcacion->nombre}}</td>
       <td class="text-center">{{$permisoZarpe->puerto->nombre}}</td>
-      <td class="text-center">{{date_format(date_create($permisoZarpe->Zarpe),"d/m/Y")}} </td>
+      <td class="text-center">{{date_format(date_create($permisoZarpe->fechaZarpe),"d/m/Y")}} </td>
       @if($permisoZarpe->pesca->arribo == false)
           <td class="text-center"> Si </td>
       @else

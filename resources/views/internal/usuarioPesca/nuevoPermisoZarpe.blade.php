@@ -21,7 +21,7 @@
           </div>
         </div>
       <div class="form-group">
-            <label class="col-sm-3 control-label">Capitania</label>
+            <label class="col-sm-3 control-label">Embarcación</label>
             <div class="col-sm-9">
                 {!! Form::select('embarcacion_id', $embarcaciones_lista->toArray(), null, ['class' => 'form-control','required', 'id'=>'embarcacion_id']) !!}
             </div>

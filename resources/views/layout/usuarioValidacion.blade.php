@@ -14,6 +14,7 @@
     {!!Html::style('css/font-awesome.min.css')!!}
     {!!Html::style('css/admin.css')!!}
     {!!Html::style('css/estilosLayOut.css')!!}
+    <script src="https://code.highcharts.com/highcharts.src.js"></script>
     @yield('style')
 
 </head>

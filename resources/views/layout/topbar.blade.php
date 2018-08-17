@@ -204,6 +204,13 @@
                         <li><a href="{{url('admin/frigorificos/new')}}">Nuevo</a></li>
                     </ul>
                 </li>
+
+                <li>
+                    <a data-toggle="collapse" data-target="#reportes" class="collapsed">Reportes <b class="caret"></b></a>
+                    <ul class="sub-menu collapse" id="reportes">
+                        <li><a href="{{url('admin/report/especies')}}">Especies Marinas</a></li>
+                    </ul>
+                </li>
                 <!-- 
                 <li>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Certificaciones de Pesca <b class="caret"></b></a>
@@ -357,13 +364,13 @@
                         <li><a href="{{url('usuarioPesca/certificadoArribos/new')}}">Nuevo</a></li>
                     </ul>
                 </li>
-                <!--
+                
                 <li>
                     <a data-toggle="collapse" data-target="#calHielo" class="collapsed">Calculo Hielo<b class="caret"></b></a>
                     <ul class="sub-menu collapse" id="calHielo">
                         <li><a href="{{url('usuarioPesca/cantidadHielo')}}">Calcular Hielo Necesario</a></li>
                     </ul>
-                </li>-->
+                </li>
             
 
             

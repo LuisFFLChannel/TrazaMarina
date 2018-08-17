@@ -15,6 +15,7 @@
     {!!Html::style('css/style.css')!!}
     {!!Html::style('css/style-desktop.css')!!}
     {!!Html::style('css/estilosLayOut.css')!!}
+    <script src="https://code.highcharts.com/highcharts.src.js"></script>
     @yield('style')
 </head>
 <body>
