@@ -41,6 +41,9 @@
                           <h5 class="text-left">Nombre: {{$frigorifico->nombre}} </h5>
                           <h5 class="text-left">Placa: {{$frigorifico->placa}} </h5>                              
                           <h5 class="text-left">Capacidad: {{$frigorifico->capacidad}}</h5> 
+                          <hr>
+                          <h5>Imagen:</h5> 
+                          <p>{!! Html::image($frigorifico->imagen, null, array('class'=>'gift_img')) !!}</p>
                        </div>
                     </div>
                   </div>

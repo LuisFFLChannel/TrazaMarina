@@ -5,7 +5,7 @@
 @stop
 
 @section('title')
-	Reporte de asignación
+    Reporte Mensual de Pesca de Especies Marinas
 @stop
 
 @section('content')
@@ -13,7 +13,7 @@
     {!! csrf_field() !!}
     <div class="row">
         <div class="col-sm-5">
-            <label>Rango de Fechas de Asignación</label>
+            <label>Rango de Fechas de Desembarques</label>
             <hr style="margin:5px;">
             <div class="col-sm-6">
                 <label>Desde</label>

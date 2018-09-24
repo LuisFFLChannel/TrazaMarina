@@ -35,6 +35,7 @@
           <label for="inputEmail3" class="col-sm-2 control-label">Imagen</label>
           <div class="col-sm-10">
             {!!Form::input('file','imagen', $frigorifico->imagen ,['class'=>'form-control','id'=>'inputEmail3'])!!}
+            {{$frigorifico->imagen}}
           </div>
         </div>
 

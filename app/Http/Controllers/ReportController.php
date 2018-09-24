@@ -1473,6 +1473,135 @@ class ReportController extends Controller
         return view('internal.admin.reports.especiesReportes');
     }
 
+    public function showReportGetPuertos(){
+        return view('internal.admin.reports.puertosReportes');
+    }
+
+    public function showReportPostPuertos(Request $request){
+        // if (Input::isJson())
+        // {
+            // $request = Input::all();
+            $res = json_decode(Input::get('dates'));
+            $input = $request->all();
+            if ($res[0]->antes == null && $res[0]->despues == null){
+                $notaIngresos = DB::table('notaIngreso')->join('desembarque', 'desembarque.id', '=', 'notaIngreso.desembarque_id')->join('puerto', 'desembarque.puerto_id', '=', 'puerto.id')->select(DB::raw('count(*) as cantidad_notas, SUM(notaIngreso.toneladas) as toneladas , desembarque.puerto_id as id, puerto.nombre as nombre, MONTH(desembarque.fechaLlegada) as mes, YEAR(desembarque.fechaLlegada) as anho'))->groupBy('desembarque.puerto_id', DB::raw("MONTH(desembarque.fechaLlegada)"))->get();
+            } else if ($res[0]->antes == null){
+                $to = date($res[0]->despues);
+                $notaIngresos = DB::table('notaIngreso')->join('desembarque', 'desembarque.id', '=', 'notaIngreso.desembarque_id')->join('puerto', 'desembarque.puerto_id', '=', 'puerto.id')->select(DB::raw('count(*) as cantidad_notas, SUM(notaIngreso.toneladas) as toneladas , desembarque.puerto_id as id, puerto.nombre as nombre, MONTH(desembarque.fechaLlegada) as mes, YEAR(desembarque.fechaLlegada) as anho'))->where('desembarque.fechaLlegada', '<=', $to)->groupBy('desembarque.puerto_id', DB::raw("MONTH(desembarque.fechaLlegada)"))->get();
+            } else if ($res[0]->despues == null){
+                $from = date($res[0]->antes);
+                $notaIngresos = DB::table('notaIngreso')->join('desembarque', 'desembarque.id', '=', 'notaIngreso.desembarque_id')->join('puerto', 'desembarque.puerto_id', '=', 'puerto.id')->select(DB::raw('count(*) as cantidad_notas, SUM(notaIngreso.toneladas) as toneladas , desembarque.puerto_id as id, puerto.nombre as nombre, MONTH(desembarque.fechaLlegada) as mes, YEAR(desembarque.fechaLlegada) as anho'))->where('desembarque.fechaLlegada', '>=', $from)->groupBy('desembarque.puerto_id', DB::raw("MONTH(desembarque.fechaLlegada)"))->get();
+            } else {
+                $from = date($res[0]->antes);
+                $to = date($res[0]->despues);
+                $notaIngresos = DB::table('notaIngreso')->join('desembarque', 'desembarque.id', '=', 'notaIngreso.desembarque_id')->join('puerto', 'desembarque.puerto_id', '=', 'puerto.id')->select(DB::raw('count(*) as cantidad_notas, SUM(notaIngreso.toneladas) as toneladas , desembarque.puerto_id as id, puerto.nombre as nombre, MONTH(desembarque.fechaLlegada) as mes, YEAR(desembarque.fechaLlegada) as anho'))->whereBetween('desembarque.fechaLlegada', [$from, $to])->groupBy('desembarque.puerto_id', DB::raw("MONTH(desembarque.fechaLlegada)"))->get();
+            }
+            $max_anho = 0;
+            $min_anho = 9999;
+            $max_mes = 0;
+            $min_mes = 13;
+            foreach ($notaIngresos as $notaIngreso){
+                if ($max_anho < $notaIngreso->anho){
+                    $max_anho = $notaIngreso->anho;
+                    $max_mes = $notaIngreso->mes;
+                }
+                if ($max_anho == $notaIngreso->anho){
+                    if ($max_mes < $notaIngreso->mes){
+                        $max_mes = $notaIngreso->mes;
+                    }
+                }
+                if ($notaIngreso->anho < $min_anho){
+                    $min_anho = $notaIngreso->anho;
+                    $min_mes = $notaIngreso->mes;
+                }
+                if ($min_anho == $notaIngreso->anho){
+                    if ($min_mes > $notaIngreso->mes){
+                        $min_mes = $notaIngreso->mes;
+                    }
+                }
+               
+                // array_push($assiInformation,array($module->name,$salesman->name,$salesman->lastname, $moduleAssigment->dateAssigments, $moduleAssigment->dateMoveAssigments,$role->description ));
+            }
+            $serieMeses = [];
+            $auxFecha = [];
+            for ($i=$min_anho; $i < $max_anho +1; $i++) { 
+                if ($min_anho == $max_anho){
+                    for ($j=$min_mes; $j < $max_mes +1 ; $j++) { 
+                        $serieMes = $this->serieAdition($i,$j);
+                        array_push($serieMeses, $serieMes);
+                        $data['mes'] = $j;
+                        $data['anho'] = $i;
+                        array_push($auxFecha, $data);
+                    }
+                } else if ($i == $min_anho){
+                    for ($j=$min_mes; $j < 13 ; $j++) { 
+                        $serieMes = $this->serieAdition($i,$j);
+                        array_push($serieMeses, $serieMes); 
+                        $data['mes'] = $j;
+                        $data['anho'] = $i;
+                        array_push($auxFecha, $data);
+                    }
+                } else if ($i == $max_anho){
+                    for ($j=1; $j < $max_mes + 1 ; $j++) { 
+                        $serieMes = $this->serieAdition($i,$j); 
+                        array_push($serieMeses, $serieMes); 
+                        $data['mes'] = $j;
+                        $data['anho'] = $i;
+                        array_push($auxFecha, $data);
+                    }
+                } else {
+                    for ($j=1; $j < 13 ; $j++) { 
+                        $serieMes = $this->serieAdition($i,$j); 
+                        array_push($serieMeses, $serieMes);     
+                        $data['mes'] = $j;
+                        $data['anho'] = $i;
+                        array_push($auxFecha, $data);
+                    }
+                }
+            }
+            $dataSerie = [];
+            foreach ($notaIngresos as $notaIngreso){
+                $mismoNombre = false;
+                $posicion = 0;
+                for ($i=0; $i < sizeof($dataSerie) ; $i++) { 
+                    if ( $dataSerie[$i]['id'] == $notaIngreso->id){
+                        $mismoNombre = true;
+                        $posicion = $i;
+                        break;
+                    }
+                }
+                if ($mismoNombre){
+                    for ($i=0; $i < sizeof($auxFecha) ; $i++) { 
+                        if ($notaIngreso->mes == $auxFecha[$i]['mes'] && $notaIngreso->anho == $auxFecha[$i]['anho'] ){
+                            $dataSerie[$posicion]['data'][$i] = $notaIngreso->toneladas;
+                            break;
+                        } 
+                    }
+                } else {
+                    $data = [];
+                    for ($i=0; $i < sizeof($auxFecha) ; $i++) { 
+                        if ($notaIngreso->mes == $auxFecha[$i]['mes'] && $notaIngreso->anho == $auxFecha[$i]['anho'] ){
+                            array_push($data, $notaIngreso->toneladas);
+                        } else {
+                            array_push($data, 0);
+                        }
+                    }
+                    $auxDataSerie['id'] = $notaIngreso->id;
+                    $auxDataSerie['name'] = $notaIngreso->nombre;
+                    $auxDataSerie['data'] = $data;
+                    array_push($dataSerie, $auxDataSerie);
+                }
+
+            }
+            $reporte['categories'] = $serieMeses;
+            $reporte['series'] = $dataSerie;
+            return Response::json($reporte);
+
+        // }
+        // else return "not json";
+
+    }
+
     /**
      * Display the specified resource.
      *

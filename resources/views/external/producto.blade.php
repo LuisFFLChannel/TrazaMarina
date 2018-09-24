@@ -7,8 +7,97 @@
 	Producto Encontrado: 
 @stop
 
-@section('content')
+@section('javascript')
+<script type="text/javascript">
+  /*  $( document ).ready(function() {
+        $('#searchButton').on('click',function(){
+            var titulo = $('#textSearch').val();
+            $('#searchButton').attr('href', 'event?title='+titulo);
+        });
+    });*/
+</script>
+<script type="text/javascript">
+  function myMaps() {
+    //var element = document.createElement("map");
+    //element.appendChild(document.createTextNode('The man who mistook his wife for a hat'));
+    //document.getElementById('modeloModal').appendChild(element);
+    var lat1, lon1;
+      var mapOptions = {
+       center: {lat: parseFloat('<?php echo $pesca->coordenadaX; ?>'), lng: parseFloat('<?php echo $pesca->coordenadaY; ?>')},
+        zoom: 10,
+        mapTypeId: google.maps.MapTypeId.ROADMAP};
+        map = new google.maps.Map(document.getElementById("map"),mapOptions);
+            var marker = new google.maps.Marker({
+              position: myLatlng, 
+              map: map,
+              title:"Hello World!"
+          });   
+             marker.addListener('click', function() {
+              infowindow.open(map, marker);
+            });
+             var infowindow = new google.maps.InfoWindow({
+              content: "Localizacion"
+            });
+
+          var mapOptions2 = {
+           center: {lat: parseFloat('<?php echo $puertoZ->coordenadaX; ?>'), lng: parseFloat('<?php echo $puertoZ->coordenadaY; ?>')},
+            zoom: 10,
+            mapTypeId: google.maps.MapTypeId.ROADMAP};
+            map2 = new google.maps.Map(document.getElementById("map2"),mapOptions2);
+                var marker2 = new google.maps.Marker({
+                  position: myLatlng2, 
+                  map: map2,
+                  title:"Hello World!"
+              });   
+                 marker2.addListener('click', function() {
+                  infowindow2.open(map2, marker2);
+                });
+                 var infowindow2 = new google.maps.InfoWindow({
+                  content: "Localizacion"
+                });
+
+          var mapOptions3 = {
+           center: {lat: parseFloat('<?php echo $puertoA->coordenadaX; ?>'), lng: parseFloat('<?php echo $puertoA->coordenadaY; ?>')},
+            zoom: 10,
+            mapTypeId: google.maps.MapTypeId.ROADMAP};
+            map3 = new google.maps.Map(document.getElementById("map3"),mapOptions3);
+                var marker3 = new google.maps.Marker({
+                  position: myLatlng3, 
+                  map: map3,
+                  title:"Hello World!"
+              });   
+                 marker3.addListener('click', function() {
+                  infowindow3.open(map3, marker3);
+                });
+                 var infowindow3 = new google.maps.InfoWindow({
+                  content: "Localizacion"
+                });
+           
+
+    
+      }  
+
+
+      
+      var myLatlng = {lat: parseFloat('<?php echo $pesca->coordenadaX; ?>'), lng: parseFloat('<?php echo $pesca->coordenadaY; ?>')};
+      var myLatlng2 = {lat: parseFloat('<?php echo $puertoZ->coordenadaX; ?>'), lng: parseFloat('<?php echo $puertoZ->coordenadaY; ?>')};
+      var myLatlng3 = {lat: parseFloat('<?php echo $puertoA->coordenadaX; ?>'), lng: parseFloat('<?php echo $puertoA->coordenadaY; ?>')};
+      
+
+</script>
+<style type="text/css">
+  #map { height: 250px; width: 250px }
+  #map2 { height: 250px; width: 250px }
+  #map3 { height: 250px; width: 250px }
+ 
+  #boxProducto {border-style: solid; border-color: black; border-width:1px}
+</style>
+
 <script  type="text/javascript" async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoElgDQ21cdBJtVLgvpFB8ywDLqhn4cKI&callback=myMaps"></script> 
+@stop
+
+@section('content')
+
     
     {!! Form::hidden('auxData', $producto, ['aux'=>'auxData'])!!}
     {!! Form::hidden('codigo', $codigoTrazabilidad, ['cod'=>'codigo'])!!}
@@ -185,94 +274,3 @@
 
 @stop
 
-@section('javascript')
-<script type="text/javascript">
-  /*  $( document ).ready(function() {
-        $('#searchButton').on('click',function(){
-            var titulo = $('#textSearch').val();
-            $('#searchButton').attr('href', 'event?title='+titulo);
-        });
-    });*/
-</script>
-<script type="text/javascript">
-  function myMaps() {
-    //var element = document.createElement("map");
-    //element.appendChild(document.createTextNode('The man who mistook his wife for a hat'));
-    //document.getElementById('modeloModal').appendChild(element);
-    var lat1, lon1;
-
-    
-      console.log('<?php echo $pesca->coordenadaX; ?>');
-      var mapOptions = {
-       center: {lat: parseFloat('<?php echo $pesca->coordenadaX; ?>'), lng: parseFloat('<?php echo $pesca->coordenadaY; ?>')},
-        zoom: 10,
-        mapTypeId: google.maps.MapTypeId.ROADMAP};
-        map = new google.maps.Map(document.getElementById("map"),mapOptions);
-            var marker = new google.maps.Marker({
-              position: myLatlng, 
-              map: map,
-              title:"Hello World!"
-          });   
-             marker.addListener('click', function() {
-              infowindow.open(map, marker);
-            });
-             var infowindow = new google.maps.InfoWindow({
-              content: "Localizacion"
-            });
-
-          console.log('<?php echo $puertoZ->coordenadaX; ?>');
-          var mapOptions2 = {
-           center: {lat: parseFloat('<?php echo $puertoZ->coordenadaX; ?>'), lng: parseFloat('<?php echo $puertoZ->coordenadaY; ?>')},
-            zoom: 10,
-            mapTypeId: google.maps.MapTypeId.ROADMAP};
-            map2 = new google.maps.Map(document.getElementById("map2"),mapOptions2);
-                var marker2 = new google.maps.Marker({
-                  position: myLatlng2, 
-                  map: map2,
-                  title:"Hello World!"
-              });   
-                 marker2.addListener('click', function() {
-                  infowindow2.open(map2, marker2);
-                });
-                 var infowindow2 = new google.maps.InfoWindow({
-                  content: "Localizacion"
-                });
-
-            console.log('<?php echo $puertoA->coordenadaX; ?>');
-          var mapOptions3 = {
-           center: {lat: parseFloat('<?php echo $puertoA->coordenadaX; ?>'), lng: parseFloat('<?php echo $puertoA->coordenadaY; ?>')},
-            zoom: 10,
-            mapTypeId: google.maps.MapTypeId.ROADMAP};
-            map3 = new google.maps.Map(document.getElementById("map3"),mapOptions3);
-                var marker3 = new google.maps.Marker({
-                  position: myLatlng3, 
-                  map: map3,
-                  title:"Hello World!"
-              });   
-                 marker3.addListener('click', function() {
-                  infowindow3.open(map3, marker3);
-                });
-                 var infowindow3 = new google.maps.InfoWindow({
-                  content: "Localizacion"
-                });
-           
-
-    
-      }  
-
-
-      
-      var myLatlng = {lat: parseFloat('<?php echo $pesca->coordenadaX; ?>'), lng: parseFloat('<?php echo $pesca->coordenadaY; ?>')};
-      var myLatlng2 = {lat: parseFloat('<?php echo $puertoZ->coordenadaX; ?>'), lng: parseFloat('<?php echo $puertoZ->coordenadaY; ?>')};
-      var myLatlng3 = {lat: parseFloat('<?php echo $puertoA->coordenadaX; ?>'), lng: parseFloat('<?php echo $puertoA->coordenadaY; ?>')};
-      
-
-</script>
-<style type="text/css">
-  #map { height: 250px; width: 250px }
-  #map2 { height: 250px; width: 250px }
-  #map3 { height: 250px; width: 250px }
- 
-  #boxProducto {border-style: solid; border-color: black; border-width:1px}
-</style>
-@stop

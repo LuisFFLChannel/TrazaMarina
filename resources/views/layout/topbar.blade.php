@@ -209,6 +209,7 @@
                     <a data-toggle="collapse" data-target="#reportes" class="collapsed">Reportes <b class="caret"></b></a>
                     <ul class="sub-menu collapse" id="reportes">
                         <li><a href="{{url('admin/report/especies')}}">Especies Marinas</a></li>
+                        <li><a href="{{url('admin/report/puertos')}}">Puertos</a></li>
                     </ul>
                 </li>
                 <!-- 

@@ -18,6 +18,7 @@ class CreateFrigorificoTable extends Migration
             $table->string('nombre');
             $table->string('placa')->unique();
             $table->float('capacidad');
+            $table->string('imagen'); 
             $table->boolean('activo');
             $table->softDeletes();
             $table->timestamps();
