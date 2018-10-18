@@ -31,13 +31,13 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="tamanoMin" class="col-sm-2 control-label">Tamaño Minimo</label>
+          <label for="tamanoMin" class="col-sm-2 control-label">Tamaño Minimo (cm)</label>
           <div class="col-sm-10">
             {!!Form::input('text','tamanoMin', null ,['class'=>'form-control','id'=>'tamanoMin', 'maxlength'=>'100','min' >0,'required'])!!}
           </div>
         </div>
         <div class="form-group">
-          <label for="tamanoMax" class="col-sm-2 control-label">Tamaño Maximo</label>
+          <label for="tamanoMax" class="col-sm-2 control-label">Tamaño Maximo (cm)</label>
           <div class="col-sm-10">
             {!!Form::input('text','tamanoMax', null ,['class'=>'form-control','id'=>'tamanoMax', 'maxlength'=>'100','min' >0,'required'])!!}
           </div>

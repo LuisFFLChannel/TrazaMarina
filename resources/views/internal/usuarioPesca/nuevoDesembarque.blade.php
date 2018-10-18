@@ -112,7 +112,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label  class="col-md-3 control-label">Talla Promedio</label>
+            <label  class="col-md-3 control-label">Talla Promedio (cm)</label>
             <div class="col-md-9">
                 {!! Form::number('promedios_inde','', array('class' => 'form-control','id' => 'promedios_inde','maxlength' => 50,'min' => '0')) !!}
             </div>

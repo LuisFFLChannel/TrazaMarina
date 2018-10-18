@@ -114,8 +114,8 @@ class DesembarqueController extends Controller
 
         $val = Carbon::parse($desembarque->fechaLlegada);
         $val2 = Carbon::parse($pesca->fechaZarpe);
-        
-        if($val->gt($val2)==false){
+
+        if($val->gte($val2)==false){
             return redirect()->back()->withInput()->withErrors(['errors' => 'La fecha de Arribo sucede antes que la fecha de Zarpe']);
         }   
         $especies_data = [

@@ -157,9 +157,17 @@ class HieloController extends Controller
         $historial = HistorialHielo::where("puerto_id","=",$idPuerto)->where("especie_id","=", $idEspecie)->where("embarcacion_id","=",$idEmbarcacion)->orderBy('anho', 'asc')->orderBy('mes', 'asc')->limit(12)->get()->toArray();
         $pescad = Desembarque::where("puerto_id","=",$idPuerto)->where("embarcacion_id","=",$idEmbarcacion)->orderBy('fechaLlegada', 'desc')->get()->toArray();
         
-        // dd($historial);
-
-        $dta = ['arreglo_historial' => $historial];
+  
+        $hielo_actual = 0;
+        for ($i=0 ;$i <sizeof($historial); $i ++ ){
+            $hielo_actual = $hielo_actual + $historial[$i]["hieloPromedio"];
+        }
+ 
+        if (sizeof($historial) > 0){
+            $hielo_actual = $hielo_actual/sizeof($historial);
+        }
+        
+        $dta = ['arreglo_historial' => $historial, 'prediccion' => $hielo_actual];
     return  json_encode( $dta);  
     }
 

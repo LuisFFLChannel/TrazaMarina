@@ -44,12 +44,20 @@
                     <th>Año</th>
                       <th>Mes</th>
                       <th>Toneladas Promedio</th>
-                      <th>Cantidad de hielo</th>
+                      <th>Cantidad de hielo (Ton.)</th>
                   </tr>
               </table>
             </div>
         </div>
       <br>
+
+    <div class="form-group">
+        <div class="col-sm-6"></div>
+        <label class="col-sm-3 control-label">Predicción actual: </label>
+        <div class="col-sm-3" id="prediccion">
+            
+        </div>
+    </div>
 
     <div class="form-group">
         <div class="col-sm-offset-3 col-sm-9">
@@ -166,7 +174,7 @@ $("#BuscarHielo").on("click",function(){
 
             var newText3 = document.createElement("INPUT");
             newText3.setAttribute("type", "text");
-            newText3.setAttribute("value", ""+data['arreglo_historial'][id].toneladasPromedio);
+            newText3.setAttribute("value", ""+ parseFloat(Math.round(data['arreglo_historial'][id].toneladasPromedio * 100) / 100).toFixed(2));
             newText3.setAttribute("name", "toneladas[]");
             newText3.style.border = 'none';
             newText3.style.background = 'transparent';
@@ -175,7 +183,7 @@ $("#BuscarHielo").on("click",function(){
 
             var newText4 = document.createElement("INPUT");
             newText4.setAttribute("type", "text");
-            newText4.setAttribute("value", ""+data['arreglo_historial'][id].hieloPromedio);
+            newText4.setAttribute("value", ""+ parseFloat(Math.round(data['arreglo_historial'][id].hieloPromedio* 100) / 100).toFixed(2));
             newText4.setAttribute("name", "hielos[]");
             newText4.style.border = 'none';
             newText4.style.background = 'transparent';
@@ -188,6 +196,8 @@ $("#BuscarHielo").on("click",function(){
             newCell1.appendChild(newText2);
             newCell3.appendChild(newText3);
             newCell4.appendChild(newText4);
+            
+
             
             //document.getElementById('input-function-date')[0].value = '';
 
@@ -202,7 +212,13 @@ $("#BuscarHielo").on("click",function(){
 
 
           });
-
+          var divText = document.getElementById('prediccion');
+            if (data['prediccion'] != 0){
+                divText.innerHTML = '' + parseFloat(Math.round(data['prediccion']* 100) / 100).toFixed(2);
+            }
+            else {
+                divText.innerHTML = '0';
+            }
       })
 
 
